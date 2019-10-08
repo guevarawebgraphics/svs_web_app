@@ -1,7 +1,7 @@
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark svs-nav">
         
-<a class="navbar-brand" href="#"><img class="img-fluid svs-logo" style="width:200px;" src="{{ asset('/img/svs2.png') }}"></a>
+<a class="navbar-brand" href="{{ env('APP_URL') }}"><img class="img-fluid svs-logo" style="width:200px;" src="{{ asset('/img/svs2.png') }}"></a>
         
         <button class="navbar-toggler svs-text" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
           aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">

@@ -4,7 +4,7 @@
 <div class="container" style="margin-top:5em;">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <img class="img-fluid" style="width:100%" src="{{ asset('/img/svs2.png') }}">
+            <a href="{{ env('APP_URL') }}"> <img class="img-fluid" style="width:100%" src="{{ asset('/img/svs2.png') }}"></a>
             <div class="card">
                 <div class="card-header white-text text-center py-4 svs-header"><b>{{ __('Project Management Web Application Login') }}</b></div>
                 
