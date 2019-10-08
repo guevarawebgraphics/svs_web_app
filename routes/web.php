@@ -15,6 +15,10 @@ Route::get('/','HomeController@index');
     
 Route::group(['middleware'=> ['admin']], function(){
     Route::get('/admin/index', 'AdminController@index');
+    Route::get('/admin/location', 'AdminController@location');
+    Route::get('/admin/task', 'AdminController@task');
+    Route::get('/admin/projectlist', 'AdminController@projectlist');
+    Route::get('/admin/assignproject', 'AdminController@assignproject');
 });
 
 Route::group(['middleware'=> ['auth']], function(){

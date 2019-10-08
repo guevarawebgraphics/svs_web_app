@@ -12,37 +12,34 @@
             <li class="nav-item active">
               
                 @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0)
-                <a class="nav-link svs-text" href="#">
+                <a class="nav-link svs-text" href="/admin/index">
                 Dashboard
                 @else
-                <a class="nav-link svs-text" href="#">
+                <a class="nav-link svs-text" href="/user/index">
                 Home
                 @endif
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-                @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0)
-                <a class="nav-link svs-text" href="#">
-                Project Configuration
-                @else
-                <a class="nav-link svs-text" href="#">
-                Features
-                @endif
-                </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link svs-text" href="#">Pricing</a>
+              <a class="nav-link svs-text" href="#">Users</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">Dropdown
-              </a>
-              <div class="dropdown-menu dropdown-default svs-text" aria-labelledby="navbarDropdownMenuLink-333">
-                <a class="dropdown-item svs-text" href="#">Action</a>
-                <a class="dropdown-item svs-text" href="#">Another action</a>
-                <a class="dropdown-item svs-text" href="#">Something else here</a>
-              </div>
+                @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0)
+                    <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">Project Configuration
+                    </a>
+                    <div class="dropdown-menu dropdown-default svs-text" aria-labelledby="navbarDropdownMenuLink-333">
+                      <a class="dropdown-item svs-text" href="/admin/location">Location</a>
+                      <a class="dropdown-item svs-text" href="/admin/task">Tasks</a>
+                      <a class="dropdown-item svs-text" href="/admin/projectlist">Project List</a>
+                      <a class="dropdown-item svs-text" href="/admin/assignproject">Assign Project</a>
+                    </div>
+                @else
+                  <a class="nav-link svs-text" href="#">
+                    Features
+                  </a>
+                @endif
             </li>
           </ul>
           <ul class="navbar-nav ml-auto nav-flex-icons">

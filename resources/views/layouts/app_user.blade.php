@@ -12,13 +12,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-
-    <!-- Fonts -->
-    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
-
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -30,6 +23,11 @@
 
     <!-- Your custom styles (optional) -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <!-- DataTables Bootstrap 4 -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
+ 
+    <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
 </head>
 <body>
     
