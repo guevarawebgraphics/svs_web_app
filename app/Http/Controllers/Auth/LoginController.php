@@ -30,11 +30,10 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, User $user){
         if($user->is_admin == 1){
-            return  redirect('/admin/index');
-        }
-        else if($user->is_admin == 2){
             return redirect('/admin/index');
-        }else{
+        }else if($user->is_admin == 2){
+            return redirect('/admin/index');
+        }else if($user->is_admin == 0){
             return redirect('/user/index');
         }
     }
