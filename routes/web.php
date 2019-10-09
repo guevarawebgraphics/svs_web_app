@@ -16,7 +16,13 @@ Route::get('/','HomeController@index');
 Route::group(['middleware'=> ['admin']], function(){
     Route::get('/admin/index', 'AdminController@index');
     Route::get('/admin/location', 'AdminController@location');
+
     Route::get('/admin/task', 'AdminController@task');
+    Route::post('/admin/task/task_val', 'AdminController@task_val')->name('task_val');
+    Route::post('/admin/task/task_save', 'AdminController@task_save')->name('task_save');
+    Route::get('/admin/task/getTask', 'AdminController@getTask')->name('getTask');
+    Route::post('/admin/task/session_success', 'AdminController@session_success')->name('session_success');
+    
     Route::get('/admin/projectlist', 'AdminController@projectlist');
     Route::get('/admin/assignproject', 'AdminController@assignproject');
 });
