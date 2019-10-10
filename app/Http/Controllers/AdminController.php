@@ -72,6 +72,7 @@ class AdminController extends Controller
         $output = array();
         $error = array();
         $success = array();
+
         if($request->proceed == "TRUE"){
             $taskCode = strtoupper(str_random(12));
             $task = new TaskModel;
@@ -86,8 +87,9 @@ class AdminController extends Controller
             $task->updated_at = now();
             $task->save();
 
-            $messages = "Successfully Saved!";
+            $messages = $taskCode;
             $success[] = $messages;
+
         }else{
             $messages = "Invalid Request";
             $error[] = $messages;
@@ -146,6 +148,7 @@ class AdminController extends Controller
             $request->session()->put('titleTask',$request->title);
             $request->session()->put('weightTask',$request->weight);
             $request->session()->put('descTask',$request->desc);
+            $request->session()->put('codeTask',$request->code);
                         
 
             $messages = "Successfully Deleted!";
@@ -227,6 +230,7 @@ class AdminController extends Controller
             $request->session()->put('titleTask',$request->title);
             $request->session()->put('weightTask',$request->weight);
             $request->session()->put('descTask',$request->desc);
+            $request->session()->put('codeTask',$request->code);
                         
             $messages = "Successfully Updated!";
             $success[] = $messages;
@@ -256,6 +260,7 @@ class AdminController extends Controller
             $request->session()->put('titleTask',$request->task_title);
             $request->session()->put('weightTask',$request->weight);
             $request->session()->put('descTask',$request->desc);
+            $request->session()->put('codeTask',$request->code);
             
             $messages = "Successfully Saved!";
             $success[] = $messages;

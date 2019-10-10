@@ -17,6 +17,8 @@
                 <strong><i class="fas fa-times"></i>&nbsp;{{session()->get('deleteTask')}}</strong> 
             @endif
         <br>
+        Task Code: {{session()->get('codeTask')}}
+        <br>
         Title: {{session()->get('titleTask')}}
         <br>
         Weight: {{session()->get('weightTask')}} 
@@ -35,6 +37,7 @@
         session()->forget('titleTask');
         session()->forget('weightTask');
         session()->forget('descTask');
+        session()->forget('codeTask');
     @endphp
         
     <div class="container svs-overflow" id="dtContainer">
@@ -235,6 +238,8 @@ $(".editTask").click(function () {
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
     var weight = $(this).attr('data-weight');
+    var code = $(this).attr('data-code');
+    var crt = $(this).attr('data-crt');
     $("#divTitle").html("<input type='text' value='"+title+"' id='editTitle' name='editTitle' class='form-control'> <label for='editTitle' class='active'>Title</label>");
     $("#divWeight").html("<input type='number' value='"+weight+"' id='editWeight' name='editWeight' class='form-control'> <label for='editWeight' class='active'>Weight %</label>");
     $("#divTxtarea").html("<textarea type='text' id='editDesc' name='editDesc' maxlength='190' class='form-control md-textarea'>"+desc+"</textarea> <label for='editDesc' class='active'>Description</label>");
@@ -242,6 +247,8 @@ $(".editTask").click(function () {
     $("#updateTask").attr("data-title",title);
     $("#updateTask").attr("data-desc",desc);
     $("#updateTask").attr("data-weight",weight);
+    $("#updateTask").attr("data-code",code);
+    $("#updateTask").attr("data-crt",crt);
 });
 
 $("#updateTask").click(function () {
@@ -249,6 +256,8 @@ $("#updateTask").click(function () {
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
     var weight = $(this).attr('data-weight');
+    var code = $(this).attr('data-code');
+    var crt = $(this).attr('data-crt');
 
     var nTitle = $('#editTitle').val();
     var nWeight = $('#editWeight').val();
@@ -263,12 +272,18 @@ $("#updateTask").click(function () {
             id:id,
             title:nTitle,
             desc:nDesc,
-            weight:nWeight
+            weight:nWeight,
+            crt:crt,
+            code:code
         }, 
         dataType: "json",
         success:function(data)
         {
             if(data.success.length > 0){
+                var x = document.getElementById("updateTask");
+                x.innerHTML = "Loading...";
+                document.getElementById("updateTask").disabled = true;
+
                 $.ajax({
                     headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     url: "{{ route('update_task') }}",
@@ -278,7 +293,9 @@ $("#updateTask").click(function () {
                         id:id,
                         title:nTitle,
                         desc:nDesc,
-                        weight:nWeight
+                        weight:nWeight,
+                        crt:crt,
+                        code:code
                     }, 
                     dataType: "json",
                     success:function(data)
@@ -312,6 +329,8 @@ $(".delTask").click(function () {
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
     var weight = $(this).attr('data-weight');
+    var code = $(this).attr('data-code');
+    var crt = $(this).attr('data-crt');
     $('#delTitle').html(title);
     $('#delDesc').html(desc);
     $('#delWeight').html(weight);
@@ -319,6 +338,8 @@ $(".delTask").click(function () {
     $("#delSubmit").attr("data-title",title);
     $("#delSubmit").attr("data-desc",desc);
     $("#delSubmit").attr("data-weight",weight);
+    $("#delSubmit").attr("data-code",code);
+    $("#delSubmit").attr("data-crt",crt);
 });
 
 $("#delSubmit").click(function () {
@@ -326,6 +347,13 @@ $("#delSubmit").click(function () {
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
     var weight = $(this).attr('data-weight');
+    var code = $(this).attr('data-code');
+    var crt = $(this).attr('data-crt');
+
+    var x = document.getElementById("delSubmit");
+    x.innerHTML = "Loading...";
+    document.getElementById("delSubmit").disabled = true;
+
     $.ajax({
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         url: "{{ route('delete_task') }}",
@@ -335,7 +363,9 @@ $("#delSubmit").click(function () {
             id:id,
             title:title,
             desc:desc,
-            weight:weight
+            weight:weight,
+            code:code,
+            crt:crt
         }, 
         dataType: "json",
         success:function(data)
@@ -381,6 +411,9 @@ $("#delSubmit").click(function () {
                 success:function(data)
                 {
                     if(data.success.length > 0){
+                        var x = document.getElementById("submitTask");
+                        x.innerHTML = "Loading...";
+                        document.getElementById("submitTask").disabled = true;
                         $.ajax({
                             headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             url: "{{ route('task_save') }}",
@@ -395,6 +428,7 @@ $("#delSubmit").click(function () {
                             success:function(data)
                             {
                                 if(data.success.length > 0){
+                                    var taskCode = data.success[0];
                                     $.ajax({
                                         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                                         url: "{{ route('session_success') }}",
@@ -403,7 +437,8 @@ $("#delSubmit").click(function () {
                                             type:"TASK",
                                             task_title:task_title,
                                             weight:weight,
-                                            desc:desc
+                                            desc:desc,
+                                            code:taskCode
                                         }, 
                                         dataType: "json",
                                         success:function(data)

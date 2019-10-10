@@ -42,6 +42,14 @@
     <!-- Toastr JS -->
     <script src="{{ asset('js/addons/toastr.min.js') }}"></script>
 
+    <!-- Date Time Picker jQuery -->
+    <script type="text/javascript" src="{{asset('plugins/datetimepicker/js/moment.min.js') }}" ></script>
+    <script type="text/javascript" src="{{asset('plugins/datetimepicker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <link rel="stylesheet" href="{{asset('plugins/datetimepicker/css/tempusdominus-bootstrap-4.min.css') }}" />
+
+    <script type="text/javascript" src="{{asset('plugins/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <link rel="stylesheet" href="{{asset('plugins/datetimepicker/css/bootstrap-datetimepicker.min.css') }}" />
+
 </head>
 <body>
     @include('includes.nav') 

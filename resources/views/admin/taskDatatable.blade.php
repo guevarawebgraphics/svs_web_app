@@ -29,8 +29,8 @@
                             <td>{{$field->updated_by}}</td>
                             <td>{{date("F d Y - h:i a",strtotime($field->created_at))}}</td>
                             <td>
-                                <button data-id="{{$field->id}}" data-title="{{$field->task_title}}" data-desc="{{$field->task_desc}}" data-weight="{{$field->weight}}" class="svs-action delTask btn"><i class="fa fa-trash"></i></button>
-                                <button data-id="{{$field->id}}" data-title="{{$field->task_title}}" data-desc="{{$field->task_desc}}" data-weight="{{$field->weight}}" class="svs-action editTask btn"><i class="fa fa-pencil-alt"></i></button>
+                            <button data-id="{{$field->id}}" data-title="{{$field->task_title}}" data-desc="{{$field->task_desc}}" data-weight="{{$field->weight}}" data-code = "{{$field->taskCode}}" data-crt = "{{$field->created_at}}" class="svs-action delTask btn"><i class="fa fa-trash"></i></button>
+                            <button data-id="{{$field->id}}" data-title="{{$field->task_title}}" data-desc="{{$field->task_desc}}" data-weight="{{$field->weight}}" data-code = "{{$field->taskCode}}" data-crt = "{{$field->created_at}}" class="svs-action editTask btn"><i class="fa fa-pencil-alt"></i></button>
                             </td>
                         </tr>
                     @endforeach

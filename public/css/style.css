@@ -79,6 +79,9 @@ background-color:#222222;
         background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(254,254,254,1) 1%, rgba(246,246,246,1) 7%, rgba(248,147,29,1) 19%, rgba(248,147,29,1) 54%);
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f8931d', GradientType=1 ); */
     }
+    .svs-modal{
+        max-width:80%!important;
+    }
   }
 @media only screen and (max-width: 600px) {
     /* .svs-logo{
@@ -91,6 +94,9 @@ background-color:#222222;
     }
     .svs-overflow{
         overflow-y:auto; 
+    }
+    .svs-modal{
+        max-width:100%!important;
     }
   }
 .svs-brand:before {
