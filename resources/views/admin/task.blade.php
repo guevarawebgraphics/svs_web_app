@@ -7,23 +7,31 @@
     <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalTask"><i class="fa fa-plus"></i>&nbsp;New Task</button>
     
     <div class="container" style="margin-top:3em;">
-    @if(!empty(session()->get('successTask')))
-    <br>
-    <div class="alert alert-success alert-dismissible fade show svs-success" role="alert">
-    <strong>{{session()->get('successTask')}}</strong> 
-    <br>
-    Title: {{session()->get('titleTask')}}
-    <br>
-    Weight: {{session()->get('weightTask')}} 
-    <br>
-    Description: {{session()->get('descTask')}}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
+    @if(!empty(session()->get('successTask')) || !empty(session()->get('deleteTask')))
+        <br>
+            @if(!empty(session()->get('successTask')))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><i class="fas fa-check"></i>&nbsp;{{session()->get('successTask')}}</strong> 
+            @elseif(!empty(session()->get('deleteTask')))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><i class="fas fa-times"></i>&nbsp;{{session()->get('deleteTask')}}</strong> 
+            @endif
+        <br>
+        Title: {{session()->get('titleTask')}}
+        <br>
+        Weight: {{session()->get('weightTask')}} 
+        <br>
+        Description: {{session()->get('descTask')}}
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        </div>
     @endif
     @php
         session()->forget('successTask');
+        session()->forget('deleteTask');
         session()->forget('titleTask');
         session()->forget('weightTask');
         session()->forget('descTask');
@@ -128,9 +136,9 @@
                 <strong>Note danger:</strong> 
                 You are trying to delete this record. This record will not be useful to any transaction
                 <br>
-                Title: <em>Title</em><br>
-                Description <em>Desc</em><br>
-                Weight: <em>11.34</em><br>
+                Title: <em id="delTitle"></em><br>
+                Description <em id="delDesc"></em><br>
+                Weight: <em id="delWeight"></em><br>
             </p>
         </div>
     
@@ -139,7 +147,7 @@
       <!--Footer-->
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-        <button class="btn btn-danger waves-effect">Delete</button>
+        <button class="btn btn-danger waves-effect" id="delSubmit">Delete</button>
       </div>
     </div>
   </div>
@@ -173,18 +181,16 @@
         
                             <!--Grid column-->
                             <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="task_title" name="task_title" class="form-control">
-                                    <label for="task_title" class="">Title</label>
+                                <div class="md-form mb-0" id="divTitle">
+
                                 </div>
                             </div>
                             <!--Grid column-->
         
                             <!--Grid column-->
                             <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <input type="number" id="weight" name="weight" class="form-control">
-                                    <label for="weight" class="">Weight %</label>
+                                <div class="md-form mb-0" id="divWeight">
+                                    
                                 </div>
                             </div>
                             <!--Grid column-->
@@ -198,9 +204,8 @@
                             <!--Grid column-->
                             <div class="col-md-12">
         
-                                <div class="md-form">
-                                    <textarea type="text" id="desc" name="desc" maxlength="190" class="form-control md-textarea"></textarea>
-                                    <label for="desc">Description</label>
+                                <div class="md-form" id="divTxtarea">
+
                                 </div>
         
                             </div>
@@ -216,7 +221,7 @@
       <!--Footer-->
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-        <button class="btn btn-success waves-effect">Delete</button>
+        <button class="btn btn-success waves-effect" id="updateTask">Update</button>
       </div>
     </div>
   </div>
@@ -230,6 +235,75 @@ $(".editTask").click(function () {
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
     var weight = $(this).attr('data-weight');
+    $("#divTitle").html("<input type='text' value='"+title+"' id='editTitle' name='editTitle' class='form-control'> <label for='editTitle' class='active'>Title</label>");
+    $("#divWeight").html("<input type='number' value='"+weight+"' id='editWeight' name='editWeight' class='form-control'> <label for='editWeight' class='active'>Weight %</label>");
+    $("#divTxtarea").html("<textarea type='text' id='editDesc' name='editDesc' maxlength='190' class='form-control md-textarea'>"+desc+"</textarea> <label for='editDesc' class='active'>Description</label>");
+    $("#updateTask").attr("data-id",id);
+    $("#updateTask").attr("data-title",title);
+    $("#updateTask").attr("data-desc",desc);
+    $("#updateTask").attr("data-weight",weight);
+});
+
+$("#updateTask").click(function () {
+    var id = $(this).attr('data-id');
+    var title = $(this).attr('data-title')
+    var desc = $(this).attr('data-desc');
+    var weight = $(this).attr('data-weight');
+
+    var nTitle = $('#editTitle').val();
+    var nWeight = $('#editWeight').val();
+    var nDesc = $('#editDesc').val();
+
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('update_task_val') }}",
+        method: "POST",
+        data:{
+            type:"update_task",
+            id:id,
+            title:nTitle,
+            desc:nDesc,
+            weight:nWeight
+        }, 
+        dataType: "json",
+        success:function(data)
+        {
+            if(data.success.length > 0){
+                $.ajax({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('update_task') }}",
+                    method: "POST",
+                    data:{
+                        type:"update_task",
+                        id:id,
+                        title:nTitle,
+                        desc:nDesc,
+                        weight:nWeight
+                    }, 
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        if(data.success.length > 0){
+                            location.reload();
+                            // toastr.success(data.success[0]);
+                        }else{
+                            toastr.error(data.error[0]);
+                            // alert(data.error[0]);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                }); 
+            }else{
+                toastr.error(data.error[0]);
+                // alert(data.error[0]);
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });  
 });
 
 $(".delTask").click(function () {
@@ -238,8 +312,46 @@ $(".delTask").click(function () {
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
     var weight = $(this).attr('data-weight');
+    $('#delTitle').html(title);
+    $('#delDesc').html(desc);
+    $('#delWeight').html(weight);
+    $("#delSubmit").attr("data-id",id);
+    $("#delSubmit").attr("data-title",title);
+    $("#delSubmit").attr("data-desc",desc);
+    $("#delSubmit").attr("data-weight",weight);
+});
 
-    
+$("#delSubmit").click(function () {
+    var id = $(this).attr('data-id');
+    var title = $(this).attr('data-title')
+    var desc = $(this).attr('data-desc');
+    var weight = $(this).attr('data-weight');
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('delete_task') }}",
+        method: "POST",
+        data:{
+            type:"delete_task",
+            id:id,
+            title:title,
+            desc:desc,
+            weight:weight
+        }, 
+        dataType: "json",
+        success:function(data)
+        {
+            if(data.success.length > 0){
+                location.reload();
+                // toastr.success(data.success[0]);
+            }else{
+                toastr.error(data.error[0]);
+                // alert(data.error[0]);
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });  
 });
 </script>
 

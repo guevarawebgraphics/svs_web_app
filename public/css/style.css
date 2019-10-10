@@ -49,10 +49,10 @@ background-color:#222222;
     padding: 10px 10px 10px 10px;
 }
 .table th{
-    /* background-color:#F8931D;
-    color:#222222; */
-    background-color:#222222;
-    color:#fff; 
+    background-color:#F8931D;
+    color:#222222;
+    /* background-color:#222222;
+    color:#fff;  */
     font-weight:bold;
 }
 
