@@ -4,7 +4,7 @@
 <div class="container" style="width:100%;">
     <div class="float-left" ><h2><i class="fa fa-file-alt"></i> Project List</h2></div>
     <!-- Button trigger modal-->
-    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalLoc"><i class="fa fa-plus"></i>&nbsp;New Project</button>
+    <button type="button" class="btn btn-primary float-right" id="newProject"><i class="fa fa-plus"></i>&nbsp;New Project</button>
     
     <div class="container" style="margin-top:3em;">
     <div class="container svs-overflow">
@@ -519,11 +519,14 @@
       </div>
       <!--Body-->
       <div class="modal-body">
-        <div class="container">
+        <div class="container-svs">
             <form >
                 <div class="row">
                     <div class="container col-md-6">
-                        <div id="map" style="width: 100%; height:300px;"></div>
+                        
+                        <div id="svsMap" style="width: 100%; height:300px;"></div>
+                        
+                        {{-- <div id="map" style="width: 100%; height:300px;"></div>
                         <script>
                         var map;
                         function initMap() {
@@ -535,7 +538,7 @@
                         </script>
                         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDePZhtX4riZVfQZsJvjvnG6QByB_ljmcE&callback=initMap"
                         async defer>
-                        </script>
+                        </script> --}}
                     </div>
 
                     <div class="container col-md-6">
@@ -550,6 +553,20 @@
                     </div>
                     <!--Grid row-->
 
+                    <a href="" name="lon" id="lon" style="display:none;"></a>
+                    <a href="" name="lat" id="lat" style="display:none;"></a>
+                    <!--Grid row-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form mb-0" id="search">
+                                <input type="text" id="addr" name="addr" class="form-control" size="58" onkeyup="addr_search();">
+                                <label for="addr" class="">Location</label>
+                                <div class="map-result" id="results"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+                    
                     <!--Grid row-->
                     <div class="row">
 
@@ -564,6 +581,7 @@
                         </div>
                     </div>
                     <!--Grid row-->
+                    
                     </div>
                 </div>
 
@@ -706,6 +724,130 @@
         $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('label').remove();
         });
 </script>
+
+
+<script type="text/javascript">
+
+    var startlat = 14.599512;
+    var startlon = 120.984222;
+    
+    var options = {
+     center: [startlat, startlon],
+     zoom: 15
+    }
+    
+    document.getElementById('lat').innerHTML = startlat;
+    document.getElementById('lon').innerHTML = startlon;
+    
+    var map = L.map('svsMap', options);
+    var nzoom = 15;
+    
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'}).addTo(map);
+    
+    var myMarker = L.marker([startlat, startlon], {title: "Coordinates", alt: "Coordinates", draggable: true}).addTo(map).on('dragend', function() {
+     var lat = myMarker.getLatLng().lat.toFixed(8);
+     var lon = myMarker.getLatLng().lng.toFixed(8);
+     var czoom = map.getZoom();
+     if(czoom < 18) { nzoom = czoom + 2; }
+     if(nzoom > 18) { nzoom = 18; }
+     if(czoom != 18) { map.setView([lat,lon], nzoom); } else { map.setView([lat,lon]); }
+     document.getElementById('lat').value = lat;
+     document.getElementById('lon').value = lon;
+     myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
+    });
+    
+    function chooseAddr(lat1, lng1)
+    {
+     myMarker.closePopup();
+     map.setView([lat1, lng1],18);
+     myMarker.setLatLng([lat1, lng1]);
+     lat = lat1.toFixed(8);
+     lon = lng1.toFixed(8);
+     document.getElementById('lat').value = lat;
+     document.getElementById('lon').value = lon;
+     myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
+    }
+    
+    function myFunction(arr)
+    {
+     var out = "<br />";
+     var i;
+    
+     if(arr.length > 0)
+     {
+      for(i = 0; i < arr.length; i++)
+      {
+       out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='chooseAddr(" + arr[i].lat + ", " + arr[i].lon + ");return false;'>" + arr[i].display_name + "</div>";
+      }
+      document.getElementById('results').innerHTML = out;
+     }
+     else
+     {
+      document.getElementById('results').innerHTML = "Sorry, no results...";
+     }
+    
+    }
+    
+    function addr_search()
+    {
+     var inp = document.getElementById("addr");
+     var xmlhttp = new XMLHttpRequest();
+     var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + inp.value;
+     xmlhttp.onreadystatechange = function()
+     {
+       if (this.readyState == 4 && this.status == 200)
+       {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr);
+       }
+     };
+     xmlhttp.open("GET", url, true);
+     xmlhttp.send();
+    }
+    
+</script>
+
+
+<script>        
+    //Link for Reference with JSON    
+    //https://stackoverflow.com/questions/47434403/how-to-make-leaflet-search-actually-search    
+
+    // // This setup the leafmap object by linking the map() method to the map id (in <div> html element)
+    // var map = L.map('svsMap', {
+    // center: [14.599512, 120.984222],
+    // zoom: 13,
+    // // minZoom: 1.5,
+    // //  maxZoom: 1.5
+    // });
+
+    // // Start adding controls as follow... L.controlName().addTo(map);
+
+    // // Control 1: This add the OpenStreetMap background tile
+    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    // attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    // }).addTo(map);
+
+
+    // // Control 2: This add a scale to the map
+    // L.control.scale().addTo(map);
+
+    // // Control 3: This add a Search bar
+    // var searchControl = new L.esri.Controls.Geosearch().addTo(map);
+    // var results = new L.LayerGroup().addTo(map);
+    // searchControl.on('results', function(data){
+    //     results.clearLayers();
+    //     for (var i = data.results.length - 1; i >= 0; i--) {
+    //     results.addLayer(L.marker(data.results[i].latlng));
+    //     }
+    // });
+    
+    $("#newProject").click(function () {
+        $('#modalLoc').modal('show');
+        setTimeout(function(){ map.invalidateSize()}, 500);
+    });
+
+</script>
+
 <script>
     
     $(function (){

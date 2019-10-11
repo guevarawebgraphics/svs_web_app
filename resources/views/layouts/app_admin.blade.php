@@ -50,6 +50,24 @@
     <script type="text/javascript" src="{{asset('plugins/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <link rel="stylesheet" href="{{asset('plugins/datetimepicker/css/bootstrap-datetimepicker.min.css') }}" />
 
+
+    <!-- Leaflet Map JS -->
+    <link rel="stylesheet" href="{{asset('plugins/leaflet/dist/leaflet.css') }}" />
+    <script type="text/javascript" src="{{asset('plugins/leaflet/dist/leaflet.js') }}"></script>
+
+    <!-- 
+        Note: Link for reference
+        CDN: https://cdnjs.cloudflare.com/ajax/libs/esri-leaflet-geocoder/2.2.14/esri-leaflet-geocoder-debug.js
+        Original Link   :https://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js 
+                        :https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js
+                        :https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css
+    -->
+    
+    <script src="{{asset('plugins/esri-leaflet/distLink/esri-leaflet.js') }}"></script>
+    <script src="{{asset('plugins/esri-leaflet/distLink/esri-leaflet-geocoder.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/esri-leaflet/distLink/esri-leaflet-geocoder.css') }}">
+    
+
 </head>
 <body>
     @include('includes.nav') 

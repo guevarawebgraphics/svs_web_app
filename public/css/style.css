@@ -108,6 +108,10 @@ background-color:#222222;
     width: 0;
 } 
 
+.container-svs{
+    padding: 5px 5px 5px 5px;
+}
+
  .nav-link:hover{
     color:#F8931D!important;
 }
@@ -119,4 +123,8 @@ background-color:#222222;
 }
 .fas:hover{
     color:#F8931D!important;
+}
+.svs-map-add:hover{
+    background-color:#F8931D!important;
+    color: #fff!important;
 }
