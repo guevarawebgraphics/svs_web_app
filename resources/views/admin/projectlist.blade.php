@@ -552,20 +552,6 @@
                         </div>
                     </div>
                     <!--Grid row-->
-
-                    <a href="" name="lon" id="lon" style="display:none;"></a>
-                    <a href="" name="lat" id="lat" style="display:none;"></a>
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0" id="search">
-                                <input type="text" id="addr" name="addr" class="form-control" size="58" onkeyup="addr_search();">
-                                <label for="addr" class="">Location</label>
-                                <div class="map-result" id="results"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Grid row-->
                     
                     <!--Grid row-->
                     <div class="row">
@@ -578,6 +564,19 @@
                                 <label for="proj_desc">Description</label>
                             </div>
 
+                        </div>
+                    </div>
+                    <!--Grid row-->
+                    <a href="" name="lon" id="lon" style="display:none;"></a>
+                    <a href="" name="lat" id="lat" style="display:none;"></a>
+                    <!--Grid row-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form mb-0" id="search">
+                                <input type="text" id="addr" name="addr" class="form-control" size="58" onkeyup="addr_search();">
+                                <label for="addr" class="">Location</label>
+                                <div class="map-result" id="results"></div>
+                            </div>
                         </div>
                     </div>
                     <!--Grid row-->
@@ -756,16 +755,17 @@
      myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
     });
     
-    function chooseAddr(lat1, lng1)
+    function chooseAddr(lat1, lng1, add1)
     {
      myMarker.closePopup();
-     map.setView([lat1, lng1],18);
+     map.setView([lat1, lng1],15);
      myMarker.setLatLng([lat1, lng1]);
      lat = lat1.toFixed(8);
      lon = lng1.toFixed(8);
      document.getElementById('lat').value = lat;
-     document.getElementById('lon').value = lon;
-     myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
+     document.getElementById('lon').value = lon;addr
+     document.getElementById('addr').value = add1;
+     myMarker.bindPopup("Latitude : " + lat + "<br />Longitude : " + lon+ "<br />Location : " + add1).openPopup();
     }
     
     function myFunction(arr)
@@ -777,7 +777,7 @@
      {
       for(i = 0; i < arr.length; i++)
       {
-       out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='chooseAddr(" + arr[i].lat + ", " + arr[i].lon + ");return false;'>" + arr[i].display_name + "</div>";
+       out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='chooseAddr(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
       }
       document.getElementById('results').innerHTML = out;
      }
