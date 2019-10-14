@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use DB;
 use App\Models\TaskModel;
+use App\Models\UserAccount;
 
 class AdminController extends Controller
 {
@@ -279,7 +280,16 @@ class AdminController extends Controller
 
     public function projectlist(){
         if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
-            return view('admin.projectlist');
+            $user_record = UserAccount::where('deleted', 0)
+            ->where('is_admin', 0)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            $task_record = TaskModel::where('deleted', 0)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            return view('admin.projectlist', compact('user_record','task_record'));
         }else{
             return redirect('/');
         }

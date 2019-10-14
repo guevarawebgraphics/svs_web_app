@@ -542,33 +542,36 @@
                     </div>
 
                     <div class="container col-md-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0">
-                                <input type="text" id="proj_title" name="proj_title" class="form-control">
-                                <label for="proj_title" class="">Title</label>
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" id="proj_title" name="proj_title" class="form-control">
+                                    <label for="proj_title" class="">Title</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Grid row-->
+                        <!--Grid row-->
                     
-                    <!--Grid row-->
-                    <div class="row">
+                        <!--Grid row-->
+                        <div class="row">
 
-                        <!--Grid column-->
-                        <div class="col-md-12">
+                            <!--Grid column-->
+                            <div class="col-md-12">
 
-                            <div class="md-form">
-                                <textarea type="text" id="proj_desc" name="proj_desc" maxlength="190" class="form-control md-textarea"></textarea>
-                                <label for="proj_desc">Description</label>
+                                <div class="md-form">
+                                    <textarea type="text" id="proj_desc" name="proj_desc" maxlength="190" class="form-control md-textarea"></textarea>
+                                    <label for="proj_desc">Description</label>
+                                </div>
+
                             </div>
-
+                            
                         </div>
-                    </div>
-                    <!--Grid row-->
+                        <!--Grid row-->
+
                     <a href="" name="lon" id="lon" style="display:none;"></a>
                     <a href="" name="lat" id="lat" style="display:none;"></a>
+                    
                     <!--Grid row-->
                     <div class="row">
                         <div class="col-md-12">
@@ -583,6 +586,41 @@
                     
                     </div>
                 </div>
+
+                 <!--Grid row-->
+                 <div class="row" style="margin-top:1.5em;">
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <label for="pmSelect" class="svs-small"><small>Project Manager</small></label>
+                        <select id="pmSelect" class="mdb-select md-form mb-0 svs-select">
+                            <option value="" selected disabled>Choose Project Manager</option>
+                            @if(count($user_record))
+                                @foreach($user_record as $field)
+                                    <option value="{{$field->id}}">{{$field->name}}</option>
+                                @endforeach
+                            @else
+                                <option value="">No record found..</option>
+                            @endif
+                        </select>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <label for="empSelect" class="svs-small"><small>Employee</small></label>
+                        <select id="empSelect" class="mdb-select md-form mb-0 svs-select">
+                            <option value="" selected disabled>Select Employees</option>
+                            @if(count($user_record))
+                                @foreach($user_record as $field)
+                                    <option value="{{$field->id}}">{{$field->name}}</option>
+                                @endforeach
+                            @else
+                                <option value="">No record found..</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <!--Grid row-->
 
                 <!--Grid row-->
                 <div class="row">
@@ -634,6 +672,7 @@
 
                 </div>
                 <!--Grid row-->
+
                 <br>
                 <hr>
                 <br>
@@ -686,6 +725,21 @@
 
                 </div>
                 <!--Grid row-->
+
+                <div class="row">
+                    <div class="col-md-6" id="InputsWrapper">
+                        <div class="md-form mb-0">
+                            <select id="field_1" name ="mytext[]" class="mdb-select md-form mb-0 svs-select">
+                                <option value="" selected disabled>Select Task</option>
+                            </select>
+                            <a href="#" class="removeclass"></a>
+                        </div>
+                    </div>
+                    <div id="lineBreak"></div>
+                </div>
+                <div id="AddMoreFileId" style="margin-top:1em;">
+                    <a href="#" id="AddMoreFileBox" class="btn btn-info"><i class="fa fa-plus"></i>&nbsp;Add Task</a><br><br>
+                </div>
             </form>
 
         </div>
@@ -693,7 +747,7 @@
 
       </div>
       <!--Footer-->
-      <div class="modal-footer">
+      <div class="modal-footer" style="border:none!important;">
         <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
         <button class="btn btn-primary">Submit</button>
       </div>
@@ -809,47 +863,13 @@
 
 
 <script>        
-    //Link for Reference with JSON    
-    //https://stackoverflow.com/questions/47434403/how-to-make-leaflet-search-actually-search    
-
-    // // This setup the leafmap object by linking the map() method to the map id (in <div> html element)
-    // var map = L.map('svsMap', {
-    // center: [14.599512, 120.984222],
-    // zoom: 13,
-    // // minZoom: 1.5,
-    // //  maxZoom: 1.5
-    // });
-
-    // // Start adding controls as follow... L.controlName().addTo(map);
-
-    // // Control 1: This add the OpenStreetMap background tile
-    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    // attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    // }).addTo(map);
-
-
-    // // Control 2: This add a scale to the map
-    // L.control.scale().addTo(map);
-
-    // // Control 3: This add a Search bar
-    // var searchControl = new L.esri.Controls.Geosearch().addTo(map);
-    // var results = new L.LayerGroup().addTo(map);
-    // searchControl.on('results', function(data){
-    //     results.clearLayers();
-    //     for (var i = data.results.length - 1; i >= 0; i--) {
-    //     results.addLayer(L.marker(data.results[i].latlng));
-    //     }
-    // });
-    
     $("#newProject").click(function () {
         $('#modalLoc').modal('show');
         setTimeout(function(){ map.invalidateSize()}, 500);
     });
-
 </script>
 
 <script>
-    
     $(function (){
         $('[data-toggle="datepicker"]').datetimepicker({
             format: 'L'
@@ -858,25 +878,54 @@
             format: 'LT'
         });
     });
-
-//Enable this and include the datepicker css & js
-//public/css/addons
-//public/js/addons
-
-// $('[data-toggle="datepicker"]').datepicker({
-//     zIndex: 10000
-// });
-
-//Enable this and include the datetimepicker css & js
-//public/css/addons/
-//public/js/addons/full.js
-// $('[data-toggle="datetimepicker"]').datetimepicker({
-//     format:'Y/m/d H:i',
-//     formatTime:'H:i',
-//     formatDate:'Y/m/d',
-//     openOnFocus:true,
-//     hours12:true,
-//     timeHeightInTimePicker: 25
-// });
 </script>
+
+<script>
+$(document).ready(function() {
+    var MaxInputs       = 2; //maximum extra input boxes allowed
+    var InputsWrapper   = $("#InputsWrapper"); //Input boxes wrapper ID
+    var AddButton       = $("#AddMoreFileBox"); //Add button ID
+
+    var x = InputsWrapper.length; //initlal text box count
+    var FieldCount=1; //to keep track of text box added
+
+    //on add input button click
+    $(AddButton).click(function (e) {
+            //max input box allowed
+            if(x <= MaxInputs) {
+                FieldCount++; //text box added ncrement
+                //add input box
+                $(InputsWrapper).append('<div class="md-form mb-0"><select id="field_'+ FieldCount +'" name ="mytext" class="mdb-select md-form mb-0 svs-select"><option value="" selected disabled>Select Task</option></select><a href="#" class="removeclass">Remove</a></div>');
+                x++; //text box increment
+                
+                $("#AddMoreFileId").show();
+                
+                $('AddMoreFileBox').html("Add field");
+                
+                // Delete the "add"-link if there is 3 fields.
+                if(x == 3) {
+                    $("#AddMoreFileId").hide();
+                    $("#lineBreak").html("<br>");
+                }
+            }
+            return false;
+    });
+
+    $("body").on("click",".removeclass", function(e){ //user click on remove text
+            if( x > 1 ) {
+                    $(this).parent('div').remove(); //remove text box
+                    x--; //decrement textbox
+                
+                    $("#AddMoreFileId").show();
+                
+                    $("#lineBreak").html("");
+                
+                    // Adds the "add" link again when a field is removed.
+                    $('AddMoreFileBox').html("Add field");
+            }
+        return false;
+    }) 
+});
+</script>
+
 @endsection
