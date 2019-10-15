@@ -587,7 +587,7 @@
                     </div>
                 </div>
 
-                 <!--Grid row-->
+                 {{-- <!--Grid row-->
                  <div class="row" style="margin-top:1.5em;">
                     <!--Grid column-->
                     <div class="col-md-6">
@@ -607,20 +607,21 @@
 
                     <!--Grid column-->
                     <div class="col-md-6">
-                        <label for="empSelect" class="svs-small"><small>Employee</small></label>
-                        <select id="empSelect" class="mdb-select md-form mb-0 svs-select">
-                            <option value="" selected disabled>Select Employees</option>
-                            @if(count($user_record))
-                                @foreach($user_record as $field)
-                                    <option value="{{$field->id}}">{{$field->name}}</option>
-                                @endforeach
-                            @else
-                                <option value="">No record found..</option>
-                            @endif
+                        <label for="demoSOL" class="svs-small"><small>Employee</small></label>
+                        <select id="demoSOL" name="employeeSol" class="mdb-select multi-sol-svs" multiple="multiple">
+                            <optgroup label="Employee Name" title="Opiton Group 1">
+                                @if(count($user_record))
+                                    @foreach($user_record as $field)
+                                        <option title="Subgroup 1" value="{{$field->id}}">{{$field->name}}</option>
+                                    @endforeach
+                                @else
+                                    <option value="" title="Subgroup 1">No record found..</option>
+                                @endif
+                            </optgroup>
                         </select>
                     </div>
                 </div>
-                <!--Grid row-->
+                <!--Grid row--> --}}
 
                 <!--Grid row-->
                 <div class="row">
@@ -729,8 +730,13 @@
                 <div class="row">
                     <div class="col-md-6" id="InputsWrapper">
                         <div class="md-form mb-0">
-                            <select id="field_1" name ="mytext[]" class="mdb-select md-form mb-0 svs-select">
+                            <select id="field_1" name ="myTask[]" class="mdb-select md-form mb-0 svs-select">
                                 <option value="" selected disabled>Select Task</option>
+                                @if(count($task_record))
+                                    @foreach($task_record as $field)
+                                        <option value="{{$field->taskCode}}">{{$field->task_title}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                             <a href="#" class="removeclass"></a>
                         </div>
@@ -738,7 +744,7 @@
                     <div id="lineBreak"></div>
                 </div>
                 <div id="AddMoreFileId" style="margin-top:1em;">
-                    <a href="#" id="AddMoreFileBox" class="btn btn-info"><i class="fa fa-plus"></i>&nbsp;Add Task</a><br><br>
+                    <a href="#" id="AddMoreFileBox" class="btn btn-svs-default"><i class="fa fa-plus"></i>&nbsp;Add Task</a><br><br>
                 </div>
             </form>
 
@@ -749,12 +755,17 @@
       <!--Footer-->
       <div class="modal-footer" style="border:none!important;">
         <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" id="subNewProj">Submit</button>
       </div>
     </div>
   </div>
 </div>
 <!-- Modal: modalLoc -->
+
+
+<script>
+    $('#demoSOL').searchableOptionList();
+</script>
 
 <script>
     // Material Design example
@@ -882,7 +893,7 @@
 
 <script>
 $(document).ready(function() {
-    var MaxInputs       = 2; //maximum extra input boxes allowed
+    var MaxInputs       = 5; //maximum extra input boxes allowed
     var InputsWrapper   = $("#InputsWrapper"); //Input boxes wrapper ID
     var AddButton       = $("#AddMoreFileBox"); //Add button ID
 
@@ -895,7 +906,7 @@ $(document).ready(function() {
             if(x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(InputsWrapper).append('<div class="md-form mb-0"><select id="field_'+ FieldCount +'" name ="mytext" class="mdb-select md-form mb-0 svs-select"><option value="" selected disabled>Select Task</option></select><a href="#" class="removeclass">Remove</a></div>');
+                $(InputsWrapper).append('<div class="md-form mb-0"><select id="field_'+ FieldCount +'" name ="myTask[]" class="mdb-select md-form mb-0 svs-select"><option value="" selected disabled>Select Task</option><?php if(count($task_record)) { foreach($task_record as $field) { ?><option value="<?php echo $field->taskCode; ?>"><?php echo $field->task_title; ?></option> <?php } } ?> </select><a href="#" class="removeclass">Remove</a></div>');
                 x++; //text box increment
                 
                 $("#AddMoreFileId").show();
@@ -903,7 +914,7 @@ $(document).ready(function() {
                 $('AddMoreFileBox').html("Add field");
                 
                 // Delete the "add"-link if there is 3 fields.
-                if(x == 3) {
+                if(x == 6) {
                     $("#AddMoreFileId").hide();
                     $("#lineBreak").html("<br>");
                 }
@@ -928,4 +939,33 @@ $(document).ready(function() {
 });
 </script>
 
+
+<script>
+$('#subNewProj').click(function(){ 
+    var proj_title = $('#proj_title').val();
+    var proj_desc = $('#proj_desc').val();
+
+    var lon = $('#lon').html();
+    var lat = $('#lat').html();
+    var addr = $('#addr').val();
+
+    var est_start_d = $('#estStartD').val();
+    var est_start_t = $('#estStartT').val();
+    var est_end_d = $('#estEndD').val();
+    var est_end_t = $('#estEndT').val();
+
+    var act_start_d = $('#actStartD').val();
+    var act_start_t = $('#actStartT').val();
+    var act_end_d = $('#actEndD').val();
+    var act_end_t = $('#actEndT').val();
+
+
+    var task = document.getElementsByName('myTask[]');
+    for (var i = 0, iLen = task.length; i < iLen; i++) {
+        alert(task[i].value);
+    }
+    // alert(proj_title+proj_desc+lat+lon+addr+est_start_d+est_start_t+est_end_d+est_end_t+act_start_d+act_start_t+act_end_d+act_end_t);
+
+});
+</script>
 @endsection

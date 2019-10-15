@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+{{-- lang="{{ str_replace('_', '-', app()->getLocale()) }}" --}}
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -67,6 +67,9 @@
     <script src="{{asset('plugins/esri-leaflet/distLink/esri-leaflet-geocoder.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/esri-leaflet/distLink/esri-leaflet-geocoder.css') }}">
     
+    <!-- Search Check List JS -->
+    <link rel="stylesheet" href="{{asset('plugins/search-option-list/sol.css') }}" />
+    <script type="text/javascript" src="{{asset('plugins/search-option-list/sol.js') }}"></script>
 
 </head>
 <body>

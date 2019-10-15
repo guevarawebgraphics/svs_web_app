@@ -128,14 +128,26 @@ background-color:#222222;
     background-color:#F8931D!important;
     color: #fff!important;
 }
+
+  
 .svs-select{
     width:100%!important;
     color: #495057!important;
     padding: .5em 0;
     margin: .5em 0;
     margin-top: -3em;
+    -webkit-appearance: none;
 }
+
 .svs-select-small{
     width:100%!important;
     color: #495057!important;
+}
+.btn-svs-default{
+    background:#222!important;
+    color:#fff;
+}
+.btn-svs-default:hover{
+    background:#222!important;
+    color:#fff;
 }

@@ -25,11 +25,11 @@ class HomeController extends Controller
      */
     public function index(User $user, Request $request)
     {
-        if($user->is_admin == 1){
+        if(auth()->user()->is_admin == 1){
             return redirect('/admin/index');
-        }else if($user->is_admin == 2){
+        }else if(auth()->user()->is_admin == 2){
             return redirect('/admin/index');
-        }else if($user->is_admin == 0){
+        }else if(auth()->user()->is_admin == 0){
             return redirect('/user/index');
         }
     }
