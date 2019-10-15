@@ -28,6 +28,10 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/task/update_task', 'MainController@update_task')->name('update_task');
 
     Route::get('/projectlist', 'MainController@projectlist');
+    Route::post('/projectlist/new_project', 'MainController@new_project')->name('new_project');
+    Route::post('/projectlist/save_project', 'MainController@save_project')->name('save_project');
+    Route::post('/projectlist/session_success', 'MainController@session_success')->name('session_success');
+
     Route::get('/assignproject', 'MainController@assignproject');
 });
 

@@ -7,6 +7,9 @@
     <button type="button" class="btn btn-primary float-right" id="newProject"><i class="fa fa-plus"></i>&nbsp;New Project</button>
     
     <div class="container" style="margin-top:3em;">
+
+            @include('main.sessionProj')
+
     <div class="container svs-overflow">
         <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
         <thead>
@@ -960,11 +963,108 @@ $('#subNewProj').click(function(){
     var act_end_t = $('#actEndT').val();
 
 
-    var task = document.getElementsByName('myTask[]');
-    for (var i = 0, iLen = task.length; i < iLen; i++) {
-        alert(task[i].value);
-    }
-    // alert(proj_title+proj_desc+lat+lon+addr+est_start_d+est_start_t+est_end_d+est_end_t+act_start_d+act_start_t+act_end_d+act_end_t);
+    // var task = document.getElementsByName('myTask[]');
+    // for (var i = 0, iLen = task.length; i < iLen; i++) {
+    //     alert(task[i].value);
+    // }
+
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('new_project') }}",
+        method: "POST",
+        data:{
+            type:"NEWPROJECT",
+            proj_title:proj_title,
+            proj_desc:proj_desc,
+            lon:lon,
+            lat:lat,
+            addr:addr,
+            est_start_d:est_start_d,
+            est_start_t:est_start_t,
+            est_end_d:est_end_d,
+            est_end_t:est_end_t,
+            act_start_d:act_start_d,
+            act_start_t:act_start_t,
+            act_end_d:act_end_d,
+            act_end_t:act_end_t
+        }, 
+        dataType: "json",
+        success:function(data)
+        {
+            if(data.success.length > 0){
+                
+                var x = document.getElementById("subNewProj");
+                x.innerHTML = "Loading..";
+                document.getElementById("subNewProj").disabled = true;
+
+                $.ajax({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('save_project') }}",
+                    method: "POST",
+                    data:{
+                        type:"NEWPROJECT",
+                        proj_title:proj_title,
+                        proj_desc:proj_desc,
+                        lon:lon,
+                        lat:lat,
+                        addr:addr,
+                        est_start_d:est_start_d,
+                        est_start_t:est_start_t,
+                        est_end_d:est_end_d,
+                        est_end_t:est_end_t,
+                        act_start_d:act_start_d,
+                        act_start_t:act_start_t,
+                        act_end_d:act_end_d,
+                        act_end_t:act_end_t
+                    }, 
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        if(data.success.length > 0){
+                            var projCode = data.success[0];
+                            $.ajax({
+                                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                url: "{{ route('session_success') }}",
+                                method: "POST",
+                                data:{
+                                    type:"NEWPROJECT",
+                                    proj_title:proj_title,
+                                    proj_desc:proj_desc,
+                                    lon:lon,
+                                    lat:lat,
+                                    addr:addr,
+                                    code:projCode
+                                }, 
+                                dataType: "json",
+                                success:function(data)
+                                {
+                                    if(data.success.length > 0){
+                                        location.reload();
+                                        // toastr.success(data.success[0]);
+                                    }else{
+                                        toastr.error(data.error[0]);
+                                    }
+                                },
+                                error: function(xhr, ajaxOptions, thrownError){
+                                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                                }
+                            });    
+                        }else{
+                            toastr.error(data.error[0]);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                });    
+            }else{
+                toastr.error(data.error[0]);
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });    
 
 });
 </script>
