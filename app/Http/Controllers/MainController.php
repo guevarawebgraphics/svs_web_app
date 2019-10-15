@@ -296,7 +296,11 @@ class MainController extends Controller
             ->orderBy('created_at','desc')
             ->get();
 
-            return view('main.projectlist', compact('user_record','task_record'));
+            $project_record = ProjectList::where('deleted', 0)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            return view('main.projectlist', compact('user_record','task_record','project_record'));
         }else{
             return redirect('/');
         }
