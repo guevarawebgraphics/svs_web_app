@@ -151,3 +151,6 @@ background-color:#222222;
     background:#222!important;
     color:#fff;
 }
+.svs-b-bottom-less{
+    border-bottom:0px!important;
+}

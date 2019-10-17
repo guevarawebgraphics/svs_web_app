@@ -31,6 +31,7 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/projectlist/new_project', 'MainController@new_project')->name('new_project');
     Route::post('/projectlist/save_project', 'MainController@save_project')->name('save_project');
     Route::post('/projectlist/session_success', 'MainController@session_success')->name('session_success');
+    Route::post('/projectlist/project_info', 'MainController@project_info')->name('project_info');
 
     Route::get('/assignproject', 'MainController@assignproject');
 });

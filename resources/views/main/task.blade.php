@@ -96,7 +96,7 @@
     <div class="modal-content">
       <!--Header-->
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Delete Task</h4>
+        <h4 class="modal-title" id="myModalLabel">Delete Task : <span id="dTC"></span></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -133,7 +133,7 @@
     <div class="modal-content">
       <!--Header-->
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Edit Task</h4>
+        <h4 class="modal-title" id="myModalLabel">Edit Task : <span id="eTC"></span></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -212,6 +212,7 @@ $(".editTask").click(function () {
     $("#divTitle").html("<input type='text' value='"+title+"' id='editTitle' name='editTitle' class='form-control'> <label for='editTitle' class='active'>Title</label>");
     $("#divWeight").html("<input type='number' value='"+weight+"' id='editWeight' name='editWeight' class='form-control'> <label for='editWeight' class='active'>Weight %</label>");
     $("#divTxtarea").html("<textarea type='text' id='editDesc' name='editDesc' maxlength='190' class='form-control md-textarea'>"+desc+"</textarea> <label for='editDesc' class='active'>Description</label>");
+    $("#eTC").html(code);
     $("#updateTask").attr("data-id",id);
     $("#updateTask").attr("data-title",title);
     $("#updateTask").attr("data-desc",desc);
@@ -300,6 +301,7 @@ $(".delTask").click(function () {
     var weight = $(this).attr('data-weight');
     var code = $(this).attr('data-code');
     var crt = $(this).attr('data-crt');
+    $("#dTC").html(code);
     $('#delTitle').html(title);
     $('#delDesc').html(desc);
     $('#delWeight').html(weight);

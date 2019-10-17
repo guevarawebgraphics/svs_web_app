@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2019 at 01:24 PM
+-- Generation Time: Oct 17, 2019 at 04:09 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -225,6 +225,8 @@ CREATE TABLE `tbl_projectlist` (
   `est_end_date` datetime NOT NULL,
   `act_start_date` datetime NOT NULL,
   `act_end_date` datetime NOT NULL,
+  `longitude` varchar(191) NOT NULL,
+  `latitude` varchar(191) NOT NULL,
   `location` varchar(191) NOT NULL,
   `status` varchar(191) DEFAULT NULL,
   `deleted` int(11) NOT NULL DEFAULT 0,
@@ -233,6 +235,42 @@ CREATE TABLE `tbl_projectlist` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_projectlist`
+--
+
+INSERT INTO `tbl_projectlist` (`id`, `proj_code`, `proj_title`, `proj_desc`, `est_start_date`, `est_end_date`, `act_start_date`, `act_end_date`, `longitude`, `latitude`, `location`, `status`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(5, 'XRQBINE3DI4W', 'Project 1', 'Description', '2019-10-17 09:58:00', '2019-10-17 21:58:00', '2019-10-17 09:58:00', '2019-10-17 21:58:00', '120.984222', '14.599512', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-10-16 17:58:51', '2019-10-16 17:58:51'),
+(6, 'KEDATTINIX4P', 'Project 2', 'Description', '2019-10-17 09:59:00', '2019-10-17 21:59:00', '2019-10-17 09:59:00', '2019-10-17 21:59:00', '120.984222', '14.599512', 'Quezon, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-10-16 17:59:28', '2019-10-16 17:59:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_projtask`
+--
+
+CREATE TABLE `tbl_projtask` (
+  `id` bigint(11) NOT NULL,
+  `projCode` varchar(191) NOT NULL,
+  `taskCode` varchar(191) NOT NULL,
+  `deleted` int(2) NOT NULL DEFAULT 0,
+  `by_id` bigint(11) NOT NULL,
+  `updated_by` varchar(191) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_projtask`
+--
+
+INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(17, 'XRQBINE3DI4W', 'UKAKWM9JOZQ9', 0, 7, 'Keigh Dee', '2019-10-16 17:58:51', '2019-10-16 17:58:51'),
+(18, 'XRQBINE3DI4W', 'PVVATUZKHLRP', 0, 7, 'Keigh Dee', '2019-10-16 17:58:51', '2019-10-16 17:58:51'),
+(19, 'XRQBINE3DI4W', 'MEDOIUQYGGE6', 0, 7, 'Keigh Dee', '2019-10-16 17:58:51', '2019-10-16 17:58:51'),
+(20, 'KEDATTINIX4P', 'UKAKWM9JOZQ9', 0, 7, 'Keigh Dee', '2019-10-16 17:59:28', '2019-10-16 17:59:28'),
+(21, 'KEDATTINIX4P', 'PVVATUZKHLRP', 0, 7, 'Keigh Dee', '2019-10-16 17:59:28', '2019-10-16 17:59:28');
 
 -- --------------------------------------------------------
 
@@ -258,13 +296,10 @@ CREATE TABLE `tbl_task` (
 --
 
 INSERT INTO `tbl_task` (`id`, `taskCode`, `task_title`, `task_desc`, `weight`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'YJQH0PWO0K4E', 'Task 1', 'Txtss', '15.90', 1, 7, 'Pablo Escobar', '2019-10-09 19:47:00', '2019-10-10 02:10:14'),
-(2, 'DKDANYAZKNSL', 'Task 2', 'asd', '78.20', 1, 7, 'Pablo Escobar', '2019-10-09 19:52:15', '2019-10-09 20:00:10'),
-(3, 'ZLK05ZBWH8PJ', 'Task 2', 'Description', '65.00', 0, 7, 'Pablo Escobar', '2019-10-09 21:10:34', '2019-10-09 21:10:34'),
-(4, 'FBQGGNQHM8ZZ', 'Task 3', 'sdsa', '32.00', 1, 7, 'Pablo Escobar', '2019-10-09 21:12:02', '2019-10-09 21:15:52'),
-(5, 'IOXY6WNAWZXJ', 'Task 3', 'Descriptions', '22.00', 1, 7, 'Pablo Escobar', '2019-10-09 21:16:41', '2019-10-09 21:23:39'),
-(6, 'CWCTHFHHTB2K', 'Task 4', 'Description', '23.00', 1, 7, 'Pablo Escobar', '2019-10-09 21:19:00', '2019-10-09 21:19:06'),
-(7, 'BMQDCOOS5WD2', 'Task 3', 'Description1212', '54.00', 0, 7, 'Pablo Escobar', '2019-10-09 21:23:57', '2019-10-10 02:10:23');
+(13, 'MEDOIUQYGGE6', 'Task 1', 'Task Description', '44.40', 0, 7, 'Keigh Dee', '2019-10-16 17:57:39', '2019-10-16 17:57:39'),
+(14, 'PVVATUZKHLRP', 'Task 2', 'Task Description', '6.60', 0, 7, 'Keigh Dee', '2019-10-16 17:57:47', '2019-10-16 17:57:47'),
+(15, 'UKAKWM9JOZQ9', 'Task 3', 'Task Description', '20.30', 0, 7, 'Keigh Dee', '2019-10-16 17:58:00', '2019-10-16 17:58:00'),
+(16, 'YWIRVWAXQS9K', 'Task 3', 'Task Description', '20.30', 1, 7, 'Keigh Dee', '2019-10-16 17:58:00', '2019-10-16 17:58:11');
 
 -- --------------------------------------------------------
 
@@ -295,8 +330,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `company_id`, `apiKey`, `ACNo`, `name`, `email`, `email_verified_at`, `password`, `deleted`, `is_admin`, `updated_by`, `created_by`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '2018-101', NULL, '101', 'Keigh Dee', 'keighdee@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, '2018-103', '2018-101', '0ANJhnfRUPIQJSwCBKQmK4XAuTrkjmP7gnKLe05taYJ4MH4z7ZamUDKfhXvD', '2019-05-06 02:48:49', '2019-10-08 03:03:30'),
-(7, '1996-001', NULL, '001', 'Pablo Escobar', 'pabs@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 1, NULL, '2018-101', NULL, '2019-05-10 01:03:23', '2019-05-10 01:03:23');
+(1, '2018-101', NULL, '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, '2018-103', '2018-101', 'W7ZPGS9mumQfhJ7ZOcmeSnL16Nu3x38J97ULnXJDADJkJuNhfcFczmjcB7kJ', '2019-05-06 02:48:49', '2019-10-08 03:03:30'),
+(7, '1996-001', NULL, '001', 'Keigh Dee', 'pabs@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 1, NULL, '2018-101', NULL, '2019-05-10 01:03:23', '2019-05-10 01:03:23'),
+(26, '2019-6', NULL, '6', 'Paguinto, Eugene', 'paguintoeugene@test.com', NULL, '$2y$10$KJbCp/6JsPkuHsmRhxggGOvAUsRnCqEkWbuBfWamgPDjKWMa2Ab0W', 0, 0, NULL, '2018-004', NULL, '2019-06-13 21:49:56', '2019-06-13 21:49:56'),
+(27, '2019-001', NULL, '01', 'Yao, Vincent', 'yaovincent@test.com', NULL, '$2y$10$snnRIF1vjlQ5ooEEH.SjfeHcTjSKbHyAJCdFxgRtOZi2yQSmF1lm6', 0, 0, NULL, '2018-004', NULL, '2019-06-13 21:50:14', '2019-06-13 21:50:14'),
+(28, '2019-112', NULL, '112', 'Aquino, Emerson Mauricio', 'ae.mauricio@gmail.com', NULL, '$2y$10$MYVgybYadD1LvBBqlrOiKuI66YzORGLrgTwgQxt1lOh/ualu4MaAK', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:48:41', '2019-06-19 17:48:41'),
+(29, '2019-117', NULL, '117', 'Astor, Reynaldo Calderon', 'ar.calderon@gmail.com', NULL, '$2y$10$IaiAxrg/wpK9C46QEuUj6eqXdCKz.faSszj1vmjCglaMHE7/0jKVq', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:48:49', '2019-06-19 17:48:49'),
+(30, '2019-115', NULL, '115', 'Balbuena, Roberto Evardone', 'br.evardone@gmail.com', NULL, '$2y$10$mF4X.h2beUTgUhzL2CSYluvm4AtvoE7EcSugUcTJiklj1MgYadgC.', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:48:57', '2019-06-19 17:48:57'),
+(31, '2019-2', NULL, '2', 'Baraquiel, Arnel Guillermo', 'ba.guillermo@gmail.com', NULL, '$2y$10$P//dhNUpOyGmzZgL0ujHx.OcO8Zvfu5pcbniF8AVVRH1IuFg.Mlaq', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:49:29', '2019-06-19 17:49:29'),
+(32, '2019-8', NULL, '8', 'Catapang, Fritz John', 'fj.catapang@gmail.com', NULL, '$2y$10$k.bIoG4O5yMWda5CeQP2SepxZFytfBzf0tZYs7GA7CUUwhxhyHDBK', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:49:38', '2019-06-19 17:49:38'),
+(33, '2019-110', NULL, '110', 'Gochangco, Nikko Emerson Alipio', 'nma.gochangco@gmail.com', NULL, '$2y$10$g5BzAr05fBJ9bJbBy8H/Bu6ljwPMIzNfxbSJO50KOpJO7KhG0lXe2', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:49:46', '2019-06-19 17:49:46'),
+(34, '2019-100', NULL, '100', 'Guitierrez, Ruben', 'g.ruben@gmail.com', NULL, '$2y$10$I1o3FWDNEQoiaI8/HSaAieQD8ExxHZdjgNwv6qkDlXxC.Roax5HMC', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:50:21', '2019-06-19 17:50:21'),
+(35, '2019-113', NULL, '113', 'Hernandez, Gabriel Lacanaria', 'hg.lacanaria@gmail.com', NULL, '$2y$10$5ZLTFhp4LkWOxc/812AW6OB68NLgntEnv.kK.h2bTSdiXGHAEhRt2', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:50:29', '2019-06-19 17:50:29'),
+(36, '2019-11', NULL, '11', 'Guntang, Jerico', 'g.jericho@gmail.com', NULL, '$2y$10$xsNgu5lrS5f7sJwwVH9zEOTcFEGPh.KWi1zZyOgSv5L2uHKzSJtuq', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:57:57', '2019-06-19 17:57:57'),
+(37, '2019-003', NULL, '3', 'Laqui Jr., Romeo Galleto', 'rg.laquijr@gmail.com', NULL, '$2y$10$snnRIF1vjlQ5ooEEH.SjfeHcTjSKbHyAJCdFxgRtOZi2yQSmF1lm6', 0, 0, '2018-004', '2018-101', NULL, '2019-06-19 18:06:51', '2019-06-19 18:06:51'),
+(38, '2019-0180', NULL, '180', 'Tamad, Juan', 'juan.tamad@test.com', NULL, '$2y$10$8CXfWgeKBXWw7894srO/AuAifW2nyaJP2MKOxRxsSITi1uSifRSNG', 0, 0, NULL, '2018-004', NULL, '2019-08-15 18:12:58', '2019-08-15 18:12:58');
 
 --
 -- Indexes for dumped tables
@@ -367,6 +415,12 @@ ALTER TABLE `tbl_projectlist`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_projtask`
+--
+ALTER TABLE `tbl_projtask`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_task`
 --
 ALTER TABLE `tbl_task`
@@ -416,13 +470,19 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `tbl_projectlist`
 --
 ALTER TABLE `tbl_projectlist`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_projtask`
+--
+ALTER TABLE `tbl_projtask`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tbl_task`
 --
 ALTER TABLE `tbl_task`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`

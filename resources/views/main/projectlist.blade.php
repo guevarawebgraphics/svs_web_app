@@ -100,42 +100,39 @@
                     
                     </div>
                 </div>
-
-                 {{-- <!--Grid row-->
+                
+                 <!--Grid row-->
                  <div class="row" style="margin-top:1.5em;">
                     <!--Grid column-->
                     <div class="col-md-6">
-                        <label for="pmSelect" class="svs-small"><small>Project Manager</small></label>
-                        <select id="pmSelect" class="mdb-select md-form mb-0 svs-select">
-                            <option value="" selected disabled>Choose Project Manager</option>
-                            @if(count($user_record))
-                                @foreach($user_record as $field)
-                                    <option value="{{$field->id}}">{{$field->name}}</option>
-                                @endforeach
-                            @else
-                                <option value="">No record found..</option>
-                            @endif
+                            <label for="pmSOL" class="svs-small"><small>Project Manager</small></label>
+                            <select id="pmSOL" name="pmSol" class="mdb-select multi-sol-svs" multiple="multiple">
+                                <optgroup label="Project Manager" title="Opiton Group 1">
+                                @if(count($emp_info))
+                                        @foreach($emp_info as $field)
+                                        <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
+                                    @endforeach
+                                @endif
                         </select>
                     </div>
                     <!--Grid column-->
-
+                    
                     <!--Grid column-->
                     <div class="col-md-6">
-                        <label for="demoSOL" class="svs-small"><small>Employee</small></label>
-                        <select id="demoSOL" name="employeeSol" class="mdb-select multi-sol-svs" multiple="multiple">
+                        <label for="empSOL" class="svs-small"><small>Employee</small></label>
+                        <select id="empSOL" name="empSol" class="mdb-select multi-sol-svs" multiple="multiple">
                             <optgroup label="Employee Name" title="Opiton Group 1">
-                                @if(count($user_record))
-                                    @foreach($user_record as $field)
-                                        <option title="Subgroup 1" value="{{$field->id}}">{{$field->name}}</option>
+                                @if(count($emp_info))
+                                    @foreach($emp_info as $field)
+                                        <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
                                     @endforeach
-                                @else
-                                    <option value="" title="Subgroup 1">No record found..</option>
                                 @endif
                             </optgroup>
                         </select>
                     </div>
                 </div>
-                <!--Grid row--> --}}
+                <!--Grid row--> 
+                
 
                 <!--Grid row-->
                 <div class="row">
@@ -241,27 +238,48 @@
                 </div>
                 <!--Grid row-->
 
+                <!--Grid column-->
                 <div class="row">
-                    <div class="col-md-6" id="InputsWrapper">
-                        <div class="md-form mb-0">
-                            <select id="field_1" name ="myTask[]" class="mdb-select md-form mb-0 svs-select">
-                                <option value="" selected disabled>Select Task</option>
+                    <div class="col-md-6">
+                        <label for="demoSOL" class="svs-small"><small>Task List</small></label>
+                        <select id="demoSOL" name="myTask" class="mdb-select multi-sol-svs" multiple="multiple">
+                            <optgroup label="Task List" title="Opiton Group 1">
                                 @if(count($task_record))
                                     @foreach($task_record as $field)
-                                        <option value="{{$field->taskCode}}">{{$field->task_title}}</option>
+                                        <option title="Subgroup 1" value="{{$field->taskCode}}">{{$field->task_title}}</option>
                                     @endforeach
+                                @else
+                                    <option value="" title="Subgroup 1">No record found..</option>
                                 @endif
-                            </select>
-                            <a href="#" class="removeclass"></a>
-                        </div>
+                            </optgroup>
+                        </select>
                     </div>
-                    <div id="lineBreak"></div>
                 </div>
-                <div id="AddMoreFileId" style="margin-top:1em;">
-                    <a href="#" id="AddMoreFileBox" class="btn btn-svs-default"><i class="fa fa-plus"></i>&nbsp;Add Task</a><br><br>
-                </div>
-            </form>
+                <!--Grid row--> 
 
+                <!-- Add task by button and select -->
+                    {{-- <div class="row">
+                        <div class="col-md-6" id="InputsWrapper">
+                            <div class="md-form mb-0">
+                                <select id="field_1" name ="myTask[]" class="mdb-select md-form mb-0 svs-select">
+                                    <option value="" selected disabled>Select Task</option>
+                                    @if(count($task_record))
+                                        @foreach($task_record as $field)
+                                            <option value="{{$field->taskCode}}">{{$field->task_title}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                <a href="#" class="removeclass"></a>
+                            </div>
+                        </div>
+                        <div id="lineBreak"></div>
+                    </div>
+                    <div id="AddMoreFileId" style="margin-top:1em;">
+                        <a href="#" id="AddMoreFileBox" class="btn btn-svs-default"><i class="fa fa-plus"></i>&nbsp;Add Task</a><br><br>
+                    </div> --}}
+                <!-- Add task by button and select -->
+            </form>
+            <br>
         </div>
     
 
@@ -279,6 +297,8 @@
 
 <script>
     $('#demoSOL').searchableOptionList();
+    $('#empSOL').searchableOptionList();
+    $('#pmSOL').searchableOptionList();
 </script>
 
 <script>
@@ -406,6 +426,7 @@
 </script>
 
 <script>
+//Add task by button and select
 $(document).ready(function() {
     var MaxInputs       = 5; //maximum extra input boxes allowed
     var InputsWrapper   = $("#InputsWrapper"); //Input boxes wrapper ID
@@ -440,7 +461,7 @@ $(document).ready(function() {
             if( x > 1 ) {
                     $(this).parent('div').remove(); //remove text box
                     x--; //decrement textbox
-                
+
                     $("#AddMoreFileId").show();
                 
                     $("#lineBreak").html("");
@@ -473,12 +494,59 @@ $('#subNewProj').click(function(){
     var act_end_d = $('#actEndD').val();
     var act_end_t = $('#actEndT').val();
 
-
+    //Split Select v1
     // var task = document.getElementsByName('myTask[]');
     // for (var i = 0, iLen = task.length; i < iLen; i++) {
     //     alert(task[i].value);
     // }
 
+    //Split Select v2
+    // var myTask = document.getElementsByName('myTask[]');
+    // var myTaskArr = [];
+    // myTask.forEach(function(element) {
+    //     console.log(element.value);
+    //     myTaskArr.push(element.value);
+    // });
+    // var taskData = JSON.stringify(myTaskArr);
+
+    // var myEmp = document.getElementsByName('empSol[]');
+    // var myEmpArr = [];
+    // myEmp.forEach(function(element) {
+    //     console.log(element.value);
+    //     myEmpArr.push(element.value);
+    // });
+    // var empData = JSON.stringify(myEmpArr);
+
+    // var myPm = document.getElementsByName('pmSol[]');
+    // var myPmArr = [];
+    // myPm.forEach(function(element) {
+    //     console.log(element.value);
+    //     myPmArr.push(element.value);
+    // });
+    // var pmData = JSON.stringify(myPmArr);
+
+    // //Split Select v3
+    // const taskData = Array.from(
+    //     document.getElementsByName('myTask[]'),
+    //     select => select.value
+    // );
+
+    var taskData = []; 
+    $("input:checkbox[name=myTask]:checked").each(function() { 
+        taskData.push($(this).val()); 
+    }); 
+
+    var empData = []; 
+    $("input:checkbox[name=empSol]:checked").each(function() { 
+        empData.push($(this).val()); 
+    }); 
+
+    var pmData = []; 
+    $("input:checkbox[name=pmSol]:checked").each(function() { 
+        pmData.push($(this).val()); 
+    }); 
+
+//Ajax
     $.ajax({
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         url: "{{ route('new_project') }}",
@@ -497,7 +565,10 @@ $('#subNewProj').click(function(){
             act_start_d:act_start_d,
             act_start_t:act_start_t,
             act_end_d:act_end_d,
-            act_end_t:act_end_t
+            act_end_t:act_end_t,
+            taskData:taskData,
+            empData:empData,
+            pmData:pmData
         }, 
         dataType: "json",
         success:function(data)
@@ -526,7 +597,10 @@ $('#subNewProj').click(function(){
                         act_start_d:act_start_d,
                         act_start_t:act_start_t,
                         act_end_d:act_end_d,
-                        act_end_t:act_end_t
+                        act_end_t:act_end_t,
+                        taskData:taskData,
+                        empData:empData,
+                        pmData:pmData
                     }, 
                     dataType: "json",
                     success:function(data)
@@ -576,6 +650,7 @@ $('#subNewProj').click(function(){
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });    
+//Ajax
 
 });
 </script>

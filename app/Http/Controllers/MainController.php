@@ -8,6 +8,8 @@ use DB;
 use App\Models\TaskModel;
 use App\Models\UserAccount;
 use App\Models\ProjectList;
+use App\Models\ProjTask;
+use App\Models\EmpProj;
 
 class MainController extends Controller
 {
@@ -295,12 +297,29 @@ class MainController extends Controller
             $task_record = TaskModel::where('deleted', 0)
             ->orderBy('created_at','desc')
             ->get();
-
+            
             $project_record = ProjectList::where('deleted', 0)
             ->orderBy('created_at','desc')
             ->get();
 
-            return view('main.projectlist', compact('user_record','task_record','project_record'));
+            $projtask_record = ProjTask::where('deleted', 0)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            $emp_info = DB::connection('mysql2')->select("select a.emp_no AS emp_no, a.company_id AS company_id,
+            concat(a.lname,', ',a.fname,' ',a.mname) AS fullname,
+            a.lname AS lname,a.fname AS fname, b.company_ind AS company_ind, 
+            d.company_name AS company_name, b.department AS department, 
+            b.position AS position, b.team AS team, 
+            b.employment_status AS employment_status, 
+            a.active AS active 
+       
+            from ((hris_csi_b.personal_information a left join hris_csi_b.employee_information b on((a.company_id = b.company_id)))
+            left join hris_csi_b.company d on((b.company_ind = d.id))) where (a.active = 'yes')
+            ORDER BY b.department ASC
+            ");
+
+            return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info'));
         }else{
             return redirect('/');
         }
@@ -407,6 +426,18 @@ class MainController extends Controller
             $messages = "Act. End Time is required!";
             $error[] = $messages;
         }
+        else if($request->taskData == ""){
+            $messages = "Please choose task for this project.";
+            $error[] = $messages;
+        }
+        else if($request->pmData == ""){
+            $messages = "Please select Project Manager for this project.";
+            $error[] = $messages;
+        }
+        else if($request->empData == ""){
+            $messages = "Please select Employees for this project.";
+            $error[] = $messages;
+        }
         else{
             $messages = "Successfully Saved!";
             $success[] = $messages;
@@ -470,7 +501,47 @@ class MainController extends Controller
             $projectList->created_at = now();
             $projectList->updated_at = now();
             $projectList->save();
-            
+
+            $myString = $request->taskData;
+            foreach($myString as $value){
+                $ProjTask = new ProjTask;
+                $ProjTask->projCode = $projCode;
+                $ProjTask->taskCode = $value;
+                $ProjTask->deleted = 0;
+                $ProjTask->by_id = auth()->user()->id;
+                $ProjTask->updated_by = auth()->user()->name;
+                $ProjTask->created_at = now();
+                $ProjTask->updated_at = now();
+                $ProjTask->save();
+            }
+
+            $myString2 = $request->pmData;
+            foreach($myString2 as $value2){
+                $ProjPM = new EmpProj;
+                $ProjPM->projCode = $projCode;
+                $ProjPM->emp_id = $value2;
+                $ProjPM->type = "PM";
+                $ProjPM->deleted = 0;
+                $ProjPM->by_id = auth()->user()->id;
+                $ProjPM->updated_by = auth()->user()->name;
+                $ProjPM->created_at = now();
+                $ProjPM->updated_at = now();
+                $ProjPM->save();
+            }
+
+            $myString3 = $request->empData;
+            foreach($myString3 as $value3){
+                $ProjEMP = new EmpProj;
+                $ProjEMP->projCode = $projCode;
+                $ProjEMP->emp_id = $value3;
+                $ProjEMP->type = "EMP";
+                $ProjEMP->deleted = 0;
+                $ProjEMP->by_id = auth()->user()->id;
+                $ProjEMP->updated_by = auth()->user()->name;
+                $ProjEMP->created_at = now();
+                $ProjEMP->updated_at = now();
+                $ProjEMP->save();
+            }
 
 
             $messages = $projCode;
@@ -486,6 +557,41 @@ class MainController extends Controller
             'success'=>$success
         );
         echo json_encode($output);
+    }
+
+    public function project_info(Request $request){
+
+        $projTask = DB::connection('mysql')->select("SELECT a.projCode, b.taskCode, b.task_title, b.task_desc, b.weight FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0");
+
+        $data = "";
+        $counter = 1;
+        if(count($projTask) > 0){
+            foreach($projTask as $field){
+
+                $data .='
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label><b>Task Code : </b></label>&nbsp;'.$field->taskCode.'<br>
+                            </div>
+                            <div class="col-md-3">
+                                <label><b>Task Title : </b></label>&nbsp;'.$field->task_title.'<br>
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <label><b>Description : </b></label>&nbsp;'.$field->task_desc.'<br>
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <label><b>Weight : </b></label>&nbsp;'.$field->weight.'<br>
+                               
+                            </div>
+                        </div>
+                        ';
+                $counter++;
+            }
+        }
+        echo $data;
+
     }
 
     public function assignproject(){
