@@ -562,32 +562,173 @@ class MainController extends Controller
     public function project_info(Request $request){
 
         $projTask = DB::connection('mysql')->select("SELECT a.projCode, b.taskCode, b.task_title, b.task_desc, b.weight FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0");
+        
+        $projEmp = DB::connection('mysql')->select("
+            SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+            b.emp_no AS emp_no, b.company_id AS company_id, concat(b.lname,', ',b.fname,' ',b.mname) AS fullname, b.active AS active,
+
+            c.department AS department, c.position AS position, c.team AS team, c.employment_status AS employment_status
+
+                        
+            FROM tbl_emp_proj AS a LEFT JOIN hris_csi_b.personal_information AS b ON a.emp_id = b.company_id
+            LEFT JOIN hris_csi_b.employee_information AS c ON a.emp_id = c.company_id
+            WHERE (b.active = 'yes') AND projCode = '".$request->code."' AND a.deleted = 0 AND type = 'EMP'
+        ");
+
+
+        $projPm = DB::connection('mysql')->select("
+        SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+        b.emp_no AS emp_no, b.company_id AS company_id, concat(b.lname,', ',b.fname,' ',b.mname) AS fullname, b.active AS active,
+
+        c.department AS department, c.position AS position, c.team AS team, c.employment_status AS employment_status
+
+                    
+        FROM tbl_emp_proj AS a LEFT JOIN hris_csi_b.personal_information AS b ON a.emp_id = b.company_id
+        LEFT JOIN hris_csi_b.employee_information AS c ON a.emp_id = c.company_id
+        WHERE (b.active = 'yes') AND projCode = '".$request->code."' AND a.deleted = 0 AND type = 'PM'
+        ");
 
         $data = "";
         $counter = 1;
-        if(count($projTask) > 0){
+        $counterEMP = 1;
+        $counterPM = 1;
+        $data .= '
+                
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label><b>Task Code</b></label>
+                        </div>
+                        <div class="col-md-3">
+                            <label><b>Task Title</b></label>
+                            
+                        </div>
+                        <div class="col-md-3">
+                            <label><b>Description</b></label>
+                            
+                        </div>
+                        <div class="col-md-3">
+                            <label><b>Weight</b></label>
+                        
+                        </div>
+                    </div>
+                    ';
+        if(count($projTask)){
             foreach($projTask as $field){
 
                 $data .='
                         <div class="row">
                             <div class="col-md-3">
-                                <label><b>Task Code : </b></label>&nbsp;'.$field->taskCode.'<br>
+                                '.$field->taskCode.'
                             </div>
                             <div class="col-md-3">
-                                <label><b>Task Title : </b></label>&nbsp;'.$field->task_title.'<br>
+                                '.$field->task_title.'
                                 
                             </div>
                             <div class="col-md-3">
-                                <label><b>Description : </b></label>&nbsp;'.$field->task_desc.'<br>
+                                '.$field->task_desc.'
                                 
                             </div>
                             <div class="col-md-3">
-                                <label><b>Weight : </b></label>&nbsp;'.$field->weight.'<br>
+                                '.$field->weight.'
                                
                             </div>
                         </div>
                         ';
                 $counter++;
+            }
+        }
+
+
+        $data .= '
+        <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <label><b>Project Manager Name</b></label>
+                </div>
+                <div class="col-md-3">
+                    <label><b>Position</b></label>
+                    
+                </div>
+                <div class="col-md-3">
+                    <label><b>Department</b></label>
+                    
+                </div>
+                <div class="col-md-3">
+                    <label><b>Team</b></label>
+                
+                </div>
+            </div>
+        ';
+
+        if(count($projPm)){
+            foreach($projPm as $fieldPM){
+                $data .='
+                        <div class="row">
+                            <div class="col-md-3">
+                                '.$fieldPM->fullname.'
+                            </div>
+                            <div class="col-md-3">
+                                '.$fieldPM->position.'
+                                
+                            </div>
+                            <div class="col-md-3">
+                                '.$fieldPM->department.'
+                                
+                            </div>
+                            <div class="col-md-3">
+                                '.$fieldPM->position.'
+                            
+                            </div>
+                        </div>
+                        ';
+                $counterPM++;
+            }
+        }
+
+
+        $data .= '
+        <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <label><b>Employee Name</b></label>
+                </div>
+                <div class="col-md-3">
+                    <label><b>Position</b></label>
+                    
+                </div>
+                <div class="col-md-3">
+                    <label><b>Department</b></label>
+                    
+                </div>
+                <div class="col-md-3">
+                    <label><b>Team</b></label>
+                
+                </div>
+            </div>
+        ';
+
+        if(count($projEmp)){
+            foreach($projEmp as $fieldEMP){
+                $data .='
+                        <div class="row">
+                            <div class="col-md-3">
+                                '.$fieldEMP->fullname.'
+                            </div>
+                            <div class="col-md-3">
+                                '.$fieldEMP->position.'
+                                
+                            </div>
+                            <div class="col-md-3">
+                                '.$fieldEMP->department.'
+                                
+                            </div>
+                            <div class="col-md-3">
+                                '.$fieldEMP->position.'
+                            
+                            </div>
+                        </div>
+                        ';
+                $counterEMP++;
             }
         }
         echo $data;
