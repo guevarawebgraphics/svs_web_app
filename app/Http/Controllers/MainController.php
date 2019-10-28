@@ -306,20 +306,38 @@ class MainController extends Controller
             ->orderBy('created_at','desc')
             ->get();
 
-            $emp_info = DB::connection('mysql2')->select("select a.emp_no AS emp_no, a.company_id AS company_id,
-            concat(a.lname,', ',a.fname,' ',a.mname) AS fullname,
-            a.lname AS lname,a.fname AS fname, b.company_ind AS company_ind, 
-            d.company_name AS company_name, b.department AS department, 
-            b.position AS position, b.team AS team, 
-            b.employment_status AS employment_status, 
-            a.active AS active 
+            // $emp_info = DB::connection('mysql2')->select("select a.emp_no AS emp_no, a.company_id AS company_id,
+            // concat(a.lname,', ',a.fname,' ',a.mname) AS fullname,
+            // a.lname AS lname,a.fname AS fname, b.company_ind AS company_ind, 
+            // d.company_name AS company_name, b.department AS department, 
+            // b.position AS position, b.team AS team, 
+            // b.employment_status AS employment_status, 
+            // a.active AS active 
        
-            from ((hris_csi_b.personal_information a left join hris_csi_b.employee_information b on((a.company_id = b.company_id)))
-            left join hris_csi_b.company d on((b.company_ind = d.id))) where (a.active = 'yes')
-            ORDER BY b.department ASC
+            // from ((hris_csi_b.personal_information a left join hris_csi_b.employee_information b on((a.company_id = b.company_id)))
+            // left join hris_csi_b.company d on((b.company_ind = d.id))) where (a.active = 'yes')
+            // ORDER BY b.department ASC
+            // ");
+
+            $emp_info = DB::connection('mysql')->select("SELECT * FROM view_employee_info");
+
+            $emp_selected = DB::connection('mysql')->select("
+            SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+            b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+            FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+            WHERE a.type = 'EMP'
+            GROUP BY a.emp_id
             ");
 
-            return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info'));
+            $pm_selected = DB::connection('mysql')->select("
+            SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+            b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+            FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+            WHERE a.type = 'PM'
+            GROUP BY a.emp_id
+            ");
+
+            return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info','emp_selected','pm_selected'));
         }else{
             return redirect('/');
         }
@@ -593,7 +611,7 @@ class MainController extends Controller
         $counterEMP = 1;
         $counterPM = 1;
         $data .= '
-                
+                <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <label><b>Task Code</b></label>
@@ -733,6 +751,131 @@ class MainController extends Controller
         }
         echo $data;
 
+    }
+
+    public function project_dropdown(Request $request){
+
+        $data = "";
+        $counter = 1;
+
+        if($request->type == "PM"){
+            $pm_selected = DB::connection('mysql')->select("
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+                b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+                FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+                WHERE a.type = 'PM' AND a.projCode = '".$request->code."'
+                GROUP BY a.emp_id
+            ");
+
+            if(count($pm_selected)){
+                foreach($pm_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-pm">
+                        <input type="checkbox" class="custom-control-input pmChck" name="pmChck" value="'.$field->emp_id.'" id="pmChck'.$field->emp_id.'" checked>
+                        <label class="custom-control-label" for="pmChck'.$field->emp_id.'">'.$field->fullname.'</label>
+                        </div>
+                    ';
+                }
+            }
+
+        }
+        else if($request->type == "EMP")
+        {
+            $emp_selected = DB::connection('mysql')->select("
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+                b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+                FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+                WHERE a.type = 'EMP' AND a.projCode = '".$request->code."'
+                GROUP BY a.emp_id
+            ");
+            if(count($emp_selected)){
+                foreach($emp_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-emp">
+                        <input type="checkbox" class="custom-control-input" name="empChck" value="'.$field->emp_id.'" id="empChck'.$field->emp_id.'" checked>
+                        <label class="custom-control-label" for="empChck'.$field->emp_id.'">'.$field->fullname.'</label>
+                        </div>
+                    ';
+                }
+            }
+
+        }
+        else if($request->type == "TASK")
+        {
+            $task_selected = DB::connection('mysql')->select("
+            SELECT a.projCode, a.taskCode, a.deleted, a.by_id, a.updated_by, 
+            a.created_at, a.updated_at, b.task_title, b.task_desc, b.weight
+            FROM `tbl_projtask` AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode
+            WHERE a.projCode = '".$request->code."'
+            ");
+            if(count($task_selected)){
+                foreach($task_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-task">
+                        <input type="checkbox" class="custom-control-input" name="taskChck" value="'.$field->taskCode.'" id="taskChck'.$field->taskCode.'" checked>
+                        <label class="custom-control-label" for="taskChck'.$field->taskCode.'">'.$field->task_title.'</label>
+                        </div>
+                    ';
+                }
+            }
+
+        }
+
+        echo $data;
+
+    }
+
+    public function project_unselected(Request $request){
+        $data = "";
+        $counter = 1;
+
+        if($request->type == "PM"){
+            $arrays = implode("', '", $request->pmChck);
+            $pm_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
+           
+            if(count($pm_selected)){
+                foreach($pm_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-pm">
+                        <input type="checkbox" class="custom-control-input pmChck" name="pmChck" value="'.$field->company_id.'" id="pmChck'.$field->company_id.'">
+                        <label class="custom-control-label" for="pmChck'.$field->company_id.'">'.$field->fullname.'</label>
+                        </div>
+                    ';
+                }
+            }
+        }
+        else if($request->type == "EMP"){
+            $arrays = implode("', '", $request->empChck);
+            $emp_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
+           
+            if(count($emp_selected)){
+                foreach($emp_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-pm">
+                        <input type="checkbox" class="custom-control-input empChck" name="empChck" value="'.$field->company_id.'" id="empChck'.$field->company_id.'">
+                        <label class="custom-control-label" for="empChck'.$field->company_id.'">'.$field->fullname.'</label>
+                        </div>
+                    ';
+                }
+            }
+        }
+
+        else if($request->type == "TASK"){
+            $arrays = implode("', '", $request->taskChck);
+            $task_selected = DB::connection('mysql')->select("SELECT * FROM tbl_task WHERE taskCode NOT IN('".$arrays."')");
+           
+            if(count($task_selected)){
+                foreach($task_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-task">
+                        <input type="checkbox" class="custom-control-input taskChck" name="taskChck" value="'.$field->taskCode.'" id="taskChck'.$field->taskCode.'">
+                        <label class="custom-control-label" for="taskChck'.$field->taskCode.'">'.$field->task_title.'</label>
+                        </div>
+                    ';
+                }
+            }
+        }
+        echo $data;
     }
 
     public function assignproject(){

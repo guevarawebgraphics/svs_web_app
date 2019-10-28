@@ -18,6 +18,318 @@
     </div>
 </div>
 
+<!-- Modal: delTask -->
+<div class="modal fade" id="delProj" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Delete Project : <span id="dPC"></span></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <div class="container">
+            <p class="note note-danger">
+                <strong>Note danger:</strong> 
+                You are trying to delete this record. This record will not be useful to any transaction
+                <br>
+                Title: <em id="delTitle"></em><br>
+                Description :<em id="delDesc"></em><br>
+                Location :<em id="delLoc"></em><br>
+            </p>
+        </div>
+    
+
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+        <button class="btn btn-danger waves-effect" id="delSubmit">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal: editProj -->
+<div class="modal fade" id="editProj" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog svs-modal" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Edit Project : <span id="ePC"></span></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <div class="">
+
+                <p class="note note-success"><strong>Note update:</strong> 
+                    You are trying to update this record. Any changes made will be applied to all transactions
+                </p>
+
+                <form >
+                    <div class="row">
+                        <div class="container col-md-6">
+                                <div id="svsMapE" style="width: 100%; height:300px;"></div>
+                        </div>
+                        <div class="container col-md-6">
+                                    
+                            <!--Grid row-->
+                        <div class="row">
+                                <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="epTitle" name="epTitle" class="form-control">
+                                            <label id="epLTitle" for="epTitle">Title</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Grid row-->
+                            
+                                <!--Grid row-->
+                                <div class="row">
+        
+                                    <!--Grid column-->
+                                    <div class="col-md-12">
+        
+                                        <div class="md-form">
+                                            <textarea type="text" id="epDesc" name="epDesc" maxlength="190" class="form-control md-textarea"></textarea>
+                                            <label id="epLDesc" for="epDesc">Description</label>
+                                        </div>
+        
+                                    </div>
+                                    
+                                </div>
+                                <!--Grid row-->
+        
+                                <a href="" name="epLon" id="epLon" style="display:none;"></a>
+                                <a href="" name="epLat" id="epLat" style="display:none;"></a>
+                                
+                                <!--Grid row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form mb-0" id="search">
+                                            <input type="text" id="epAddr" name="epAddr" class="form-control" size="58" onkeyup="addr_searchE();">
+                                            <label for="epAddr" id="epLAddr">Location</label>
+                                            <div class="ep-map-result" id="ep-results"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Grid row-->
+                        </div>
+                    </div>
+                    <!--Grid row-->
+                    <div class="row" style="margin-top:1.5em;">
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" id="epSearchPM" onkeyup="searchPM();" placeholder="Choose Project Manager" name="epSearchPM" class="form-control">
+                                <label id="epSearchPM" class="active" for="epTitle">Current Project Manager</label>
+                            </div>
+                            <div class="container" id="pmDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
+                                <div class="" id="pmSelectCat" style="margin-bottom:20px; display:none;">
+                                    <a class="float-left select-all-pm">Select All</a>
+                                    <a class="float-right select-none-pm">Select None</a>
+                                </div>
+                                <div class="container" id="pmDivEdit" style="display:none;">
+                                    
+                                </div>  
+                                <div class="container" id="pmUnselect" style="display:none;">
+                                    
+                                </div>
+                            </div>
+                            {{-- <label for="pmSOLEdit" class="svs-small"><small>Project Manager</small></label>
+                            <select id="pmSOLEdit" name="pmSOLEdit" class="mdb-select multi-sol-svs" multiple="multiple">
+                                <optgroup label="Project Manager" title="Opiton Group 1">
+                                @if(count($emp_info))
+                                        @foreach($emp_info as $field)
+                                        <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
+                                    @endforeach
+                                @endif
+                            </select> --}}
+                        </div>
+                        <!--Grid column-->
+                        
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" id="epSearchEMP" onkeyup="searchEMP();" placeholder="Choose Employee" name="epSearchEMP" class="form-control">
+                                <label id="epSearchEMP" class="active" for="epTitle">Current Employee</label>
+                            </div>
+                            <div class="container" id="empDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
+                                <div class="" id="empSelectCat" style="margin-bottom:20px; display:none;">
+                                    <a class="float-left select-all-emp">Select All</a>
+                                    <a class="float-right select-none-emp">Select None</a>
+                                </div>
+                                <div class="container" id="empDivEdit" style="display:none;">
+                                    
+                                </div>  
+                                <div class="container" id="empUnselect" style="display:none;">
+                                    
+                                </div>
+                            </div>
+                            {{-- <label for="empSOLEdit" class="svs-small"><small>Employee</small></label>
+                            <select id="empSOLEdit" name="empSOLEdit" class="mdb-select multi-sol-svs" multiple="multiple">
+                                <optgroup label="Employee Name" title="Opiton Group 1">
+                                    @if(count($emp_info))
+                                        @foreach($emp_info as $field)
+                                            <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
+                                        @endforeach
+                                    @endif
+                                </optgroup>
+                            </select> --}}
+                        </div>
+                    </div>
+                    <!--Grid row--> 
+                    <br>
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input placeholder="Selected date" data-toggle="datepicker" type="text" id="estStartDEdit" name="estStartDEdit" class="form-control datepicker">
+                                <label for="estStartDEdit" id="ESDEditLabel">Estimated Start Date</label>
+    
+                            </div>
+                        </div>
+                        <!--Grid column-->
+    
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" placeholder="Selected time" id="estStartTEdit" data-toggle="timepicker" name="estStartTEdit" class="form-control">
+                                <label for="estStartTEdit" id="ESTEditLabel">Time</label>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+    
+                    </div>
+                    <!--Grid row-->
+
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input placeholder="Selected date" data-toggle="datepicker" type="text" id="estEndDEdit" name="estEndDEdit" class="form-control datepicker">
+                                <label for="estEndDEdit" id="EEDEditLabel">Estimated End Date</label>
+    
+                            </div>
+                        </div>
+                        <!--Grid column-->
+    
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" placeholder="Selected time" id="estEndTEdit" data-toggle="timepicker" name="estEndTEdit" class="form-control">
+                                <label for="estEndTEdit" id="EETEditLabel">Time</label>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+    
+                    </div>
+                    <!--Grid row-->
+
+                    <hr>
+
+                    <!--Grid row-->
+                    <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <input placeholder="Selected date" data-toggle="datepicker" type="text" id="actStartDEdit" name="actStartDEdit" class="form-control datepicker">
+                                    <label for="actStartDEdit" id="ASDEditLabel">Actual Start Date</label>
+        
+                                </div>
+                            </div>
+                            <!--Grid column-->
+        
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <input type="text" placeholder="Selected time" id="actStartTEdit" data-toggle="timepicker" name="actStartTEdit" class="form-control">
+                                    <label for="actStartTEdit" id="ASTEditLabel">Time</label>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+        
+                        </div>
+                        <!--Grid row-->
+    
+                        <!--Grid row-->
+                        <div class="row">
+    
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <input placeholder="Selected date" data-toggle="datepicker" type="text" id="actEndDEdit" name="actEndDEdit" class="form-control datepicker">
+                                    <label for="actEndDEdit" id="AEDEditLabel">Actual End Date</label>
+        
+                                </div>
+                            </div>
+                            <!--Grid column-->
+        
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <input type="text" placeholder="Selected time" id="actEndTEdit" data-toggle="timepicker" name="actEndTEdit" class="form-control">
+                                    <label for="actEndTEdit" id="AETEditLabel">Time</label>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+        
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid column-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <input type="text" id="epSearchTask" onkeyup="" placeholder="Choose Task" name="epSearchTask" class="form-control">
+                                    <label id="epSearchTask" class="active" for="epTitleTask">Current Task</label>
+                                </div>
+                                <div class="container" id="taskDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
+                                    <div class="" id="taskSelectCat" style="margin-bottom:20px; display:none;">
+                                        <a class="float-left select-all-task">Select All</a>
+                                        <a class="float-right select-none-task">Select None</a>
+                                    </div>
+                                    <div class="container" id="taskDivEdit" style="display:none;">
+                                        
+                                    </div>  
+                                    <div class="container" id="taskUnselect" style="display:none;">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                </form>
+
+        </div>
+    
+
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+        <button class="btn btn-success waves-effect" id="updateProj">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- Modal: modalLoc -->
 <div class="modal fade" id="modalLoc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -40,7 +352,9 @@
                         
                         <div id="svsMap" style="width: 100%; height:300px;"></div>
                         
-                        {{-- <div id="map" style="width: 100%; height:300px;"></div>
+                        {{-- 
+                        Google GMAP
+                        <div id="map" style="width: 100%; height:300px;"></div>
                         <script>
                         var map;
                         function initMap() {
@@ -52,7 +366,8 @@
                         </script>
                         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDePZhtX4riZVfQZsJvjvnG6QByB_ljmcE&callback=initMap"
                         async defer>
-                        </script> --}}
+                        </script>
+                        --}}
                     </div>
 
                     <div class="container col-md-6">
@@ -83,20 +398,20 @@
                         </div>
                         <!--Grid row-->
 
-                    <a href="" name="lon" id="lon" style="display:none;"></a>
-                    <a href="" name="lat" id="lat" style="display:none;"></a>
-                    
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0" id="search">
-                                <input type="text" id="addr" name="addr" class="form-control" size="58" onkeyup="addr_search();">
-                                <label for="addr" class="">Location</label>
-                                <div class="map-result" id="results"></div>
+                        <a href="" name="lon" id="lon" style="display:none;"></a>
+                        <a href="" name="lat" id="lat" style="display:none;"></a>
+                        
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0" id="search">
+                                    <input type="text" id="addr" name="addr" class="form-control" size="58" onkeyup="addr_search();">
+                                    <label for="addr" class="">Location</label>
+                                    <div class="map-result" id="results"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Grid row-->
+                        <!--Grid row-->
                     
                     </div>
                 </div>
@@ -299,7 +614,400 @@
     $('#demoSOL').searchableOptionList();
     $('#empSOL').searchableOptionList();
     $('#pmSOL').searchableOptionList();
+    $('#empSOLEdit').searchableOptionList();
+    $('#pmSOLEdit').searchableOptionList();
+    // $("#pmDivEdit").hide();
+    // $("#empDivEdit").hide();
 </script>
+
+<script>
+
+function searchPM(){
+    var input = document.getElementById("epSearchPM");
+    var filter = input.value.toLowerCase();
+    var nodes = document.getElementsByClassName('current-pm');
+
+    for (i = 0; i < nodes.length; i++) {
+        if (nodes[i].innerText.toLowerCase().includes(filter)) {
+        nodes[i].style.display = "block";
+        } else {
+        nodes[i].style.display = "none";
+        }
+    }
+}
+
+function searchEMP(){
+    var input = document.getElementById("epSearchEMP");
+    var filter = input.value.toLowerCase();
+    var nodes = document.getElementsByClassName('current-emp');
+
+    for (i = 0; i < nodes.length; i++) {
+        if (nodes[i].innerText.toLowerCase().includes(filter)) {
+        nodes[i].style.display = "block";
+        } else {
+        nodes[i].style.display = "none";
+        }
+    }
+}
+// $(document).ready(function(){
+//     $("#epSearchPM").click(function(){
+//         $("#pmDivEdit").show();
+//     });
+
+//     $("#epSearchEMP").click(function(){
+//         $("#empDivEdit").show();
+//     });
+// });
+</script>
+
+<script>
+$(".delProj").click(function () {
+    $('#delProj').modal('show');
+    var id = $(this).attr('data-id');
+    var projCode = $(this).attr('data-projcode');
+    var title = $(this).attr('data-title');
+    var desc = $(this).attr('data-desc');
+    var location = $(this).attr('data-location');
+    var date = $(this).attr('data-date');
+    $('#dPC').html(projCode);
+    $('#delTitle').html(title);
+    $('#delDesc').html(desc);
+    $('#delLoc').html(location);
+
+});
+</script>
+
+<script>
+$(".editProj").click(function () {
+    $('#editProj').modal('show');
+    
+
+    var id = $(this).attr('data-id');
+    var projCode = $(this).attr('data-projcode');
+    var title = $(this).attr('data-title');
+    var desc = $(this).attr('data-desc');
+    var location = $(this).attr('data-location');
+    var date = $(this).attr('data-date');
+    var longitude = $(this).attr('data-lon');
+    var latitude = $(this).attr('data-lat');
+
+    //Estimated DateTime
+    var est_start_date = $(this).attr('data-esd');
+    var est_end_date = $(this).attr('data-eed');
+
+    var now_esd = new Date(est_start_date);
+    var now_est = new Date(est_start_date);
+    var esd = now_esd.toLocaleDateString();
+    var est = now_est.toLocaleTimeString([], {timeStyle: 'short'});
+
+    var now_eed = new Date(est_end_date);
+    var now_eet = new Date(est_end_date);
+    var eed = now_eed.toLocaleDateString();
+    var eet = now_eet.toLocaleTimeString([], {timeStyle: 'short'});
+
+    //Actual DateTime
+    var act_start_date = $(this).attr('data-asd');
+    var act_end_date = $(this).attr('data-aed');
+
+    var now_asd = new Date(act_start_date);
+    var now_ast = new Date(act_start_date);
+    var asd = now_asd.toLocaleDateString();
+    var ast = now_ast.toLocaleTimeString([], {timeStyle: 'short'});
+
+    var now_aed = new Date(act_end_date);
+    var now_aet = new Date(act_end_date);
+    var aed = now_aed.toLocaleDateString();
+    var aet = now_aet.toLocaleTimeString([], {timeStyle: 'short'});
+
+    $('#ePC').html(projCode);
+    $('#epTitle').val(title);
+    $('#epDesc').val(desc);
+    $('#epAddr').val(location);
+    $('#epAddr').val(location);
+
+    $('#epLTitle').attr('class','active');
+    $('#epLDesc').attr('class','active');
+    $('#epLAddr').attr('class','active');
+    
+    //Estimated DateTime
+    $('#estStartDEdit').val(esd);
+    $('#estStartTEdit').val(est);
+    $('#estEndDEdit').val(eed);
+    $('#estEndTEdit').val(eet);
+
+    $('#ESDEditLabel').attr('class','active');
+    $('#ESTEditLabel').attr('class','active');
+    $('#EEDEditLabel').attr('class','active');
+    $('#EETEditLabel').attr('class','active');
+
+    //Actual DateTime
+    $('#actStartDEdit').val(asd);
+    $('#actStartTEdit').val(ast);
+    $('#actEndDEdit').val(aed);
+    $('#actEndTEdit').val(aet);
+
+    $('#ASDEditLabel').attr('class','active');
+    $('#ASTEditLabel').attr('class','active');
+    $('#AEDEditLabel').attr('class','active');
+    $('#AETEditLabel').attr('class','active');
+
+    // addr_searchE();
+    // chooseAddrE(latitude + ", " + longitude + ", \'" + location + "\'");
+
+    setTimeout(function(){ mapE.invalidateSize()}, 500);
+    //PM
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('project_dropdown') }}",
+        method: "POST",
+        data:{
+            proceed:"TRUE",
+            type:"PM",
+            code:projCode
+        }, 
+        success:function(data)
+        {
+            $("#pmDivEdit").html(data);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+    //EMP
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('project_dropdown') }}",
+        method: "POST",
+        data:{
+            proceed:"TRUE",
+            type:"EMP",
+            code:projCode
+        }, 
+        success:function(data)
+        {
+            $("#empDivEdit").html(data);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+    //Task
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('project_dropdown') }}",
+        method: "POST",
+        data:{
+            proceed:"TRUE",
+            type:"TASK",
+            code:projCode
+        }, 
+        success:function(data)
+        {
+            $("#taskDivEdit").html(data);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+});
+</script>
+
+<script>
+ $(document).ready(function () {
+
+    //Project Manager
+        $("#epSearchPM").click(function () {
+            pmDropdownDiv();
+            getUnselected();
+        });
+
+        $(".select-all-pm").click(function () {
+            $('input[name=pmChck]').prop('checked', true);
+        });
+
+        $(".select-none-pm").click(function () {
+            $('input[name=pmChck]').prop('checked', false);
+        });
+
+        function pmDropdownDiv() {
+            var x = document.getElementById("pmDivEdit");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                getUnselected();
+            } else {
+                x.style.display = "none";
+            }
+
+            var y = document.getElementById("pmUnselect");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+                getUnselected();
+            } else {
+                y.style.display = "none";
+            }
+
+            var z = document.getElementById("pmSelectCat");
+            if (z.style.display === "none") {
+                z.style.display = "block";
+                getUnselected();
+            } else {
+                z.style.display = "none";
+            }
+        }
+
+        function getUnselected(){
+            var pmChck = []; 
+            $("input:checkbox[name=pmChck]:checked").each(function() { 
+                pmChck.push($(this).val());
+            });
+            $.ajax({
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{ route('project_unselected') }}",
+                method: "POST",
+                data:{
+                    proceed:"TRUE",
+                    type:"PM",
+                    pmChck:pmChck
+                }, 
+                success:function(data)
+                {
+                    $("#pmUnselect").html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+        }
+
+    //Employee
+        $("#epSearchEMP").click(function () {
+            empDropdownDiv();
+            getUnselectedEmp();
+        });
+
+        $(".select-all-emp").click(function () {
+            $('input[name=empChck]').prop('checked', true);
+        });
+
+        $(".select-none-emp").click(function () {
+            $('input[name=empChck]').prop('checked', false);
+        });
+
+        function empDropdownDiv() {
+            var x = document.getElementById("empDivEdit");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                getUnselectedEmp();
+            } else {
+                x.style.display = "none";
+            }
+
+            var y = document.getElementById("empUnselect");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+                getUnselectedEmp();
+            } else {
+                y.style.display = "none";
+            }
+
+            var z = document.getElementById("empSelectCat");
+            if (z.style.display === "none") {
+                z.style.display = "block";
+                getUnselectedEmp();
+            } else {
+                z.style.display = "none";
+            }
+        }
+
+        function getUnselectedEmp(){
+            var empChck = []; 
+            $("input:checkbox[name=empChck]:checked").each(function() { 
+                empChck.push($(this).val());
+            });
+            $.ajax({
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{ route('project_unselected') }}",
+                method: "POST",
+                data:{
+                    proceed:"TRUE",
+                    type:"EMP",
+                    empChck:empChck
+                }, 
+                success:function(data)
+                {
+                    $("#empUnselect").html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+        }
+    //Task
+    $("#epSearchTask").click(function () {
+            taskDropdownDiv();
+            getUnselectedTask();
+        });
+
+        $(".select-all-task").click(function () {
+            $('input[name=taskChck]').prop('checked', true);
+        });
+
+        $(".select-none-task").click(function () {
+            $('input[name=taskChck]').prop('checked', false);
+        });
+
+        function taskDropdownDiv() {
+            var x = document.getElementById("taskDivEdit");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                getUnselectedTask();
+            } else {
+                x.style.display = "none";
+            }
+
+            var y = document.getElementById("taskUnselect");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+                getUnselectedTask();
+            } else {
+                y.style.display = "none";
+            }
+
+            var z = document.getElementById("taskSelectCat");
+            if (z.style.display === "none") {
+                z.style.display = "block";
+                getUnselectedTask();
+            } else {
+                z.style.display = "none";
+            }
+        }
+
+        function getUnselectedTask(){
+            var taskChck = []; 
+            $("input:checkbox[name=taskChck]:checked").each(function() { 
+                taskChck.push($(this).val());
+            });
+            $.ajax({
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{ route('project_unselected') }}",
+                method: "POST",
+                data:{
+                    proceed:"TRUE",
+                    type:"TASK",
+                    taskChck:taskChck
+                }, 
+                success:function(data)
+                {
+                    $("#taskUnselect").html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+        }
+});
+</script>
+
 
 <script>
     // Material Design example
@@ -323,15 +1031,21 @@
         });
 </script>
 
+<script>      
+    //type="text/javascript"
+    $("#newProject").click(function () {
+        $('#modalLoc').modal('show');
+        setTimeout(function(){ map.invalidateSize()}, 500);
+    });
+</script>
 
 <script type="text/javascript">
-
     var startlat = 14.599512;
     var startlon = 120.984222;
     
     var options = {
-     center: [startlat, startlon],
-     zoom: 15
+    center: [startlat, startlon],
+    zoom: 15
     }
     
     document.getElementById('lat').innerHTML = startlat;
@@ -343,75 +1057,145 @@
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'}).addTo(map);
     
     var myMarker = L.marker([startlat, startlon], {title: "Coordinates", alt: "Coordinates", draggable: true}).addTo(map).on('dragend', function() {
-     var lat = myMarker.getLatLng().lat.toFixed(8);
-     var lon = myMarker.getLatLng().lng.toFixed(8);
-     var czoom = map.getZoom();
-     if(czoom < 18) { nzoom = czoom + 2; }
-     if(nzoom > 18) { nzoom = 18; }
-     if(czoom != 18) { map.setView([lat,lon], nzoom); } else { map.setView([lat,lon]); }
-     document.getElementById('lat').value = lat;
-     document.getElementById('lon').value = lon;
-     myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
+        var lat = myMarker.getLatLng().lat.toFixed(8);
+        var lon = myMarker.getLatLng().lng.toFixed(8);
+        var czoom = map.getZoom();
+        if(czoom < 18) { nzoom = czoom + 2; }
+        if(nzoom > 18) { nzoom = 18; }
+        if(czoom != 18) { map.setView([lat,lon], nzoom); } else { map.setView([lat,lon]); }
+        document.getElementById('lat').value = lat;
+        document.getElementById('lon').value = lon;
+        myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
     });
     
     function chooseAddr(lat1, lng1, add1)
     {
-     myMarker.closePopup();
-     map.setView([lat1, lng1],15);
-     myMarker.setLatLng([lat1, lng1]);
-     lat = lat1.toFixed(8);
-     lon = lng1.toFixed(8);
-     document.getElementById('lat').value = lat;
-     document.getElementById('lon').value = lon;addr
-     document.getElementById('addr').value = add1;
-     myMarker.bindPopup("Latitude : " + lat + "<br />Longitude : " + lon+ "<br />Location : " + add1).openPopup();
+        myMarker.closePopup();
+        map.setView([lat1, lng1],15);
+        myMarker.setLatLng([lat1, lng1]);
+        lat = lat1.toFixed(8);
+        lon = lng1.toFixed(8);
+        document.getElementById('lat').innerHTML = lat;
+        document.getElementById('lon').innerHTML = lon;
+        document.getElementById('addr').value = add1;
+        myMarker.bindPopup("Latitude : " + lat + "<br />Longitude : " + lon+ "<br />Location : " + add1).openPopup();
     }
     
     function myFunction(arr)
     {
-     var out = "<br />";
-     var i;
-    
-     if(arr.length > 0)
-     {
-      for(i = 0; i < arr.length; i++)
-      {
-       out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='chooseAddr(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
-      }
-      document.getElementById('results').innerHTML = out;
-     }
-     else
-     {
-      document.getElementById('results').innerHTML = "Sorry, no results...";
-     }
-    
+        var out = "<br />";
+        var i;
+        
+        if(arr.length > 0)
+        {
+        for(i = 0; i < arr.length; i++)
+        {
+        out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='chooseAddr(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
+        }
+        document.getElementById('results').innerHTML = out;
+        }
+        else
+        {
+        document.getElementById('results').innerHTML = "Sorry, no results...";
+        }
     }
     
     function addr_search()
     {
-     var inp = document.getElementById("addr");
-     var xmlhttp = new XMLHttpRequest();
-     var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + inp.value;
-     xmlhttp.onreadystatechange = function()
-     {
-       if (this.readyState == 4 && this.status == 200)
-       {
-        var myArr = JSON.parse(this.responseText);
-        myFunction(myArr);
-       }
-     };
-     xmlhttp.open("GET", url, true);
-     xmlhttp.send();
+        var inp = document.getElementById("addr");
+        var xmlhttp = new XMLHttpRequest();
+        var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + inp.value;
+        xmlhttp.onreadystatechange = function()
+        {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            var myArr = JSON.parse(this.responseText);
+            myFunction(myArr);
+        }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
     }
-    
+
 </script>
 
-
-<script>        
-    $("#newProject").click(function () {
-        $('#modalLoc').modal('show');
-        setTimeout(function(){ map.invalidateSize()}, 500);
+<script>
+    var startlatE = 14.599512;
+    var startlonE = 120.984222;
+    
+    var optionsE = {
+    center: [startlatE, startlonE],
+    zoom: 15
+    }
+    
+    document.getElementById('lat').innerHTML = startlatE;
+    document.getElementById('lon').innerHTML = startlonE;
+    
+    var mapE = L.map('svsMapE', options);
+    var nzoomE = 15;
+    
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'}).addTo(mapE);
+    
+    var myMarkerE = L.marker([startlatE, startlonE], {title: "Coordinates", alt: "Coordinates", draggable: true}).addTo(mapE).on('dragend', function() {
+        var latE = myMarkerE.getLatLng().lat.toFixed(8);
+        var lonE = myMarkerE.getLatLng().lng.toFixed(8);
+        var czoomE = mapE.getZoom();
+        if(czoomE < 18) { nzoomE = czoomE + 2; }
+        if(nzoomE > 18) { nzoomE = 18; }
+        if(czoomE != 18) { mapE.setView([latE,lonE], nzoomE); } else { mapE.setView([latE,lonE]); }
+        document.getElementById('epLat').value = latE;
+        document.getElementById('epLon').value = lonE;
+        myMarkerE.bindPopup("Lat " + latE + "<br />Lon " + lonE).openPopup();
     });
+
+    function chooseAddrE(lat1, lng1, add1)
+    {
+        myMarkerE.closePopup();
+        mapE.setView([lat1, lng1],15);
+        myMarkerE.setLatLng([lat1, lng1]);
+        latE = lat1.toFixed(8);
+        lonE = lng1.toFixed(8);
+        document.getElementById('epLat').innerHTML = latE;
+        document.getElementById('epLon').innerHTML = lonE;
+        document.getElementById('epAddr').value = add1;
+        myMarkerE.bindPopup("Latitude : " + latE + "<br />Longitude : " + lonE+ "<br />Location : " + add1).openPopup();
+    }
+    
+    function myFunctionE(arr)
+    {
+        var out = "<br />";
+        var i;
+        
+        if(arr.length > 0)
+        {
+        for(i = 0; i < arr.length; i++)
+        {
+        out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='chooseAddrE(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
+        }
+        document.getElementById('ep-results').innerHTML = out;
+        }
+        else
+        {
+        document.getElementById('ep-results').innerHTML = "Sorry, no results...";
+        }
+    }
+    
+    function addr_searchE()
+    {
+        var inp = document.getElementById("epAddr");
+        var xmlhttp = new XMLHttpRequest();
+        var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + inp.value;
+        xmlhttp.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                var myArr = JSON.parse(this.responseText);
+                myFunctionE(myArr);
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+    }
 </script>
 
 <script>
@@ -654,4 +1438,5 @@ $('#subNewProj').click(function(){
 
 });
 </script>
+
 @endsection

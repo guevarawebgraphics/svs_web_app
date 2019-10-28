@@ -17,20 +17,26 @@
                             </th>
                             <th class="th-sm">Created At
                             </th>
-                            <th class="th-sm">Action
+                            <th class="th-lg">Action
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         @if(count($project_record))
                             @foreach($project_record as $field)
-                                <tr class="rowdt"  data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-href="{{$field->id}}">
+                                <tr>
                                     <td>{{$field->proj_code}}</td>
                                     <td>{{$field->proj_title}}</td>
                                     <td>{{$field->proj_desc}}</td>
                                     <td><p>{{$field->location}}</p></td>
                                     <td>{{date("F d Y - h:i a",strtotime($field->created_at))}}</td>
-                                    <td></td>
+                                    <td>
+                                        <div class="row text-center">
+                                        <button class="svs-action rowdt btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-href="{{$field->id}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}"><i class="fa fa-list"></i></button>
+                                        <button class="svs-action delProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}"><i class="fa fa-trash"></i></button>
+                                        <button class="svs-action editProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}"><i class="fa fa-pencil-alt"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif
@@ -46,7 +52,7 @@
                                         <label><b>Project Code: </b></label>&nbsp;{{$field->proj_code}}<br>
                                         <label><b>Location: </b></label>&nbsp;{{$field->location}}<br>
                                         <label><b>Description : </b></label>&nbsp;{{$field->proj_desc}}
-                                        <hr>
+                                        
                                     </div>
                                     <div class="col-md-6">
                                             <label><b>Estimated Start Date : </b></label>&nbsp;{{date('F d Y - h:i a',strtotime($field->est_start_date))}}<br>
