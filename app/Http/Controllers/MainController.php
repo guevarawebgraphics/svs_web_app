@@ -274,6 +274,32 @@ class MainController extends Controller
             $messages = "Successfully Saved!";
             $success[] = $messages;
         }
+        else if($request->type == "UPDATEPROJECT"){
+
+            $request->session()->put('successProj',"Successfully Updated!");
+            $request->session()->put('titleProj',$request->proj_title);
+            $request->session()->put('descProj',$request->proj_desc);
+            $request->session()->put('lonProj',$request->lon);
+            $request->session()->put('latProj',$request->lat);
+            $request->session()->put('addrProj',$request->addr);
+            $request->session()->put('codeProj',$request->code);
+
+            $messages = "Successfully Saved!";
+            $success[] = $messages;
+        }
+        else if($request->type == "DELETEPROJECT"){
+
+            $request->session()->put('deleteProj',"Successfully Deleted!");
+            $request->session()->put('titleProj',$request->proj_title);
+            $request->session()->put('descProj',$request->proj_desc);
+            $request->session()->put('lonProj',$request->lon);
+            $request->session()->put('latProj',$request->lat);
+            $request->session()->put('addrProj',$request->addr);
+            $request->session()->put('codeProj',$request->code);
+
+            $messages = "Successfully Saved!";
+            $success[] = $messages;
+        }
         else{
             $messages = "Invalid Request";
             $error[] = $messages;
@@ -763,7 +789,7 @@ class MainController extends Controller
                 SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
                 b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
                 FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
-                WHERE a.type = 'PM' AND a.projCode = '".$request->code."'
+                WHERE a.type = 'PM' AND a.projCode = '".$request->code."' and a.deleted = 0
                 GROUP BY a.emp_id
             ");
 
@@ -785,7 +811,7 @@ class MainController extends Controller
                 SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
                 b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
                 FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
-                WHERE a.type = 'EMP' AND a.projCode = '".$request->code."'
+                WHERE a.type = 'EMP' AND a.projCode = '".$request->code."' and a.deleted = 0
                 GROUP BY a.emp_id
             ");
             if(count($emp_selected)){
@@ -806,7 +832,7 @@ class MainController extends Controller
             SELECT a.projCode, a.taskCode, a.deleted, a.by_id, a.updated_by, 
             a.created_at, a.updated_at, b.task_title, b.task_desc, b.weight
             FROM `tbl_projtask` AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode
-            WHERE a.projCode = '".$request->code."'
+            WHERE a.projCode = '".$request->code."' and a.deleted = 0
             ");
             if(count($task_selected)){
                 foreach($task_selected as $field){
@@ -862,7 +888,7 @@ class MainController extends Controller
 
         else if($request->type == "TASK"){
             $arrays = implode("', '", $request->taskChck);
-            $task_selected = DB::connection('mysql')->select("SELECT * FROM tbl_task WHERE taskCode NOT IN('".$arrays."')");
+            $task_selected = DB::connection('mysql')->select("SELECT * FROM tbl_task WHERE taskCode NOT IN('".$arrays."') AND deleted = 0");
            
             if(count($task_selected)){
                 foreach($task_selected as $field){
@@ -876,6 +902,258 @@ class MainController extends Controller
             }
         }
         echo $data;
+    }
+
+    public function project_update_val(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->proceed != "TRUE"){
+            $messages = "Invalid Request";
+            $error[] = $messages;
+        }
+        else if($request->code == ""){
+            $messages = "Project Code is required!";
+            $error[] = $messages;
+        }
+        else if($request->title == ""){
+            $messages = "Title is required!";
+            $error[] = $messages;
+        }
+        else if($request->desc == ""){
+            $messages = "Description is required!";
+            $error[] = $messages;
+        }
+        else if($request->addr == ""){
+            $messages = "Address is required!";
+            $error[] = $messages;
+        }
+        else if($request->lon == ""){
+            $messages = "Longitude is required!";
+            $error[] = $messages;
+        }
+        else if($request->lat == ""){
+            $messages = "Latitude is required!";
+            $error[] = $messages;
+        }
+        else if($request->pmChck == ""){
+            $messages = "Choose Project Manger for this project!";
+            $error[] = $messages;
+        }
+        else if($request->empChck == ""){
+            $messages = "Choose Employee for this project!";
+            $error[] = $messages;
+        }
+        else if($request->est_start_date == ""){
+            $messages = "Estimated start date is required";
+            $error[] = $messages;
+        }
+        else if($request->est_start_time == ""){
+            $messages = "Estimated start time is required";
+            $error[] = $messages;
+        }
+        else if($request->est_end_date == ""){
+            $messages = "Estimated end date is required";
+            $error[] = $messages;
+        }
+        else if($request->est_end_time == ""){
+            $messages = "Estimated end time is required";
+            $error[] = $messages;
+        }
+        else if($request->act_start_date == ""){
+            $messages = "Actual start date is required";
+            $error[] = $messages;
+        }
+        else if($request->act_start_time == ""){
+            $messages = "Actual start time is required";
+            $error[] = $messages;
+        }
+        else if($request->act_end_date == ""){
+            $messages = "Actual end date is required";
+            $error[] = $messages;
+        }
+        else if($request->act_end_time == ""){
+            $messages = "Actual end time is required";
+            $error[] = $messages;
+        }
+        else if($request->taskChck == ""){
+            $messages = "Choose Task for this project!";
+            $error[] = $messages;
+        }
+        else{
+            $messages = "Successfully Validated!";
+            $success[] = $messages;
+        }
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+
+        echo json_encode($output);
+    }
+
+    public function project_update(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->proceed == "TRUE" && $request->code != ""){
+
+            //Estimated
+            //Start Datetime
+            $est_start_d = date('Y-m-d',strtotime("$request->est_start_date"));
+            $est_start_t = date('H:i:s',strtotime("$request->est_start_time"));
+            $est_start_dt = date('Y-m-d H:i:s', strtotime("$est_start_d $est_start_t"));
+
+            //End Datetime
+            $est_end_d = date('Y-m-d',strtotime("$request->est_end_date"));
+            $est_end_t = date('H:i:s',strtotime("$request->est_end_time"));
+            $est_end_dt = date('Y-m-d H:i:s', strtotime("$est_end_d $est_end_t"));
+
+            //Actual
+            //Start Datetime
+            $act_start_d = date('Y-m-d',strtotime("$request->act_start_date"));
+            $act_start_t = date('H:i:s',strtotime("$request->act_start_time"));
+            $act_start_dt = date('Y-m-d H:i:s', strtotime("$act_start_d $act_start_t"));
+
+            //End Datetime
+            $act_end_d = date('Y-m-d',strtotime("$request->act_end_date"));
+            $act_end_t = date('H:i:s',strtotime("$request->act_end_time"));
+            $act_end_dt = date('Y-m-d H:i:s', strtotime("$act_end_d $act_end_t"));
+
+            //Project Info Update
+            DB::table('tbl_projectlist')
+            ->where('proj_code', $request->code)
+            ->update([
+            'proj_title'=> $request->title,
+            'proj_desc'=> $request->desc,
+            'est_start_date'=> $est_start_dt,
+            'est_end_date'=> $est_end_dt,
+            'act_start_date'=> $act_start_dt,
+            'act_end_date'=> $act_end_dt,
+            'longitude'=> $request->lon,
+            'latitude'=> $request->lat,
+            'location'=> $request->addr,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+
+            //Task
+            DB::table('tbl_projtask')
+            ->where('projCode', $request->code)
+            ->update([
+            'deleted'=> 1,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+            $myString = $request->taskChck;
+            foreach($myString as $value){
+                $ProjTask = new ProjTask;
+                $ProjTask->projCode = $request->code;
+                $ProjTask->taskCode = $value;
+                $ProjTask->deleted = 0;
+                $ProjTask->by_id = auth()->user()->id;
+                $ProjTask->updated_by = auth()->user()->name;
+                $ProjTask->created_at = now();
+                $ProjTask->updated_at = now();
+                $ProjTask->save();
+            }
+
+            //PM
+            DB::table('tbl_emp_proj')
+            ->where('projCode', $request->code)
+            ->where('type', 'PM')
+            ->update([
+            'deleted'=> 1,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+            $myString2 = $request->pmChck;
+            foreach($myString2 as $value2){
+                $ProjPM = new EmpProj;
+                $ProjPM->projCode = $request->code;
+                $ProjPM->emp_id = $value2;
+                $ProjPM->type = "PM";
+                $ProjPM->deleted = 0;
+                $ProjPM->by_id = auth()->user()->id;
+                $ProjPM->updated_by = auth()->user()->name;
+                $ProjPM->created_at = now();
+                $ProjPM->updated_at = now();
+                $ProjPM->save();
+            }
+
+            //EMP
+            DB::table('tbl_emp_proj')
+            ->where('projCode', $request->code)
+            ->where('type', 'EMP')
+            ->update([
+            'deleted'=> 1,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+            $myString3 = $request->empChck;
+            foreach($myString3 as $value3){
+                $ProjEMP = new EmpProj;
+                $ProjEMP->projCode = $request->code;
+                $ProjEMP->emp_id = $value3;
+                $ProjEMP->type = "EMP";
+                $ProjEMP->deleted = 0;
+                $ProjEMP->by_id = auth()->user()->id;
+                $ProjEMP->updated_by = auth()->user()->name;
+                $ProjEMP->created_at = now();
+                $ProjEMP->updated_at = now();
+                $ProjEMP->save();
+            }
+            
+            $messages = "Successfully Updated!";
+            $success[] = $messages;
+        }else{
+            $messages = "Invalid Request!!";
+            $error[] = $messages;
+        }
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+        echo json_encode($output);
+    }
+
+    public function project_delete(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->proceed == "TRUE" && $request->code != ""){
+            DB::table('tbl_projectlist')
+            ->where('proj_code', $request->code)
+            ->update([
+            'deleted'=> 1,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+            
+            $messages = "Successfully Deleted!";
+            $success[] = $messages;
+        }else{
+            $messages = "Invalid Request!!";
+            $error[] = $messages;
+        }
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+        echo json_encode($output);
     }
 
     public function assignproject(){

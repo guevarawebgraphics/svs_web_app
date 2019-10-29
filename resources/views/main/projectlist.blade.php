@@ -111,6 +111,7 @@
         
                                 <a href="" name="epLon" id="epLon" style="display:none;"></a>
                                 <a href="" name="epLat" id="epLat" style="display:none;"></a>
+                                <a href="" name="epAddrHidden" id="epAddrHidden" style="display:none;"></a>
                                 
                                 <!--Grid row-->
                                 <div class="row">
@@ -130,7 +131,7 @@
                         <!--Grid column-->
                         <div class="col-md-6">
                             <div class="md-form mb-0">
-                                <input type="text" id="epSearchPM" onkeyup="searchPM();" placeholder="Choose Project Manager" name="epSearchPM" class="form-control">
+                                <input type="text" id="epSearchPM" onkeyup="searchPM();" placeholder="Click here to search" name="epSearchPM" class="form-control">
                                 <label id="epSearchPM" class="active" for="epTitle">Current Project Manager</label>
                             </div>
                             <div class="container" id="pmDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
@@ -160,7 +161,7 @@
                         <!--Grid column-->
                         <div class="col-md-6">
                             <div class="md-form mb-0">
-                                <input type="text" id="epSearchEMP" onkeyup="searchEMP();" placeholder="Choose Employee" name="epSearchEMP" class="form-control">
+                                <input type="text" id="epSearchEMP" onkeyup="searchEMP();" placeholder="Click here to search" name="epSearchEMP" class="form-control">
                                 <label id="epSearchEMP" class="active" for="epTitle">Current Employee</label>
                             </div>
                             <div class="container" id="empDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
@@ -295,7 +296,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
-                                    <input type="text" id="epSearchTask" onkeyup="" placeholder="Choose Task" name="epSearchTask" class="form-control">
+                                    <input type="text" id="epSearchTask" onkeyup="" placeholder="Click here to search" name="epSearchTask" class="form-control">
                                     <label id="epSearchTask" class="active" for="epTitleTask">Current Task</label>
                                 </div>
                                 <div class="container" id="taskDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
@@ -661,6 +662,220 @@ function searchEMP(){
 </script>
 
 <script>
+$(document).ready(function () {
+    $("#delSubmit").click(function () {
+
+        var title = $(this).attr('data-title');
+        var desc = $(this).attr('data-desc');
+        var addr = $(this).attr('data-location');
+        var lon = $(this).attr('data-lon');
+        var lat = $(this).attr('data-lat');
+        var projCode = $(this).attr('data-projcode');
+
+        var x = document.getElementById("delSubmit");
+        x.innerHTML = "Loading...";
+        document.getElementById("delSubmit").disabled = true;
+
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{ route('project_delete') }}",
+            method: "POST",
+            data:{
+                proceed:"TRUE",
+                code:projCode
+            }, 
+            dataType: "json",
+            success:function(data)
+            {
+                if(data.success.length > 0){
+                    $.ajax({
+                        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        url: "{{ route('session_success') }}",
+                        method: "POST",
+                        data:{
+                            proceed:"TRUE",
+                            type:"DELETEPROJECT",
+                            proj_title:title,
+                            proj_desc:desc,
+                            lon:lon,
+                            lat:lat,
+                            addr:addr,
+                            code:projCode
+                        }, 
+                        dataType: "json",
+                        success:function(data)
+                        {
+                            if(data.success.length > 0){
+                                location.reload();
+                            }else{
+                                toastr.error(data.error[0]);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    }); 
+                }else{
+                    toastr.error(data.error[0]);
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        }); 
+    });
+});
+</script>
+
+<script>
+$(document).ready(function () {
+    $("#updateProj").click(function () {
+        var title = $("#epTitle").val();
+        var desc = $("#epDesc").val();
+
+        var addr = $("#epAddrHidden").html();
+        var lon = $("#epLon").html();
+        var lat = $("#epLat").html();
+
+        var projCode = $(this).attr('data-projcode');
+
+        var pmChck = []; 
+        $("input:checkbox[name=pmChck]:checked").each(function() { 
+            pmChck.push($(this).val()); 
+        }); 
+
+        var empChck = []; 
+        $("input:checkbox[name=empChck]:checked").each(function() { 
+            empChck.push($(this).val()); 
+        }); 
+
+        var taskChck = []; 
+        $("input:checkbox[name=taskChck]:checked").each(function() { 
+            taskChck.push($(this).val()); 
+        }); 
+
+        //Estimated
+        var est_start_date = $("#estStartDEdit").val();
+        var est_start_time = $("#estStartTEdit").val();
+
+        var est_end_date = $("#estEndDEdit").val();
+        var est_end_time = $("#estEndTEdit").val();
+
+        //Actual
+        var act_start_date = $("#actStartDEdit").val();
+        var act_start_time = $("#actStartTEdit").val();
+
+        var act_end_date = $("#actEndDEdit").val();
+        var act_end_time = $("#actEndTEdit").val();
+
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{ route('project_update_val') }}",
+            method: "POST",
+            data:{
+                proceed:"TRUE",
+                code:projCode,
+                title:title,
+                desc:desc,
+                addr:addr,
+                lon:lon,
+                lat:lat,
+                pmChck:pmChck,
+                empChck:empChck,
+                taskChck:taskChck,
+                est_start_date:est_start_date,
+                est_start_time:est_start_time,
+                est_end_date:est_end_date,
+                est_end_time:est_end_time,
+                act_start_date:act_start_date,
+                act_start_time:act_start_time,
+                act_end_date:act_end_date,
+                act_end_time:act_end_time
+            }, 
+            dataType: "json",
+            success:function(data)
+            {
+                if(data.success.length > 0){
+                    var x = document.getElementById("updateProj");
+                    x.innerHTML = "Loading...";
+                    document.getElementById("updateProj").disabled = true;
+
+                    $.ajax({
+                        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        url: "{{ route('project_update') }}",
+                        method: "POST",
+                        data:{
+                            proceed:"TRUE",
+                            code:projCode,
+                            title:title,
+                            desc:desc,
+                            addr:addr,
+                            lon:lon,
+                            lat:lat,
+                            pmChck:pmChck,
+                            empChck:empChck,
+                            taskChck:taskChck,
+                            est_start_date:est_start_date,
+                            est_start_time:est_start_time,
+                            est_end_date:est_end_date,
+                            est_end_time:est_end_time,
+                            act_start_date:act_start_date,
+                            act_start_time:act_start_time,
+                            act_end_date:act_end_date,
+                            act_end_time:act_end_time
+                        }, 
+                        dataType: "json",
+                        success:function(data)
+                        {
+                            if(data.success.length > 0){
+                                $.ajax({
+                                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                    url: "{{ route('session_success') }}",
+                                    method: "POST",
+                                    data:{
+                                        proceed:"TRUE",
+                                        type:"UPDATEPROJECT",
+                                        proj_title:title,
+                                        proj_desc:desc,
+                                        lon:addr,
+                                        lat:lon,
+                                        addr:lat,
+                                        code:projCode
+                                    }, 
+                                    dataType: "json",
+                                    success:function(data)
+                                    {
+                                        if(data.success.length > 0){
+                                            location.reload();
+                                        }else{
+                                            toastr.error(data.error[0]);
+                                        }
+                                    },
+                                    error: function(xhr, ajaxOptions, thrownError){
+                                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                                    }
+                                }); 
+                            }else{
+                                toastr.error(data.error[0]);
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });  
+                }else{
+                    toastr.error(data.error[0]);
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });  
+    });
+});
+</script>
+
+<script>
 $(".delProj").click(function () {
     $('#delProj').modal('show');
     var id = $(this).attr('data-id');
@@ -668,11 +883,20 @@ $(".delProj").click(function () {
     var title = $(this).attr('data-title');
     var desc = $(this).attr('data-desc');
     var location = $(this).attr('data-location');
+    var lon = $(this).attr('data-lon');
+    var lat = $(this).attr('data-lat');
     var date = $(this).attr('data-date');
     $('#dPC').html(projCode);
     $('#delTitle').html(title);
     $('#delDesc').html(desc);
     $('#delLoc').html(location);
+    $('#delSubmit').attr('data-projcode',projCode);
+    $('#delSubmit').attr('data-title',title);
+    $('#delSubmit').attr('data-desc',desc);
+    $('#delSubmit').attr('data-lon',lon);
+    $('#delSubmit').attr('data-lat',lat);
+    $('#delSubmit').attr('data-location',location);
+
 
 });
 </script>
@@ -722,8 +946,12 @@ $(".editProj").click(function () {
     $('#ePC').html(projCode);
     $('#epTitle').val(title);
     $('#epDesc').val(desc);
+    $('#epAddrHidden').html(location);
     $('#epAddr').val(location);
-    $('#epAddr').val(location);
+
+    $('#epLat').html(longitude);
+    $('#epLon').html(latitude);
+    // $('#epAddr').val(location);
 
     $('#epLTitle').attr('class','active');
     $('#epLDesc').attr('class','active');
@@ -751,8 +979,10 @@ $(".editProj").click(function () {
     $('#AEDEditLabel').attr('class','active');
     $('#AETEditLabel').attr('class','active');
 
+    $('#updateProj').attr('data-projcode',projCode);
+
     // addr_searchE();
-    // chooseAddrE(latitude + ", " + longitude + ", \'" + location + "\'");
+    // SelectAddrE(latitude + ", " + longitude + ", \'" + location + "\'");
 
     setTimeout(function(){ mapE.invalidateSize()}, 500);
     //PM
@@ -1068,7 +1298,7 @@ $(".editProj").click(function () {
         myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
     });
     
-    function chooseAddr(lat1, lng1, add1)
+    function SelectAddr(lat1, lng1, add1)
     {
         myMarker.closePopup();
         map.setView([lat1, lng1],15);
@@ -1090,7 +1320,7 @@ $(".editProj").click(function () {
         {
         for(i = 0; i < arr.length; i++)
         {
-        out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='chooseAddr(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
+        out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='SelectAddr(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
         }
         document.getElementById('results').innerHTML = out;
         }
@@ -1148,7 +1378,7 @@ $(".editProj").click(function () {
         myMarkerE.bindPopup("Lat " + latE + "<br />Lon " + lonE).openPopup();
     });
 
-    function chooseAddrE(lat1, lng1, add1)
+    function SelectAddrE(lat1, lng1, add1)
     {
         myMarkerE.closePopup();
         mapE.setView([lat1, lng1],15);
@@ -1158,6 +1388,7 @@ $(".editProj").click(function () {
         document.getElementById('epLat').innerHTML = latE;
         document.getElementById('epLon').innerHTML = lonE;
         document.getElementById('epAddr').value = add1;
+        document.getElementById('epAddrHidden').innerHTML = add1;
         myMarkerE.bindPopup("Latitude : " + latE + "<br />Longitude : " + lonE+ "<br />Location : " + add1).openPopup();
     }
     
@@ -1170,7 +1401,7 @@ $(".editProj").click(function () {
         {
         for(i = 0; i < arr.length; i++)
         {
-        out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='chooseAddrE(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
+        out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='SelectAddrE(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
         }
         document.getElementById('ep-results').innerHTML = out;
         }

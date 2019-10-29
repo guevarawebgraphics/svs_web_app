@@ -34,6 +34,9 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/projectlist/project_info', 'MainController@project_info')->name('project_info');
     Route::post('/projectlist/project_dropdown', 'MainController@project_dropdown')->name('project_dropdown');
     Route::post('/projectlist/project_unselected', 'MainController@project_unselected')->name('project_unselected');
+    Route::post('/projectlist/project_update_val', 'MainController@project_update_val')->name('project_update_val');
+    Route::post('/projectlist/project_update', 'MainController@project_update')->name('project_update');
+    Route::post('/projectlist/project_delete', 'MainController@project_delete')->name('project_delete');
 
     Route::get('/assignproject', 'MainController@assignproject');
 });
