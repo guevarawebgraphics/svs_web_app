@@ -35,8 +35,12 @@ class LoginController extends Controller
             return redirect('/admin/index');
         }else if(auth()->user()->is_admin == 0){
             return redirect('/user/index');
+            // session()->flush();
+            // $this->middleware('guest')->except('logout');
+            // return redirect('/');
         }
     }
+
     // protected $redirectTo = '/home';
 
     /**
@@ -48,4 +52,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
 }

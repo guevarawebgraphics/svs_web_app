@@ -38,7 +38,7 @@
                 <div class="row">
 
                     <!--Grid column-->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="md-form mb-0">
                             <input type="text" id="task_title" name="task_title" class="form-control">
                             <label for="task_title" class="">Title</label>
@@ -46,14 +46,6 @@
                     </div>
                     <!--Grid column-->
 
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="number" id="weight" name="weight" class="form-control">
-                            <label for="weight" class="">Weight %</label>
-                        </div>
-                    </div>
-                    <!--Grid column-->
 
                 </div>
                 <!--Grid row-->
@@ -110,7 +102,6 @@
                 <br>
                 Title: <em id="delTitle"></em><br>
                 Description <em id="delDesc"></em><br>
-                Weight: <em id="delWeight"></em><br>
             </p>
         </div>
     
@@ -152,20 +143,13 @@
                         <div class="row">
         
                             <!--Grid column-->
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="md-form mb-0" id="divTitle">
 
                                 </div>
                             </div>
                             <!--Grid column-->
         
-                            <!--Grid column-->
-                            <div class="col-md-6">
-                                <div class="md-form mb-0" id="divWeight">
-                                    
-                                </div>
-                            </div>
-                            <!--Grid column-->
         
                         </div>
                         <!--Grid row-->
@@ -206,17 +190,14 @@ $(".editTask").click(function () {
     var id = $(this).attr('data-id');
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
-    var weight = $(this).attr('data-weight');
     var code = $(this).attr('data-code');
     var crt = $(this).attr('data-crt');
     $("#divTitle").html("<input type='text' value='"+title+"' id='editTitle' name='editTitle' class='form-control'> <label for='editTitle' class='active'>Title</label>");
-    $("#divWeight").html("<input type='number' value='"+weight+"' id='editWeight' name='editWeight' class='form-control'> <label for='editWeight' class='active'>Weight %</label>");
     $("#divTxtarea").html("<textarea type='text' id='editDesc' name='editDesc' maxlength='190' class='form-control md-textarea'>"+desc+"</textarea> <label for='editDesc' class='active'>Description</label>");
     $("#eTC").html(code);
     $("#updateTask").attr("data-id",id);
     $("#updateTask").attr("data-title",title);
     $("#updateTask").attr("data-desc",desc);
-    $("#updateTask").attr("data-weight",weight);
     $("#updateTask").attr("data-code",code);
     $("#updateTask").attr("data-crt",crt);
 });
@@ -225,12 +206,10 @@ $("#updateTask").click(function () {
     var id = $(this).attr('data-id');
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
-    var weight = $(this).attr('data-weight');
     var code = $(this).attr('data-code');
     var crt = $(this).attr('data-crt');
 
     var nTitle = $('#editTitle').val();
-    var nWeight = $('#editWeight').val();
     var nDesc = $('#editDesc').val();
 
     $.ajax({
@@ -242,7 +221,6 @@ $("#updateTask").click(function () {
             id:id,
             title:nTitle,
             desc:nDesc,
-            weight:nWeight,
             crt:crt,
             code:code
         }, 
@@ -263,7 +241,6 @@ $("#updateTask").click(function () {
                         id:id,
                         title:nTitle,
                         desc:nDesc,
-                        weight:nWeight,
                         crt:crt,
                         code:code
                     }, 
@@ -298,17 +275,14 @@ $(".delTask").click(function () {
     var id = $(this).attr('data-id');
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
-    var weight = $(this).attr('data-weight');
     var code = $(this).attr('data-code');
     var crt = $(this).attr('data-crt');
     $("#dTC").html(code);
     $('#delTitle').html(title);
     $('#delDesc').html(desc);
-    $('#delWeight').html(weight);
     $("#delSubmit").attr("data-id",id);
     $("#delSubmit").attr("data-title",title);
     $("#delSubmit").attr("data-desc",desc);
-    $("#delSubmit").attr("data-weight",weight);
     $("#delSubmit").attr("data-code",code);
     $("#delSubmit").attr("data-crt",crt);
 });
@@ -317,7 +291,6 @@ $("#delSubmit").click(function () {
     var id = $(this).attr('data-id');
     var title = $(this).attr('data-title')
     var desc = $(this).attr('data-desc');
-    var weight = $(this).attr('data-weight');
     var code = $(this).attr('data-code');
     var crt = $(this).attr('data-crt');
 
@@ -334,7 +307,6 @@ $("#delSubmit").click(function () {
             id:id,
             title:title,
             desc:desc,
-            weight:weight,
             code:code,
             crt:crt
         }, 
@@ -365,7 +337,6 @@ $("#delSubmit").click(function () {
 
         function newTask(){
             var task_title = $('#task_title').val();
-            var weight = $('#weight').val();
             var desc = $('#desc').val();
 
             $.ajax({
@@ -375,7 +346,6 @@ $("#delSubmit").click(function () {
                 data:{
                     proceed:"TRUE",
                     task_title:task_title,
-                    weight:weight,
                     desc:desc
                 }, 
                 dataType: "json",
@@ -392,7 +362,6 @@ $("#delSubmit").click(function () {
                             data:{
                                 proceed:"TRUE",
                                 task_title:task_title,
-                                weight:weight,
                                 desc:desc
                             }, 
                             dataType: "json",
@@ -407,7 +376,6 @@ $("#delSubmit").click(function () {
                                         data:{
                                             type:"TASK",
                                             task_title:task_title,
-                                            weight:weight,
                                             desc:desc,
                                             code:taskCode
                                         }, 

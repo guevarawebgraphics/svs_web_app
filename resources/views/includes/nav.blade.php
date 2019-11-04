@@ -22,7 +22,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link svs-text" href="#">Users</a>
+              {{-- <a class="nav-link svs-text" href="#">Users</a> --}}
             </li>
             <li class="nav-item dropdown">
                 @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0)
@@ -33,7 +33,7 @@
                       {{-- <a class="dropdown-item svs-text" href="/admin/location">Location</a> --}}
                       <a class="dropdown-item svs-text" href="/task">Tasks</a>
                       <a class="dropdown-item svs-text" href="/projectlist">Project List</a>
-                      <a class="dropdown-item svs-text" href="/assignproject">Assign Project</a>
+                      {{-- <a class="dropdown-item svs-text" href="/assignproject">Assign Project</a> --}}
                     </div>
                 @else
                   <a class="nav-link svs-text" href="#">

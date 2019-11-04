@@ -154,3 +154,13 @@ background-color:#222222;
 .svs-b-bottom-less{
     border-bottom:0px!important;
 }
+.rounded-rectangle-svs{
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    height: 150px;
+    width: 100%;
+    margin-top: 20px;
+    background-color: #fff;
+    padding:20px 30px;
+}

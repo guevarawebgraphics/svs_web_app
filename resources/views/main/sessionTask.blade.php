@@ -12,8 +12,6 @@
     <br>
     Title: {{session()->get('titleTask')}}
     <br>
-    Weight: {{session()->get('weightTask')}} 
-    <br>
     Description: {{session()->get('descTask')}}
 
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -26,7 +24,6 @@
     session()->forget('successTask');
     session()->forget('deleteTask');
     session()->forget('titleTask');
-    session()->forget('weightTask');
     session()->forget('descTask');
     session()->forget('codeTask');
 @endphp

@@ -44,9 +44,6 @@ class MainController extends Controller
         }else if($request->task_title == ""){
             $messages = "Task Title is required!";
             $error[] = $messages;
-        }else if($request->weight == ""){
-            $messages = "Weight is required!";
-            $error[] = $messages;
         }else if($request->desc == ""){
             $messages = "Description is required!";
             $error[] = $messages;
@@ -75,7 +72,6 @@ class MainController extends Controller
             $task->taskCode = $taskCode;
             $task->task_title = $request->task_title;
             $task->task_desc = $request->desc;
-            $task->weight = $request->weight;
             $task->deleted = 0;
             $task->by_id = auth()->user()->id;
             $task->updated_by = auth()->user()->name;
@@ -112,7 +108,6 @@ class MainController extends Controller
                         <tr class="">
                             <td>'.$field->task_title.'</td>
                             <td>'.$field->task_desc.'</td>
-                            <td>'.$field->weight.'</td>
                             <td>'.$field->updated_by.'</td>
                             <td>'.$field->created_at.'</td>
                             <td></td>
@@ -142,7 +137,6 @@ class MainController extends Controller
 
             $request->session()->put('deleteTask',"Successfully Deleted!");
             $request->session()->put('titleTask',$request->title);
-            $request->session()->put('weightTask',$request->weight);
             $request->session()->put('descTask',$request->desc);
             $request->session()->put('codeTask',$request->code);
                         
@@ -175,10 +169,6 @@ class MainController extends Controller
         }
         else if($request->title == ""){
             $messages = "Title is required!";
-            $error[] = $messages;
-        }
-        else if($request->weight == ""){
-            $messages = "Weight is required!";
             $error[] = $messages;
         }
         else if($request->desc == ""){
@@ -216,7 +206,6 @@ class MainController extends Controller
             ->update([
             'task_title'=> $request->title,
             'task_desc'=> $request->desc,
-            'weight'=> $request->weight,
             'by_id'=> auth()->user()->id,
             'updated_by'=> auth()->user()->name,
             'updated_at' => now()
@@ -224,7 +213,6 @@ class MainController extends Controller
 
             $request->session()->put('successTask',"Successfully Updated!");
             $request->session()->put('titleTask',$request->title);
-            $request->session()->put('weightTask',$request->weight);
             $request->session()->put('descTask',$request->desc);
             $request->session()->put('codeTask',$request->code);
                         
@@ -254,7 +242,6 @@ class MainController extends Controller
 
             $request->session()->put('successTask',"Successfully Saved!");
             $request->session()->put('titleTask',$request->task_title);
-            $request->session()->put('weightTask',$request->weight);
             $request->session()->put('descTask',$request->desc);
             $request->session()->put('codeTask',$request->code);
             
@@ -802,6 +789,8 @@ class MainController extends Controller
                         </div>
                     ';
                 }
+            }else{
+                $data .= 'No Project Manager found';
             }
 
         }
@@ -823,6 +812,8 @@ class MainController extends Controller
                         </div>
                     ';
                 }
+            }else{
+                $data .= 'No Employee found';
             }
 
         }
@@ -843,6 +834,8 @@ class MainController extends Controller
                         </div>
                     ';
                 }
+            }else{
+                $data .= 'No Task found';
             }
 
         }
@@ -868,6 +861,8 @@ class MainController extends Controller
                         </div>
                     ';
                 }
+            }else{
+                $data .= 'No Project Manager found';
             }
         }
         else if($request->type == "EMP"){
@@ -883,6 +878,8 @@ class MainController extends Controller
                         </div>
                     ';
                 }
+            }else{
+                $data .= 'No Employee found';
             }
         }
 
@@ -899,6 +896,8 @@ class MainController extends Controller
                         </div>
                     ';
                 }
+            }else{
+                $data .= 'No Task found';
             }
         }
         echo $data;

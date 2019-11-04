@@ -31,6 +31,9 @@ class HomeController extends Controller
             return redirect('/admin/index');
         }else if(auth()->user()->is_admin == 0){
             return redirect('/user/index');
+            // session()->flush();
+            // $this->middleware('guest')->except('logout');
+            // return redirect('/');
         }
     }
     public function admin(Request $req){
