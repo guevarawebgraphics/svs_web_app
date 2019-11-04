@@ -592,7 +592,7 @@ class MainController extends Controller
 
     public function project_info(Request $request){
 
-        $projTask = DB::connection('mysql')->select("SELECT a.projCode, b.taskCode, b.task_title, b.task_desc, b.weight FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0");
+        $projTask = DB::connection('mysql')->select("SELECT a.projCode, b.taskCode, b.task_title, b.task_desc FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0");
         
         $projEmp = DB::connection('mysql')->select("
             SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
@@ -637,10 +637,6 @@ class MainController extends Controller
                             <label><b>Description</b></label>
                             
                         </div>
-                        <div class="col-md-3">
-                            <label><b>Weight</b></label>
-                        
-                        </div>
                     </div>
                     ';
         if(count($projTask)){
@@ -658,10 +654,6 @@ class MainController extends Controller
                             <div class="col-md-3">
                                 '.$field->task_desc.'
                                 
-                            </div>
-                            <div class="col-md-3">
-                                '.$field->weight.'
-                               
                             </div>
                         </div>
                         ';
@@ -821,7 +813,7 @@ class MainController extends Controller
         {
             $task_selected = DB::connection('mysql')->select("
             SELECT a.projCode, a.taskCode, a.deleted, a.by_id, a.updated_by, 
-            a.created_at, a.updated_at, b.task_title, b.task_desc, b.weight
+            a.created_at, a.updated_at, b.task_title, b.task_desc,
             FROM `tbl_projtask` AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode
             WHERE a.projCode = '".$request->code."' and a.deleted = 0
             ");
