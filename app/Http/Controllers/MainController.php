@@ -813,7 +813,7 @@ class MainController extends Controller
         {
             $task_selected = DB::connection('mysql')->select("
             SELECT a.projCode, a.taskCode, a.deleted, a.by_id, a.updated_by, 
-            a.created_at, a.updated_at, b.task_title, b.task_desc,
+            a.created_at, a.updated_at, b.task_title, b.task_desc
             FROM `tbl_projtask` AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode
             WHERE a.projCode = '".$request->code."' and a.deleted = 0
             ");
