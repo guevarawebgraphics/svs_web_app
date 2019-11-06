@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2019 at 12:58 PM
+-- Generation Time: Nov 06, 2019 at 07:59 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -68,6 +68,21 @@ CREATE TABLE `date_time_records` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `date_time_records`
+--
+
+INSERT INTO `date_time_records` (`id`, `user_id`, `company_id`, `ACNo`, `name`, `email`, `apiKey`, `datetime`, `address`, `longitude`, `latitude`, `report`, `state`, `deviceID`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 1, '2018-101', '5', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-04-07 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678910', 'saved', NULL, '2019-10-24 02:48:30', '2019-10-24 02:48:30'),
+(2, 1, '2018-101', '5', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-04-07 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678910', 'saved', NULL, '2019-10-24 02:48:38', '2019-10-24 02:48:38'),
+(3, 1, '2018-101', '101', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-10-24 05:57:28', '4th Floor, Business Center Office 6, The Richmonde Hotel, 21 San Miguel Avenue corner Lourdes Street, Ortigas Center 1605, Philippines', '121.0590254', '14.5798026', NULL, 'C/In', 'LGE Nexus 5', NULL, NULL, '2019-10-24 05:57:28', '2019-10-24 05:57:28'),
+(4, 1, '2018-101', '101', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-10-24 05:59:35', '4th Floor, Business Center Office 6, The Richmonde Hotel, 21 San Miguel Avenue corner Lourdes Street, Ortigas Center 1605, Philippines', '121.0589764', '14.5797806', 'ayoko na', 'C/Out', 'LGE Nexus 5', NULL, NULL, '2019-10-24 05:59:35', '2019-10-24 05:59:35'),
+(5, 1, '2018-101', '101', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-10-24 09:05:39', '21 San Miguel Ave, San Antonio, Pasig, Metro Manila, Philippines', '121.0589881', '14.5798073', NULL, 'C/In', 'HUAWEI INE-LX2', NULL, NULL, '2019-10-24 09:05:39', '2019-10-24 09:05:39'),
+(6, 1, '2018-101', '101', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-10-29 09:02:02', '21 San Miguel Ave, San Antonio, Pasig, Metro Manila, Philippines', '121.0589806', '14.5797351', NULL, 'C/In', 'HUAWEI INE-LX2', NULL, NULL, '2019-10-29 09:02:02', '2019-10-29 09:02:02'),
+(7, 1, '2018-101', '101', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-11-05 09:09:17', '15 San Miguel Ave, San Antonio, Pasig, 1605 Metro Manila, Philippines', '121.0588357', '14.5797214', NULL, 'C/In', 'vivo vivo 1811', NULL, NULL, '2019-11-05 09:09:17', '2019-11-05 09:09:17'),
+(8, 1, '2018-101', '101', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-11-05 09:10:45', '21 San Miguel Ave, San Antonio, Pasig, Metro Manila, Philippines', '121.0589089', '14.5797314', 'yoko na', 'C/Out', 'vivo vivo 1811', NULL, NULL, '2019-11-05 09:10:45', '2019-11-05 09:10:45'),
+(9, 1, '2018-101', '101', 'ABUEVA', 'abueva@gmail.com', NULL, '2019-11-05 09:18:15', '15 San Miguel Ave, San Antonio, Pasig, 1605 Metro Manila, Philippines', '121.0588435', '14.5797206', NULL, 'C/In', 'vivo vivo 1811', NULL, NULL, '2019-11-05 09:18:15', '2019-11-05 09:18:15');
+
 -- --------------------------------------------------------
 
 --
@@ -117,10 +132,25 @@ CREATE TABLE `oauth_access_tokens` (
 --
 
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
-('40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 1, 2, NULL, '[]', 0, '2019-10-01 04:43:57', '2019-10-01 04:43:57', '2019-10-02 12:43:57'),
-('580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 1, 2, NULL, '[]', 0, '2019-10-01 05:01:50', '2019-10-01 05:01:50', '2019-10-02 13:01:50'),
-('a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 1, 2, NULL, '[]', 0, '2019-10-01 05:02:11', '2019-10-01 05:02:11', '2019-10-02 13:02:11'),
-('dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 1, 2, NULL, '[]', 0, '2019-10-01 04:45:07', '2019-10-01 04:45:07', '2019-10-02 12:45:07');
+('08f08a500fa4449e4b5c287cc17dfab394f4f827696657c5922cd24ebd6caca4fc0d00a54aca50c9', 1, 2, NULL, '[]', 1, '2019-10-24 09:02:34', '2019-10-24 09:02:34', '2019-10-25 17:02:34'),
+('1b3847a35d51e8bc8072f5ffb53b941a71f75b3fca0fc857ec8ea024a96a1be7ac973ce030bc3375', 1, 2, NULL, '[]', 1, '2019-10-24 02:35:55', '2019-10-24 02:35:55', '2019-10-25 10:35:55'),
+('40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 1, 2, NULL, '[]', 1, '2019-10-01 04:43:57', '2019-10-01 04:43:57', '2019-10-02 12:43:57'),
+('4b900c9b8af5676e43c24baa7d7ea3b2a813e5b7a585bd5d532b53b708a693f5c3c0b55a7404007d', 1, 2, NULL, '[]', 1, '2019-10-24 05:04:10', '2019-10-24 05:04:10', '2019-10-25 13:04:10'),
+('5207856be99b787f7dc1f5562c2487db19769bd5434857c99ede5c733efbf1d60c23d9b70f66f47f', 1, 2, NULL, '[]', 1, '2019-10-24 04:53:46', '2019-10-24 04:53:46', '2019-10-25 12:53:46'),
+('580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 1, 2, NULL, '[]', 1, '2019-10-01 05:01:50', '2019-10-01 05:01:50', '2019-10-02 13:01:50'),
+('70b2a8613e4961ffae5584e946a529193de4c0f454f353cb9aa9fd86087591cbf9006670286fccea', 1, 2, NULL, '[]', 1, '2019-10-24 02:52:59', '2019-10-24 02:52:59', '2019-10-25 10:52:59'),
+('8127fac1eaf7c324a42bca31259c3d6841b9af3733fbec96c5d2cb4462009f1fa1e24f0fef340a77', 1, 2, NULL, '[]', 1, '2019-10-24 08:48:37', '2019-10-24 08:48:37', '2019-10-25 16:48:37'),
+('994b9c6867cc13a8bcf20d15dd2cf5ff2a4555b5e2fad06d2f139b9ed442aee9e4d91135fb186bd4', 1, 2, NULL, '[]', 1, '2019-10-24 02:25:07', '2019-10-24 02:25:07', '2019-10-25 10:25:06'),
+('a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 1, 2, NULL, '[]', 1, '2019-10-01 05:02:11', '2019-10-01 05:02:11', '2019-10-02 13:02:11'),
+('aa7e36971c9e7bf6e0cab02e4dffc0460a02e78fafd2b14ace9301e8c862b8b171cd99a6b4e76ac1', 1, 2, NULL, '[]', 1, '2019-10-24 04:56:00', '2019-10-24 04:56:00', '2019-10-25 12:56:00'),
+('c4be3a43df9e5ec95d1b3585403d413169a421bd964cd348e1b125ba5b91e5b38c2d6485bac8f961', 1, 2, NULL, '[]', 1, '2019-10-29 08:59:41', '2019-10-29 08:59:41', '2019-10-30 16:59:41'),
+('cc8c6be590f2f9edf4b9c68eefdd0911a50d481b29f8b306059b69cb3107accfffc631a3133e403d', 1, 2, NULL, '[]', 1, '2019-10-24 02:57:04', '2019-10-24 02:57:04', '2019-10-25 10:57:04'),
+('cd08675b02296d14ca19f51d417f158585f618be97629744f1d8465ac4265c3b2aa63d0fe760ca37', 1, 2, NULL, '[]', 1, '2019-10-24 09:04:56', '2019-10-24 09:04:56', '2019-10-25 17:04:56'),
+('d43e68ff07f67ff38e2e895cf25d2b78a1f8f7b3c7c8025c0dec81e57e232ffb0fcfada45bb49013', 1, 2, NULL, '[]', 1, '2019-10-24 05:44:17', '2019-10-24 05:44:17', '2019-10-25 13:44:17'),
+('dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 1, 2, NULL, '[]', 1, '2019-10-01 04:45:07', '2019-10-01 04:45:07', '2019-10-02 12:45:07'),
+('e306d09ce77877fc6eb0b054d832c4945ebb1538e47e543a4dc1f90602681163c860497d0064074d', 1, 2, NULL, '[]', 1, '2019-10-24 05:57:28', '2019-10-24 05:57:28', '2019-10-25 13:57:28'),
+('fc40bc3950daef8c61c8a7073e8934be7323898a517dc5f956ad53a7b9016fbaaa173841a3bac6b3', 1, 2, NULL, '[]', 1, '2019-11-05 09:08:08', '2019-11-05 09:08:08', '2019-11-06 17:08:08'),
+('fe4f946a8da722315b49625487ee1696b25aa508dd9695ff2d81a56d3a10cf55aacef511a0c481d9', 1, 2, NULL, '[]', 0, '2019-11-05 09:08:36', '2019-11-05 09:08:36', '2019-11-06 17:08:36');
 
 -- --------------------------------------------------------
 
@@ -195,10 +225,25 @@ CREATE TABLE `oauth_refresh_tokens` (
 --
 
 INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires_at`) VALUES
+('04ff5a6d560f4ea3516e100aa0cbd775998925889d15f6922875978a8b145987c976f5f963dc1387', '5207856be99b787f7dc1f5562c2487db19769bd5434857c99ede5c733efbf1d60c23d9b70f66f47f', 0, '2019-10-26 12:53:46'),
 ('12856754477f2b7122d64abd79be4cda27af7568424c232adc0a059f8fec79fbe6ce3d7695a27d07', 'a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 0, '2019-10-03 13:02:11'),
+('5ba4674eac897ac1b0d808d66fac284aa8198ddd7c0d3cb95bdccf31db89b308af6c0cc9343e9a3c', '70b2a8613e4961ffae5584e946a529193de4c0f454f353cb9aa9fd86087591cbf9006670286fccea', 0, '2019-10-26 10:52:59'),
+('7a4cd6adde43340910a865bf3541cb4e332b41b9235b3f64960c68d8c4a091dc84e4a83bc3e8d042', '994b9c6867cc13a8bcf20d15dd2cf5ff2a4555b5e2fad06d2f139b9ed442aee9e4d91135fb186bd4', 0, '2019-10-26 10:25:07'),
+('833464d1b01f1de70fdeee9020cba3cb01d812264c01400eb25a12ba30dca2d2036387ceb72672fe', 'cd08675b02296d14ca19f51d417f158585f618be97629744f1d8465ac4265c3b2aa63d0fe760ca37', 0, '2019-10-26 17:04:56'),
+('8ff716b074fb585bf87ff157cd049bbb2e532927bc8438d15ab81c9e9f6e6f58fdb38c28486feab3', 'cc8c6be590f2f9edf4b9c68eefdd0911a50d481b29f8b306059b69cb3107accfffc631a3133e403d', 0, '2019-10-26 10:57:04'),
+('9f571143554f70740fac84c82d761ed223e9dae10e549c00bf499b1f7eaa745cfdeccc0a5d6bcd95', 'e306d09ce77877fc6eb0b054d832c4945ebb1538e47e543a4dc1f90602681163c860497d0064074d', 0, '2019-10-26 13:57:28'),
+('a2b8330f792f7e2eb8f9e410d70026bbdbef8ec84a71f80142a2613fc849479e16f851ed9bd36317', '8127fac1eaf7c324a42bca31259c3d6841b9af3733fbec96c5d2cb4462009f1fa1e24f0fef340a77', 0, '2019-10-26 16:48:37'),
+('ad53de5086bcb810e088a0009de0334c62931f91fed3f83495985bcd55e011f43a17259ff36cb4f0', 'c4be3a43df9e5ec95d1b3585403d413169a421bd964cd348e1b125ba5b91e5b38c2d6485bac8f961', 0, '2019-10-31 16:59:41'),
 ('b418a518662e54841d19a10ebc59777887742892c530e58fac7ed1282d9adb2ff83097655b7e0410', '580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 0, '2019-10-03 13:01:50'),
 ('bda8ffb929cd2120c8dce090315e9144709bcb943bee8a4e309afebec0d37cad194c9aad7dc4f333', 'dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 0, '2019-10-03 12:45:07'),
-('e9dd674679f9c6fe3ca0f82f76f5aa212d97de14e89f589343c72a5391bba5b035bd6a0bfbf0e1aa', '40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 0, '2019-10-03 12:43:57');
+('c4a9795c5e5bf0444412bfe543b92aa8847ad9a104aa52d2b92c4c71a3ab96aa0d1683e15bcd32eb', 'fc40bc3950daef8c61c8a7073e8934be7323898a517dc5f956ad53a7b9016fbaaa173841a3bac6b3', 0, '2019-11-07 17:08:08'),
+('d765971c0f9e2d4a5b7e184df440d854c246df87ffc322c8884ebb0a4aaff9e539a85a0a54075a84', '4b900c9b8af5676e43c24baa7d7ea3b2a813e5b7a585bd5d532b53b708a693f5c3c0b55a7404007d', 0, '2019-10-26 13:04:10'),
+('e359b0c8f08b0d66229ddff3418131236835aa437c4d3641c40bcbcd8cf1537c9ee17debe5ffbad8', 'd43e68ff07f67ff38e2e895cf25d2b78a1f8f7b3c7c8025c0dec81e57e232ffb0fcfada45bb49013', 0, '2019-10-26 13:44:17'),
+('e55b0caea6c49ef1edfd0bb5d2ddd9a79a23e693501641349866b18da80ca40fc52a3a68528687b7', '08f08a500fa4449e4b5c287cc17dfab394f4f827696657c5922cd24ebd6caca4fc0d00a54aca50c9', 0, '2019-10-26 17:02:34'),
+('e9dd674679f9c6fe3ca0f82f76f5aa212d97de14e89f589343c72a5391bba5b035bd6a0bfbf0e1aa', '40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 0, '2019-10-03 12:43:57'),
+('eaee6f83fe2e2f38beb9d38b8dbbd5d11a8d46a9751a2e5af795b81467d1c214e3bdaeb276eb5968', 'fe4f946a8da722315b49625487ee1696b25aa508dd9695ff2d81a56d3a10cf55aacef511a0c481d9', 0, '2019-11-07 17:08:36'),
+('f16e0676d52bf05982e6e514f08fdd8187a87fbfc46bbe47406f55a0295e2e6619d4209bfb89c4ca', '1b3847a35d51e8bc8072f5ffb53b941a71f75b3fca0fc857ec8ea024a96a1be7ac973ce030bc3375', 0, '2019-10-26 10:35:55'),
+('fd6c0e531c11ce5e4f0744aafa3199d9f86a40895ab6b89ffaaf50dce14eb583faf653ced745591c', 'aa7e36971c9e7bf6e0cab02e4dffc0460a02e78fafd2b14ace9301e8c862b8b171cd99a6b4e76ac1', 0, '2019-10-26 12:56:00');
 
 -- --------------------------------------------------------
 
@@ -228,7 +273,6 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deleted` int(191) DEFAULT 0,
-  `is_admin` int(2) NOT NULL,
   `updated_by` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_by` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -240,9 +284,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `company_id`, `apiKey`, `ACNo`, `name`, `email`, `email_verified_at`, `password`, `deleted`, `is_admin`, `updated_by`, `created_by`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '2018-101', NULL, '101', 'ABUEVA', 'abueva@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 1, '2018-103', '2018-101', NULL, '2019-05-06 02:48:49', '2019-05-06 02:48:49'),
-(7, '1996-001', NULL, '001', 'ABUEVA ADMIN', 'abueva.admin@gmail.com', NULL, '$2y$10$Fyvy5HgtjPoN3JMn4IkM4eHJu9c9DdHeEcwSwq/xCCLpdqnw4vXnS', 0, 0, NULL, '2018-101', NULL, '2019-05-10 01:03:23', '2019-05-10 01:03:23');
+INSERT INTO `users` (`id`, `company_id`, `apiKey`, `ACNo`, `name`, `email`, `email_verified_at`, `password`, `deleted`, `updated_by`, `created_by`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, '2018-101', NULL, '101', 'ABUEVA', 'abueva@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, '2018-103', '2018-101', NULL, '2019-05-06 02:48:49', '2019-05-06 02:48:49'),
+(7, '1996-001', NULL, '001', 'ABUEVA ADMIN', 'abueva.admin@gmail.com', NULL, '$2y$10$Fyvy5HgtjPoN3JMn4IkM4eHJu9c9DdHeEcwSwq/xCCLpdqnw4vXnS', 0, NULL, '2018-101', NULL, '2019-05-10 01:03:23', '2019-05-10 01:03:23');
 
 --
 -- Indexes for dumped tables
@@ -326,7 +370,7 @@ ALTER TABLE `activity_records`
 -- AUTO_INCREMENT for table `date_time_records`
 --
 ALTER TABLE `date_time_records`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -3715,7 +3759,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"hris_csi_b\",\"table\":\"employee_information\"},{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"tbl_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_task\"},{\"db\":\"timekeeping_b\",\"table\":\"view_employee_information\"},{\"db\":\"timekeeping_b\",\"table\":\"users\"},{\"db\":\"timekeeping_b\",\"table\":\"view_user\"},{\"db\":\"timekeeping_b\",\"table\":\"view_employee_payroll_group\"},{\"db\":\"svs_web\",\"table\":\"users\"}]');
+('root', '[{\"db\":\"svs_web\",\"table\":\"tbl_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"view_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_task\"},{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"},{\"db\":\"svs_web\",\"table\":\"view_employee_info\"},{\"db\":\"svs_web\",\"table\":\"users\"},{\"db\":\"svs_web\",\"table\":\"oauth_clients\"}]');
 
 -- --------------------------------------------------------
 
@@ -3792,7 +3836,8 @@ CREATE TABLE `pma__table_uiprefs` (
 
 INSERT INTO `pma__table_uiprefs` (`username`, `db_name`, `table_name`, `prefs`, `last_update`) VALUES
 ('root', 'resellerdb', 'top_up_history', '{\"sorted_col\":\"`created_at`  DESC\"}', '2019-09-27 09:54:24'),
-('root', 'resellerdb', 'total_userbalance', '{\"sorted_col\":\"`total_userbalance`.`created_at`  DESC\"}', '2019-10-01 01:55:55');
+('root', 'resellerdb', 'total_userbalance', '{\"sorted_col\":\"`total_userbalance`.`created_at`  DESC\"}', '2019-10-01 01:55:55'),
+('root', 'svs_web', 'tbl_proj_progress', '{\"sorted_col\":\"`created_at` DESC\"}', '2019-11-06 02:06:44');
 
 -- --------------------------------------------------------
 
@@ -3830,7 +3875,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2019-10-17 10:32:43', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":101}');
+('root', '2019-11-06 06:58:45', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":196,\"NavigationWidth\":241}');
 
 -- --------------------------------------------------------
 
@@ -4744,6 +4789,16 @@ CREATE TABLE `date_time_records` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `date_time_records`
+--
+
+INSERT INTO `date_time_records` (`id`, `user_id`, `company_id`, `ACNo`, `name`, `email`, `apiKey`, `datetime`, `address`, `longitude`, `latitude`, `report`, `state`, `deviceID`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2019-10-30 02:30:40', 'WTF', 'long', 'lat', 'w', 'C/In', '12345678910', NULL, NULL, '2019-10-30 02:30:40', '2019-10-30 02:30:40'),
+(2, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2019-10-30 03:00:00', 'WTF', 'long', 'lat', 'w', 'C/In', '12345678910', NULL, NULL, '2019-10-30 03:00:00', '2019-10-30 03:00:00'),
+(3, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2019-10-30 03:00:23', 'WTF', 'long', 'lat', 'w', 'C/In', '12345678910', NULL, NULL, '2019-10-30 03:00:23', '2019-10-30 03:00:23'),
+(4, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2019-10-30 03:02:25', 'WTF', 'long', 'lat', 'w', 'C/In', '12345678910', NULL, NULL, '2019-10-30 03:02:25', '2019-10-30 03:02:25');
+
 -- --------------------------------------------------------
 
 --
@@ -4793,10 +4848,14 @@ CREATE TABLE `oauth_access_tokens` (
 --
 
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
+('38eff98bbdc23df9bd116023f5a02a9dcd023ae582a28ed0a65cf4524257248ae154dd93684ee758', 1, 2, NULL, '[]', 0, '2019-10-29 09:10:11', '2019-10-29 09:10:11', '2019-10-30 17:10:11'),
 ('40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 1, 2, NULL, '[]', 0, '2019-10-01 04:43:57', '2019-10-01 04:43:57', '2019-10-02 12:43:57'),
 ('580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 1, 2, NULL, '[]', 0, '2019-10-01 05:01:50', '2019-10-01 05:01:50', '2019-10-02 13:01:50'),
 ('a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 1, 2, NULL, '[]', 0, '2019-10-01 05:02:11', '2019-10-01 05:02:11', '2019-10-02 13:02:11'),
-('dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 1, 2, NULL, '[]', 0, '2019-10-01 04:45:07', '2019-10-01 04:45:07', '2019-10-02 12:45:07');
+('bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 1, 2, NULL, '[]', 0, '2019-11-05 10:42:54', '2019-11-05 10:42:54', '2019-11-06 18:42:53'),
+('cbabdc1ecc4acef56efbc9f55f604d2ab8862759a0cd5da5cac1a0642681823468ac34eacb345709', 1, 2, NULL, '[]', 0, '2019-11-06 05:29:29', '2019-11-06 05:29:29', '2019-11-07 13:29:29'),
+('dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 1, 2, NULL, '[]', 0, '2019-10-01 04:45:07', '2019-10-01 04:45:07', '2019-10-02 12:45:07'),
+('e9d4a39dae4e239a6dc4612fd6516d57f30f40c1120708777c26ac7711dde997f8362f15cd092258', 1, 2, NULL, '[]', 0, '2019-10-30 02:29:59', '2019-10-30 02:29:59', '2019-10-31 10:29:59');
 
 -- --------------------------------------------------------
 
@@ -4872,9 +4931,13 @@ CREATE TABLE `oauth_refresh_tokens` (
 
 INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires_at`) VALUES
 ('12856754477f2b7122d64abd79be4cda27af7568424c232adc0a059f8fec79fbe6ce3d7695a27d07', 'a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 0, '2019-10-03 13:02:11'),
+('54a16bfa7520e7712e90525e8f1b6ebe8b93626f25ffba07fd0db727216abffea11b4035af49cf33', '38eff98bbdc23df9bd116023f5a02a9dcd023ae582a28ed0a65cf4524257248ae154dd93684ee758', 0, '2019-10-31 17:10:11'),
+('74ef7de631f8ae31798e6c3d24c65f2942a71b42ddf2abea71f97501939f894e28c0bc486491ce4b', 'e9d4a39dae4e239a6dc4612fd6516d57f30f40c1120708777c26ac7711dde997f8362f15cd092258', 0, '2019-11-01 10:29:59'),
+('9235fee9af58dbf56688faad4aa56526a66ea727371fd43ba5d32041bae981d5195058c1eb71b81f', 'bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 0, '2019-11-07 18:42:53'),
 ('b418a518662e54841d19a10ebc59777887742892c530e58fac7ed1282d9adb2ff83097655b7e0410', '580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 0, '2019-10-03 13:01:50'),
 ('bda8ffb929cd2120c8dce090315e9144709bcb943bee8a4e309afebec0d37cad194c9aad7dc4f333', 'dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 0, '2019-10-03 12:45:07'),
-('e9dd674679f9c6fe3ca0f82f76f5aa212d97de14e89f589343c72a5391bba5b035bd6a0bfbf0e1aa', '40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 0, '2019-10-03 12:43:57');
+('e9dd674679f9c6fe3ca0f82f76f5aa212d97de14e89f589343c72a5391bba5b035bd6a0bfbf0e1aa', '40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 0, '2019-10-03 12:43:57'),
+('efd16dc4a8626175f9dab76de7562b89c566eef6f4756df19fb417f61adcbcfb1d91ff7f0b573be2', 'cbabdc1ecc4acef56efbc9f55f604d2ab8862759a0cd5da5cac1a0642681823468ac34eacb345709', 0, '2019-11-08 13:29:29');
 
 -- --------------------------------------------------------
 
@@ -4911,17 +4974,49 @@ CREATE TABLE `tbl_emp_proj` (
 --
 
 INSERT INTO `tbl_emp_proj` (`id`, `projCode`, `emp_id`, `type`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'RFWQFIKLKEFK', '2019-0012', 'PM', 0, 7, 'Keigh Dee', '2019-10-17 01:55:08', '2019-10-17 01:55:08'),
-(2, 'RFWQFIKLKEFK', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-10-17 01:55:08', '2019-10-17 01:55:08'),
-(3, 'RFWQFIKLKEFK', '2019-0012', 'EMP', 0, 7, 'Keigh Dee', '2019-10-17 01:55:08', '2019-10-17 01:55:08'),
-(4, 'RFWQFIKLKEFK', '2019-1009', 'EMP', 0, 7, 'Keigh Dee', '2019-10-17 01:55:08', '2019-10-17 01:55:08'),
-(5, 'RFWQFIKLKEFK', '2019-1006', 'EMP', 0, 7, 'Keigh Dee', '2019-10-17 01:55:08', '2019-10-17 01:55:08'),
-(6, 'YIMCIVOOSOLV', '2019-8000', 'PM', 0, 7, 'Keigh Dee', '2019-10-17 01:58:52', '2019-10-17 01:58:52'),
-(7, 'YIMCIVOOSOLV', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-10-17 01:58:52', '2019-10-17 01:58:52'),
-(8, 'YIMCIVOOSOLV', '2019-1005', 'PM', 0, 7, 'Keigh Dee', '2019-10-17 01:58:52', '2019-10-17 01:58:52'),
-(9, 'YIMCIVOOSOLV', '2019-100', 'EMP', 0, 7, 'Keigh Dee', '2019-10-17 01:58:53', '2019-10-17 01:58:53'),
-(10, 'YIMCIVOOSOLV', '2019-171', 'EMP', 0, 7, 'Keigh Dee', '2019-10-17 01:58:53', '2019-10-17 01:58:53'),
-(11, 'YIMCIVOOSOLV', '2019-001', 'EMP', 0, 7, 'Keigh Dee', '2019-10-17 01:58:53', '2019-10-17 01:58:53');
+(1, 'KNATQJOBWOBC', '2019-0012', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
+(2, 'KNATQJOBWOBC', '2019-8000', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
+(3, 'KNATQJOBWOBC', '2019-0012', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
+(4, 'KNATQJOBWOBC', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
+(5, 'KNATQJOBWOBC', '2019-8000', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:18:52', '2019-11-06 06:20:48'),
+(6, '1HOHPNYQJJSQ', '2019-0012', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
+(7, '1HOHPNYQJJSQ', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
+(8, '1HOHPNYQJJSQ', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
+(9, '1HOHPNYQJJSQ', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
+(10, '1HOHPNYQJJSQ', '2019-1010', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
+(11, 'P0HWINIFDHID', '2019-8000', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:20:22', '2019-11-06 06:20:55'),
+(12, 'P0HWINIFDHID', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:20:22', '2019-11-06 06:20:55'),
+(13, 'P0HWINIFDHID', '2019-8000', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:20:22', '2019-11-06 06:20:55'),
+(14, 'P0HWINIFDHID', '2019-1009', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:20:22', '2019-11-06 06:20:55'),
+(15, '1HOHPNYQJJSQ', '2019-0012', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(16, '1HOHPNYQJJSQ', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(17, '1HOHPNYQJJSQ', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(18, '1HOHPNYQJJSQ', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(19, '1HOHPNYQJJSQ', '2019-1010', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(20, 'KNATQJOBWOBC', '2019-0012', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
+(21, 'KNATQJOBWOBC', '2019-8000', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
+(22, 'KNATQJOBWOBC', '2019-0012', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
+(23, 'KNATQJOBWOBC', '2019-8000', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
+(24, 'KNATQJOBWOBC', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
+(25, 'P0HWINIFDHID', '2019-8000', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:55', '2019-11-06 06:20:55'),
+(26, 'P0HWINIFDHID', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:55', '2019-11-06 06:20:55'),
+(27, 'P0HWINIFDHID', '2019-8000', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:56', '2019-11-06 06:20:56'),
+(28, 'P0HWINIFDHID', '2019-1009', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:56', '2019-11-06 06:20:56'),
+(29, 'SLN5P2A7C09Z', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:29:01', '2019-11-06 06:29:01'),
+(30, 'SLN5P2A7C09Z', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:29:01', '2019-11-06 06:29:01'),
+(31, 'SLN5P2A7C09Z', '2019-1010', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:29:02', '2019-11-06 06:29:02'),
+(32, 'SLN5P2A7C09Z', '2019-1006', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:29:02', '2019-11-06 06:29:02'),
+(33, 'SLN5P2A7C09Z', '2019-171', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:29:02', '2019-11-06 06:29:02'),
+(34, 'SLN5P2A7C09Z', '2019-158', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:29:02', '2019-11-06 06:29:02'),
+(35, 'SLN5P2A7C09Z', '2019-208', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:29:02', '2019-11-06 06:29:02'),
+(36, '7FC5ACG68DK7', '2019-1010', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:34:21', '2019-11-06 06:34:21'),
+(37, '7FC5ACG68DK7', '2019-0012', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:34:21', '2019-11-06 06:34:21'),
+(38, '7FC5ACG68DK7', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:34:21', '2019-11-06 06:34:21'),
+(39, '7FC5ACG68DK7', '2019-8000', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:34:21', '2019-11-06 06:34:21'),
+(40, 'JK1ISQGB0H5H', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:35:09', '2019-11-06 06:35:09'),
+(41, 'JK1ISQGB0H5H', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:35:10', '2019-11-06 06:35:10'),
+(42, 'JK1ISQGB0H5H', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:35:10', '2019-11-06 06:35:10'),
+(43, 'JK1ISQGB0H5H', '2019-1009', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:35:10', '2019-11-06 06:35:10');
 
 -- --------------------------------------------------------
 
@@ -4954,8 +5049,12 @@ CREATE TABLE `tbl_projectlist` (
 --
 
 INSERT INTO `tbl_projectlist` (`id`, `proj_code`, `proj_title`, `proj_desc`, `est_start_date`, `est_end_date`, `act_start_date`, `act_end_date`, `longitude`, `latitude`, `location`, `status`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(14, 'RFWQFIKLKEFK', 'Project 1', 'Description', '2019-10-17 05:54:00', '2019-10-17 17:54:00', '2019-10-17 05:55:00', '2019-10-17 17:55:00', '120.984222', '14.599512', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-10-17 01:55:08', '2019-10-17 01:55:08'),
-(15, 'YIMCIVOOSOLV', 'Project 3', 'Desc', '2019-10-17 05:58:00', '2019-10-17 17:58:00', '2019-10-17 05:58:00', '2019-10-17 17:58:00', '120.984222', '14.599512', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-10-17 01:58:52', '2019-10-17 01:58:52');
+(1, 'KNATQJOBWOBC', 'Project 1', 'Description of Project 1', '2019-11-06 02:18:00', '2019-11-06 14:18:00', '2019-11-06 02:18:00', '2019-11-06 14:18:00', '14.56051510', '121.07671290', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
+(2, '1HOHPNYQJJSQ', 'Project 2', 'Description of Project 2', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '14.57841075', '121.08191480', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
+(3, 'P0HWINIFDHID', 'Project 3', 'Description of Project 3', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '2019-11-06 02:20:00', '2019-11-06 14:20:00', '14.56051510', '121.07671290', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:20:21', '2019-11-06 06:20:55'),
+(4, 'SLN5P2A7C09Z', 'Project 4', 'Description of Project 4', '2019-11-06 02:28:00', '2019-11-06 14:28:00', '2019-11-06 02:28:00', '2019-11-06 14:28:00', '121.07671290', '14.56051510', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:29:01', '2019-11-06 06:29:01'),
+(5, '7FC5ACG68DK7', 'Project 5', 'Description of Project 5', '2019-11-06 02:34:00', '2019-11-06 14:34:00', '2019-11-06 02:34:00', '2019-11-06 14:34:00', '121.08191480', '14.57841075', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:34:20', '2019-11-06 06:34:20'),
+(6, 'JK1ISQGB0H5H', 'Project 6', 'Description of Project 6', '2019-11-06 02:34:00', '2019-11-06 14:35:00', '2019-11-06 02:35:00', '2019-11-06 14:35:00', '121.07671290', '14.56051510', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:35:09', '2019-11-06 06:35:09');
 
 -- --------------------------------------------------------
 
@@ -4967,6 +5066,7 @@ CREATE TABLE `tbl_projtask` (
   `id` bigint(11) NOT NULL,
   `projCode` varchar(191) NOT NULL,
   `taskCode` varchar(191) NOT NULL,
+  `taskWeight` decimal(13,2) DEFAULT NULL,
   `deleted` int(2) NOT NULL DEFAULT 0,
   `by_id` bigint(11) NOT NULL,
   `updated_by` varchar(191) DEFAULT NULL,
@@ -4978,11 +5078,61 @@ CREATE TABLE `tbl_projtask` (
 -- Dumping data for table `tbl_projtask`
 --
 
-INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(41, 'RFWQFIKLKEFK', 'UKAKWM9JOZQ9', 0, 7, 'Keigh Dee', '2019-10-17 01:55:08', '2019-10-17 01:55:08'),
-(42, 'RFWQFIKLKEFK', 'PVVATUZKHLRP', 0, 7, 'Keigh Dee', '2019-10-17 01:55:08', '2019-10-17 01:55:08'),
-(43, 'YIMCIVOOSOLV', 'UKAKWM9JOZQ9', 0, 7, 'Keigh Dee', '2019-10-17 01:58:52', '2019-10-17 01:58:52'),
-(44, 'YIMCIVOOSOLV', 'PVVATUZKHLRP', 0, 7, 'Keigh Dee', '2019-10-17 01:58:52', '2019-10-17 01:58:52');
+INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `taskWeight`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(7, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(8, '1HOHPNYQJJSQ', 'A27Y3CSPMOXB', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(9, 'KNATQJOBWOBC', 'P7CSN24DL0RO', '20.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
+(10, 'KNATQJOBWOBC', 'YYH8LNQDHFNB', '30.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
+(11, 'KNATQJOBWOBC', 'A27Y3CSPMOXB', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
+(12, 'P0HWINIFDHID', 'A27Y3CSPMOXB', '100.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:55', '2019-11-06 06:20:55'),
+(13, 'SLN5P2A7C09Z', 'A27Y3CSPMOXB', '30.00', 0, 7, 'Keigh Dee', '2019-11-06 06:29:01', '2019-11-06 06:29:02'),
+(14, 'SLN5P2A7C09Z', 'YYH8LNQDHFNB', '20.00', 0, 7, 'Keigh Dee', '2019-11-06 06:29:01', '2019-11-06 06:29:02'),
+(15, 'SLN5P2A7C09Z', 'P7CSN24DL0RO', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 06:29:01', '2019-11-06 06:29:02'),
+(16, '7FC5ACG68DK7', 'A27Y3CSPMOXB', '30.00', 0, 7, 'Keigh Dee', '2019-11-06 06:34:20', '2019-11-06 06:34:21'),
+(17, '7FC5ACG68DK7', 'P7CSN24DL0RO', '70.00', 0, 7, 'Keigh Dee', '2019-11-06 06:34:21', '2019-11-06 06:34:21'),
+(18, 'JK1ISQGB0H5H', 'YYH8LNQDHFNB', '100.00', 0, 7, 'Keigh Dee', '2019-11-06 06:35:09', '2019-11-06 06:35:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_proj_progress`
+--
+
+CREATE TABLE `tbl_proj_progress` (
+  `id` bigint(11) NOT NULL,
+  `projCode` varchar(191) NOT NULL,
+  `taskCode` varchar(191) NOT NULL,
+  `weight_progress` decimal(13,2) NOT NULL,
+  `deleted` int(11) NOT NULL DEFAULT 0,
+  `by_id` varchar(191) NOT NULL,
+  `updated_by` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_proj_progress`
+--
+
+INSERT INTO `tbl_proj_progress` (`id`, `projCode`, `taskCode`, `weight_progress`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '20.00', 0, '1', 'Kay Diaz', '2019-11-06 06:25:47', '2019-11-06 06:25:47'),
+(2, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '0.40', 0, '1', 'Kay Diaz', '2019-11-06 06:29:24', '2019-11-06 06:29:24'),
+(3, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '1.40', 0, '1', 'Kay Diaz', '2019-11-06 06:29:32', '2019-11-06 06:29:32'),
+(4, 'KNATQJOBWOBC', 'YYH8LNQDHFNB', '13.00', 0, '1', 'Kay Diaz', '2019-11-06 06:29:59', '2019-11-06 06:29:59'),
+(5, 'KNATQJOBWOBC', 'A27Y3CSPMOXB', '19.50', 0, '1', 'Kay Diaz', '2019-11-06 06:30:12', '2019-11-06 06:30:12'),
+(6, 'KNATQJOBWOBC', 'A27Y3CSPMOXB', '15.00', 0, '1', 'Kay Diaz', '2019-11-06 06:30:29', '2019-11-06 06:30:29'),
+(7, 'KNATQJOBWOBC', 'P7CSN24DL0RO', '35.00', 0, '1', 'Kay Diaz', '2019-11-06 06:30:41', '2019-11-06 06:30:41'),
+(8, '1HOHPNYQJJSQ', 'A27Y3CSPMOXB', '35.00', 0, '1', 'Kay Diaz', '2019-11-06 06:31:12', '2019-11-06 06:31:12'),
+(9, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '35.00', 0, '1', 'Kay Diaz', '2019-11-06 06:31:26', '2019-11-06 06:31:26'),
+(10, 'P0HWINIFDHID', 'A27Y3CSPMOXB', '86.70', 0, '1', 'Kay Diaz', '2019-11-06 06:31:47', '2019-11-06 06:31:47'),
+(11, 'SLN5P2A7C09Z', 'P7CSN24DL0RO', '40.70', 0, '1', 'Kay Diaz', '2019-11-06 06:32:38', '2019-11-06 06:32:38'),
+(12, 'SLN5P2A7C09Z', 'YYH8LNQDHFNB', '15.70', 0, '1', 'Kay Diaz', '2019-11-06 06:32:48', '2019-11-06 06:32:48'),
+(13, 'SLN5P2A7C09Z', 'A27Y3CSPMOXB', '14.90', 0, '1', 'Kay Diaz', '2019-11-06 06:33:02', '2019-11-06 06:33:02'),
+(14, '7FC5ACG68DK7', 'P7CSN24DL0RO', '60.90', 0, '1', 'Kay Diaz', '2019-11-06 06:35:32', '2019-11-06 06:35:32'),
+(15, '7FC5ACG68DK7', 'A27Y3CSPMOXB', '10.04', 0, '1', 'Kay Diaz', '2019-11-06 06:35:46', '2019-11-06 06:35:46'),
+(16, 'JK1ISQGB0H5H', 'YYH8LNQDHFNB', '98.03', 0, '1', 'Kay Diaz', '2019-11-06 06:36:08', '2019-11-06 06:36:08'),
+(17, 'JK1ISQGB0H5H', 'YYH8LNQDHFNB', '1.04', 0, '1', 'Kay Diaz', '2019-11-06 06:40:26', '2019-11-06 06:40:26'),
+(18, '7FC5ACG68DK7', 'P7CSN24DL0RO', '10.00', 0, '1', 'Kay Diaz', '2019-11-06 06:45:57', '2019-11-06 06:45:57');
 
 -- --------------------------------------------------------
 
@@ -4995,7 +5145,6 @@ CREATE TABLE `tbl_task` (
   `taskCode` varchar(191) NOT NULL,
   `task_title` varchar(191) NOT NULL,
   `task_desc` varchar(191) NOT NULL,
-  `weight` decimal(13,2) NOT NULL,
   `deleted` int(11) NOT NULL DEFAULT 0,
   `by_id` bigint(11) NOT NULL,
   `updated_by` varchar(191) DEFAULT NULL,
@@ -5007,10 +5156,10 @@ CREATE TABLE `tbl_task` (
 -- Dumping data for table `tbl_task`
 --
 
-INSERT INTO `tbl_task` (`id`, `taskCode`, `task_title`, `task_desc`, `weight`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(13, 'MEDOIUQYGGE6', 'Task 1', 'Task Description', '44.40', 0, 7, 'Keigh Dee', '2019-10-16 17:57:39', '2019-10-16 17:57:39'),
-(14, 'PVVATUZKHLRP', 'Task 2', 'Task Description', '6.60', 0, 7, 'Keigh Dee', '2019-10-16 17:57:47', '2019-10-16 17:57:47'),
-(15, 'UKAKWM9JOZQ9', 'Task 3', 'Task Description', '20.30', 0, 7, 'Keigh Dee', '2019-10-16 17:58:00', '2019-10-16 17:58:00');
+INSERT INTO `tbl_task` (`id`, `taskCode`, `task_title`, `task_desc`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'P7CSN24DL0RO', 'Task 1', 'Desc', 0, 7, 'Keigh Dee', '2019-11-04 18:32:31', '2019-11-04 18:32:31'),
+(2, 'YYH8LNQDHFNB', 'Task 2', 'Desc', 0, 7, 'Keigh Dee', '2019-11-04 18:32:42', '2019-11-04 18:32:42'),
+(3, 'A27Y3CSPMOXB', 'Task 3', 'Desc', 0, 7, 'Keigh Dee', '2019-11-04 18:32:51', '2019-11-04 18:32:51');
 
 -- --------------------------------------------------------
 
@@ -5056,6 +5205,101 @@ INSERT INTO `users` (`id`, `company_id`, `apiKey`, `ACNo`, `name`, `email`, `ema
 (36, '2019-11', NULL, '11', 'Guntang, Jerico', 'g.jericho@gmail.com', NULL, '$2y$10$xsNgu5lrS5f7sJwwVH9zEOTcFEGPh.KWi1zZyOgSv5L2uHKzSJtuq', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:57:57', '2019-06-19 17:57:57'),
 (37, '2019-003', NULL, '3', 'Laqui Jr., Romeo Galleto', 'rg.laquijr@gmail.com', NULL, '$2y$10$snnRIF1vjlQ5ooEEH.SjfeHcTjSKbHyAJCdFxgRtOZi2yQSmF1lm6', 0, 0, '2018-004', '2018-101', NULL, '2019-06-19 18:06:51', '2019-06-19 18:06:51'),
 (38, '2019-0180', NULL, '180', 'Tamad, Juan', 'juan.tamad@test.com', NULL, '$2y$10$8CXfWgeKBXWw7894srO/AuAifW2nyaJP2MKOxRxsSITi1uSifRSNG', 0, 0, NULL, '2018-004', NULL, '2019-08-15 18:12:58', '2019-08-15 18:12:58');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_employee_info`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_employee_info` (
+`emp_no` bigint(20)
+,`company_id` varchar(20)
+,`fullname` varchar(93)
+,`lname` varchar(30)
+,`fname` varchar(30)
+,`company_ind` bigint(20)
+,`company_name` varchar(100)
+,`department` varchar(50)
+,`position` varchar(50)
+,`team` varchar(50)
+,`employment_status` varchar(16)
+,`active` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_project_percentage`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_project_percentage` (
+`id` bigint(11)
+,`proj_code` varchar(191)
+,`proj_title` varchar(191)
+,`proj_desc` varchar(191)
+,`total_weight_progress` decimal(35,2)
+,`est_start_date` datetime
+,`est_end_date` datetime
+,`act_start_date` datetime
+,`act_end_date` datetime
+,`longitude` varchar(191)
+,`latitude` varchar(191)
+,`location` varchar(191)
+,`status` varchar(191)
+,`deleted` int(11)
+,`by_id` bigint(11)
+,`updated_by` varchar(191)
+,`created_at` timestamp
+,`updated_at` timestamp
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_projtask`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_projtask` (
+`id` bigint(11)
+,`projCode` varchar(191)
+,`taskCode` varchar(191)
+,`taskWeight` decimal(13,2)
+,`task_title` varchar(191)
+,`task_desc` varchar(191)
+,`deleted` int(2)
+,`by_id` bigint(11)
+,`updated_by` varchar(191)
+,`created_at` timestamp
+,`updated_at` timestamp
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_employee_info`
+--
+DROP TABLE IF EXISTS `view_employee_info`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_employee_info`  AS  select `a`.`emp_no` AS `emp_no`,`a`.`company_id` AS `company_id`,concat(`a`.`lname`,', ',`a`.`fname`,' ',`a`.`mname`) AS `fullname`,`a`.`lname` AS `lname`,`a`.`fname` AS `fname`,`b`.`company_ind` AS `company_ind`,`d`.`company_name` AS `company_name`,`b`.`department` AS `department`,`b`.`position` AS `position`,`b`.`team` AS `team`,`b`.`employment_status` AS `employment_status`,`a`.`active` AS `active` from ((`hris_csi_b`.`personal_information` `a` left join `hris_csi_b`.`employee_information` `b` on(`a`.`company_id` = `b`.`company_id`)) left join `hris_csi_b`.`company` `d` on(`b`.`company_ind` = `d`.`id`)) where `a`.`active` = 'yes' order by `b`.`department` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_project_percentage`
+--
+DROP TABLE IF EXISTS `view_project_percentage`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_project_percentage`  AS  select `a`.`id` AS `id`,`a`.`proj_code` AS `proj_code`,`a`.`proj_title` AS `proj_title`,`a`.`proj_desc` AS `proj_desc`,(select sum(`tpp`.`weight_progress`) from `tbl_proj_progress` `tpp` where `tpp`.`projCode` = `a`.`proj_code`) AS `total_weight_progress`,`a`.`est_start_date` AS `est_start_date`,`a`.`est_end_date` AS `est_end_date`,`a`.`act_start_date` AS `act_start_date`,`a`.`act_end_date` AS `act_end_date`,`a`.`longitude` AS `longitude`,`a`.`latitude` AS `latitude`,`a`.`location` AS `location`,`a`.`status` AS `status`,`a`.`deleted` AS `deleted`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at` from `tbl_projectlist` `a` order by `a`.`created_at` desc ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_projtask`
+--
+DROP TABLE IF EXISTS `view_projtask`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_projtask`  AS  select `a`.`id` AS `id`,`a`.`projCode` AS `projCode`,`a`.`taskCode` AS `taskCode`,`a`.`taskWeight` AS `taskWeight`,`b`.`task_title` AS `task_title`,`b`.`task_desc` AS `task_desc`,`a`.`deleted` AS `deleted`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at` from (`tbl_projtask` `a` left join `tbl_task` `b` on(`a`.`taskCode` = `b`.`taskCode`)) order by `a`.`created_at` desc ;
 
 --
 -- Indexes for dumped tables
@@ -5138,6 +5382,12 @@ ALTER TABLE `tbl_projtask`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_proj_progress`
+--
+ALTER TABLE `tbl_proj_progress`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_task`
 --
 ALTER TABLE `tbl_task`
@@ -5163,7 +5413,7 @@ ALTER TABLE `activity_records`
 -- AUTO_INCREMENT for table `date_time_records`
 --
 ALTER TABLE `date_time_records`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -5187,25 +5437,31 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `tbl_emp_proj`
 --
 ALTER TABLE `tbl_emp_proj`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `tbl_projectlist`
 --
 ALTER TABLE `tbl_projectlist`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_projtask`
 --
 ALTER TABLE `tbl_projtask`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `tbl_proj_progress`
+--
+ALTER TABLE `tbl_proj_progress`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_task`
 --
 ALTER TABLE `tbl_task`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

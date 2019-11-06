@@ -15,7 +15,9 @@
                             </th>
                             <th class="th-sm">Location
                             </th>
-                            <th class="th-sm">Created At
+                            <th class="th-sm">Project Status
+                            </th>
+                            <th class="th-sm">CreatedAt
                             </th>
                             <th class="th-lg">Action
                             </th>
@@ -29,6 +31,13 @@
                                     <td>{{$field->proj_title}}</td>
                                     <td>{{$field->proj_desc}}</td>
                                     <td><p>{{$field->location}}</p></td>
+                                    <td>
+                                        @if(!empty($field->total_weight_progress))
+                                            {{$field->total_weight_progress}}%
+                                        @else
+                                            0.00%
+                                        @endif
+                                    </td>
                                     <td>{{date("F d Y - h:i a",strtotime($field->created_at))}}</td>
                                     <td>
                                         <div class="row text-center">
@@ -50,6 +59,13 @@
                                     <div class="col-md-6">
                                         <label><b>Project : </b></label>&nbsp;{{$field->proj_title}}<br>
                                         <label><b>Project Code: </b></label>&nbsp;{{$field->proj_code}}<br>
+                                        <label><b>Project Status: </b></label>&nbsp;
+                                            @if(!empty($field->total_weight_progress))
+                                                {{$field->total_weight_progress}}%
+                                            @else
+                                                0.00%
+                                            @endif
+                                        <br>
                                         <label><b>Location: </b></label>&nbsp;{{$field->location}}<br>
                                         <label><b>Description : </b></label>&nbsp;{{$field->proj_desc}}
                                         
@@ -89,7 +105,7 @@
                     if ($('tr#' + $(this).data("href")).is(":visible")) {
                         $('tr#' + $(this).data("href")).remove();
                     } else {
-                        $(this).closest('tr').after('<tr id="' + $(this).data("href") + '"><td colspan="6">' + $('#' + $(this).data("href")).html() + '</td></tr>');
+                        $(this).closest('tr').after('<tr id="' + $(this).data("href") + '"><td colspan="7">' + $('#' + $(this).data("href")).html() + '</td></tr>');
                         
                         $.ajax({
                             headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

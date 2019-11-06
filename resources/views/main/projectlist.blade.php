@@ -557,7 +557,40 @@
                 <!--Grid column-->
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="demoSOL" class="svs-small"><small>Task List</small></label>
+
+                        <div class="md-form mb-0">
+                            <input type="text" id="newSearchTL" onkeyup="searchTL();" placeholder="Click here to search" name="newSearchTL" class="form-control">
+                            <label id="newSearchTLLabel" class="active" for="newSearchTL">Task List</label>
+                        </div>
+                        <div class="container" id="tlDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
+                            <div class="" id="tlSelectCat" style="margin-bottom:20px; display:none;">
+                                <a class="float-left select-all-tl">Select All</a>
+                                <a class="float-right select-none-tl">Select None</a>
+                            </div>
+                            <div class="container" id="tlDivNew" style="display:none;">
+                                    @if(count($task_record))
+                                        @foreach($task_record as $field)
+                                        <div class="current-tl row">
+                                            <div class="col-md-3">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input myTask" name="myTask" value="{{$field->taskCode}}" id="myTask{{$field->taskCode}}">
+                                                    <label class="custom-control-label" for="myTask{{$field->taskCode}}">{{$field->task_title}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="md-form svs-md-form">
+                                                    <input type="number" placeholder="Task Weight" id="myWeight{{$field->taskCode}}" data-tcode = "{{$field->taskCode}}" name="myWeight" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @else
+                                    <label>No record found..</label>
+                                    @endif
+                            </div> 
+                        </div>
+
+                        {{-- <label for="demoSOL" class="svs-small"><small>Task List</small></label>
                         <select id="demoSOL" name="myTask" class="mdb-select multi-sol-svs" multiple="multiple">
                             <optgroup label="Task List" title="Opiton Group 1">
                                 @if(count($task_record))
@@ -568,7 +601,7 @@
                                     <option value="" title="Subgroup 1">No record found..</option>
                                 @endif
                             </optgroup>
-                        </select>
+                        </select> --}}
                     </div>
                 </div>
                 <!--Grid row--> 
@@ -622,6 +655,20 @@
 </script>
 
 <script>
+
+function searchTL(){
+    var input = document.getElementById("newSearchTL");
+    var filter = input.value.toLowerCase();
+    var nodes = document.getElementsByClassName('current-tl');
+
+    for (i = 0; i < nodes.length; i++) {
+        if (nodes[i].innerText.toLowerCase().includes(filter)) {
+        nodes[i].style.display = "block";
+        } else {
+        nodes[i].style.display = "none";
+        }
+    }
+}
 
 function searchPM(){
     var input = document.getElementById("epSearchPM");
@@ -729,6 +776,7 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function () {
+    
     $("#updateProj").click(function () {
         var title = $("#epTitle").val();
         var desc = $("#epDesc").val();
@@ -754,6 +802,8 @@ $(document).ready(function () {
             taskChck.push($(this).val()); 
         }); 
 
+       
+
         //Estimated
         var est_start_date = $("#estStartDEdit").val();
         var est_start_time = $("#estStartTEdit").val();
@@ -767,6 +817,22 @@ $(document).ready(function () {
 
         var act_end_date = $("#actEndDEdit").val();
         var act_end_time = $("#actEndTEdit").val();
+
+        
+        var dataWeight = [],
+        resPercent = 0,
+        i; 
+        var dataWeightAttr = []; 
+        $('input[name="taskTxtFld"]').each(function() {
+            if($(this).val() != ''){
+                dataWeight.push($(this).val());
+                dataWeightAttr.push($(this).attr('data-tcode'));
+            }
+        });
+        for (i = 0; i < dataWeight.length; i += 1) 
+        {
+            resPercent += parseInt(dataWeight[i]);
+        }
 
         $.ajax({
             headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -790,7 +856,10 @@ $(document).ready(function () {
                 act_start_date:act_start_date,
                 act_start_time:act_start_time,
                 act_end_date:act_end_date,
-                act_end_time:act_end_time
+                act_end_time:act_end_time,
+                dataWeight:dataWeight,
+                dataWeightAttr:dataWeightAttr,
+                resPercent:resPercent
             }, 
             dataType: "json",
             success:function(data)
@@ -822,7 +891,10 @@ $(document).ready(function () {
                             act_start_date:act_start_date,
                             act_start_time:act_start_time,
                             act_end_date:act_end_date,
-                            act_end_time:act_end_time
+                            act_end_time:act_end_time,
+                            dataWeight:dataWeight,
+                            dataWeightAttr:dataWeightAttr,
+                            resPercent:resPercent
                         }, 
                         dataType: "json",
                         success:function(data)
@@ -901,10 +973,11 @@ $(".delProj").click(function () {
 });
 </script>
 
+
+
 <script>
 $(".editProj").click(function () {
     $('#editProj').modal('show');
-    
 
     var id = $(this).attr('data-id');
     var projCode = $(this).attr('data-projcode');
@@ -1057,6 +1130,7 @@ $(".editProj").click(function () {
 
         $(".select-none-pm").click(function () {
             $('input[name=pmChck]').prop('checked', false);
+           
         });
 
         function pmDropdownDiv() {
@@ -1235,6 +1309,37 @@ $(".editProj").click(function () {
                 }
             });
         }
+
+    //Project Manager
+        $("#newSearchTL").click(function () {
+            TLDiv();
+        });
+
+        $(".select-all-tl").click(function () {
+            $('input[name=myTask]').prop('checked', true);
+        });
+
+        $(".select-none-tl").click(function () {
+            $('input[name=myTask]').prop('checked', false);
+        });
+    
+        function TLDiv() {
+            var x = document.getElementById("tlSelectCat");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+
+            var y = document.getElementById("tlDivNew");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+
+        }
+
 });
 </script>
 
@@ -1350,6 +1455,7 @@ $(".editProj").click(function () {
 </script>
 
 <script>
+
     var startlatE = 14.599512;
     var startlonE = 120.984222;
     
@@ -1427,6 +1533,7 @@ $(".editProj").click(function () {
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
     }
+
 </script>
 
 <script>
@@ -1489,9 +1596,36 @@ $(document).ready(function() {
 });
 </script>
 
+<script>
+var check = function ($checkbox) {
+  $('#myWeight'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
+};
+
+$('input[name=myTask]').each(function () {
+  check($(this));
+  
+  $(this).on('change', function () {
+    check($(this));
+  });
+});
+
+
+var checkE = function ($checkboxE) {
+    $('#taskTxtFld'+$checkboxE.val()).prop('readonly', !$checkboxE.is(':checked'));
+    };
+
+    $('input[name=taskChck]').each(function () {
+    checkE($(this));
+    
+    $(this).on('change', function () {
+        checkE($(this));
+    });
+});
+</script>
 
 <script>
 $('#subNewProj').click(function(){ 
+
     var proj_title = $('#proj_title').val();
     var proj_desc = $('#proj_desc').val();
 
@@ -1509,43 +1643,6 @@ $('#subNewProj').click(function(){
     var act_end_d = $('#actEndD').val();
     var act_end_t = $('#actEndT').val();
 
-    //Split Select v1
-    // var task = document.getElementsByName('myTask[]');
-    // for (var i = 0, iLen = task.length; i < iLen; i++) {
-    //     alert(task[i].value);
-    // }
-
-    //Split Select v2
-    // var myTask = document.getElementsByName('myTask[]');
-    // var myTaskArr = [];
-    // myTask.forEach(function(element) {
-    //     console.log(element.value);
-    //     myTaskArr.push(element.value);
-    // });
-    // var taskData = JSON.stringify(myTaskArr);
-
-    // var myEmp = document.getElementsByName('empSol[]');
-    // var myEmpArr = [];
-    // myEmp.forEach(function(element) {
-    //     console.log(element.value);
-    //     myEmpArr.push(element.value);
-    // });
-    // var empData = JSON.stringify(myEmpArr);
-
-    // var myPm = document.getElementsByName('pmSol[]');
-    // var myPmArr = [];
-    // myPm.forEach(function(element) {
-    //     console.log(element.value);
-    //     myPmArr.push(element.value);
-    // });
-    // var pmData = JSON.stringify(myPmArr);
-
-    // //Split Select v3
-    // const taskData = Array.from(
-    //     document.getElementsByName('myTask[]'),
-    //     select => select.value
-    // );
-
     var taskData = []; 
     $("input:checkbox[name=myTask]:checked").each(function() { 
         taskData.push($(this).val()); 
@@ -1560,6 +1657,21 @@ $('#subNewProj').click(function(){
     $("input:checkbox[name=pmSol]:checked").each(function() { 
         pmData.push($(this).val()); 
     }); 
+
+    var dataWeight = [],
+        resPercent = 0,
+        i; 
+    var dataWeightAttr = []; 
+    $('input[name="myWeight"]').each(function() {
+        if($(this).val() != ''){
+            dataWeight.push($(this).val());
+            dataWeightAttr.push($(this).attr('data-tcode'));
+        }
+    });
+    for (i = 0; i < dataWeight.length; i += 1) 
+    {
+        resPercent += parseInt(dataWeight[i]);
+    }
 
 //Ajax
     $.ajax({
@@ -1583,7 +1695,10 @@ $('#subNewProj').click(function(){
             act_end_t:act_end_t,
             taskData:taskData,
             empData:empData,
-            pmData:pmData
+            pmData:pmData,
+            dataWeight:dataWeight,
+            dataWeightAttr:dataWeightAttr,
+            resPercent:resPercent
         }, 
         dataType: "json",
         success:function(data)
@@ -1615,7 +1730,10 @@ $('#subNewProj').click(function(){
                         act_end_t:act_end_t,
                         taskData:taskData,
                         empData:empData,
-                        pmData:pmData
+                        pmData:pmData,
+                        dataWeight:dataWeight,
+                        dataWeightAttr:dataWeightAttr,
+                        resPercent:resPercent
                     }, 
                     dataType: "json",
                     success:function(data)
@@ -1666,7 +1784,6 @@ $('#subNewProj').click(function(){
         }
     });    
 //Ajax
-
 });
 </script>
 

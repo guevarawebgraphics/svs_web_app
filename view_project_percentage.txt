@@ -1,0 +1,11 @@
+SELECT a.id, a.projCode, B.proj_code, b.proj_title, b.proj_desc, b.est_start_date, b.est_end_date, b.act_start_date, b.act_end_date, b.longitude, b.latitude, b.location, b.status,
+(SELECT sum(tpp.weight_progress) FROM tbl_proj_progress AS tpp WHERE tpp.projCode = a.projCode) as total_weight_progress,
+b.deleted,
+b.by_id,
+b.updated_by,
+b.created_at,
+b.updated_at
+
+FROM tbl_proj_progress AS a LEFT JOIN tbl_projectlist AS b ON a.projCode = b.proj_code
+GROUP BY a.projCode
+ORDER BY created_at DESC

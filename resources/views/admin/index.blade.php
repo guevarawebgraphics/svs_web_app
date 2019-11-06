@@ -16,79 +16,31 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="row" style="margin-top: 8em;">
-            
-                <div class="col-md-6">
-                    <div class="rounded-rectangle-svs card current-proj">
-                        <h5 class="text-default"><b>Project 1</b></h5>
-                        <div class="row" style="overflow-x:auto;">
-                            <div class="col-md-8">
-                                <p class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <h1 class="text-default"><b>86%</b></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rounded-rectangle-svs card current-proj">
-                        <h5 class="text-primary"><b>Project 2</b></h5>
-                        <div class="row" style="overflow-x:auto;">
-                            <div class="col-md-8">
-                                <p class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <h1 class="text-primary"><b>86%</b></h1>
+            @if(count($view_project_percentage))
+                @foreach($view_project_percentage as $field)
+                    <div class="col-md-6">
+                        <div class="rounded-rectangle-svs card current-proj">
+                            <h5 class="svs-text"><b>{{$field->proj_title}}</b></h5>
+                            <div class="row" style="overflow-x:auto;">
+                                <div class="col-md-8">
+                                <p class="">{{$field->proj_desc}}</p>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                <h1 class="svs-text-2"><b>
+                                    @if(!empty($field->total_weight_progress))
+                                        {{$field->total_weight_progress}}%
+                                    @else
+                                        0.00%
+                                    @endif
+                                </b></h1>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-rectangle-svs card current-proj">
-                        <h5 class="text-secondary"><b>Project 3</b></h5>
-                        <div class="row" style="overflow-x:auto;">
-                            <div class="col-md-8">
-                                <p class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <h1 class="text-secondary"><b>86%</b></h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="rounded-rectangle-svs card current-proj">
-                        <h5 class="text-success"><b>Project 4</b></h5>
-                        <div class="row" style="overflow-x:auto;">
-                            <div class="col-md-8">
-                                <p class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <h1 class="text-success"><b>86%</b></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rounded-rectangle-svs card current-proj">
-                        <h5 class="text-danger"><b>Project 5</b></h5>
-                        <div class="row" style="overflow-x:auto;">
-                            <div class="col-md-8">
-                                <p class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <h1 class="text-danger"><b>86%</b></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rounded-rectangle-svs card current-proj">
-                        <h5 class="text-warning"><b>Project 6</b></h5>
-                        <div class="row" style="overflow-x:auto;">
-                            <div class="col-md-8">
-                                <p class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <h1 class="text-warning"><b>86%</b></h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+            @endif
         </div>
 
     </div>

@@ -10,6 +10,7 @@ use App\Models\UserAccount;
 use App\Models\ProjectList;
 use App\Models\ProjTask;
 use App\Models\EmpProj;
+use App\Models\ProjectPercentage;
 
 class MainController extends Controller
 {
@@ -311,9 +312,12 @@ class MainController extends Controller
             ->orderBy('created_at','desc')
             ->get();
             
-            $project_record = ProjectList::where('deleted', 0)
+            $project_record = ProjectPercentage::where('deleted', 0)
             ->orderBy('created_at','desc')
             ->get();
+
+            // $project_record = DB::connection('mysql')->select("SELECT * from view_project_percentage");
+        
 
             $projtask_record = ProjTask::where('deleted', 0)
             ->orderBy('created_at','desc')
@@ -469,6 +473,18 @@ class MainController extends Controller
             $messages = "Please select Employees for this project.";
             $error[] = $messages;
         }
+        else if($request->dataWeight == ""){
+            $messages = "Please specify task weight";
+            $error[] = $messages;
+        }
+        else if($request->dataWeightAttr == ""){
+            $messages = "Invalid request of task weight";
+            $error[] = $messages;
+        }
+        else if($request->resPercent != 100){
+            $messages = "Please make sure task weight grand total is 100%";
+            $error[] = $messages;
+        }
         else{
             $messages = "Successfully Saved!";
             $success[] = $messages;
@@ -574,6 +590,21 @@ class MainController extends Controller
                 $ProjEMP->save();
             }
 
+            $dataWeight = $request->dataWeight; 
+            $dataWeightAttr = $request->dataWeightAttr; 
+
+            foreach($dataWeightAttr as $keyWeight => $valueWeight){
+                DB::table('tbl_projtask')
+                ->where('taskCode', $valueWeight)
+                ->where('projCode',$projCode)
+                ->update([
+                'taskWeight'=> $dataWeight[$keyWeight],
+                'by_id'=> auth()->user()->id,
+                'updated_by'=> auth()->user()->name,
+                'updated_at' => now()
+                ]);
+            }
+
 
             $messages = $projCode;
             $success[] = $messages;
@@ -592,7 +623,7 @@ class MainController extends Controller
 
     public function project_info(Request $request){
 
-        $projTask = DB::connection('mysql')->select("SELECT a.projCode, b.taskCode, b.task_title, b.task_desc FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0");
+        $projTask = DB::connection('mysql')->select("SELECT a.projCode, a.taskWeight , b.taskCode, b.task_title, b.task_desc FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0");
         
         $projEmp = DB::connection('mysql')->select("
             SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
@@ -637,6 +668,10 @@ class MainController extends Controller
                             <label><b>Description</b></label>
                             
                         </div>
+                        <div class="col-md-3">
+                            <label><b>Task Weight</b></label>
+                            
+                        </div>
                     </div>
                     ';
         if(count($projTask)){
@@ -653,6 +688,10 @@ class MainController extends Controller
                             </div>
                             <div class="col-md-3">
                                 '.$field->task_desc.'
+                                
+                            </div>
+                            <div class="col-md-3">
+                                '.$field->taskWeight.'
                                 
                             </div>
                         </div>
@@ -811,19 +850,30 @@ class MainController extends Controller
         }
         else if($request->type == "TASK")
         {
-            $task_selected = DB::connection('mysql')->select("
-            SELECT a.projCode, a.taskCode, a.deleted, a.by_id, a.updated_by, 
-            a.created_at, a.updated_at, b.task_title, b.task_desc
-            FROM `tbl_projtask` AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode
-            WHERE a.projCode = '".$request->code."' and a.deleted = 0
-            ");
+            // $task_selected = DB::connection('mysql')->select("
+            // SELECT a.projCode, a.taskCode, a.deleted, a.by_id, a.updated_by, 
+            // a.created_at, a.updated_at, b.task_title, b.task_desc
+            // FROM `tbl_projtask` AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode
+            // WHERE a.projCode = '".$request->code."' and a.deleted = 0
+            // ");
+            $task_selected = DB::connection('mysql')->select("SELECT * FROM view_projtask WHERE projCode = '".$request->code."' and deleted = 0");
             if(count($task_selected)){
                 foreach($task_selected as $field){
                     $data .= '
-                        <div class="custom-control custom-checkbox current-task">
-                        <input type="checkbox" class="custom-control-input" name="taskChck" value="'.$field->taskCode.'" id="taskChck'.$field->taskCode.'" checked>
-                        <label class="custom-control-label" for="taskChck'.$field->taskCode.'">'.$field->task_title.'</label>
+                    <div class="current-task row">
+                        <div class="col-md-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="taskChck" value="'.$field->taskCode.'" id="taskChck'.$field->taskCode.'" checked>
+                                <label class="custom-control-label" for="taskChck'.$field->taskCode.'">'.$field->task_title.'</label>
+                            </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="md-form svs-md-form">
+                                <input type="number" data-tcode= "'.$field->taskCode.'" placeholder = "Task Weight" id="taskTxtFld'.$field->taskCode.'" name="taskTxtFld" value="'.$field->taskWeight.'" class="form-control">
+                                
+                            </div>
+                        </div>
+                    </div>
                     ';
                 }
             }else{
@@ -882,10 +932,20 @@ class MainController extends Controller
             if(count($task_selected)){
                 foreach($task_selected as $field){
                     $data .= '
-                        <div class="custom-control custom-checkbox current-task">
-                        <input type="checkbox" class="custom-control-input taskChck" name="taskChck" value="'.$field->taskCode.'" id="taskChck'.$field->taskCode.'">
-                        <label class="custom-control-label" for="taskChck'.$field->taskCode.'">'.$field->task_title.'</label>
+                    <div class="current-task row">
+                        <div class="col-md-3">
+                            <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input taskChck" name="taskChck" value="'.$field->taskCode.'" id="taskChck'.$field->taskCode.'">
+                            <label class="custom-control-label" for="taskChck'.$field->taskCode.'">'.$field->task_title.'</label>
+                            </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="md-form svs-md-form">
+                                <input type="number" data-tcode= "'.$field->taskCode.'" placeholder = "Task Weight" id="taskTxtFld'.$field->taskCode.'" name="taskTxtFld" class="form-control">
+                               
+                            </div>
+                        </div>
+                    </div>
                     ';
                 }
             }else{
@@ -973,6 +1033,18 @@ class MainController extends Controller
             $messages = "Choose Task for this project!";
             $error[] = $messages;
         }
+        else if($request->dataWeight == ""){
+            $messages = "Please specify task weight";
+            $error[] = $messages;
+        }
+        else if($request->dataWeightAttr == ""){
+            $messages = "Invalid request of task weight";
+            $error[] = $messages;
+        }
+        else if($request->resPercent != 100){
+            $messages = "Please make sure task weight grand total is 100%";
+            $error[] = $messages;
+        }
         else{
             $messages = "Successfully Validated!";
             $success[] = $messages;
@@ -1053,6 +1125,21 @@ class MainController extends Controller
                 $ProjTask->created_at = now();
                 $ProjTask->updated_at = now();
                 $ProjTask->save();
+            }
+
+            $dataWeight = $request->dataWeight; 
+            $dataWeightAttr = $request->dataWeightAttr; 
+
+            foreach($dataWeightAttr as $keyWeight => $valueWeight){
+                DB::table('tbl_projtask')
+                ->where('taskCode', $valueWeight)
+                ->where('projCode',$request->code)
+                ->update([
+                'taskWeight'=> $dataWeight[$keyWeight],
+                'by_id'=> auth()->user()->id,
+                'updated_by'=> auth()->user()->name,
+                'updated_at' => now()
+                ]);
             }
 
             //PM
