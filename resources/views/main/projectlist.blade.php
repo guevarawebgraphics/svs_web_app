@@ -37,6 +37,7 @@
                 <strong>Note danger:</strong> 
                 You are trying to delete this record. This record will not be useful to any transaction
                 <br>
+                Project Code: <em id="delProjCode"></em><br>
                 Title: <em id="delTitle"></em><br>
                 Description :<em id="delDesc"></em><br>
                 Location :<em id="delLoc"></em><br>
@@ -83,15 +84,26 @@
                         <div class="container col-md-6">
                                     
                             <!--Grid row-->
-                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="epProjCode" name="epProjCode" class="form-control" readonly>
+                                            <label id="epLProjCode" for="epProjCode">Project Code <em><small>(disabled)</small></em></label>
+                                        </div>
+                                    </div>
+                            </div>
+                            <!--Grid row-->
+
+                            <!--Grid row-->
+                            <div class="row">
                                 <div class="col-md-12">
                                         <div class="md-form mb-0">
                                             <input type="text" id="epTitle" name="epTitle" class="form-control">
                                             <label id="epLTitle" for="epTitle">Title</label>
                                         </div>
                                     </div>
-                                </div>
-                                <!--Grid row-->
+                            </div>
+                            <!--Grid row-->
                             
                                 <!--Grid row-->
                                 <div class="row">
@@ -958,8 +970,15 @@ $(".delProj").click(function () {
     var lon = $(this).attr('data-lon');
     var lat = $(this).attr('data-lat');
     var date = $(this).attr('data-date');
-    $('#dPC').html(projCode);
+    var percent = $(this).attr('data-percent');
+    if(percent != ""){
+        var status = $(this).attr('data-percent')+"%";
+    }else{
+        var status = "0.00%";
+    }
+    $('#dPC').html(title+" - <b class='svs-text-2'>"+status+"</b>");
     $('#delTitle').html(title);
+    $('#delProjCode').html(projCode);
     $('#delDesc').html(desc);
     $('#delLoc').html(location);
     $('#delSubmit').attr('data-projcode',projCode);
@@ -987,6 +1006,12 @@ $(".editProj").click(function () {
     var date = $(this).attr('data-date');
     var longitude = $(this).attr('data-lon');
     var latitude = $(this).attr('data-lat');
+    var percent = $(this).attr('data-percent');
+    if(percent != ""){
+        var status = $(this).attr('data-percent')+"%";
+    }else{
+        var status = "0.00%";
+    }
 
     //Estimated DateTime
     var est_start_date = $(this).attr('data-esd');
@@ -1016,7 +1041,8 @@ $(".editProj").click(function () {
     var aed = now_aed.toLocaleDateString();
     var aet = now_aet.toLocaleTimeString([], {timeStyle: 'short'});
 
-    $('#ePC').html(projCode);
+    $('#ePC').html(title+" - <b class='svs-text-2'>"+status+"</b>");
+    $('#epProjCode').val(projCode);
     $('#epTitle').val(title);
     $('#epDesc').val(desc);
     $('#epAddrHidden').html(location);
@@ -1026,6 +1052,7 @@ $(".editProj").click(function () {
     $('#epLon').html(latitude);
     // $('#epAddr').val(location);
 
+    $('#epLProjCode').attr('class','active');
     $('#epLTitle').attr('class','active');
     $('#epLDesc').attr('class','active');
     $('#epLAddr').attr('class','active');
@@ -1056,6 +1083,7 @@ $(".editProj").click(function () {
 
     // addr_searchE();
     // SelectAddrE(latitude + ", " + longitude + ", \'" + location + "\'");
+    SelectAddrEE(Number(latitude),Number(longitude),location);
 
     setTimeout(function(){ mapE.invalidateSize()}, 500);
     //PM
@@ -1497,7 +1525,20 @@ $(".editProj").click(function () {
         document.getElementById('epAddrHidden').innerHTML = add1;
         myMarkerE.bindPopup("Latitude : " + latE + "<br />Longitude : " + lonE+ "<br />Location : " + add1).openPopup();
     }
-    
+    function SelectAddrEE(lat1, lng1, add1)
+    {
+        myMarkerE.closePopup();
+        mapE.setView([lat1, lng1],15);
+        myMarkerE.setLatLng([lat1, lng1]);
+        latE = lat1.toFixed(8);
+        lonE = lng1.toFixed(8);
+        document.getElementById('epLat').innerHTML = latE;
+        document.getElementById('epLon').innerHTML = lonE;
+        document.getElementById('epAddr').value = add1;
+        document.getElementById('epAddrHidden').innerHTML = add1;
+        // myMarkerE.bindPopup("Latitude : " + latE + "<br />Longitude : " + lonE+ "<br />Location : " + add1).openPopup();
+    }
+
     function myFunctionE(arr)
     {
         var out = "<br />";

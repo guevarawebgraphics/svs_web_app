@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2019 at 07:59 AM
+-- Generation Time: Nov 07, 2019 at 09:55 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -3759,7 +3759,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"svs_web\",\"table\":\"tbl_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"view_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_task\"},{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"},{\"db\":\"svs_web\",\"table\":\"view_employee_info\"},{\"db\":\"svs_web\",\"table\":\"users\"},{\"db\":\"svs_web\",\"table\":\"oauth_clients\"}]');
+('root', '[{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"},{\"db\":\"svs_web\",\"table\":\"view_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"tbl_task\"},{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"view_employee_info\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"users\"},{\"db\":\"svs_web\",\"table\":\"oauth_clients\"}]');
 
 -- --------------------------------------------------------
 
@@ -3875,7 +3875,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2019-11-06 06:58:45', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":196,\"NavigationWidth\":241}');
+('root', '2019-11-07 08:43:27', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":196,\"NavigationWidth\":241}');
 
 -- --------------------------------------------------------
 
@@ -4979,20 +4979,20 @@ INSERT INTO `tbl_emp_proj` (`id`, `projCode`, `emp_id`, `type`, `deleted`, `by_i
 (3, 'KNATQJOBWOBC', '2019-0012', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
 (4, 'KNATQJOBWOBC', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
 (5, 'KNATQJOBWOBC', '2019-8000', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:18:52', '2019-11-06 06:20:48'),
-(6, '1HOHPNYQJJSQ', '2019-0012', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
-(7, '1HOHPNYQJJSQ', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
-(8, '1HOHPNYQJJSQ', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
-(9, '1HOHPNYQJJSQ', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
-(10, '1HOHPNYQJJSQ', '2019-1010', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
+(6, '1HOHPNYQJJSQ', '2019-0012', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 11:01:01'),
+(7, '1HOHPNYQJJSQ', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 11:01:01'),
+(8, '1HOHPNYQJJSQ', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 11:01:01'),
+(9, '1HOHPNYQJJSQ', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 11:01:01'),
+(10, '1HOHPNYQJJSQ', '2019-1010', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 11:01:01'),
 (11, 'P0HWINIFDHID', '2019-8000', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:20:22', '2019-11-06 06:20:55'),
 (12, 'P0HWINIFDHID', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:20:22', '2019-11-06 06:20:55'),
 (13, 'P0HWINIFDHID', '2019-8000', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:20:22', '2019-11-06 06:20:55'),
 (14, 'P0HWINIFDHID', '2019-1009', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:20:22', '2019-11-06 06:20:55'),
-(15, '1HOHPNYQJJSQ', '2019-0012', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
-(16, '1HOHPNYQJJSQ', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
-(17, '1HOHPNYQJJSQ', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
-(18, '1HOHPNYQJJSQ', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
-(19, '1HOHPNYQJJSQ', '2019-1010', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(15, '1HOHPNYQJJSQ', '2019-0012', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 11:01:01'),
+(16, '1HOHPNYQJJSQ', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 11:01:01'),
+(17, '1HOHPNYQJJSQ', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 11:01:01'),
+(18, '1HOHPNYQJJSQ', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 11:01:01'),
+(19, '1HOHPNYQJJSQ', '2019-1010', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 11:01:01'),
 (20, 'KNATQJOBWOBC', '2019-0012', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
 (21, 'KNATQJOBWOBC', '2019-8000', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
 (22, 'KNATQJOBWOBC', '2019-0012', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
@@ -5016,7 +5016,29 @@ INSERT INTO `tbl_emp_proj` (`id`, `projCode`, `emp_id`, `type`, `deleted`, `by_i
 (40, 'JK1ISQGB0H5H', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:35:09', '2019-11-06 06:35:09'),
 (41, 'JK1ISQGB0H5H', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 06:35:10', '2019-11-06 06:35:10'),
 (42, 'JK1ISQGB0H5H', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:35:10', '2019-11-06 06:35:10'),
-(43, 'JK1ISQGB0H5H', '2019-1009', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:35:10', '2019-11-06 06:35:10');
+(43, 'JK1ISQGB0H5H', '2019-1009', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 06:35:10', '2019-11-06 06:35:10'),
+(44, '1HOHPNYQJJSQ', '2019-0012', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 10:51:47', '2019-11-06 11:01:01'),
+(45, '1HOHPNYQJJSQ', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 10:51:47', '2019-11-06 11:01:01'),
+(46, '1HOHPNYQJJSQ', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2019-11-06 10:51:47', '2019-11-06 11:01:01'),
+(47, '1HOHPNYQJJSQ', '2019-1010', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 10:51:47', '2019-11-06 11:01:01'),
+(48, '1HOHPNYQJJSQ', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2019-11-06 10:51:47', '2019-11-06 11:01:01'),
+(49, '1HOHPNYQJJSQ', '2019-0012', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 11:01:01', '2019-11-06 11:01:01'),
+(50, '1HOHPNYQJJSQ', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 11:01:01', '2019-11-06 11:01:01'),
+(51, '1HOHPNYQJJSQ', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-06 11:01:01', '2019-11-06 11:01:01'),
+(52, '1HOHPNYQJJSQ', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 11:01:02', '2019-11-06 11:01:02'),
+(53, '1HOHPNYQJJSQ', '2019-1010', 'EMP', 0, 7, 'Keigh Dee', '2019-11-06 11:01:02', '2019-11-06 11:01:02'),
+(54, 'BIJ6HKAKDDAE', '2019-1005', 'PM', 0, 7, 'Keigh Dee', '2019-11-07 02:14:09', '2019-11-07 02:14:09'),
+(55, 'BIJ6HKAKDDAE', '2019-1007', 'PM', 0, 7, 'Keigh Dee', '2019-11-07 02:14:09', '2019-11-07 02:14:09'),
+(56, 'BIJ6HKAKDDAE', '2019-0012', 'EMP', 0, 7, 'Keigh Dee', '2019-11-07 02:14:09', '2019-11-07 02:14:09'),
+(57, 'BIJ6HKAKDDAE', '2019-1005', 'EMP', 0, 7, 'Keigh Dee', '2019-11-07 02:14:09', '2019-11-07 02:14:09'),
+(58, 'MX9SKY1T3TNI', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-07 07:11:51', '2019-11-07 07:11:51'),
+(59, 'MX9SKY1T3TNI', '2019-8000', 'PM', 0, 7, 'Keigh Dee', '2019-11-07 07:11:51', '2019-11-07 07:11:51'),
+(60, 'MX9SKY1T3TNI', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-07 07:11:51', '2019-11-07 07:11:51'),
+(61, 'MX9SKY1T3TNI', '2019-8000', 'EMP', 0, 7, 'Keigh Dee', '2019-11-07 07:11:51', '2019-11-07 07:11:51'),
+(62, 'TEQ0XNLZM97Q', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-07 07:13:29', '2019-11-07 07:13:29'),
+(63, 'TEQ0XNLZM97Q', '2019-1009', 'PM', 0, 7, 'Keigh Dee', '2019-11-07 07:13:29', '2019-11-07 07:13:29'),
+(64, 'TEQ0XNLZM97Q', '2019-0012', 'EMP', 0, 7, 'Keigh Dee', '2019-11-07 07:13:29', '2019-11-07 07:13:29'),
+(65, 'TEQ0XNLZM97Q', '2019-8000', 'EMP', 0, 7, 'Keigh Dee', '2019-11-07 07:13:29', '2019-11-07 07:13:29');
 
 -- --------------------------------------------------------
 
@@ -5049,12 +5071,15 @@ CREATE TABLE `tbl_projectlist` (
 --
 
 INSERT INTO `tbl_projectlist` (`id`, `proj_code`, `proj_title`, `proj_desc`, `est_start_date`, `est_end_date`, `act_start_date`, `act_end_date`, `longitude`, `latitude`, `location`, `status`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'KNATQJOBWOBC', 'Project 1', 'Description of Project 1', '2019-11-06 02:18:00', '2019-11-06 14:18:00', '2019-11-06 02:18:00', '2019-11-06 14:18:00', '14.56051510', '121.07671290', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
-(2, '1HOHPNYQJJSQ', 'Project 2', 'Description of Project 2', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '14.57841075', '121.08191480', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-06 06:20:37'),
-(3, 'P0HWINIFDHID', 'Project 3', 'Description of Project 3', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '2019-11-06 02:20:00', '2019-11-06 14:20:00', '14.56051510', '121.07671290', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:20:21', '2019-11-06 06:20:55'),
+(1, 'KNATQJOBWOBC', 'Project 1', 'Description of Project 1', '2019-11-06 02:18:00', '2019-11-06 14:18:00', '2019-11-06 02:18:00', '2019-11-06 14:18:00', '121.07671290', '14.56051510', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:18:51', '2019-11-06 06:20:48'),
+(2, '1HOHPNYQJJSQ', 'Project 2', 'Description of Project 2', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '121.08191480', '14.57841075', 'Pasig, Metro Manila, Philippines', NULL, 1, 7, 'Keigh Dee', '2019-11-06 06:19:31', '2019-11-07 07:27:24'),
+(3, 'P0HWINIFDHID', 'Project 3', 'Description of Project 3', '2019-11-06 02:19:00', '2019-11-06 14:19:00', '2019-11-06 02:20:00', '2019-11-06 14:20:00', '121.07671290', '14.56051510', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:20:21', '2019-11-06 06:20:55'),
 (4, 'SLN5P2A7C09Z', 'Project 4', 'Description of Project 4', '2019-11-06 02:28:00', '2019-11-06 14:28:00', '2019-11-06 02:28:00', '2019-11-06 14:28:00', '121.07671290', '14.56051510', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:29:01', '2019-11-06 06:29:01'),
 (5, '7FC5ACG68DK7', 'Project 5', 'Description of Project 5', '2019-11-06 02:34:00', '2019-11-06 14:34:00', '2019-11-06 02:34:00', '2019-11-06 14:34:00', '121.08191480', '14.57841075', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:34:20', '2019-11-06 06:34:20'),
-(6, 'JK1ISQGB0H5H', 'Project 6', 'Description of Project 6', '2019-11-06 02:34:00', '2019-11-06 14:35:00', '2019-11-06 02:35:00', '2019-11-06 14:35:00', '121.07671290', '14.56051510', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:35:09', '2019-11-06 06:35:09');
+(6, 'JK1ISQGB0H5H', 'Project 6', 'Description of Project 6', '2019-11-06 02:34:00', '2019-11-06 14:35:00', '2019-11-06 02:35:00', '2019-11-06 14:35:00', '121.07671290', '14.56051510', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-06 06:35:09', '2019-11-06 06:35:09'),
+(7, 'BIJ6HKAKDDAE', 'Project 100', 'Description of Project 100', '2019-11-07 10:13:00', '2019-11-07 22:13:00', '2019-11-07 10:13:00', '2019-11-07 22:13:00', '121.05235350', '14.62081160', 'Cubao, 3rd District, Quezon City, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-07 02:14:09', '2019-11-07 02:14:09'),
+(8, 'MX9SKY1T3TNI', 'My Project', 'Description of My Project', '2019-11-07 03:11:00', '2019-11-07 15:11:00', '2019-11-07 03:11:00', '2019-11-07 15:11:00', '121.07671290', '14.56051510', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-07 07:11:50', '2019-11-07 07:11:50'),
+(9, 'TEQ0XNLZM97Q', 'Makagago Wazzap Man', '1LGFV San Pabluuuuuuuuy', '2019-11-07 03:13:00', '2019-11-07 15:13:00', '2019-11-07 03:13:00', '2019-11-07 15:13:00', '121.52901100', '14.18724020', 'San Pablo, Laguna, Calabarzon, 4032, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-07 07:13:29', '2019-11-07 07:13:29');
 
 -- --------------------------------------------------------
 
@@ -5079,8 +5104,8 @@ CREATE TABLE `tbl_projtask` (
 --
 
 INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `taskWeight`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(7, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
-(8, '1HOHPNYQJJSQ', 'A27Y3CSPMOXB', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 06:20:37'),
+(7, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '50.00', 1, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 11:01:01'),
+(8, '1HOHPNYQJJSQ', 'A27Y3CSPMOXB', '50.00', 1, 7, 'Keigh Dee', '2019-11-06 06:20:37', '2019-11-06 11:01:01'),
 (9, 'KNATQJOBWOBC', 'P7CSN24DL0RO', '20.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
 (10, 'KNATQJOBWOBC', 'YYH8LNQDHFNB', '30.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
 (11, 'KNATQJOBWOBC', 'A27Y3CSPMOXB', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 06:20:48', '2019-11-06 06:20:48'),
@@ -5090,7 +5115,16 @@ INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `taskWeight`, `deleted
 (15, 'SLN5P2A7C09Z', 'P7CSN24DL0RO', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 06:29:01', '2019-11-06 06:29:02'),
 (16, '7FC5ACG68DK7', 'A27Y3CSPMOXB', '30.00', 0, 7, 'Keigh Dee', '2019-11-06 06:34:20', '2019-11-06 06:34:21'),
 (17, '7FC5ACG68DK7', 'P7CSN24DL0RO', '70.00', 0, 7, 'Keigh Dee', '2019-11-06 06:34:21', '2019-11-06 06:34:21'),
-(18, 'JK1ISQGB0H5H', 'YYH8LNQDHFNB', '100.00', 0, 7, 'Keigh Dee', '2019-11-06 06:35:09', '2019-11-06 06:35:10');
+(18, 'JK1ISQGB0H5H', 'YYH8LNQDHFNB', '100.00', 0, 7, 'Keigh Dee', '2019-11-06 06:35:09', '2019-11-06 06:35:10'),
+(19, '1HOHPNYQJJSQ', 'A27Y3CSPMOXB', '50.00', 1, 7, 'Keigh Dee', '2019-11-06 10:51:46', '2019-11-06 11:01:01'),
+(20, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '50.00', 1, 7, 'Keigh Dee', '2019-11-06 10:51:46', '2019-11-06 11:01:01'),
+(21, '1HOHPNYQJJSQ', 'A27Y3CSPMOXB', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 11:01:01', '2019-11-06 11:01:01'),
+(22, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '50.00', 0, 7, 'Keigh Dee', '2019-11-06 11:01:01', '2019-11-06 11:01:01'),
+(23, 'BIJ6HKAKDDAE', 'A27Y3CSPMOXB', '40.00', 0, 7, 'Keigh Dee', '2019-11-07 02:14:09', '2019-11-07 02:14:10'),
+(24, 'BIJ6HKAKDDAE', 'YYH8LNQDHFNB', '60.00', 0, 7, 'Keigh Dee', '2019-11-07 02:14:09', '2019-11-07 02:14:10'),
+(25, 'MX9SKY1T3TNI', 'A27Y3CSPMOXB', '20.00', 0, 7, 'Keigh Dee', '2019-11-07 07:11:50', '2019-11-07 07:11:51'),
+(26, 'MX9SKY1T3TNI', 'YYH8LNQDHFNB', '80.00', 0, 7, 'Keigh Dee', '2019-11-07 07:11:51', '2019-11-07 07:11:51'),
+(27, 'TEQ0XNLZM97Q', 'P7CSN24DL0RO', '100.00', 0, 7, 'Keigh Dee', '2019-11-07 07:13:29', '2019-11-07 07:13:29');
 
 -- --------------------------------------------------------
 
@@ -5115,24 +5149,10 @@ CREATE TABLE `tbl_proj_progress` (
 --
 
 INSERT INTO `tbl_proj_progress` (`id`, `projCode`, `taskCode`, `weight_progress`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '20.00', 0, '1', 'Kay Diaz', '2019-11-06 06:25:47', '2019-11-06 06:25:47'),
-(2, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '0.40', 0, '1', 'Kay Diaz', '2019-11-06 06:29:24', '2019-11-06 06:29:24'),
-(3, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '1.40', 0, '1', 'Kay Diaz', '2019-11-06 06:29:32', '2019-11-06 06:29:32'),
-(4, 'KNATQJOBWOBC', 'YYH8LNQDHFNB', '13.00', 0, '1', 'Kay Diaz', '2019-11-06 06:29:59', '2019-11-06 06:29:59'),
-(5, 'KNATQJOBWOBC', 'A27Y3CSPMOXB', '19.50', 0, '1', 'Kay Diaz', '2019-11-06 06:30:12', '2019-11-06 06:30:12'),
-(6, 'KNATQJOBWOBC', 'A27Y3CSPMOXB', '15.00', 0, '1', 'Kay Diaz', '2019-11-06 06:30:29', '2019-11-06 06:30:29'),
-(7, 'KNATQJOBWOBC', 'P7CSN24DL0RO', '35.00', 0, '1', 'Kay Diaz', '2019-11-06 06:30:41', '2019-11-06 06:30:41'),
-(8, '1HOHPNYQJJSQ', 'A27Y3CSPMOXB', '35.00', 0, '1', 'Kay Diaz', '2019-11-06 06:31:12', '2019-11-06 06:31:12'),
-(9, '1HOHPNYQJJSQ', 'YYH8LNQDHFNB', '35.00', 0, '1', 'Kay Diaz', '2019-11-06 06:31:26', '2019-11-06 06:31:26'),
-(10, 'P0HWINIFDHID', 'A27Y3CSPMOXB', '86.70', 0, '1', 'Kay Diaz', '2019-11-06 06:31:47', '2019-11-06 06:31:47'),
-(11, 'SLN5P2A7C09Z', 'P7CSN24DL0RO', '40.70', 0, '1', 'Kay Diaz', '2019-11-06 06:32:38', '2019-11-06 06:32:38'),
-(12, 'SLN5P2A7C09Z', 'YYH8LNQDHFNB', '15.70', 0, '1', 'Kay Diaz', '2019-11-06 06:32:48', '2019-11-06 06:32:48'),
-(13, 'SLN5P2A7C09Z', 'A27Y3CSPMOXB', '14.90', 0, '1', 'Kay Diaz', '2019-11-06 06:33:02', '2019-11-06 06:33:02'),
-(14, '7FC5ACG68DK7', 'P7CSN24DL0RO', '60.90', 0, '1', 'Kay Diaz', '2019-11-06 06:35:32', '2019-11-06 06:35:32'),
-(15, '7FC5ACG68DK7', 'A27Y3CSPMOXB', '10.04', 0, '1', 'Kay Diaz', '2019-11-06 06:35:46', '2019-11-06 06:35:46'),
-(16, 'JK1ISQGB0H5H', 'YYH8LNQDHFNB', '98.03', 0, '1', 'Kay Diaz', '2019-11-06 06:36:08', '2019-11-06 06:36:08'),
-(17, 'JK1ISQGB0H5H', 'YYH8LNQDHFNB', '1.04', 0, '1', 'Kay Diaz', '2019-11-06 06:40:26', '2019-11-06 06:40:26'),
-(18, '7FC5ACG68DK7', 'P7CSN24DL0RO', '10.00', 0, '1', 'Kay Diaz', '2019-11-06 06:45:57', '2019-11-06 06:45:57');
+(1, '7FC5ACG68DK7', 'P7CSN24DL0RO', '1.00', 0, '1', 'Kay Diaz', '2019-11-06 07:20:21', '2019-11-06 07:20:21'),
+(2, '7FC5ACG68DK7', 'P7CSN24DL0RO', '1.00', 0, '1', 'Kay Diaz', '2019-11-06 07:20:25', '2019-11-06 07:20:25'),
+(3, '7FC5ACG68DK7', 'P7CSN24DL0RO', '1.00', 0, '1', 'Kay Diaz', '2019-11-06 07:20:26', '2019-11-06 07:20:26'),
+(4, '7FC5ACG68DK7', 'P7CSN24DL0RO', '67.00', 0, '1', 'Kay Diaz', '2019-11-06 07:21:51', '2019-11-06 07:21:51');
 
 -- --------------------------------------------------------
 
@@ -5267,6 +5287,7 @@ CREATE TABLE `view_projtask` (
 ,`taskWeight` decimal(13,2)
 ,`task_title` varchar(191)
 ,`task_desc` varchar(191)
+,`taskDeleted` int(11)
 ,`deleted` int(2)
 ,`by_id` bigint(11)
 ,`updated_by` varchar(191)
@@ -5299,7 +5320,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_projtask`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_projtask`  AS  select `a`.`id` AS `id`,`a`.`projCode` AS `projCode`,`a`.`taskCode` AS `taskCode`,`a`.`taskWeight` AS `taskWeight`,`b`.`task_title` AS `task_title`,`b`.`task_desc` AS `task_desc`,`a`.`deleted` AS `deleted`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at` from (`tbl_projtask` `a` left join `tbl_task` `b` on(`a`.`taskCode` = `b`.`taskCode`)) order by `a`.`created_at` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_projtask`  AS  select `a`.`id` AS `id`,`a`.`projCode` AS `projCode`,`a`.`taskCode` AS `taskCode`,`a`.`taskWeight` AS `taskWeight`,`b`.`task_title` AS `task_title`,`b`.`task_desc` AS `task_desc`,`b`.`deleted` AS `taskDeleted`,`a`.`deleted` AS `deleted`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at` from (`tbl_projtask` `a` left join `tbl_task` `b` on(`a`.`taskCode` = `b`.`taskCode`)) order by `a`.`created_at` desc ;
 
 --
 -- Indexes for dumped tables
@@ -5437,25 +5458,25 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `tbl_emp_proj`
 --
 ALTER TABLE `tbl_emp_proj`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `tbl_projectlist`
 --
 ALTER TABLE `tbl_projectlist`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_projtask`
 --
 ALTER TABLE `tbl_projtask`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tbl_proj_progress`
 --
 ALTER TABLE `tbl_proj_progress`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_task`

@@ -30,11 +30,11 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, User $user){
         if(auth()->user()->is_admin == 1){
-            return redirect('/admin/index');
+            return redirect('/dashboard');
         }else if(auth()->user()->is_admin == 2){
-            return redirect('/admin/index');
+            return redirect('/dashboard');
         }else if(auth()->user()->is_admin == 0){
-            return redirect('/user/index');
+            return redirect('/dashboard');
             // session()->flush();
             // $this->middleware('guest')->except('logout');
             // return redirect('/');

@@ -26,11 +26,11 @@ class HomeController extends Controller
     public function index(User $user, Request $request)
     {
         if(auth()->user()->is_admin == 1){
-            return redirect('/admin/index');
+            return redirect('/dashboard');
         }else if(auth()->user()->is_admin == 2){
-            return redirect('/admin/index');
+            return redirect('/dashboard');
         }else if(auth()->user()->is_admin == 0){
-            return redirect('/user/index');
+            return redirect('/dashboard');
             // session()->flush();
             // $this->middleware('guest')->except('logout');
             // return redirect('/');

@@ -14,7 +14,10 @@
 Route::get('/','HomeController@index');
     
 Route::group(['middleware'=> ['admin']], function(){
-    Route::get('/admin/index', 'AdminController@index');
+    Route::get('/dashboard', 'MainController@index');
+    Route::post('/dashboard/task_view', 'MainController@project_view')->name('task_view');
+    Route::post('/dashboard/pm_view', 'MainController@project_view')->name('pm_view');
+    Route::post('/dashboard/emp_view', 'MainController@project_view')->name('emp_view');
     
     Route::get('/location', 'MainController@location');
 

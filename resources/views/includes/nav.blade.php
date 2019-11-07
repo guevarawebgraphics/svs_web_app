@@ -12,7 +12,7 @@
             <li class="nav-item active">
               
                 @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0)
-                <a class="nav-link svs-text" href="/admin/index">
+                <a class="nav-link svs-text" href="/dashboard">
                 Dashboard
                 @else
                 <a class="nav-link svs-text" href="/user/index">

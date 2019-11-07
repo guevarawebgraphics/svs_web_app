@@ -11,9 +11,117 @@ use App\Models\ProjectList;
 use App\Models\ProjTask;
 use App\Models\EmpProj;
 use App\Models\ProjectPercentage;
+use App\Models\ProjTaskView;
 
 class MainController extends Controller
 {
+    public function index(){
+        if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+            $view_project_percentage = DB::connection('mysql')->select("SELECT * from view_project_percentage ORDER BY created_at DESC");
+        
+            return view('main.index', compact('view_project_percentage'));
+        }else{
+            return redirect('/');
+        }
+    }
+
+    public function project_view(Request $request){
+        $data = "";
+        $counter = 1;
+
+        if($request->type == "TASK")
+        {
+            $task_selected = DB::connection('mysql')->select("SELECT * FROM view_projtask WHERE projCode = '".$request->code."' and deleted = 0");
+            
+            if($task_selected != ""){
+                foreach($task_selected as $field){
+
+                    if($field->taskWeight != ""){
+                        $taskWeight = $field->taskWeight."%";
+                    }else{
+                        $taskWeight = 0.00."%";
+                    }
+                    $data .= '
+                    <tr>
+                        <td>'.$field->taskCode.'</td>
+
+                        <td>'.$field->task_title.'</td>
+
+                        <td>'.$field->task_desc.'</td>
+
+                        <td>'.$taskWeight.'</td>
+                    </tr>
+                    ';
+                }
+            }else{
+                $data .= 'No Task found';
+            }
+
+        }
+        else if($request->type == "PM")
+        {
+            $pm_selected = DB::connection('mysql')->select("
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+                b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+                FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+                WHERE a.type = 'PM' AND a.projCode = '".$request->code."' and a.deleted = 0
+                GROUP BY a.emp_id
+            ");
+            
+            if($pm_selected != ""){
+                foreach($pm_selected as $field){
+
+                    $data .= '
+                    <tr>
+                        <td>'.$field->fullname.'</td>
+
+                        <td>'.$field->position.'</td>
+
+                        <td>'.$field->department.'</td>
+
+                        <td>NONE</td>
+                    </tr>
+                    ';
+                }
+            }else{
+                $data .= 'No Project Manager found';
+            }
+
+        }
+        else if($request->type == "EMP")
+        {
+            $emp_selected = DB::connection('mysql')->select("
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+                b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+                FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+                WHERE a.type = 'EMP' AND a.projCode = '".$request->code."' and a.deleted = 0
+                GROUP BY a.emp_id
+            ");
+            
+            if($emp_selected != ""){
+                foreach($emp_selected as $field){
+
+                    $data .= '
+                    <tr>
+                        <td>'.$field->fullname.'</td>
+
+                        <td>'.$field->position.'</td>
+
+                        <td>'.$field->department.'</td>
+
+                        <td>NONE</td>
+                    </tr>
+                    ';
+                }
+            }else{
+                $data .= 'No Employee found';
+            }
+
+        }
+
+        echo $data;
+    }
+
     public function location(){
         if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
             return view('main.location');
@@ -97,7 +205,7 @@ class MainController extends Controller
     }
 
     public function getTask(){
-        $task_record = DB::connection('mysql')->select("SELECT * FROM tbl_task ORDER BY created_at DESC");
+        $task_record = DB::connection('mysql')->select("SELECT * FROM tbl_task WHERE deleted = 0 ORDER BY created_at DESC");
 
         $data = "";
         
@@ -318,8 +426,12 @@ class MainController extends Controller
 
             // $project_record = DB::connection('mysql')->select("SELECT * from view_project_percentage");
         
+            // $projtask_record = ProjTask::where('deleted', 0)
+            // ->orderBy('created_at','desc')
+            // ->get();
 
-            $projtask_record = ProjTask::where('deleted', 0)
+            $projtask_record = ProjTaskView::where('deleted', 0)
+            ->where('taskDeleted', 0)
             ->orderBy('created_at','desc')
             ->get();
 
@@ -623,7 +735,7 @@ class MainController extends Controller
 
     public function project_info(Request $request){
 
-        $projTask = DB::connection('mysql')->select("SELECT a.projCode, a.taskWeight , b.taskCode, b.task_title, b.task_desc FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0");
+        $projTask = DB::connection('mysql')->select("SELECT a.projCode, a.taskWeight , b.taskCode, b.task_title, b.task_desc FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0 AND b.deleted = 0");
         
         $projEmp = DB::connection('mysql')->select("
             SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
@@ -1241,4 +1353,5 @@ class MainController extends Controller
             return redirect('/');
         }
     }
+
 }
