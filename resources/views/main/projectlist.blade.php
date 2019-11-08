@@ -1140,6 +1140,10 @@ $(".editProj").click(function () {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
+
+    $('#taskDivEdit').hide();
+    $('#taskUnselect').hide();
+    $('#taskSelectCat').hide();
 });
 </script>
 
@@ -1151,21 +1155,19 @@ $(".editProj").click(function () {
             pmDropdownDiv();
             getUnselected();
         });
-
+        
         $(".select-all-pm").click(function () {
             $('input[name=pmChck]').prop('checked', true);
         });
 
         $(".select-none-pm").click(function () {
             $('input[name=pmChck]').prop('checked', false);
-           
         });
 
         function pmDropdownDiv() {
             var x = document.getElementById("pmDivEdit");
             if (x.style.display === "none") {
                 x.style.display = "block";
-                getUnselected();
             } else {
                 x.style.display = "none";
             }
@@ -1173,7 +1175,6 @@ $(".editProj").click(function () {
             var y = document.getElementById("pmUnselect");
             if (y.style.display === "none") {
                 y.style.display = "block";
-                getUnselected();
             } else {
                 y.style.display = "none";
             }
@@ -1181,7 +1182,6 @@ $(".editProj").click(function () {
             var z = document.getElementById("pmSelectCat");
             if (z.style.display === "none") {
                 z.style.display = "block";
-                getUnselected();
             } else {
                 z.style.display = "none";
             }
@@ -1210,6 +1210,7 @@ $(".editProj").click(function () {
                 }
             });
         }
+    //Project Manager
 
     //Employee
         $("#epSearchEMP").click(function () {
@@ -1274,11 +1275,14 @@ $(".editProj").click(function () {
                 }
             });
         }
+    //Employee
+
     //Task
-    $("#epSearchTask").click(function () {
+        $("#epSearchTask").click(function () {
             taskDropdownDiv();
             getUnselectedTask();
         });
+        
 
         $(".select-all-task").click(function () {
             $('input[name=taskChck]').prop('checked', true);
@@ -1287,32 +1291,34 @@ $(".editProj").click(function () {
         $(".select-none-task").click(function () {
             $('input[name=taskChck]').prop('checked', false);
         });
+        
+        //Function
+            function taskDropdownDiv() {
+                var x = document.getElementById("taskDivEdit");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                    getUnselectedTask();
+                } else {
+                    x.style.display = "none";
+                }
 
-        function taskDropdownDiv() {
-            var x = document.getElementById("taskDivEdit");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-                getUnselectedTask();
-            } else {
-                x.style.display = "none";
-            }
+                var y = document.getElementById("taskUnselect");
+                if (y.style.display === "none") {
+                    y.style.display = "block";
+                    getUnselectedTask();
+                } else {
+                    y.style.display = "none";
+                }
 
-            var y = document.getElementById("taskUnselect");
-            if (y.style.display === "none") {
-                y.style.display = "block";
-                getUnselectedTask();
-            } else {
-                y.style.display = "none";
+                var z = document.getElementById("taskSelectCat");
+                if (z.style.display === "none") {
+                    z.style.display = "block";
+                    getUnselectedTask();
+                } else {
+                    z.style.display = "none";
+                }
             }
-
-            var z = document.getElementById("taskSelectCat");
-            if (z.style.display === "none") {
-                z.style.display = "block";
-                getUnselectedTask();
-            } else {
-                z.style.display = "none";
-            }
-        }
+        //Function
 
         function getUnselectedTask(){
             var taskChck = []; 
@@ -1337,6 +1343,7 @@ $(".editProj").click(function () {
                 }
             });
         }
+    //Task
 
     //Project Manager
         $("#newSearchTL").click(function () {
@@ -1367,6 +1374,7 @@ $(".editProj").click(function () {
             }
 
         }
+    //Project Manager
 
 });
 </script>
@@ -1648,19 +1656,6 @@ $('input[name=myTask]').each(function () {
   $(this).on('change', function () {
     check($(this));
   });
-});
-
-
-var checkE = function ($checkboxE) {
-    $('#taskTxtFld'+$checkboxE.val()).prop('readonly', !$checkboxE.is(':checked'));
-    };
-
-    $('input[name=taskChck]').each(function () {
-    checkE($(this));
-    
-    $(this).on('change', function () {
-        checkE($(this));
-    });
 });
 </script>
 

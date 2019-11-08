@@ -27,7 +27,7 @@ class MainController extends Controller
 
     public function project_view(Request $request){
         $data = "";
-        $counter = 1;
+        $counter = 0;
 
         if($request->type == "TASK")
         {
@@ -50,8 +50,13 @@ class MainController extends Controller
                         <td>'.$field->task_desc.'</td>
 
                         <td>'.$taskWeight.'</td>
+
+                        <td>
+                            <button class="svs-action btn rowdt waves-effect waves-light" data-taskcode="'.$field->taskCode.'" data-href="'.$counter.'"><i class="fa fa-list"></i></button>
+                        </td>
                     </tr>
                     ';
+                    $counter++;
                 }
             }else{
                 $data .= 'No Task found';
@@ -928,7 +933,7 @@ class MainController extends Controller
                     $data .= '
                         <div class="custom-control custom-checkbox current-pm">
                         <input type="checkbox" class="custom-control-input pmChck" name="pmChck" value="'.$field->emp_id.'" id="pmChck'.$field->emp_id.'" checked>
-                        <label class="custom-control-label" for="pmChck'.$field->emp_id.'">'.$field->fullname.'</label>
+                        <label class="custom-control-label" for="pmChck'.$field->emp_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
                         </div>
                     ';
                 }
@@ -951,7 +956,7 @@ class MainController extends Controller
                     $data .= '
                         <div class="custom-control custom-checkbox current-emp">
                         <input type="checkbox" class="custom-control-input" name="empChck" value="'.$field->emp_id.'" id="empChck'.$field->emp_id.'" checked>
-                        <label class="custom-control-label" for="empChck'.$field->emp_id.'">'.$field->fullname.'</label>
+                        <label class="custom-control-label" for="empChck'.$field->emp_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1011,7 +1016,7 @@ class MainController extends Controller
                     $data .= '
                         <div class="custom-control custom-checkbox current-pm">
                         <input type="checkbox" class="custom-control-input pmChck" name="pmChck" value="'.$field->company_id.'" id="pmChck'.$field->company_id.'">
-                        <label class="custom-control-label" for="pmChck'.$field->company_id.'">'.$field->fullname.'</label>
+                        <label class="custom-control-label" for="pmChck'.$field->company_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1026,9 +1031,9 @@ class MainController extends Controller
             if(count($emp_selected)){
                 foreach($emp_selected as $field){
                     $data .= '
-                        <div class="custom-control custom-checkbox current-pm">
+                        <div class="custom-control custom-checkbox current-emp">
                         <input type="checkbox" class="custom-control-input empChck" name="empChck" value="'.$field->company_id.'" id="empChck'.$field->company_id.'">
-                        <label class="custom-control-label" for="empChck'.$field->company_id.'">'.$field->fullname.'</label>
+                        <label class="custom-control-label" for="empChck'.$field->company_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1036,7 +1041,6 @@ class MainController extends Controller
                 $data .= 'No Employee found';
             }
         }
-
         else if($request->type == "TASK"){
             $arrays = implode("', '", $request->taskChck);
             $task_selected = DB::connection('mysql')->select("SELECT * FROM tbl_task WHERE taskCode NOT IN('".$arrays."') AND deleted = 0");
@@ -1061,8 +1065,23 @@ class MainController extends Controller
                     ';
                 }
             }else{
-                $data .= 'No Task found';
+                $data .= '<em>All task already taken..</em>';
             }
+            $data .= '
+                <script>
+                var checkE = function ($checkboxE) {
+                    $("#taskTxtFld"+$checkboxE.val()).prop("readonly", !$checkboxE.is(":checked"));
+                    };
+                
+                    $("input[name=taskChck]").each(function () {
+                    checkE($(this));
+                    
+                    $(this).on("change", function () {
+                        checkE($(this));
+                    });
+                });
+                </script>
+                ';
         }
         echo $data;
     }

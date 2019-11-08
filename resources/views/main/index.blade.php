@@ -47,9 +47,12 @@ ul {
 
         <div class="row" style="margin-top: 8em;">
             @if(count($view_project_percentage))
+            @php
+            $counter = 0;    
+            @endphp
                 @foreach($view_project_percentage as $field)
                     <div class="col-md-6">
-                    <div class="rounded-rectangle-svs card current-proj showModal" data-code="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}">
+                    <div class="rounded-rectangle-svs card current-proj showModal" data-modalid="{{$counter}}" data-code="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}">
                             <h4 class="svs-text"><b>{{$field->proj_title}}</b></h4>
                             <div class="row" style="overflow-x:auto;">
                                 <div class="col-md-8">
@@ -69,6 +72,9 @@ ul {
                             </div>
                         </div>
                     </div>
+                    @php
+                        $counter++;   
+                    @endphp
                 @endforeach
             @endif
         </div>
@@ -106,33 +112,68 @@ ul {
 
                     <div id="svsMap" style="width: 100%; height:300px;"></div>
                     <br>
-                    
-                        <b>Project Code : </b><label id="vCode"></label><br>
-                        <b>Title : </b><label id="vTitle"></label><br>
-                        <b>Description : </b><label id="vDesc"></label><br>
-                        <b>Location : </b><label id="vLoc"></label><br>
-                        <b>Project Status : </b><label id="vStatus"></label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Project Code : </b><label id="vCode"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Title : </b><label id="vTitle"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Description : </b><label id="vDesc"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Project Status : </b><label id="vStatus"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Location : </b><label id="vLoc"></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Estimated Start Date : </b><label id="vEst"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Estimated End Date : </b><label id="vEet"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Actual Start Date : </b><label id="vAst"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Actual End Date : </b><label id="vAet"></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                    </div>
                 </div>
                 <div class="col-md-6 font-svs">
-                
-                        <b>Estimated Start Date : </b><label id="vEst"></label><br>
-                        <b>Estimated End Date : </b><label id="vEet"></label><br><br>
-                        <b>Actual Start Date : </b><label id="vAst"></label><br>
-                        <b>Actual End Date : </b><label id="vAet"></label><br><br>
                     <div class="" style="overflow-x:auto;">
-                            <table class="table-view">
+                            <table class="table-view task-tb-mod">
                                 <thead>
                                     <tr>
                                         <th><b>Task Code</b></th>
                                         <th><b>Title</b></th>
                                         <th><b>Description</b></th>
                                         <th><b>Weight</b></th>
+                                        <th><b>Action</b></th>
                                     </tr>
                                 </thead>
                                 <tbody id="taskView">
 
                                 </tbody>
                             </table>
+                            <div id="projTaskDiv">
+                            </div>
+
                     </div>
                     <br>
                     <div class="" style="overflow-x:auto;">
@@ -202,6 +243,8 @@ function searchProj(){
 $(".showModal").click(function () {
     $('#showModal').modal('show');
     setTimeout(function(){ map.invalidateSize()}, 500);
+
+    var modalid = $(this).attr('data-modalid');
     var projCode = $(this).attr('data-code');
     var title = $(this).attr('data-title');
     var desc = $(this).attr('data-desc');
@@ -213,7 +256,6 @@ $(".showModal").click(function () {
 
     var byname = $(this).attr('data-byname');
 
-    
     var cdate = $(this).attr('data-cdate');
     var now_cdate = new Date(cdate);
     var formatCDate = now_cdate.toLocaleDateString()+" - "+now_cdate.toLocaleTimeString([], {timeStyle: 'short'});
@@ -224,7 +266,6 @@ $(".showModal").click(function () {
     }else{
         var status = "0.00%";
     }
-
     
     var es = $(this).attr('data-esd');
     var now_esd = new Date(es);
@@ -242,7 +283,7 @@ $(".showModal").click(function () {
     var now_aed = new Date(ae);
     var aed = now_aed.toLocaleDateString()+" - "+now_aed.toLocaleTimeString([], {timeStyle: 'short'});
 
-
+    $(".task-tb-mod").attr("id","tasktb"+modalid);
     $('#vproj').html(title);
     $('#vCode').html(projCode);
     $('#vTitle').html(title);
@@ -250,17 +291,11 @@ $(".showModal").click(function () {
     $('#vDesc').html(desc);
     $('#vStatus').html(status);
     $('#vper').html(status);
-    
-
     $('#vEst').html(esd);
     $('#vEet').html(eed);
-
     $('#vAst').html(asd);
     $('#vAet').html(aed);
-
     $('#vFooter').html("Created by : "+byname+"<br><small><em>"+formatCDate+"</small></em>");
-
-    
 
     //Task
         $.ajax({
@@ -303,7 +338,7 @@ $(".showModal").click(function () {
     //EndPM
 
     //EMP
-    $.ajax({
+        $.ajax({
             headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             url: "{{ route('emp_view') }}",
             method: "POST",
@@ -322,8 +357,13 @@ $(".showModal").click(function () {
         });
     //EndEMP
 
-    // SelectAddr(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");
     SelectAddr(Number(lat),Number(lon),'\"'+location+'"\'');
+    // var getTaskPath = "tasktb"+modalid;
+    // var countProjTask = document.getElementById(getTaskPath).rows.length;
+    // var x;
+    // for(x=0; x<countProjTask; x++){
+    //     $("#projTaskDiv").append("<div id='projTaskContent"+x+"'></div>");
+    // }
 });
 </script>
 
