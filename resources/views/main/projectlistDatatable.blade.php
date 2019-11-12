@@ -265,7 +265,11 @@
                         success:function(data)
                         {
                             $("#divTask"+projCode).html(data);
-                            $("#taskRow"+projCode).DataTable();
+                            $("#taskRow"+projCode).DataTable({
+                                "columnDefs": [
+                                    { "orderable": false, "targets": 4 }
+                                ]
+                            });
                             $('#taskRow'+projCode+'_wrapper').find('label').each(function () {
                                 $(this).parent().append($(this).children());
                             });

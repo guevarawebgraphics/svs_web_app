@@ -312,6 +312,9 @@ $('.proj-status-list').simpleLoadMore({
   itemsToLoad: 5,
   btnHTML: '<a href="#" class="btn btn-primary waves-effect load-more__btn" style="height:50px; margin:0 auto; margin-top: 2.5em!important;">View More <i class="fas fa-angle-down"></i></a>'
 });
+
+//Prevents showing error for multiple warning alert message
+$.fn.dataTable.ext.errMode = 'none';
 </script>
 
 
@@ -444,7 +447,11 @@ $(".showModal").click(function () {
             success:function(data)
             {
                 $("#taskView").html(data);
-                $("#taskViewMod").DataTable();
+                $("#taskViewMod").DataTable({
+                    "columnDefs": [
+                        { "orderable": false, "targets": 4 }
+                    ]
+                });
                 $('#taskViewMod_wrapper').find('label').each(function () {
                     $(this).parent().append($(this).children());
                 });

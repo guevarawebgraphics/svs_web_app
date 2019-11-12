@@ -16,7 +16,8 @@ use App\Models\ProjTaskView;
 class MainController extends Controller
 {
     public function index(){
-        if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        if(!empty(auth()->user()->id)){
             $view_project_percentage = DB::connection('mysql')->select("SELECT * from view_project_percentage ORDER BY created_at DESC");
         
             return view('main.index', compact('view_project_percentage'));
@@ -31,7 +32,7 @@ class MainController extends Controller
 
         if($request->type == "TASK")
         {
-            $task_selected = DB::connection('mysql')->select("SELECT * FROM view_projtask WHERE projCode = '".$request->code."' and deleted = 0");
+            $task_selected = DB::connection('mysql')->select("SELECT * FROM view_projtask WHERE projCode = '".$request->code."' and deleted = 0 and taskDeleted = 0");
             
             if($task_selected != ""){
                 foreach($task_selected as $field){
@@ -83,7 +84,7 @@ class MainController extends Controller
 
                         <td>'.$field->department.'</td>
 
-                        <td>NONE</td>
+                        <td>'.$field->team.'</td>
                     </tr>
                     ';
                 }
@@ -112,7 +113,7 @@ class MainController extends Controller
 
                         <td>'.$field->department.'</td>
 
-                        <td>NONE</td>
+                        <td>'.$field->team.'</td>
                     </tr>
                     ';
                 }
@@ -160,7 +161,8 @@ class MainController extends Controller
     }
 
     public function location(){
-        if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        if(!empty(auth()->user()->id)){
             return view('main.location');
         }else{
             return redirect('/');
@@ -168,7 +170,8 @@ class MainController extends Controller
     }
 
     public function task(){
-        if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        if(!empty(auth()->user()->id)){
             $task_record = TaskModel::where('deleted', 0)
             ->orderBy('created_at','desc')
             ->get();
@@ -447,7 +450,8 @@ class MainController extends Controller
     }
 
     public function projectlist(){
-        if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        if(!empty(auth()->user()->id)){
             $user_record = UserAccount::where('deleted', 0)
             ->where('is_admin', 0)
             ->orderBy('name','ASC')
@@ -1315,14 +1319,103 @@ class MainController extends Controller
     }
 
     public function assignproject(){
-        if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        if(!empty(auth()->user()->id)){
             return view('main.assignproject');
         }else{
             return redirect('/');
         }
     }
 
-    //Unused functions
+    public function retrack_task(){
+        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        if(!empty(auth()->user()->id)){
+            $task = DB::connection('mysql')->select("SELECT * from tbl_task WHERE deleted = 1 ORDER BY created_at DESC");
+        
+            return view('main.retracktask', compact('task'));
+        }else{
+            return redirect('/');
+        }
+    }
+
+    public function retrack_project(){
+        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        if(!empty(auth()->user()->id)){
+
+            $project_record = ProjectPercentage::where('deleted', 1)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            return view('main.retrackprojectlist', compact('project_record'));
+        }else{
+            return redirect('/');
+        }
+    }
+
+    public function retrack(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->type == "retrack_task" && $request->code != ""){
+            $task = DB::connection('mysql')->select("SELECT * from tbl_task WHERE taskCode = '".$request->code."' ORDER BY created_at DESC");
+        
+            DB::table('tbl_task')
+            ->where('taskCode', $request->code)
+            ->update([
+            'deleted'=> 0,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+
+            $request->session()->put('successRetrack',"Successfully Retracked!");
+            $request->session()->put('titleRetrack',$task[0]->task_title);
+            $request->session()->put('descRetrack',$task[0]->task_desc);
+            $request->session()->put('codeRetrack',$request->code);
+
+            $messages = "Successfully Reactivated!";
+            $success[] = $messages;
+        }
+        else if($request->type == "retrack_project" && $request->code != ""){
+            $proj = DB::connection('mysql')->select("SELECT * from tbl_projectlist WHERE proj_code = '".$request->code."' ORDER BY created_at DESC");
+        
+            DB::table('tbl_projectlist')
+            ->where('proj_code', $request->code)
+            ->update([
+            'deleted'=> 0,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+
+            $request->session()->put('successRetrack',"Successfully Retracked!");
+            $request->session()->put('titleRetrack',$proj[0]->proj_title);
+            $request->session()->put('descRetrack',$proj[0]->proj_desc);
+            $request->session()->put('codeRetrack',$request->code);
+
+            $messages = "Successfully Reactivated!";
+            $success[] = $messages;
+        }
+        else{
+            $messages = "Invalid request!";
+            $error[] = $messages;
+        }
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+        echo json_encode($output);
+    }
+
+
+    // ------------------------------------------------------------------------//
+    // This section all reusable codes will be commented for future purposes   //
+    // ------------------------------------------------------------------------//
+    // Unused functions
+
     // public function project_info(Request $request){
 
         //     $projTask = DB::connection('mysql')->select("SELECT a.projCode, a.taskWeight , b.taskCode, b.task_title, b.task_desc FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0 AND b.deleted = 0");

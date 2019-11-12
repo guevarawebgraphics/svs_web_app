@@ -11,21 +11,19 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               
-                @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0)
+                {{-- @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0) --}}
                 <a class="nav-link svs-text" href="/dashboard">
                 Dashboard
-                @else
+                {{-- @else
                 <a class="nav-link svs-text" href="/user/index">
                 Home
-                @endif
+                @endif --}}
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              {{-- <a class="nav-link svs-text" href="#">Users</a> --}}
-            </li>
+            
             <li class="nav-item dropdown">
-                @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0)
+                {{-- @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0) --}}
                     <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Project Configuration
                     </a>
@@ -35,11 +33,20 @@
                       <a class="dropdown-item svs-text" href="/projectlist">Project List</a>
                       {{-- <a class="dropdown-item svs-text" href="/assignproject">Assign Project</a> --}}
                     </div>
-                @else
+                {{-- @else
                   <a class="nav-link svs-text" href="#">
                     Features
                   </a>
-                @endif
+                @endif --}}
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Retrack</a>
+              <div class="dropdown-menu dropdown-default svs-text" aria-labelledby="navbarDropdownMenuLink-444">
+                <a class="dropdown-item svs-text" href="/retrack_task">Task Records <small><em>(Inactive)</em></small></a>
+                <a class="dropdown-item svs-text" href="/retrack_project">Project List <small><em>(Inactive)</em></small></a>
+              </div>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto nav-flex-icons">
