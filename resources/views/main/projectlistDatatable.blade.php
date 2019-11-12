@@ -111,6 +111,7 @@
                                                                     <th><b>Title</b></th>
                                                                     <th><b>Description</b></th>
                                                                     <th><b>Weight</b></th>
+                                                                    <th><b>Action</b></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="divTask{{$field->proj_code}}">
@@ -191,121 +192,217 @@
             <!-- table-wrap -->
 
 
+        <!-- Modal: openTask -->
+        <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog svs-modal-md" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Report : <span id="titleReport"></span></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                        <p class="note note-light">
+                                <strong>Reminder:</strong> 
+                                Shows submitted report from the app.
+                                <br>
+                            </p>
+                        <div class="container svs-overflow">
+                                <table id="dtOpenTask" class="table table-striped table-view" cellspacing="0" width="100%" summary="test">
+                                    <colgroup>
+                                        <col width="40px">
+                                            <col span="4" width="25%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th><b>Weight</b></th>
+                                            <th><b>Report</b></th>
+                                            <th><b>Submitted by</b></th>
+                                            <th><b>Created At</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="taskOpenView">
 
-            <script>
-            $(document).ready(function () {
-                $(".rowdt").click(function () {
-                    var projCode = $(this).attr('data-projcode');
-                    if ($('tr#' + $(this).data("href")).is(":visible")) {
-                        $('tr#' + $(this).data("href")).remove();
-                    } else {
-                        $(this).closest('tr').after('<tr id="' + $(this).data("href") + '"><td colspan="7">' + $('#' + $(this).data("href")).html() + '</td></tr>');
-                        
-                        //Task
-                            $.ajax({
-                                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                url: "{{ route('project_info_task') }}",
-                                method: "POST",
-                                data:{
-                                    proceed:"TRUE",
-                                    code:projCode
-                                }, 
-                                success:function(data)
-                                {
-                                    $("#divTask"+projCode).html(data);
-                                    $("#taskRow"+projCode).DataTable();
-                                    $('#taskRow'+projCode+'_wrapper').find('label').each(function () {
-                                        $(this).parent().append($(this).children());
-                                    });
-                                    $('#taskRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
-                                        const $this = $(this);
-                                        $this.attr("placeholder", "Search");
-                                        $this.removeClass('form-control-sm');
-                                    });
-                                    $('#taskRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
-                                    $('#taskRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
-                                    $('#taskRow'+projCode+'_wrapper select').removeClass(
-                                    'custom-select custom-select-sm form-control form-control-sm');
-                                    $('#taskRow'+projCode+'_wrapper select').addClass('mdb-select');
-                                    // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
-                                    $('#taskRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
-                                },
-                                error: function(xhr, ajaxOptions, thrownError){
-                                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                                }
-                            });
-                        //EndTask
+                                    </tbody>
+                                </table>
+                        </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer font-svs">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                {{-- <button class="btn btn-primary waves-effect">Continue</button> --}}
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
 
-                        //Pm
-                            $.ajax({
-                                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                url: "{{ route('project_info_pm') }}",
-                                method: "POST",
-                                data:{
-                                    proceed:"TRUE",
-                                    code:projCode
-                                }, 
-                                success:function(data)
-                                {
-                                    $("#divPm"+projCode).html(data);
-                                    $("#pmRow"+projCode).DataTable();
-                                    $('#pmRow'+projCode+'_wrapper').find('label').each(function () {
-                                        $(this).parent().append($(this).children());
-                                    });
-                                    $('#pmRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
-                                        const $this = $(this);
-                                        $this.attr("placeholder", "Search");
-                                        $this.removeClass('form-control-sm');
-                                    });
-                                    $('#pmRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
-                                    $('#pmRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
-                                    $('#pmRow'+projCode+'_wrapper select').removeClass(
-                                    'custom-select custom-select-sm form-control form-control-sm');
-                                    $('#pmRow'+projCode+'_wrapper select').addClass('mdb-select');
-                                    // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
-                                    $('#pmRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
-                                },
-                                error: function(xhr, ajaxOptions, thrownError){
-                                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                                }
-                            });
-                        //EndPm
 
-                        //Pm
-                        $.ajax({
-                                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                url: "{{ route('project_info_emp') }}",
-                                method: "POST",
-                                data:{
-                                    proceed:"TRUE",
-                                    code:projCode
-                                }, 
-                                success:function(data)
-                                {
-                                    $("#divEmp"+projCode).html(data);
-                                    $("#empRow"+projCode).DataTable();
-                                    $('#empRow'+projCode+'_wrapper').find('label').each(function () {
-                                        $(this).parent().append($(this).children());
-                                    });
-                                    $('#empRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
-                                        const $this = $(this);
-                                        $this.attr("placeholder", "Search");
-                                        $this.removeClass('form-control-sm');
-                                    });
-                                    $('#empRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
-                                    $('#empRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
-                                    $('#empRow'+projCode+'_wrapper select').removeClass(
-                                    'custom-select custom-select-sm form-control form-control-sm');
-                                    $('#empRow'+projCode+'_wrapper select').addClass('mdb-select');
-                                    // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
-                                    $('#empRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
-                                },
-                                error: function(xhr, ajaxOptions, thrownError){
-                                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                                }
+
+        
+<script>
+    $(document).ready(function () {
+        $(".rowdt").click(function () {
+            var projCode = $(this).attr('data-projcode');
+            if ($('tr#' + $(this).data("href")).is(":visible")) {
+                $('tr#' + $(this).data("href")).remove();
+            } else {
+                $(this).closest('tr').after('<tr id="' + $(this).data("href") + '"><td colspan="7">' + $('#' + $(this).data("href")).html() + '</td></tr>');
+                
+                //Task
+                    $.ajax({
+                        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        url: "{{ route('project_info_task') }}",
+                        method: "POST",
+                        data:{
+                            proceed:"TRUE",
+                            code:projCode
+                        }, 
+                        success:function(data)
+                        {
+                            $("#divTask"+projCode).html(data);
+                            $("#taskRow"+projCode).DataTable();
+                            $('#taskRow'+projCode+'_wrapper').find('label').each(function () {
+                                $(this).parent().append($(this).children());
                             });
-                        //EndPm
-                    }  
+                            $('#taskRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
+                                const $this = $(this);
+                                $this.attr("placeholder", "Search");
+                                $this.removeClass('form-control-sm');
+                            });
+                            $('#taskRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                            $('#taskRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
+                            $('#taskRow'+projCode+'_wrapper select').removeClass(
+                            'custom-select custom-select-sm form-control form-control-sm');
+                            $('#taskRow'+projCode+'_wrapper select').addClass('mdb-select');
+                            // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                            $('#taskRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                //EndTask
+
+                //Pm
+                    $.ajax({
+                        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        url: "{{ route('project_info_pm') }}",
+                        method: "POST",
+                        data:{
+                            proceed:"TRUE",
+                            code:projCode
+                        }, 
+                        success:function(data)
+                        {
+                            $("#divPm"+projCode).html(data);
+                            $("#pmRow"+projCode).DataTable();
+                            $('#pmRow'+projCode+'_wrapper').find('label').each(function () {
+                                $(this).parent().append($(this).children());
+                            });
+                            $('#pmRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
+                                const $this = $(this);
+                                $this.attr("placeholder", "Search");
+                                $this.removeClass('form-control-sm');
+                            });
+                            $('#pmRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                            $('#pmRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
+                            $('#pmRow'+projCode+'_wrapper select').removeClass(
+                            'custom-select custom-select-sm form-control form-control-sm');
+                            $('#pmRow'+projCode+'_wrapper select').addClass('mdb-select');
+                            // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                            $('#pmRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                //EndPm
+
+                //Pm
+                    $.ajax({
+                        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        url: "{{ route('project_info_emp') }}",
+                        method: "POST",
+                        data:{
+                            proceed:"TRUE",
+                            code:projCode
+                        }, 
+                        success:function(data)
+                        {
+                            $("#divEmp"+projCode).html(data);
+                            $("#empRow"+projCode).DataTable();
+                            $('#empRow'+projCode+'_wrapper').find('label').each(function () {
+                                $(this).parent().append($(this).children());
+                            });
+                            $('#empRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
+                                const $this = $(this);
+                                $this.attr("placeholder", "Search");
+                                $this.removeClass('form-control-sm');
+                            });
+                            $('#empRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                            $('#empRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
+                            $('#empRow'+projCode+'_wrapper select').removeClass(
+                            'custom-select custom-select-sm form-control form-control-sm');
+                            $('#empRow'+projCode+'_wrapper select').addClass('mdb-select');
+                            // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                            $('#empRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                //EndPm
+            }  
+        });
+    });
+</script>
+
+
+<script>
+        function openTask(taskCode,projCode,taskTitle){
+            $('#taskModal').modal('show');
+            $('#titleReport').html(taskTitle);
+            var code1 = projCode;
+            var code2 = taskCode;
+            //Task
+                $.ajax({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('open_task_view_list') }}",
+                    method: "POST",
+                    data:{
+                        proceed:"TRUE",
+                        projCode:code1,
+                        taskCode:code2
+                    }, 
+                    success:function(data)
+                    {
+                        $("#taskOpenView").html(data);
+                        $("#dtOpenTask").DataTable();
+                        $('#dtOpenTask_wrapper').find('label').each(function () {
+                            $(this).parent().append($(this).children());
+                        });
+                        $('#dtOpenTask_wrapper .dataTables_filter').find('input').each(function () {
+                            const $this = $(this);
+                            $this.attr("placeholder", "Search");
+                            $this.removeClass('form-control-sm');
+                        });
+                        $('#dtOpenTask_wrapper .dataTables_length').addClass('d-flex flex-row');
+                        $('#dtOpenTask_wrapper .dataTables_filter').addClass('md-form');
+                        $('#dtOpenTask_wrapper select').removeClass(
+                        'custom-select custom-select-sm form-control form-control-sm');
+                        $('#dtOpenTask_wrapper select').addClass('mdb-select');
+                        // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                        $('#dtOpenTask_wrapper .dataTables_filter').find('label').remove();
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
                 });
-            });
-            </script>
+            //EndTask
+        }
+        </script>
