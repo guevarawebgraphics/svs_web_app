@@ -20,6 +20,10 @@
 
     <!-- Your custom styles (optional) -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <!-- Load more -->
+    <script src="{{asset('plugins/static-load-more/jquery.simpleLoadMore.min.js') }}"></script>
+    
 </head>
 <body>
     <div id="app">

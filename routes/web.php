@@ -18,6 +18,7 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/dashboard/task_view', 'MainController@project_view')->name('task_view');
     Route::post('/dashboard/pm_view', 'MainController@project_view')->name('pm_view');
     Route::post('/dashboard/emp_view', 'MainController@project_view')->name('emp_view');
+    Route::post('/dashboard/open_task_view', 'MainController@open_task_view')->name('open_task_view');
     
     Route::get('/location', 'MainController@location');
 
@@ -35,6 +36,9 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/projectlist/save_project', 'MainController@save_project')->name('save_project');
     Route::post('/projectlist/session_success', 'MainController@session_success')->name('session_success');
     Route::post('/projectlist/project_info', 'MainController@project_info')->name('project_info');
+    Route::post('/projectlist/project_info_task', 'MainController@project_info_task')->name('project_info_task');
+    Route::post('/projectlist/project_info_pm', 'MainController@project_info_pm')->name('project_info_pm');
+    Route::post('/projectlist/project_info_emp', 'MainController@project_info_emp')->name('project_info_emp');
     Route::post('/projectlist/project_dropdown', 'MainController@project_dropdown')->name('project_dropdown');
     Route::post('/projectlist/project_unselected', 'MainController@project_unselected')->name('project_unselected');
     Route::post('/projectlist/project_update_val', 'MainController@project_update_val')->name('project_update_val');

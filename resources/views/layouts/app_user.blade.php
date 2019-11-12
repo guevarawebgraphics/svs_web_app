@@ -42,6 +42,9 @@
     <!-- Toastr JS -->
     <script src="{{ asset('js/addons/toastr.min.js') }}"></script>
 
+    <!-- Load more -->
+    <script src="{{asset('plugins/static-load-more/jquery.simpleLoadMore.min.js') }}"></script>
+
 </head>
 <body>
     

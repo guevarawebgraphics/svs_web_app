@@ -42,7 +42,7 @@ class MainController extends Controller
                         $taskWeight = 0.00."%";
                     }
                     $data .= '
-                    <tr>
+                    <tr class="row-element-lm">
                         <td>'.$field->taskCode.'</td>
 
                         <td>'.$field->task_title.'</td>
@@ -52,14 +52,13 @@ class MainController extends Controller
                         <td>'.$taskWeight.'</td>
 
                         <td>
-                            <button class="svs-action btn rowdt waves-effect waves-light" data-taskcode="'.$field->taskCode.'" data-href="'.$counter.'"><i class="fa fa-list"></i></button>
+                            <button type="button" class="svs-action btn waves-effect waves-light taskModal" onClick="openTask(\''.$field->taskCode.'\',\''.$field->projCode.'\',\''.$field->task_title.'\')" data-taskcode="'.$field->taskCode.'"><i class="fa fa-list"></i></button>
                         </td>
                     </tr>
                     ';
                     $counter++;
                 }
-            }else{
-                $data .= 'No Task found';
+                
             }
 
         }
@@ -88,8 +87,7 @@ class MainController extends Controller
                     </tr>
                     ';
                 }
-            }else{
-                $data .= 'No Project Manager found';
+               
             }
 
         }
@@ -118,8 +116,42 @@ class MainController extends Controller
                     </tr>
                     ';
                 }
-            }else{
-                $data .= 'No Employee found';
+                
+            }
+        }
+
+        echo $data;
+    }
+
+    public function open_task_view(Request $request){
+        $data = "";
+        $counter = 0;
+
+        if($request->proceed == "TRUE")
+        {
+            $progress = DB::connection('mysql')->select("SELECT * FROM view_proj_progress WHERE projCode = '".$request->projCode."' AND taskCode = '".$request->taskCode."' AND taskDeleted = 0 AND deleted = 0");
+            
+            if(count($progress)){
+                foreach($progress as $field){
+
+                    if($field->weight_progress != ""){
+                        $taskWeight = $field->weight_progress."%";
+                    }else{
+                        $taskWeight = 0.00."%";
+                    }
+                    $data .= '
+                    <tr>
+                        <td>'.$taskWeight.'</td>
+
+                        <td><p>'.$field->report.'</p></td>
+
+                        <td>'.$field->updated_by.'</td>
+
+                        <td>'.date("F d Y - h:i a",strtotime($field->created_at)).'</td>
+                    </tr>
+                    ';
+                    $counter++;
+                }
             }
 
         }
@@ -736,6 +768,98 @@ class MainController extends Controller
             'success'=>$success
         );
         echo json_encode($output);
+    }
+
+    public function project_info_task(Request $request){
+        $projTask = DB::connection('mysql')->select("SELECT a.projCode, a.taskWeight , b.taskCode, b.task_title, b.task_desc FROM tbl_projtask AS a LEFT JOIN tbl_task AS b ON a.taskCode = b.taskCode WHERE a.projCode = '".$request->code."' AND a.deleted = 0 AND b.deleted = 0");
+        $data = "";
+        $counter = 1;
+
+        if(count($projTask)){
+            foreach($projTask as $field){
+
+                $data .='
+                        <tr>
+                            <td>'.$field->taskCode.'</td>
+                            <td>'.$field->task_title.'</td>
+                            <td>'.$field->task_desc.'</td>
+                            <td>'.$field->taskWeight.'</td>
+                        </tr>
+                        ';
+                $counter++;
+            }
+        }
+
+        echo $data;
+    }
+
+    public function project_info_pm(Request $request){
+
+        $projPm = DB::connection('mysql')->select("
+        SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+        b.emp_no AS emp_no, b.company_id AS company_id, concat(b.lname,', ',b.fname,' ',b.mname) AS fullname, b.active AS active,
+
+        c.department AS department, c.position AS position, c.team AS team, c.employment_status AS employment_status
+
+                    
+        FROM tbl_emp_proj AS a LEFT JOIN hris_csi_b.personal_information AS b ON a.emp_id = b.company_id
+        LEFT JOIN hris_csi_b.employee_information AS c ON a.emp_id = c.company_id
+        WHERE (b.active = 'yes') AND projCode = '".$request->code."' AND a.deleted = 0 AND type = 'PM'
+        ");
+
+        $data = "";
+        $counterPM = 1;
+
+        if(count($projPm)){
+            foreach($projPm as $fieldPM){
+                $data .='
+                        <tr>
+                                <td>'.$fieldPM->fullname.'</td>
+                                <td>'.$fieldPM->position.'</td>
+                                <td>'.$fieldPM->department.'</td>
+                                <td>'.$fieldPM->position.'</td>
+                        </tr>
+                        ';
+                $counterPM++;
+            }
+        }
+
+        echo $data;
+
+    }
+
+    public function project_info_emp(Request $request){
+        
+        $projEmp = DB::connection('mysql')->select("
+        SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+        b.emp_no AS emp_no, b.company_id AS company_id, concat(b.lname,', ',b.fname,' ',b.mname) AS fullname, b.active AS active,
+
+        c.department AS department, c.position AS position, c.team AS team, c.employment_status AS employment_status
+
+                    
+        FROM tbl_emp_proj AS a LEFT JOIN hris_csi_b.personal_information AS b ON a.emp_id = b.company_id
+        LEFT JOIN hris_csi_b.employee_information AS c ON a.emp_id = c.company_id
+        WHERE (b.active = 'yes') AND projCode = '".$request->code."' AND a.deleted = 0 AND type = 'EMP'
+        ");
+
+        $data = "";
+        $counterEMP = 1;
+
+        if(count($projEmp)){
+            foreach($projEmp as $fieldEMP){
+                $data .='
+                        <tr>
+                            <td>'.$fieldEMP->fullname.'</td>
+                            <td>'.$fieldEMP->position.'</td>
+                            <td>'.$fieldEMP->department.'</td>
+                            <td>'.$fieldEMP->position.'</td>
+                        </tr>
+                        ';
+                $counterEMP++;
+            }
+        }
+
+        echo $data;
     }
 
     public function project_info(Request $request){

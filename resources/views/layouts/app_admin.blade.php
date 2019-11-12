@@ -71,6 +71,8 @@
     <link rel="stylesheet" href="{{asset('plugins/search-option-list/sol.css') }}" />
     <script type="text/javascript" src="{{asset('plugins/search-option-list/sol.js') }}"></script>
 
+    <!-- Load more -->
+    <script src="{{asset('plugins/static-load-more/jquery.simpleLoadMore.min.js') }}"></script>
 </head>
 <body>
     @include('includes.nav') 

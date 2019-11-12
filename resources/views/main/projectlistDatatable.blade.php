@@ -77,10 +77,104 @@
                                             <label><b>Actual End Date : </b></label>&nbsp;{{date('F d Y - h:i a',strtotime($field->act_end_date))}}<br>
                                     </div>
                                 </div>
+                                <hr>
+                                <!-- Classic tabs -->
+                                <div class="classic-tabs mx-2">
 
-                                <div class="" id="divTask{{$field->proj_code}}">
+                                        <ul class="nav tabs-cyan" id="myClassicTabShadow" role="tablist">
+                                            <li class="nav-item svs-nav-item">
+                                                <a class="nav-link font-svs-normal waves-light active show" id="profile-tab-classic-shadow" data-toggle="tab" href="#profile-classic-shadow{{$field->proj_code}}"
+                                                role="tab" aria-controls="profile-classic-shadow" aria-selected="true">Task</a>
+                                            </li>
+                                            <li class="nav-item svs-nav-item">
+                                                <a class="nav-link font-svs-normal waves-light" id="follow-tab-classic-shadow" data-toggle="tab" href="#follow-classic-shadow{{$field->proj_code}}"
+                                                role="tab" aria-controls="follow-classic-shadow" aria-selected="false">Project Manager</a>
+                                            </li>
+                                            <li class="nav-item svs-nav-item">
+                                                <a class="nav-link font-svs-normal waves-light" id="contact-tab-classic-shadow" data-toggle="tab" href="#contact-classic-shadow{{$field->proj_code}}"
+                                                role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Employee</a>
+                                            </li>
+                                        </ul>
+                                    
+                                        <div class="tab-content" id="myClassicTabContentShadow">
+                                            <div class="tab-pane fade active show" id="profile-classic-shadow{{$field->proj_code}}" role="tabpanel" aria-labelledby="profile-tab-classic-shadow{{$field->proj_code}}">
+                                                    
+                                                    <div class="container svs-overflow">
+                                                        <table id="taskRow{{$field->proj_code}}" class="svs-table-mini" cellspacing="0" width="100%" summary="test">
+                                                            <colgroup>
+                                                                <col width="40px">
+                                                                    <col span="4" width="25%">
+                                                            </colgroup>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><b>Task Code</b></th>
+                                                                    <th><b>Title</b></th>
+                                                                    <th><b>Description</b></th>
+                                                                    <th><b>Weight</b></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="divTask{{$field->proj_code}}">
+                    
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 
+
+                                            </div>
+                                            <div class="tab-pane fade" id="follow-classic-shadow{{$field->proj_code}}" role="tabpanel" aria-labelledby="follow-tab-classic-shadow{{$field->proj_code}}">
+                                                    
+                                                    <div class="container svs-overflow">
+                                                        <table id="pmRow{{$field->proj_code}}" class="svs-table-mini" cellspacing="0" width="100%" summary="test">
+                                                            <colgroup>
+                                                                <col width="40px">
+                                                                    <col span="4" width="25%">
+                                                            </colgroup>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><b>Project Manager Name</b></th>
+                                                                    <th><b>Position</b></th>
+                                                                    <th><b>Department</b></th>
+                                                                    <th><b>Team</b></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="divPm{{$field->proj_code}}">
+                    
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                            </div>
+                                            <div class="tab-pane fade" id="contact-classic-shadow{{$field->proj_code}}" role="tabpanel" aria-labelledby="contact-tab-classic-shadow{{$field->proj_code}}">
+                                                    
+                                                <div class="container svs-overflow">
+                                                    <table id="empRow{{$field->proj_code}}" class="svs-table-mini" cellspacing="0" width="100%" summary="test">
+                                                        <colgroup>
+                                                            <col width="40px">
+                                                                <col span="4" width="25%">
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr>
+                                                                <th><b>Employee Name</b></th>
+                                                                <th><b>Position</b></th>
+                                                                <th><b>Department</b></th>
+                                                                <th><b>Team</b></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="divEmp{{$field->proj_code}}">
+                
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    
                                 </div>
+                                <!-- Classic tabs -->
+
+                                {{-- <div class="" id="divTask{{$field->proj_code}}">
+
+                                </div> --}}
                                 <br><br>
                                 <div class="container">
                                     <h6 class="float-right">Created By: {{$field->updated_by}}</h6>
@@ -107,22 +201,110 @@
                     } else {
                         $(this).closest('tr').after('<tr id="' + $(this).data("href") + '"><td colspan="7">' + $('#' + $(this).data("href")).html() + '</td></tr>');
                         
+                        //Task
+                            $.ajax({
+                                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                url: "{{ route('project_info_task') }}",
+                                method: "POST",
+                                data:{
+                                    proceed:"TRUE",
+                                    code:projCode
+                                }, 
+                                success:function(data)
+                                {
+                                    $("#divTask"+projCode).html(data);
+                                    $("#taskRow"+projCode).DataTable();
+                                    $('#taskRow'+projCode+'_wrapper').find('label').each(function () {
+                                        $(this).parent().append($(this).children());
+                                    });
+                                    $('#taskRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
+                                        const $this = $(this);
+                                        $this.attr("placeholder", "Search");
+                                        $this.removeClass('form-control-sm');
+                                    });
+                                    $('#taskRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                                    $('#taskRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
+                                    $('#taskRow'+projCode+'_wrapper select').removeClass(
+                                    'custom-select custom-select-sm form-control form-control-sm');
+                                    $('#taskRow'+projCode+'_wrapper select').addClass('mdb-select');
+                                    // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                                    $('#taskRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
+                                },
+                                error: function(xhr, ajaxOptions, thrownError){
+                                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                                }
+                            });
+                        //EndTask
+
+                        //Pm
+                            $.ajax({
+                                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                url: "{{ route('project_info_pm') }}",
+                                method: "POST",
+                                data:{
+                                    proceed:"TRUE",
+                                    code:projCode
+                                }, 
+                                success:function(data)
+                                {
+                                    $("#divPm"+projCode).html(data);
+                                    $("#pmRow"+projCode).DataTable();
+                                    $('#pmRow'+projCode+'_wrapper').find('label').each(function () {
+                                        $(this).parent().append($(this).children());
+                                    });
+                                    $('#pmRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
+                                        const $this = $(this);
+                                        $this.attr("placeholder", "Search");
+                                        $this.removeClass('form-control-sm');
+                                    });
+                                    $('#pmRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                                    $('#pmRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
+                                    $('#pmRow'+projCode+'_wrapper select').removeClass(
+                                    'custom-select custom-select-sm form-control form-control-sm');
+                                    $('#pmRow'+projCode+'_wrapper select').addClass('mdb-select');
+                                    // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                                    $('#pmRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
+                                },
+                                error: function(xhr, ajaxOptions, thrownError){
+                                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                                }
+                            });
+                        //EndPm
+
+                        //Pm
                         $.ajax({
-                            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                            url: "{{ route('project_info') }}",
-                            method: "POST",
-                            data:{
-                                proceed:"TRUE",
-                                code:projCode
-                            }, 
-                            success:function(data)
-                            {
-                                $("#divTask"+projCode).html(data);
-                            },
-                            error: function(xhr, ajaxOptions, thrownError){
-                                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                            }
-                        });
+                                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                url: "{{ route('project_info_emp') }}",
+                                method: "POST",
+                                data:{
+                                    proceed:"TRUE",
+                                    code:projCode
+                                }, 
+                                success:function(data)
+                                {
+                                    $("#divEmp"+projCode).html(data);
+                                    $("#empRow"+projCode).DataTable();
+                                    $('#empRow'+projCode+'_wrapper').find('label').each(function () {
+                                        $(this).parent().append($(this).children());
+                                    });
+                                    $('#empRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
+                                        const $this = $(this);
+                                        $this.attr("placeholder", "Search");
+                                        $this.removeClass('form-control-sm');
+                                    });
+                                    $('#empRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                                    $('#empRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
+                                    $('#empRow'+projCode+'_wrapper select').removeClass(
+                                    'custom-select custom-select-sm form-control form-control-sm');
+                                    $('#empRow'+projCode+'_wrapper select').addClass('mdb-select');
+                                    // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                                    $('#empRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
+                                },
+                                error: function(xhr, ajaxOptions, thrownError){
+                                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                                }
+                            });
+                        //EndPm
                     }  
                 });
             });

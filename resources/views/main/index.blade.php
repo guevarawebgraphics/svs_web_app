@@ -25,12 +25,8 @@ ul {
   text-align: left;
 }
 
-.font-svs{
-    font-size:.9rem;
-    font-weight:300;
-}
-
 </style>
+
     <!--Grid column-->
     <div class="container">
         <div class="container">
@@ -45,15 +41,16 @@ ul {
             </div>
         </div>
 
-        <div class="row" style="margin-top: 8em;">
+        <div class="row proj-status-list" style="margin-top: 8em;">
             @if(count($view_project_percentage))
             @php
             $counter = 0;    
             @endphp
+                <div class="col-md-12 element-item">
+                    <div class="card-deck two-col">
                 @foreach($view_project_percentage as $field)
-                    <div class="col-md-6">
-                    <div class="rounded-rectangle-svs card current-proj showModal" data-modalid="{{$counter}}" data-code="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}">
-                            <h4 class="svs-text"><b>{{$field->proj_title}}</b></h4>
+                        <div class="proj-status-item rounded-rectangle-svs card current-proj showModal" data-modalid="{{$counter}}" data-code="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}">
+                            <h5 class="svs-text"><b>{{$field->proj_title}}</b></h5>
                             <div class="row" style="overflow-x:auto;">
                                 <div class="col-md-8">
                                 <p class="">{{$field->proj_desc}}</p>
@@ -71,11 +68,12 @@ ul {
                                 
                             </div>
                         </div>
-                    </div>
                     @php
                         $counter++;   
                     @endphp
                 @endforeach
+                    </div>
+                </div>
             @endif
         </div>
 
@@ -86,7 +84,7 @@ ul {
 <!--Grid row-->
 
 
-<!-- Modal: delTask -->
+<!-- Modal: Task -->
 <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog svs-modal" role="document">
@@ -156,57 +154,93 @@ ul {
                     </div>
                 </div>
                 <div class="col-md-6 font-svs">
-                    <div class="" style="overflow-x:auto;">
-                            <table class="table-view task-tb-mod">
-                                <thead>
-                                    <tr>
-                                        <th><b>Task Code</b></th>
-                                        <th><b>Title</b></th>
-                                        <th><b>Description</b></th>
-                                        <th><b>Weight</b></th>
-                                        <th><b>Action</b></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="taskView">
+                    <!-- Classic tabs -->
+                    <div class="classic-tabs mx-2">
 
-                                </tbody>
-                            </table>
-                            <div id="projTaskDiv">
+                        <ul class="nav tabs-cyan" id="myClassicTabShadow" role="tablist">
+                            <li class="nav-item svs-nav-item">
+                                <a class="nav-link font-svs-normal waves-light active show" id="profile-tab-classic-shadow" data-toggle="tab" href="#profile-classic-shadow"
+                                role="tab" aria-controls="profile-classic-shadow" aria-selected="true">Task</a>
+                            </li>
+                            <li class="nav-item svs-nav-item">
+                                <a class="nav-link font-svs-normal waves-light" id="follow-tab-classic-shadow" data-toggle="tab" href="#follow-classic-shadow"
+                                role="tab" aria-controls="follow-classic-shadow" aria-selected="false">Project Manager</a>
+                            </li>
+                            <li class="nav-item svs-nav-item">
+                                <a class="nav-link font-svs-normal waves-light" id="contact-tab-classic-shadow" data-toggle="tab" href="#contact-classic-shadow"
+                                role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Employee</a>
+                            </li>
+                        </ul>
+                    
+                        <div class="tab-content" id="myClassicTabContentShadow">
+                            <div class="tab-pane fade active show" id="profile-classic-shadow" role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
+                                    <div class="container svs-overflow">
+                                        <table id="taskViewMod" class="table table-striped table-view task-tb-mod" cellspacing="0" width="100%" summary="test">
+                                            <colgroup>
+                                                <col width="40px">
+                                                    <col span="4" width="25%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th><b>Task Code</b></th>
+                                                    <th><b>Title</b></th>
+                                                    <th><b>Description</b></th>
+                                                    <th><b>Weight</b></th>
+                                                    <th><b>Action</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="taskView">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                             </div>
+                            <div class="tab-pane fade" id="follow-classic-shadow" role="tabpanel" aria-labelledby="follow-tab-classic-shadow">
+                                    <div class="container svs-overflow">
+                                        <table id="pmViewMod" class="table table-striped table-view pm-tb-mod" cellspacing="0" width="100%" summary="test">
+                                            <colgroup>
+                                                <col width="40px">
+                                                    <col span="4" width="25%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th><b>Project Manager</b></th>
+                                                    <th><b>Position</b></th>
+                                                    <th><b>Department</b></th>
+                                                    <th><b>Team</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="pmView">
 
-                    </div>
-                    <br>
-                    <div class="" style="overflow-x:auto;">
-                            <table class="table-view">
-                                <thead>
-                                    <tr>
-                                        <th><b>Project Manager</b></th>
-                                        <th><b>Position</b></th>
-                                        <th><b>Department</b></th>
-                                        <th><b>Team</b></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="pmView">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                            <div class="tab-pane fade" id="contact-classic-shadow" role="tabpanel" aria-labelledby="contact-tab-classic-shadow">
+                                    <div class="container svs-overflow">
+                                        <table id="empViewMod" class="table table-striped table-view emp-tb-mod" cellspacing="0" width="100%" summary="test">
+                                            <colgroup>
+                                                <col width="40px">
+                                                    <col span="4" width="25%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th><b>Employee</b></th>
+                                                    <th><b>Position</b></th>
+                                                    <th><b>Department</b></th>
+                                                    <th><b>Team</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="empView">
 
-                                </tbody>
-                            </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                        </div>
+                    
                     </div>
-                    <br>
-                    <div class="" style="overflow-x:auto;">
-                            <table class="table-view">
-                                <thead>
-                                    <tr>
-                                        <th><b>Employee</b></th>
-                                        <th><b>Position</b></th>
-                                        <th><b>Department</b></th>
-                                        <th><b>Team</b></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="empView">
-
-                                </tbody>
-                            </table>
-                    </div>
+                    <!-- Classic tabs -->
                 </div>
             </div>
                 
@@ -222,8 +256,66 @@ ul {
   </div>
 </div>
 
-<script>
+<!-- Modal: openTask -->
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog svs-modal-md" role="document">
+    <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Report : <span id="titleReport"></span></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <!--Body-->
+        <div class="modal-body">
+                <p class="note note-light">
+                        <strong>Reminder:</strong> 
+                        Shows submitted report from the app.
+                        <br>
+                    </p>
+                <div class="container svs-overflow">
+                        <table id="dtOpenTask" class="table table-striped table-view" cellspacing="0" width="100%" summary="test">
+                            <colgroup>
+                                <col width="40px">
+                                    <col span="4" width="25%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th><b>Weight</b></th>
+                                    <th><b>Report</b></th>
+                                    <th><b>Submitted by</b></th>
+                                    <th><b>Created At</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id="taskOpenView">
 
+                            </tbody>
+                        </table>
+                </div>
+        </div>
+        <!--Footer-->
+        <div class="modal-footer font-svs">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        {{-- <button class="btn btn-primary waves-effect">Continue</button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('.proj-status-list').simpleLoadMore({
+  item: '.proj-status-item',
+  count: 6,
+  itemsToLoad: 5,
+  btnHTML: '<a href="#" class="btn btn-primary waves-effect load-more__btn" style="height:50px; margin:0 auto; margin-top: 2.5em!important;">View More <i class="fas fa-angle-down"></i></a>'
+});
+</script>
+
+
+<script>
 function searchProj(){
     var input = document.getElementById("searchProj");
     var filter = input.value.toLowerCase();
@@ -240,10 +332,53 @@ function searchProj(){
 </script>
 
 <script>
+function openTask(taskCode,projCode,taskTitle){
+    $('#taskModal').modal('show');
+    $('#titleReport').html(taskTitle);
+    var code1 = projCode;
+    var code2 = taskCode;
+    //Task
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{ route('open_task_view') }}",
+            method: "POST",
+            data:{
+                proceed:"TRUE",
+                projCode:code1,
+                taskCode:code2
+            }, 
+            success:function(data)
+            {
+                $("#taskOpenView").html(data);
+                $("#dtOpenTask").DataTable();
+                $('#dtOpenTask_wrapper').find('label').each(function () {
+                    $(this).parent().append($(this).children());
+                });
+                $('#dtOpenTask_wrapper .dataTables_filter').find('input').each(function () {
+                    const $this = $(this);
+                    $this.attr("placeholder", "Search");
+                    $this.removeClass('form-control-sm');
+                });
+                $('#dtOpenTask_wrapper .dataTables_length').addClass('d-flex flex-row');
+                $('#dtOpenTask_wrapper .dataTables_filter').addClass('md-form');
+                $('#dtOpenTask_wrapper select').removeClass(
+                'custom-select custom-select-sm form-control form-control-sm');
+                $('#dtOpenTask_wrapper select').addClass('mdb-select');
+                // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                $('#dtOpenTask_wrapper .dataTables_filter').find('label').remove();
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    //EndTask
+}
+</script>
+
+<script>
 $(".showModal").click(function () {
     $('#showModal').modal('show');
     setTimeout(function(){ map.invalidateSize()}, 500);
-
     var modalid = $(this).attr('data-modalid');
     var projCode = $(this).attr('data-code');
     var title = $(this).attr('data-title');
@@ -283,7 +418,6 @@ $(".showModal").click(function () {
     var now_aed = new Date(ae);
     var aed = now_aed.toLocaleDateString()+" - "+now_aed.toLocaleTimeString([], {timeStyle: 'short'});
 
-    $(".task-tb-mod").attr("id","tasktb"+modalid);
     $('#vproj').html(title);
     $('#vCode').html(projCode);
     $('#vTitle').html(title);
@@ -310,6 +444,22 @@ $(".showModal").click(function () {
             success:function(data)
             {
                 $("#taskView").html(data);
+                $("#taskViewMod").DataTable();
+                $('#taskViewMod_wrapper').find('label').each(function () {
+                    $(this).parent().append($(this).children());
+                });
+                $('#taskViewMod_wrapper .dataTables_filter').find('input').each(function () {
+                    const $this = $(this);
+                    $this.attr("placeholder", "Search");
+                    $this.removeClass('form-control-sm');
+                });
+                $('#taskViewMod_wrapper .dataTables_length').addClass('d-flex flex-row');
+                $('#taskViewMod_wrapper .dataTables_filter').addClass('md-form');
+                $('#taskViewMod_wrapper select').removeClass(
+                'custom-select custom-select-sm form-control form-control-sm');
+                $('#taskViewMod_wrapper select').addClass('mdb-select');
+                // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                $('#taskViewMod_wrapper .dataTables_filter').find('label').remove();
             },
             error: function(xhr, ajaxOptions, thrownError){
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -330,6 +480,22 @@ $(".showModal").click(function () {
             success:function(data)
             {
                 $("#pmView").html(data);
+                $("#pmViewMod").DataTable();
+                $('#pmViewMod_wrapper').find('label').each(function () {
+                    $(this).parent().append($(this).children());
+                });
+                $('#pmViewMod_wrapper .dataTables_filter').find('input').each(function () {
+                    const $this = $(this);
+                    $this.attr("placeholder", "Search");
+                    $this.removeClass('form-control-sm');
+                });
+                $('#pmViewMod_wrapper .dataTables_length').addClass('d-flex flex-row');
+                $('#pmViewMod_wrapper .dataTables_filter').addClass('md-form');
+                $('#pmViewMod_wrapper select').removeClass(
+                'custom-select custom-select-sm form-control form-control-sm');
+                $('#pmViewMod_wrapper select').addClass('mdb-select');
+                // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                $('#pmViewMod_wrapper .dataTables_filter').find('label').remove();
             },
             error: function(xhr, ajaxOptions, thrownError){
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -350,6 +516,22 @@ $(".showModal").click(function () {
             success:function(data)
             {
                 $("#empView").html(data);
+                $("#empViewMod").DataTable();
+                $('#empViewMod_wrapper').find('label').each(function () {
+                    $(this).parent().append($(this).children());
+                });
+                $('#empViewMod_wrapper .dataTables_filter').find('input').each(function () {
+                    const $this = $(this);
+                    $this.attr("placeholder", "Search");
+                    $this.removeClass('form-control-sm');
+                });
+                $('#empViewMod_wrapper .dataTables_length').addClass('d-flex flex-row');
+                $('#empViewMod_wrapper .dataTables_filter').addClass('md-form');
+                $('#empViewMod_wrapper select').removeClass(
+                'custom-select custom-select-sm form-control form-control-sm');
+                $('#empViewMod_wrapper select').addClass('mdb-select');
+                // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                $('#empViewMod_wrapper .dataTables_filter').find('label').remove();
             },
             error: function(xhr, ajaxOptions, thrownError){
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -358,17 +540,11 @@ $(".showModal").click(function () {
     //EndEMP
 
     SelectAddr(Number(lat),Number(lon),'\"'+location+'"\'');
-    // var getTaskPath = "tasktb"+modalid;
-    // var countProjTask = document.getElementById(getTaskPath).rows.length;
-    // var x;
-    // for(x=0; x<countProjTask; x++){
-    //     $("#projTaskDiv").append("<div id='projTaskContent"+x+"'></div>");
-    // }
+
 });
 </script>
 
 <script>
-
 //Map
     var startlat = 14.56051510;
     var startlon = 121.07671290;

@@ -82,6 +82,9 @@ background-color:#222222;
     .svs-modal{
         max-width:80%!important;
     }
+    .svs-modal-md{
+        max-width:60%!important;
+    }
   }
 @media only screen and (max-width: 600px) {
     /* .svs-logo{
@@ -96,6 +99,9 @@ background-color:#222222;
         overflow-y:auto; 
     }
     .svs-modal{
+        max-width:100%!important;
+    }
+    .svs-modal-md{
         max-width:100%!important;
     }
   }
@@ -176,3 +182,26 @@ background-color:#222222;
     position:absolute;
     color:#222222!important;
 } */
+@media (min-width: 768px) {
+    .card-deck.two-col .card {
+        flex-basis: calc(50% - 30px);
+   }
+}
+.card-deck .card {
+    flex-basis: 100%;
+}
+
+.font-svs{
+    font-size:.9rem;
+    font-weight:300;
+}
+.font-svs-normal{
+    color:#222222!important;
+}
+.svs-nav-item > .active{
+    color:#f8931c!important;
+}
+.svs-table-mini th{
+    background-color:#222!important;
+    color: #fff!important;
+}
