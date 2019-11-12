@@ -18,7 +18,7 @@ class MainController extends Controller
     public function index(){
         // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
         if(!empty(auth()->user()->id)){
-            $view_project_percentage = DB::connection('mysql')->select("SELECT * from view_project_percentage ORDER BY created_at DESC");
+            $view_project_percentage = DB::connection('mysql')->select("SELECT * from view_project_percentage WHERE deleted = 0 ORDER BY created_at DESC");
         
             return view('main.index', compact('view_project_percentage'));
         }else{
