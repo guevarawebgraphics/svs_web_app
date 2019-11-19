@@ -58,7 +58,8 @@
 
                         <div class="md-form">
                             <textarea type="text" id="desc" name="desc" maxlength="190" class="form-control md-textarea"></textarea>
-                            <label for="desc">Description</label>
+                            {{-- <label for="desc">Description</label> --}}
+                            <label for="desc">Work Breakdown Structure</label>
                         </div>
 
                     </div>
@@ -193,7 +194,7 @@ $(".editTask").click(function () {
     var code = $(this).attr('data-code');
     var crt = $(this).attr('data-crt');
     $("#divTitle").html("<input type='text' value='"+title+"' id='editTitle' name='editTitle' class='form-control'> <label for='editTitle' class='active'>Title</label>");
-    $("#divTxtarea").html("<textarea type='text' id='editDesc' name='editDesc' maxlength='190' class='form-control md-textarea'>"+desc+"</textarea> <label for='editDesc' class='active'>Description</label>");
+    $("#divTxtarea").html("<textarea type='text' id='editDesc' name='editDesc' maxlength='190' class='form-control md-textarea'>"+desc+"</textarea> <label for='editDesc' class='active'>Work Breakdown Structure</label>");
     $("#eTC").html(code);
     $("#updateTask").attr("data-id",id);
     $("#updateTask").attr("data-title",title);

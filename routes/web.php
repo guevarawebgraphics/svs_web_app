@@ -57,7 +57,7 @@ Route::group(['middleware'=> ['admin']], function(){
     // ------------------------------------------------------------------------//
     // This section all reusable codes will be commented for future purposes   //
     // ------------------------------------------------------------------------//
-    //Unused routes
+    // Unused routes
     // Route::post('/projectlist/project_info', 'MainController@project_info')->name('project_info');
 });
 
@@ -67,6 +67,7 @@ Route::group(['middleware'=> ['auth']], function(){
     Route::post('/dashboard/task_view', 'MainController@project_view')->name('task_view');
     Route::post('/dashboard/pm_view', 'MainController@project_view')->name('pm_view');
     Route::post('/dashboard/emp_view', 'MainController@project_view')->name('emp_view');
+    Route::post('/dashboard/act_view', 'MainController@project_view')->name('act_view');
     Route::post('/dashboard/open_task_view', 'MainController@open_task_view')->name('open_task_view');
     
     Route::get('/location', 'MainController@location');

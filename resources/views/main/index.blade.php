@@ -49,7 +49,7 @@ ul {
                 <div class="col-md-12 element-item">
                     <div class="card-deck two-col">
                 @foreach($view_project_percentage as $field)
-                        <div class="proj-status-item rounded-rectangle-svs card current-proj showModal" data-modalid="{{$counter}}" data-code="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}">
+                    <div class="proj-status-item rounded-rectangle-svs card current-proj showModal" data-modalid="{{$counter}}" data-code="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}" data-issue="{{$field->issue}}" data-report="{{$field->report}}">
                             <h5 class="svs-text"><b>{{$field->proj_title}}</b></h5>
                             <div class="row" style="overflow-x:auto;">
                                 <div class="col-md-8">
@@ -84,6 +84,9 @@ ul {
 <!--Grid row-->
 
 
+
+
+
 <!-- Modal: Task -->
 <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
@@ -105,10 +108,12 @@ ul {
                 </p>
             <div class="row">
                 <div class="col-md-6 font-svs">
-                    <a href="" name="lon" id="lon" style="display:none;"></a>
-                    <a href="" name="lat" id="lat" style="display:none;"></a>
+                    {{-- <a href="" name="lon" id="lon" style="display:none;"></a>
+                    <a href="" name="lat" id="lat" style="display:none;"></a> --}}
 
-                    <div id="svsMap" style="width: 100%; height:300px;"></div>
+                    {{-- <div id="svsMap" style="width: 100%; height:300px;"></div> --}}
+
+                    <br>
                     <br>
                     <div class="row">
                         <div class="col-md-6">
@@ -120,11 +125,15 @@ ul {
                                     <tr>
                                         <td><b>Title : </b><label id="vTitle"></label></td>
                                     </tr>
+                                    
                                     <tr>
-                                        <td><b>Description : </b><label id="vDesc"></label></td>
+                                        <td>&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Project Status : </b><label id="vStatus"></label></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Description : </b><label id="vDesc"></label></td>
                                     </tr>
                                     <tr>
                                         <td><b>Location : </b><label id="vLoc"></label></td>
@@ -142,6 +151,12 @@ ul {
                                         <td><b>Estimated End Date : </b><label id="vEet"></label></td>
                                     </tr>
                                     <tr>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
                                         <td><b>Actual Start Date : </b><label id="vAst"></label></td>
                                     </tr>
                                     <tr>
@@ -151,7 +166,28 @@ ul {
                             </table>
                         </div>
                         <br>
+                       
+                        
                     </div>
+                    <br>
+                    <div class="row container">
+                        <div class="col-md-4">
+                            <center><a class="svs-text-center">Reports</a></center>
+                            <br>
+                            <div class="card rounded-circle svs-circle btn-danger"><h5 class="svs-round-text"><b id="vReport">23</b></h5></div>
+                        </div>
+                        <div class="col-md-4">
+                            <center><a class="svs-text-center">Issues</a></center>
+                            <br>
+                            <div class="card rounded-circle svs-circle btn-warning"><h5 class="svs-round-text"><b id="vIssue">23</b></h5></div>
+                        </div>
+                        <div class="col-md-4">
+                            <center><a class="svs-text-center">Project Status</a></center>
+                            <br>
+                            <div class="card rounded-circle svs-circle btn-info"><h5 class="svs-round-text"><b id="vStatus">23</b></h5></div>
+                        </div>
+                    </div>
+                    <br>
                 </div>
                 <div class="col-md-6 font-svs">
                     <!-- Classic tabs -->
@@ -159,7 +195,11 @@ ul {
 
                         <ul class="nav tabs-cyan" id="myClassicTabShadow" role="tablist">
                             <li class="nav-item svs-nav-item">
-                                <a class="nav-link font-svs-normal waves-light active show" id="profile-tab-classic-shadow" data-toggle="tab" href="#profile-classic-shadow"
+                                <a class="nav-link font-svs-normal waves-light active show" id="log-tab-classic-shadow" data-toggle="tab" href="#log-classic-shadow"
+                                role="tab" aria-controls="log-classic-shadow" aria-selected="false">Project Logs</a>
+                            </li>
+                            <li class="nav-item svs-nav-item">
+                                <a class="nav-link font-svs-normal waves-light" id="profile-tab-classic-shadow" data-toggle="tab" href="#profile-classic-shadow"
                                 role="tab" aria-controls="profile-classic-shadow" aria-selected="true">Task</a>
                             </li>
                             <li class="nav-item svs-nav-item">
@@ -170,10 +210,33 @@ ul {
                                 <a class="nav-link font-svs-normal waves-light" id="contact-tab-classic-shadow" data-toggle="tab" href="#contact-classic-shadow"
                                 role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Employee</a>
                             </li>
+                            
                         </ul>
                     
                         <div class="tab-content" id="myClassicTabContentShadow">
-                            <div class="tab-pane fade active show" id="profile-classic-shadow" role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
+                            <div class="tab-pane fade active show" id="log-classic-shadow" role="tabpanel" aria-labelledby="log-tab-classic-shadow">
+                                    <div class="container svs-overflow">
+                                        <table id="logViewMod" class="table table-striped table-view log-tb-mod" cellspacing="0" width="100%" summary="test">
+                                            <colgroup>
+                                                <col width="40px">
+                                                    <col span="4" width="25%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th><b>Date</b></th>
+                                                    <th><b>Activity</b></th>
+                                                    <th><b>Type</b></th>
+                                                    <th><b>SubmittedBy</b></th>
+                                                    <th><b>Attachment</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="logView">
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile-classic-shadow" role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
                                     <div class="container svs-overflow">
                                         <table id="taskViewMod" class="table table-striped table-view task-tb-mod" cellspacing="0" width="100%" summary="test">
                                             <colgroup>
@@ -237,6 +300,7 @@ ul {
                                         </table>
                                     </div>
                             </div>
+                            
                         </div>
                     
                     </div>
@@ -305,6 +369,35 @@ ul {
   </div>
 </div>
 
+<!-- Modal: imgMod -->
+<div class="modal fade" id="imgMod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Activity Image</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <div class="container">
+            <img id="activityImg" style="width:100%;height:100%;">
+        </div>
+    
+
+      </div>
+      <!--Footer-->
+      {{-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+        <button class="btn btn-success waves-effect" id="upSubmit">Upload</button>
+      </div> --}}
+    </div>
+  </div>
+</div>
+
 <script>
 $('.proj-status-list').simpleLoadMore({
   item: '.proj-status-item',
@@ -317,6 +410,15 @@ $('.proj-status-list').simpleLoadMore({
 $.fn.dataTable.ext.errMode = 'none';
 </script>
 
+<script>
+
+    function activityLog(projCode,attachment){
+        var img = attachment;
+        $('#activityImg').attr('src',img);
+        $('#imgMod').modal('show');
+        
+    }
+</script>
 
 <script>
 function searchProj(){
@@ -381,13 +483,16 @@ function openTask(taskCode,projCode,taskTitle){
 <script>
 $(".showModal").click(function () {
     $('#showModal').modal('show');
-    setTimeout(function(){ map.invalidateSize()}, 500);
+    // setTimeout(function(){ map.invalidateSize()}, 500);  
     var modalid = $(this).attr('data-modalid');
     var projCode = $(this).attr('data-code');
     var title = $(this).attr('data-title');
     var desc = $(this).attr('data-desc');
     var location = $(this).attr('data-location');
     var percent = $(this).attr('data-percent');
+
+    var issue = $(this).attr('data-issue');
+    var report = $(this).attr('data-report');
 
     var lon = $(this).attr('data-lon');
     var lat = $(this).attr('data-lat');
@@ -426,6 +531,8 @@ $(".showModal").click(function () {
     $('#vTitle').html(title);
     $('#vLoc').html(location);
     $('#vDesc').html(desc);
+    $('#vReport').html(report);
+    $('#vIssue').html(issue);
     $('#vStatus').html(status);
     $('#vper').html(status);
     $('#vEst').html(esd);
@@ -546,91 +653,126 @@ $(".showModal").click(function () {
         });
     //EndEMP
 
-    SelectAddr(Number(lat),Number(lon),'\"'+location+'"\'');
+    //ActivityLogs
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{ route('act_view') }}",
+            method: "POST",
+            data:{
+                proceed:"TRUE",
+                type:"ACT",
+                code:projCode
+            }, 
+            success:function(data)
+            {
+                $("#logView").html(data);
+                $("#logViewMod").DataTable();
+                $('#logViewMod_wrapper').find('label').each(function () {
+                    $(this).parent().append($(this).children());
+                });
+                $('#logViewMod_wrapper .dataTables_filter').find('input').each(function () {
+                    const $this = $(this);
+                    $this.attr("placeholder", "Search");
+                    $this.removeClass('form-control-sm');
+                });
+                $('#logViewMod_wrapper .dataTables_length').addClass('d-flex flex-row');
+                $('#logViewMod_wrapper .dataTables_filter').addClass('md-form');
+                $('#logViewMod_wrapper select').removeClass(
+                'custom-select custom-select-sm form-control form-control-sm');
+                $('#logViewMod_wrapper select').addClass('mdb-select');
+                // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                $('#logViewMod_wrapper .dataTables_filter').find('label').remove();
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    //EndActivityLogs
+
+    // SelectAddr(Number(lat),Number(lon),'\"'+location+'"\'');
 
 });
 </script>
 
 <script>
 //Map
-    var startlat = 14.56051510;
-    var startlon = 121.07671290;
+    // var startlat = 14.56051510;
+    // var startlon = 121.07671290;
 
-    var options = {
-    center: [startlat, startlon],
-    zoom: 15
-    }
+    // var options = {
+    // center: [startlat, startlon],
+    // zoom: 15
+    // }
 
-    document.getElementById('lat').innerHTML = startlat;
-    document.getElementById('lon').innerHTML = startlon;
+    // document.getElementById('lat').innerHTML = startlat;
+    // document.getElementById('lon').innerHTML = startlon;
 
-    var map = L.map('svsMap', options);
-    var nzoom = 15;
+    // var map = L.map('svsMap', options);
+    // var nzoom = 15;
 
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'}).addTo(map);
+    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'OSM'}).addTo(map);
 
-    var myMarker = L.marker([startlat, startlon], {title: "Coordinates", alt: "Coordinates", draggable: true}).addTo(map).on('dragend', function() {
-        var lat = myMarker.getLatLng().lat.toFixed(8);
-        var lon = myMarker.getLatLng().lng.toFixed(8);
-        var czoom = map.getZoom();
-        if(czoom < 18) { nzoom = czoom + 2; }
-        if(nzoom > 18) { nzoom = 18; }
-        if(czoom != 18) { map.setView([lat,lon], nzoom); } else { map.setView([lat,lon]); }
-        document.getElementById('lat').value = lat;
-        document.getElementById('lon').value = lon;
-        myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
-    });
+    // var myMarker = L.marker([startlat, startlon], {title: "Coordinates", alt: "Coordinates", draggable: true}).addTo(map).on('dragend', function() {
+    //     var lat = myMarker.getLatLng().lat.toFixed(8);
+    //     var lon = myMarker.getLatLng().lng.toFixed(8);
+    //     var czoom = map.getZoom();
+    //     if(czoom < 18) { nzoom = czoom + 2; }
+    //     if(nzoom > 18) { nzoom = 18; }
+    //     if(czoom != 18) { map.setView([lat,lon], nzoom); } else { map.setView([lat,lon]); }
+    //     document.getElementById('lat').value = lat;
+    //     document.getElementById('lon').value = lon;
+    //     myMarker.bindPopup("Lat " + lat + "<br />Lon " + lon).openPopup();
+    // });
 
-    function SelectAddr(lat1, lng1, add1)
-    {
-        myMarker.closePopup();
-        map.setView([lat1, lng1],15);
-        myMarker.setLatLng([lat1, lng1]);
-        lat = lat1.toFixed(8);
-        lon = lng1.toFixed(8);
-        document.getElementById('lat').innerHTML = lat;
-        document.getElementById('lon').innerHTML = lon;
-        // document.getElementById('addr').value = add1;
-        // myMarker.bindPopup("Latitude : " + lat + " Longitude : " + lon+ " Location : " + add1).openPopup();
-    }
+    // function SelectAddr(lat1, lng1, add1)
+    // {
+    //     myMarker.closePopup();
+    //     map.setView([lat1, lng1],15);
+    //     myMarker.setLatLng([lat1, lng1]);
+    //     lat = lat1.toFixed(8);
+    //     lon = lng1.toFixed(8);
+    //     document.getElementById('lat').innerHTML = lat;
+    //     document.getElementById('lon').innerHTML = lon;
+    //     // document.getElementById('addr').value = add1;
+    //     // myMarker.bindPopup("Latitude : " + lat + " Longitude : " + lon+ " Location : " + add1).openPopup();
+    // }
 
-    function myFunction(arr)
-    {
-        var out = "<br />";
-        var i;
+    // function myFunction(arr)
+    // {
+    //     var out = "<br />";
+    //     var i;
         
-        if(arr.length > 0)
-        {
-        for(i = 0; i < arr.length; i++)
-        {
-        out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='SelectAddr(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
-        }
-        document.getElementById('results').innerHTML = out;
-        }
-        else
-        {
-        document.getElementById('results').innerHTML = "Sorry, no results...";
-        }
-    }
+    //     if(arr.length > 0)
+    //     {
+    //     for(i = 0; i < arr.length; i++)
+    //     {
+    //     out += "<div class='address container-fluid card svs-map-add' title='Show Location and Coordinates' onclick='SelectAddr(" + arr[i].lat + ", " + arr[i].lon + ",\"" + arr[i].display_name + "\");return false;'>" + arr[i].display_name + "</div>";
+    //     }
+    //     document.getElementById('results').innerHTML = out;
+    //     }
+    //     else
+    //     {
+    //     document.getElementById('results').innerHTML = "Sorry, no results...";
+    //     }
+    // }
 
-    function addr_search()
-    {
-        var inp = document.getElementById("addr");
-        var xmlhttp = new XMLHttpRequest();
-        var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + inp.value;
-        xmlhttp.onreadystatechange = function()
-        {
-        if (this.readyState == 4 && this.status == 200)
-        {
-            var myArr = JSON.parse(this.responseText);
-            myFunction(myArr);
-        }
-        };
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-    }
+    // function addr_search()
+    // {
+    //     var inp = document.getElementById("addr");
+    //     var xmlhttp = new XMLHttpRequest();
+    //     var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + inp.value;
+    //     xmlhttp.onreadystatechange = function()
+    //     {
+    //     if (this.readyState == 4 && this.status == 200)
+    //     {
+    //         var myArr = JSON.parse(this.responseText);
+    //         myFunction(myArr);
+    //     }
+    //     };
+    //     xmlhttp.open("GET", url, true);
+    //     xmlhttp.send();
+    // }
 
 //EndMap
 </script>
-
 @endsection

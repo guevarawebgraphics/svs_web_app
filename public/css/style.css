@@ -82,6 +82,9 @@ background-color:#222222;
     .svs-modal{
         max-width:80%!important;
     }
+    .svs-modal-sm{
+        max-width:60%!important;
+    }
     .svs-modal-md{
         max-width:60%!important;
     }
@@ -102,6 +105,9 @@ background-color:#222222;
         max-width:100%!important;
     }
     .svs-modal-md{
+        max-width:100%!important;
+    }
+    .svs-modal-sm{
         max-width:100%!important;
     }
   }
@@ -204,4 +210,17 @@ background-color:#222222;
 .svs-table-mini th{
     background-color:#222!important;
     color: #fff!important;
+}
+.svs-circle{
+    margin:0 auto;
+    width: 100px!important;
+    height:100px!important;
+    text-align: center;
+}
+
+.svs-round-text{
+    line-height:5;
+}
+.svs-text-center{
+    margin:0 auto!important;
 }

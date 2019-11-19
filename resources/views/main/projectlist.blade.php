@@ -4,8 +4,11 @@
 <div class="container" style="width:100%;">
     <div class="float-left" ><h2><i class="fa fa-file-alt"></i> Project List</h2></div>
     <!-- Button trigger modal-->
+    
     <button type="button" class="btn btn-primary float-right" id="newProject"><i class="fa fa-plus"></i>&nbsp;New Project</button>
     
+    <a class="float-right upBulk" style="text-decoration:block!important; line-height: 3.5;"><em>Click here to upload project list</em></a>
+
     <div class="container" style="margin-top:3em;">
 
             @include('main.sessionProj')
@@ -17,6 +20,47 @@
     </div>
     </div>
 </div>
+
+<!-- Modal: delTask -->
+<div class="modal fade" id="bulkProjMod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Upload Projects List</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <div class="container">
+            <p class="note note-success">
+                <strong>Note upload:</strong> 
+                You are trying to upload multiple project records that containas multiple task records. This record will be useful to any transaction
+                <br>
+                *format : <b><em>.csv</em></b><br>
+            </p>
+            <div class="file-field">
+                <div class="btn-sm float-left">
+                  <span>Choose file</span>
+                  <input type="file">
+                </div>
+              </div>
+        </div>
+    
+
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+        <button class="btn btn-success waves-effect" id="upBulkSubmit">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal: delTask -->
 <div class="modal fade" id="delProj" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -99,7 +143,7 @@
                                 <div class="col-md-12">
                                         <div class="md-form mb-0">
                                             <input type="text" id="epTitle" name="epTitle" class="form-control">
-                                            <label id="epLTitle" for="epTitle">Title</label>
+                                            <label id="epLTitle" for="epTitle">Project Title</label>
                                         </div>
                                     </div>
                             </div>
@@ -113,7 +157,7 @@
         
                                         <div class="md-form">
                                             <textarea type="text" id="epDesc" name="epDesc" maxlength="190" class="form-control md-textarea"></textarea>
-                                            <label id="epLDesc" for="epDesc">Description</label>
+                                            <label id="epLDesc" for="epDesc">Project Description</label>
                                         </div>
         
                                     </div>
@@ -130,7 +174,7 @@
                                     <div class="col-md-12">
                                         <div class="md-form mb-0" id="search">
                                             <input type="text" id="epAddr" name="epAddr" class="form-control" size="58" onkeyup="addr_searchE();">
-                                            <label for="epAddr" id="epLAddr">Location</label>
+                                            <label for="epAddr" id="epLAddr">Project Location</label>
                                             <div class="ep-map-result" id="ep-results"></div>
                                         </div>
                                     </div>
@@ -138,8 +182,57 @@
                                 <!--Grid row-->
                         </div>
                     </div>
+
+
                     <!--Grid row-->
-                    <div class="row" style="margin-top:1.5em;">
+                    <div class="row" >
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" id="epSearchSTAKE" onkeyup="searchSTAKE();" placeholder="Click here to search" name="epSearchSTAKE" class="form-control">
+                                <label id="epSearchSTAKE" class="active" for="epTitle">Current Stakeholder</label>
+                            </div>
+                            <div class="container" id="stakeDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
+                                <div class="" id="stakeSelectCat" style="margin-bottom:20px; display:none;">
+                                    <a class="float-left select-all-stake">Select All</a>
+                                    <a class="float-right select-none-stake">Select None</a>
+                                </div>
+                                <div class="container" id="stakeDivEdit" style="display:none;">
+                                    
+                                </div>  
+                                <div class="container" id="stakeUnselect" style="display:none;">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                        
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" id="epSearchCUS" onkeyup="searchCUS();" placeholder="Click here to search" name="epSearchCUS" class="form-control">
+                                <label id="epSearchCUS" class="active" for="epTitle">Current Customer</label>
+                            </div>
+                            <div class="container" id="cusDropdownDiv" style="max-height:200px; height:100%; overflow-x:auto;">
+                                <div class="" id="cusSelectCat" style="margin-bottom:20px; display:none;">
+                                    <a class="float-left select-all-cus">Select All</a>
+                                    <a class="float-right select-none-cus">Select None</a>
+                                </div>
+                                <div class="container" id="cusDivEdit" style="display:none;">
+                                    
+                                </div>  
+                                <div class="container" id="cusUnselect" style="display:none;">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row--> 
+
+
+                    <!--Grid row-->
+                    <div class="row">
                         <!--Grid column-->
                         <div class="col-md-6">
                             <div class="md-form mb-0">
@@ -158,15 +251,6 @@
                                     
                                 </div>
                             </div>
-                            {{-- <label for="pmSOLEdit" class="svs-small"><small>Project Manager</small></label>
-                            <select id="pmSOLEdit" name="pmSOLEdit" class="mdb-select multi-sol-svs" multiple="multiple">
-                                <optgroup label="Project Manager" title="Opiton Group 1">
-                                @if(count($emp_info))
-                                        @foreach($emp_info as $field)
-                                        <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
-                                    @endforeach
-                                @endif
-                            </select> --}}
                         </div>
                         <!--Grid column-->
                         
@@ -188,20 +272,13 @@
                                     
                                 </div>
                             </div>
-                            {{-- <label for="empSOLEdit" class="svs-small"><small>Employee</small></label>
-                            <select id="empSOLEdit" name="empSOLEdit" class="mdb-select multi-sol-svs" multiple="multiple">
-                                <optgroup label="Employee Name" title="Opiton Group 1">
-                                    @if(count($emp_info))
-                                        @foreach($emp_info as $field)
-                                            <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
-                                        @endforeach
-                                    @endif
-                                </optgroup>
-                            </select> --}}
                         </div>
+                        <!--Grid column-->
                     </div>
                     <!--Grid row--> 
+
                     <br>
+
                     <!--Grid row-->
                     <div class="row">
 
@@ -306,7 +383,7 @@
 
                         <!--Grid column-->
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="md-form mb-0">
                                     <input type="text" id="epSearchTask" onkeyup="" placeholder="Click here to search" name="epSearchTask" class="form-control">
                                     <label id="epSearchTask" class="active" for="epTitleTask">Current Task</label>
@@ -389,7 +466,7 @@
                             <div class="col-md-12">
                                 <div class="md-form mb-0">
                                     <input type="text" id="proj_title" name="proj_title" class="form-control">
-                                    <label for="proj_title" class="">Title</label>
+                                    <label for="proj_title" class="">Project Title</label>
                                 </div>
                             </div>
                         </div>
@@ -403,7 +480,7 @@
 
                                 <div class="md-form">
                                     <textarea type="text" id="proj_desc" name="proj_desc" maxlength="190" class="form-control md-textarea"></textarea>
-                                    <label for="proj_desc">Description</label>
+                                    <label for="proj_desc">Project Description</label>
                                 </div>
 
                             </div>
@@ -419,7 +496,7 @@
                             <div class="col-md-12">
                                 <div class="md-form mb-0" id="search">
                                     <input type="text" id="addr" name="addr" class="form-control" size="58" onkeyup="addr_search();">
-                                    <label for="addr" class="">Location</label>
+                                    <label for="addr" class="">Project Location</label>
                                     <div class="map-result" id="results"></div>
                                 </div>
                             </div>
@@ -428,7 +505,42 @@
                     
                     </div>
                 </div>
-                
+
+
+                <!--Grid row-->
+                <div class="row" style="margin-top:1.5em;">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                            <label for="stakeSOL" class="svs-small"><small>Stakeholder Name</small></label>
+                            <select id="stakeSOL" name="stakeSOL" class="mdb-select multi-sol-svs" multiple="multiple">
+                                <optgroup label="Stakeholders Name" title="Opiton Group 1">
+                                @if(count($emp_info))
+                                    @foreach($emp_info as $field)
+                                        <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
+                                    @endforeach
+                                @endif
+                        </select>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                            <label for="cusSOL" class="svs-small"><small>Customer</small></label>
+                            <select id="cusSOL" name="cusSOL" class="mdb-select multi-sol-svs" multiple="multiple">
+                                <optgroup label="Customer Name" title="Opiton Group 1">
+                                @if(count($emp_info))
+                                        @foreach($emp_info as $field)
+                                        <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
+                                    @endforeach
+                                @endif
+                        </select>
+                    </div>
+                    <!--Grid column-->
+                    
+                </div>
+                <!--Grid row--> 
+            
                  <!--Grid row-->
                  <div class="row" style="margin-top:1.5em;">
                     <!--Grid column-->
@@ -568,7 +680,7 @@
 
                 <!--Grid column-->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
 
                         <div class="md-form mb-0">
                             <input type="text" id="newSearchTL" onkeyup="searchTL();" placeholder="Click here to search" name="newSearchTL" class="form-control">
@@ -589,9 +701,19 @@
                                                     <label class="custom-control-label" for="myTask{{$field->taskCode}}">{{$field->task_title}}</label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="md-form svs-md-form">
                                                     <input type="number" placeholder="Task Weight" id="myWeight{{$field->taskCode}}" data-tcode = "{{$field->taskCode}}" name="myWeight" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="md-form svs-md-form">
+                                                    <input type="number" placeholder="Planned # of days" id="myPlanned{{$field->taskCode}}" data-tcode = "{{$field->taskCode}}" name="myPlanned" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="md-form svs-md-form">
+                                                    <input type="number" placeholder="Actual # of days" id="myActual{{$field->taskCode}}" data-tcode = "{{$field->taskCode}}" name="myActual" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -620,23 +742,31 @@
 
                 <!-- Add task by button and select -->
                     {{-- <div class="row">
-                        <div class="col-md-6" id="InputsWrapper">
-                            <div class="md-form mb-0">
-                                <select id="field_1" name ="myTask[]" class="mdb-select md-form mb-0 svs-select">
-                                    <option value="" selected disabled>Select Task</option>
-                                    @if(count($task_record))
-                                        @foreach($task_record as $field)
-                                            <option value="{{$field->taskCode}}">{{$field->task_title}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                                <a href="#" class="removeclass"></a>
+                        <div class="col-md-12" id="InputsWrapper">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="md-form mb-0">
+                                        <div id="field_1">
+                                            <input type="text" id="client_1" placeholder="Enter your customer name" class="form-control">
+                                            <label for="client_1">Customer Details</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="md-form mb-0">
+                                        <div id="emailField_1">
+                                            <input type="text" id="email_1" placeholder="Enter your customer email" class="form-control">
+                                            <label for="email_1">Customer Email</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <a href="#" class="removeclass"></a>
                         </div>
                         <div id="lineBreak"></div>
                     </div>
                     <div id="AddMoreFileId" style="margin-top:1em;">
-                        <a href="#" id="AddMoreFileBox" class="btn btn-svs-default"><i class="fa fa-plus"></i>&nbsp;Add Task</a><br><br>
+                        <a href="#" id="AddMoreFileBox" class="btn btn-svs-default"><i class="fa fa-plus"></i>&nbsp;Add Customer</a><br><br>
                     </div> --}}
                 <!-- Add task by button and select -->
             </form>
@@ -660,6 +790,8 @@
     $('#demoSOL').searchableOptionList();
     $('#empSOL').searchableOptionList();
     $('#pmSOL').searchableOptionList();
+    $('#cusSOL').searchableOptionList();
+    $('#stakeSOL').searchableOptionList();
     $('#empSOLEdit').searchableOptionList();
     $('#pmSOLEdit').searchableOptionList();
     // $("#pmDivEdit").hide();
@@ -709,6 +841,34 @@ function searchEMP(){
         }
     }
 }
+
+function searchSTAKE(){
+    var input = document.getElementById("epSearchSTAKE");
+    var filter = input.value.toLowerCase();
+    var nodes = document.getElementsByClassName('current-stake');
+
+    for (i = 0; i < nodes.length; i++) {
+        if (nodes[i].innerText.toLowerCase().includes(filter)) {
+        nodes[i].style.display = "block";
+        } else {
+        nodes[i].style.display = "none";
+        }
+    }
+}
+
+function searchCUS(){
+    var input = document.getElementById("epSearchCUS");
+    var filter = input.value.toLowerCase();
+    var nodes = document.getElementsByClassName('current-cus');
+
+    for (i = 0; i < nodes.length; i++) {
+        if (nodes[i].innerText.toLowerCase().includes(filter)) {
+        nodes[i].style.display = "block";
+        } else {
+        nodes[i].style.display = "none";
+        }
+    }
+}
 // $(document).ready(function(){
 //     $("#epSearchPM").click(function(){
 //         $("#pmDivEdit").show();
@@ -718,6 +878,12 @@ function searchEMP(){
 //         $("#empDivEdit").show();
 //     });
 // });
+</script>
+
+<script>
+$(".upBulk").click(function () {
+    $('#bulkProjMod').modal('show');
+});
 </script>
 
 <script>
@@ -814,8 +980,16 @@ $(document).ready(function () {
             taskChck.push($(this).val()); 
         }); 
 
-       
+        var stakeChck = []; 
+        $("input:checkbox[name=stakeChck]:checked").each(function() { 
+            stakeChck.push($(this).val()); 
+        }); 
 
+        var cusChck = []; 
+        $("input:checkbox[name=cusChck]:checked").each(function() { 
+            cusChck.push($(this).val()); 
+        }); 
+       
         //Estimated
         var est_start_date = $("#estStartDEdit").val();
         var est_start_time = $("#estStartTEdit").val();
@@ -861,6 +1035,8 @@ $(document).ready(function () {
                 pmChck:pmChck,
                 empChck:empChck,
                 taskChck:taskChck,
+                stakeChck:stakeChck,
+                cusChck:cusChck,
                 est_start_date:est_start_date,
                 est_start_time:est_start_time,
                 est_end_date:est_end_date,
@@ -896,6 +1072,8 @@ $(document).ready(function () {
                             pmChck:pmChck,
                             empChck:empChck,
                             taskChck:taskChck,
+                            stakeChck:stakeChck,
+                            cusChck:cusChck,
                             est_start_date:est_start_date,
                             est_start_time:est_start_time,
                             est_end_date:est_end_date,
@@ -1086,6 +1264,7 @@ $(".editProj").click(function () {
     SelectAddrEE(Number(latitude),Number(longitude),location);
 
     setTimeout(function(){ mapE.invalidateSize()}, 500);
+
     //PM
     $.ajax({
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -1104,6 +1283,7 @@ $(".editProj").click(function () {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
+
     //EMP
     $.ajax({
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -1122,6 +1302,7 @@ $(".editProj").click(function () {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
+
     //Task
     $.ajax({
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -1135,6 +1316,44 @@ $(".editProj").click(function () {
         success:function(data)
         {
             $("#taskDivEdit").html(data);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+    //Stakeholder
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('project_dropdown') }}",
+        method: "POST",
+        data:{
+            proceed:"TRUE",
+            type:"STAKE",
+            code:projCode
+        }, 
+        success:function(data)
+        {
+            $("#stakeDivEdit").html(data);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+    //Customer
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('project_dropdown') }}",
+        method: "POST",
+        data:{
+            proceed:"TRUE",
+            type:"CUSTOMER",
+            code:projCode
+        }, 
+        success:function(data)
+        {
+            $("#cusDivEdit").html(data);
         },
         error: function(xhr, ajaxOptions, thrownError){
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -1375,6 +1594,136 @@ $(".editProj").click(function () {
 
         }
     //Project Manager
+
+    //Stakeholder
+        $("#epSearchSTAKE").click(function () {
+            stakeDropdownDiv();
+            getUnselectedSTAKE();
+        });
+
+        $(".select-all-stake").click(function () {
+            $('input[name=stakeChck]').prop('checked', true);
+        });
+
+        $(".select-none-emp").click(function () {
+            $('input[name=stakeChck]').prop('checked', false);
+        });
+
+        function stakeDropdownDiv() {
+            var x = document.getElementById("stakeDivEdit");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                getUnselectedSTAKE();
+            } else {
+                x.style.display = "none";
+            }
+
+            var y = document.getElementById("stakeUnselect");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+                getUnselectedSTAKE();
+            } else {
+                y.style.display = "none";
+            }
+
+            var z = document.getElementById("stakeSelectCat");
+            if (z.style.display === "none") {
+                z.style.display = "block";
+                getUnselectedSTAKE();
+            } else {
+                z.style.display = "none";
+            }
+        }
+
+        function getUnselectedSTAKE(){
+            var stakeChck = []; 
+            $("input:checkbox[name=stakeChck]:checked").each(function() { 
+                stakeChck.push($(this).val());
+            });
+            $.ajax({
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{ route('project_unselected') }}",
+                method: "POST",
+                data:{
+                    proceed:"TRUE",
+                    type:"STAKE",
+                    stakeChck:stakeChck
+                }, 
+                success:function(data)
+                {
+                    $("#stakeUnselect").html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+        }
+    //Stakeholder
+
+    //Customer
+        $("#epSearchCUS").click(function () {
+            cusDropdownDiv();
+            getUnselectedCUS();
+        });
+
+        $(".select-all-cus").click(function () {
+            $('input[name=cusChck]').prop('checked', true);
+        });
+
+        $(".select-none-cus").click(function () {
+            $('input[name=cusChck]').prop('checked', false);
+        });
+
+        function cusDropdownDiv() {
+            var x = document.getElementById("cusDivEdit");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                getUnselectedCUS();
+            } else {
+                x.style.display = "none";
+            }
+
+            var y = document.getElementById("cusUnselect");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+                getUnselectedCUS();
+            } else {
+                y.style.display = "none";
+            }
+
+            var z = document.getElementById("cusSelectCat");
+            if (z.style.display === "none") {
+                z.style.display = "block";
+                getUnselectedCUS();
+            } else {
+                z.style.display = "none";
+            }
+        }
+
+        function getUnselectedCUS(){
+            var cusChck = []; 
+            $("input:checkbox[name=cusChck]:checked").each(function() { 
+                cusChck.push($(this).val());
+            });
+            $.ajax({
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{ route('project_unselected') }}",
+                method: "POST",
+                data:{
+                    proceed:"TRUE",
+                    type:"CUSTOMER",
+                    cusChck:cusChck
+                }, 
+                success:function(data)
+                {
+                    $("#cusUnselect").html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+        }
+    //Customer
 
 });
 </script>
@@ -1619,7 +1968,7 @@ $(document).ready(function() {
             if(x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(InputsWrapper).append('<div class="md-form mb-0"><select id="field_'+ FieldCount +'" name ="myTask[]" class="mdb-select md-form mb-0 svs-select"><option value="" selected disabled>Select Task</option><?php if(count($task_record)) { foreach($task_record as $field) { ?><option value="<?php echo $field->taskCode; ?>"><?php echo $field->task_title; ?></option> <?php } } ?> </select><a href="#" class="removeclass">Remove</a></div>');
+                $(InputsWrapper).append('<div class="md-form mb-0"><div id="field_'+ FieldCount +'"><input type="text" id="client_'+ FieldCount +'" class="form-control" placeholder="Enter your customer name"><label class="active" for="client_'+ FieldCount +'">Customer Details</label></div></div><a href="#" class="removeclass">Remove</a>');
                 x++; //text box increment
                 
                 $("#AddMoreFileId").show();
@@ -1655,6 +2004,8 @@ $(document).ready(function() {
 <script>
 var check = function ($checkbox) {
   $('#myWeight'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
+  $('#myPlanned'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
+  $('#myActual'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
 };
 
 $('input[name=myTask]').each(function () {
@@ -1699,24 +2050,55 @@ $('#subNewProj').click(function(){
     var pmData = []; 
     $("input:checkbox[name=pmSol]:checked").each(function() { 
         pmData.push($(this).val()); 
+    });
+
+    var stakeData = []; 
+    $("input:checkbox[name=stakeSOL]:checked").each(function() { 
+        stakeData.push($(this).val()); 
+    });
+    
+    var cusData = []; 
+    $("input:checkbox[name=cusSOL]:checked").each(function() { 
+        cusData.push($(this).val()); 
     }); 
 
     var dataWeight = [],
         resPercent = 0,
+        dataPlan = [],
+        dataActual = [],
         i; 
+        
     var dataWeightAttr = []; 
+    var dataPlanAttr = []; 
+    var dataActualAttr = []; 
+
     $('input[name="myWeight"]').each(function() {
         if($(this).val() != ''){
             dataWeight.push($(this).val());
             dataWeightAttr.push($(this).attr('data-tcode'));
         }
     });
+
+    $('input[name="myPlanned"]').each(function() {
+        if($(this).val() != ''){
+            dataPlan.push($(this).val());
+            dataPlanAttr.push($(this).attr('data-tcode'));
+        }
+    });
+
+    $('input[name="myActual"]').each(function() {
+        if($(this).val() != ''){
+            dataActual.push($(this).val());
+            dataActualAttr.push($(this).attr('data-tcode'));
+        }
+    });
+
     for (i = 0; i < dataWeight.length; i += 1) 
     {
         resPercent += parseInt(dataWeight[i]);
     }
 
-//Ajax
+    //Ajax
     $.ajax({
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         url: "{{ route('new_project') }}",
@@ -1739,8 +2121,14 @@ $('#subNewProj').click(function(){
             taskData:taskData,
             empData:empData,
             pmData:pmData,
+            stakeData:stakeData,
+            cusData:cusData,
             dataWeight:dataWeight,
             dataWeightAttr:dataWeightAttr,
+            dataPlan:dataPlan,
+            dataPlanAttr:dataPlanAttr,
+            dataActual:dataActual,
+            dataActualAttr:dataActualAttr,
             resPercent:resPercent
         }, 
         dataType: "json",
@@ -1774,6 +2162,8 @@ $('#subNewProj').click(function(){
                         taskData:taskData,
                         empData:empData,
                         pmData:pmData,
+                        stakeData:stakeData,
+                        cusData:cusData,
                         dataWeight:dataWeight,
                         dataWeightAttr:dataWeightAttr,
                         resPercent:resPercent
@@ -1826,7 +2216,7 @@ $('#subNewProj').click(function(){
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });    
-//Ajax
+    //Ajax
 });
 </script>
 

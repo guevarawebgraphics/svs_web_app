@@ -120,6 +120,43 @@ class MainController extends Controller
                 
             }
         }
+        else if($request->type == "ACT")
+        {
+            $act_selected = DB::connection('mysql')->select("SELECT * FROM view_activity_log WHERE projCode = '".$request->code."'");
+            
+                if($act_selected != ""){
+                    foreach($act_selected as $field){
+
+                        if($field->attachment != ""){
+                            $data .= '
+                            <tr>
+                                <td><small>'.date("F d Y <br> h:i a",strtotime($field->created_at)).'</small></td>
+                                <td>'.$field->activity_desc.'</td>
+                                <td>'.$field->type.'</td>
+                                <td>'.$field->name.'</td>
+                                <td>
+                                    <a data-img="'.$field->attachment.'" data-projcode= "'.$field->projCode.'" onClick="activityLog(\''.$field->projCode.'\',\''.$field->attachment.'\')" class="btn btn-info svs-action"><i class="fa fa-file"></i>&nbsp;&nbsp;file</a>
+                                </td>
+                            </tr>
+                            ';
+                        }else{
+                            $data .= '
+                            <tr>
+                                <td><small>'.date("F d Y <br> h:i a",strtotime($field->created_at)).'</small></td>
+                                <td>'.$field->activity_desc.'</td>
+                                <td>'.$field->type.'</td>
+                                <td>'.$field->name.'</td>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            ';
+                        }
+
+                    }
+                    
+                }
+        }
 
         echo $data;
     }
@@ -626,6 +663,14 @@ class MainController extends Controller
             $messages = "Please select Employees for this project.";
             $error[] = $messages;
         }
+        else if($request->stakeData == ""){
+            $messages = "Please select Stakeholders for this project.";
+            $error[] = $messages;
+        }
+        else if($request->cusData == ""){
+            $messages = "Please select Customers for this project.";
+            $error[] = $messages;
+        }
         else if($request->dataWeight == ""){
             $messages = "Please specify task weight";
             $error[] = $messages;
@@ -741,6 +786,34 @@ class MainController extends Controller
                 $ProjEMP->created_at = now();
                 $ProjEMP->updated_at = now();
                 $ProjEMP->save();
+            }
+
+            $myString4 = $request->stakeData;
+            foreach($myString4 as $value4){
+                $ProjSTKHLDR = new EmpProj;
+                $ProjSTKHLDR->projCode = $projCode;
+                $ProjSTKHLDR->emp_id = $value4;
+                $ProjSTKHLDR->type = "STAKEHOLDER";
+                $ProjSTKHLDR->deleted = 0;
+                $ProjSTKHLDR->by_id = auth()->user()->id;
+                $ProjSTKHLDR->updated_by = auth()->user()->name;
+                $ProjSTKHLDR->created_at = now();
+                $ProjSTKHLDR->updated_at = now();
+                $ProjSTKHLDR->save();
+            }
+
+            $myString5 = $request->cusData;
+            foreach($myString5 as $value5){
+                $ProjCus = new EmpProj;
+                $ProjCus->projCode = $projCode;
+                $ProjCus->emp_id = $value5;
+                $ProjCus->type = "CUSTOMER";
+                $ProjCus->deleted = 0;
+                $ProjCus->by_id = auth()->user()->id;
+                $ProjCus->updated_by = auth()->user()->name;
+                $ProjCus->created_at = now();
+                $ProjCus->updated_at = now();
+                $ProjCus->save();
             }
 
             $dataWeight = $request->dataWeight; 
@@ -872,7 +945,8 @@ class MainController extends Controller
         $data = "";
         $counter = 1;
 
-        if($request->type == "PM"){
+        if($request->type == "PM")
+        {
             $pm_selected = DB::connection('mysql')->select("
                 SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
                 b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
@@ -891,7 +965,7 @@ class MainController extends Controller
                     ';
                 }
             }else{
-                $data .= 'No Project Manager found';
+                $data .= 'No Current Project Manager found';
             }
 
         }
@@ -914,7 +988,53 @@ class MainController extends Controller
                     ';
                 }
             }else{
-                $data .= 'No Employee found';
+                $data .= 'No Current Employee found';
+            }
+
+        }
+        else if($request->type == "STAKE")
+        {
+            $stake_selected = DB::connection('mysql')->select("
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+                b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+                FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+                WHERE a.type = 'STAKEHOLDER' AND a.projCode = '".$request->code."' and a.deleted = 0
+                GROUP BY a.emp_id
+            ");
+            if(count($stake_selected)){
+                foreach($stake_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-stake">
+                        <input type="checkbox" class="custom-control-input" name="stakeChck" value="'.$field->emp_id.'" id="stakeChck'.$field->emp_id.'" checked>
+                        <label class="custom-control-label" for="stakeChck'.$field->emp_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
+                        </div>
+                    ';
+                }
+            }else{
+                $data .= 'No Current Stakeholder found';
+            }
+
+        }
+        else if($request->type == "CUSTOMER")
+        {
+            $cus_selected = DB::connection('mysql')->select("
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+                b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+                FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+                WHERE a.type = 'CUSTOMER' AND a.projCode = '".$request->code."' and a.deleted = 0
+                GROUP BY a.emp_id
+            ");
+            if(count($cus_selected)){
+                foreach($cus_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-stake">
+                        <input type="checkbox" class="custom-control-input" name="cusChck" value="'.$field->emp_id.'" id="cusChck'.$field->emp_id.'" checked>
+                        <label class="custom-control-label" for="cusChck'.$field->emp_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
+                        </div>
+                    ';
+                }
+            }else{
+                $data .= 'No Current Customer found';
             }
 
         }
@@ -937,9 +1057,21 @@ class MainController extends Controller
                                 <label class="custom-control-label" for="taskChck'.$field->taskCode.'">'.$field->task_title.'</label>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="md-form svs-md-form">
                                 <input type="number" data-tcode= "'.$field->taskCode.'" placeholder = "Task Weight" id="taskTxtFld'.$field->taskCode.'" name="taskTxtFld" value="'.$field->taskWeight.'" class="form-control">
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="md-form svs-md-form">
+                                <input type="number" data-tcode= "'.$field->taskCode.'" placeholder = "Planned # of days" id="planTxtFld'.$field->taskCode.'" name="planTxtFld" value="'.$field->plan_days.'" class="form-control">
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="md-form svs-md-form">
+                                <input type="number" data-tcode= "'.$field->taskCode.'" placeholder = "Actual # of days" id="actualTxtFld'.$field->taskCode.'" name="actualTxtFld" value="'.$field->actual_days.'" class="form-control">
                                 
                             </div>
                         </div>
@@ -947,7 +1079,7 @@ class MainController extends Controller
                     ';
                 }
             }else{
-                $data .= 'No Task found';
+                $data .= 'No Current Task found';
             }
 
         }
@@ -960,7 +1092,8 @@ class MainController extends Controller
         $data = "";
         $counter = 1;
 
-        if($request->type == "PM"){
+        if($request->type == "PM")
+        {
             $arrays = implode("', '", $request->pmChck);
             $pm_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
            
@@ -977,7 +1110,8 @@ class MainController extends Controller
                 $data .= 'No Project Manager found';
             }
         }
-        else if($request->type == "EMP"){
+        else if($request->type == "EMP")
+        {
             $arrays = implode("', '", $request->empChck);
             $emp_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
            
@@ -994,6 +1128,42 @@ class MainController extends Controller
                 $data .= 'No Employee found';
             }
         }
+        else if($request->type == "STAKE")
+        {
+            $arrays = implode("', '", $request->stakeChck);
+            $stake_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
+           
+            if(count($stake_selected)){
+                foreach($stake_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-stake">
+                        <input type="checkbox" class="custom-control-input stakeChck" name="stakeChck" value="'.$field->company_id.'" id="stakeChck'.$field->company_id.'">
+                        <label class="custom-control-label" for="stakeChck'.$field->company_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
+                        </div>
+                    ';
+                }
+            }else{
+                $data .= 'No Stakeholder found';
+            }
+        }
+        else if($request->type == "CUSTOMER")
+        {
+            $arrays = implode("', '", $request->cusChck);
+            $cus_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
+           
+            if(count($cus_selected)){
+                foreach($cus_selected as $field){
+                    $data .= '
+                        <div class="custom-control custom-checkbox current-stake">
+                        <input type="checkbox" class="custom-control-input cusChck" name="cusChck" value="'.$field->company_id.'" id="cusChck'.$field->company_id.'">
+                        <label class="custom-control-label" for="cusChck'.$field->company_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
+                        </div>
+                    ';
+                }
+            }else{
+                $data .= 'No Customer found';
+            }
+        }
         else if($request->type == "TASK"){
             $arrays = implode("', '", $request->taskChck);
             $task_selected = DB::connection('mysql')->select("SELECT * FROM tbl_task WHERE taskCode NOT IN('".$arrays."') AND deleted = 0");
@@ -1008,10 +1178,22 @@ class MainController extends Controller
                             <label class="custom-control-label" for="taskChck'.$field->taskCode.'">'.$field->task_title.'</label>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="md-form svs-md-form">
                                 <input type="number" data-tcode= "'.$field->taskCode.'" placeholder = "Task Weight" id="taskTxtFld'.$field->taskCode.'" name="taskTxtFld" class="form-control">
                                
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="md-form svs-md-form">
+                                <input type="number" data-tcode= "'.$field->taskCode.'" placeholder = "Planned # of days" id="planTxtFld'.$field->taskCode.'" name="planTxtFld" class="form-control">
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="md-form svs-md-form">
+                                <input type="number" data-tcode= "'.$field->taskCode.'" placeholder = "Actual # of days" id="actualTxtFld'.$field->taskCode.'" name="actualTxtFld" class="form-control">
+                                
                             </div>
                         </div>
                     </div>
@@ -1024,6 +1206,8 @@ class MainController extends Controller
                 <script>
                 var checkE = function ($checkboxE) {
                     $("#taskTxtFld"+$checkboxE.val()).prop("readonly", !$checkboxE.is(":checked"));
+                    $("#planTxtFld"+$checkboxE.val()).prop("readonly", !$checkboxE.is(":checked"));
+                    $("#actualTxtFld"+$checkboxE.val()).prop("readonly", !$checkboxE.is(":checked"));
                     };
                 
                     $("input[name=taskChck]").each(function () {
@@ -1071,6 +1255,14 @@ class MainController extends Controller
         }
         else if($request->lat == ""){
             $messages = "Latitude is required!";
+            $error[] = $messages;
+        }
+        else if($request->stakeChck == ""){
+            $messages = "Choose Stakeholder for this project!";
+            $error[] = $messages;
+        }
+        else if($request->cusChck == ""){
+            $messages = "Choose Customer for this project!";
             $error[] = $messages;
         }
         else if($request->pmChck == ""){
@@ -1273,6 +1465,55 @@ class MainController extends Controller
                 $ProjEMP->updated_at = now();
                 $ProjEMP->save();
             }
+
+            //Stakeholder
+            DB::table('tbl_emp_proj')
+            ->where('projCode', $request->code)
+            ->where('type', 'STAKEHOLDER')
+            ->update([
+            'deleted'=> 1,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+            $myString4 = $request->stakeChck;
+            foreach($myString4 as $value4){
+                $ProjSTAKE = new EmpProj;
+                $ProjSTAKE->projCode = $request->code;
+                $ProjSTAKE->emp_id = $value4;
+                $ProjSTAKE->type = "STAKEHOLDER";
+                $ProjSTAKE->deleted = 0;
+                $ProjSTAKE->by_id = auth()->user()->id;
+                $ProjSTAKE->updated_by = auth()->user()->name;
+                $ProjSTAKE->created_at = now();
+                $ProjSTAKE->updated_at = now();
+                $ProjSTAKE->save();
+            }
+
+
+            //Customer
+            DB::table('tbl_emp_proj')
+            ->where('projCode', $request->code)
+            ->where('type', 'CUSTOMER')
+            ->update([
+            'deleted'=> 1,
+            'by_id'=> auth()->user()->id,
+            'updated_by'=> auth()->user()->name,
+            'updated_at' => now()
+            ]);
+            $myString5 = $request->cusChck;
+            foreach($myString5 as $value5){
+                $ProjCUS = new EmpProj;
+                $ProjCUS->projCode = $request->code;
+                $ProjCUS->emp_id = $value5;
+                $ProjCUS->type = "CUSTOMER";
+                $ProjCUS->deleted = 0;
+                $ProjCUS->by_id = auth()->user()->id;
+                $ProjCUS->updated_by = auth()->user()->name;
+                $ProjCUS->created_at = now();
+                $ProjCUS->updated_at = now();
+                $ProjCUS->save();
+            }
             
             $messages = "Successfully Updated!";
             $success[] = $messages;
@@ -1412,7 +1653,7 @@ class MainController extends Controller
 
 
     // ------------------------------------------------------------------------//
-    // This section all reusable codes will be commented for future purposes   //
+    // This section all reusable codes are commented for future purposes       //
     // ------------------------------------------------------------------------//
     // Unused functions
 
