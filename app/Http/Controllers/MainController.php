@@ -12,6 +12,9 @@ use App\Models\ProjTask;
 use App\Models\EmpProj;
 use App\Models\ProjectPercentage;
 use App\Models\ProjTaskView;
+use App\Models\Sample;
+use Importer;
+use Validator;
 
 class MainController extends Controller
 {
@@ -52,6 +55,10 @@ class MainController extends Controller
 
                         <td>'.$taskWeight.'</td>
 
+                        <td>'.$field->plan_days.'</td>
+
+                        <td>'.$field->actual_days.'</td>
+
                         <td>
                             <button type="button" class="svs-action btn waves-effect waves-light taskModal" onClick="openTask(\''.$field->taskCode.'\',\''.$field->projCode.'\',\''.$field->task_title.'\')" data-taskcode="'.$field->taskCode.'"><i class="fa fa-list"></i></button>
                         </td>
@@ -66,7 +73,7 @@ class MainController extends Controller
         else if($request->type == "PM")
         {
             $pm_selected = DB::connection('mysql')->select("
-                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+                SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
                 b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
                 FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
                 WHERE a.type = 'PM' AND a.projCode = '".$request->code."' and a.deleted = 0
@@ -80,11 +87,9 @@ class MainController extends Controller
                     <tr>
                         <td>'.$field->fullname.'</td>
 
+                        <td>'.$field->csi_email.'</td>
+
                         <td>'.$field->position.'</td>
-
-                        <td>'.$field->department.'</td>
-
-                        <td>'.$field->team.'</td>
                     </tr>
                     ';
                 }
@@ -156,6 +161,60 @@ class MainController extends Controller
                     }
                     
                 }
+        }
+        else if($request->type == "STAKE")
+        {
+            $stake_selected = DB::connection('mysql')->select("
+            SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+            b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+            FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+            WHERE a.type = 'STAKEHOLDER' AND a.projCode = '".$request->code."' and a.deleted = 0
+            GROUP BY a.emp_id
+            ");
+            
+            if($stake_selected != ""){
+                foreach($stake_selected as $field){
+
+                    $data .= '
+                    <tr>
+                        <td>'.$field->fullname.'</td>
+
+                        <td>'.$field->csi_email.'</td>
+
+                        <td>'.$field->position.'</td>
+
+                    </tr>
+                    ';
+                }
+                
+            }
+        }
+        else if($request->type == "CUSTOMER")
+        {
+            $customer_selected = DB::connection('mysql')->select("
+            SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+            b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
+            FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
+            WHERE a.type = 'CUSTOMER' AND a.projCode = '".$request->code."' and a.deleted = 0
+            GROUP BY a.emp_id
+            ");
+            
+            if($customer_selected != ""){
+                foreach($customer_selected as $field){
+
+                    $data .= '
+                    <tr>
+                        <td>'.$field->fullname.'</td>
+
+                        <td>'.$field->csi_email.'</td>
+
+                        <td>'.$field->position.'</td>
+
+                    </tr>
+                    ';
+                }
+                
+            }
         }
 
         echo $data;
@@ -667,10 +726,10 @@ class MainController extends Controller
             $messages = "Please select Stakeholders for this project.";
             $error[] = $messages;
         }
-        else if($request->cusData == ""){
-            $messages = "Please select Customers for this project.";
-            $error[] = $messages;
-        }
+        // else if($request->cusData == ""){
+        //     $messages = "Please select Customers for this project.";
+        //     $error[] = $messages;
+        // }
         else if($request->dataWeight == ""){
             $messages = "Please specify task weight";
             $error[] = $messages;
@@ -802,19 +861,19 @@ class MainController extends Controller
                 $ProjSTKHLDR->save();
             }
 
-            $myString5 = $request->cusData;
-            foreach($myString5 as $value5){
-                $ProjCus = new EmpProj;
-                $ProjCus->projCode = $projCode;
-                $ProjCus->emp_id = $value5;
-                $ProjCus->type = "CUSTOMER";
-                $ProjCus->deleted = 0;
-                $ProjCus->by_id = auth()->user()->id;
-                $ProjCus->updated_by = auth()->user()->name;
-                $ProjCus->created_at = now();
-                $ProjCus->updated_at = now();
-                $ProjCus->save();
-            }
+            // $myString5 = $request->cusData;
+            // foreach($myString5 as $value5){
+            //     $ProjCus = new EmpProj;
+            //     $ProjCus->projCode = $projCode;
+            //     $ProjCus->emp_id = $value5;
+            //     $ProjCus->type = "CUSTOMER";
+            //     $ProjCus->deleted = 0;
+            //     $ProjCus->by_id = auth()->user()->id;
+            //     $ProjCus->updated_by = auth()->user()->name;
+            //     $ProjCus->created_at = now();
+            //     $ProjCus->updated_at = now();
+            //     $ProjCus->save();
+            // }
 
             $dataWeight = $request->dataWeight; 
             $dataWeightAttr = $request->dataWeightAttr; 
@@ -825,6 +884,37 @@ class MainController extends Controller
                 ->where('projCode',$projCode)
                 ->update([
                 'taskWeight'=> $dataWeight[$keyWeight],
+                'by_id'=> auth()->user()->id,
+                'updated_by'=> auth()->user()->name,
+                'updated_at' => now()
+                ]);
+            }
+
+            $dataPlan = $request->dataPlan; 
+            $dataPlanAttr = $request->dataPlanAttr; 
+
+            foreach($dataPlanAttr as $keyPlan => $valuePlan){
+                DB::table('tbl_projtask')
+                ->where('taskCode', $valuePlan)
+                ->where('projCode',$projCode)
+                ->update([
+                'plan_days'=> $dataPlan[$keyPlan],
+                'by_id'=> auth()->user()->id,
+                'updated_by'=> auth()->user()->name,
+                'updated_at' => now()
+                ]);
+            }
+
+
+            $dataActual = $request->dataActual; 
+            $dataActualAttr = $request->dataActualAttr; 
+
+            foreach($dataActualAttr as $keyActual => $valueActual){
+                DB::table('tbl_projtask')
+                ->where('taskCode', $valueActual)
+                ->where('projCode',$projCode)
+                ->update([
+                'actual_days'=> $dataActual[$keyActual],
                 'by_id'=> auth()->user()->id,
                 'updated_by'=> auth()->user()->name,
                 'updated_at' => now()
@@ -874,7 +964,7 @@ class MainController extends Controller
     public function project_info_pm(Request $request){
 
         $projPm = DB::connection('mysql')->select("
-        SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+        SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
         b.emp_no AS emp_no, b.company_id AS company_id, concat(b.lname,', ',b.fname,' ',b.mname) AS fullname, b.active AS active,
 
         c.department AS department, c.position AS position, c.team AS team, c.employment_status AS employment_status
@@ -893,8 +983,7 @@ class MainController extends Controller
                 $data .='
                         <tr>
                                 <td>'.$fieldPM->fullname.'</td>
-                                <td>'.$fieldPM->position.'</td>
-                                <td>'.$fieldPM->department.'</td>
+                                <td>'.$fieldPM->csi_email.'</td>
                                 <td>'.$fieldPM->position.'</td>
                         </tr>
                         ';
@@ -934,6 +1023,38 @@ class MainController extends Controller
                         </tr>
                         ';
                 $counterEMP++;
+            }
+        }
+
+        echo $data;
+    }
+
+    public function project_info_stakeholder(Request $request){
+        
+        $projStake = DB::connection('mysql')->select("
+            SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
+            b.emp_no AS emp_no, b.company_id AS company_id, concat(b.lname,', ',b.fname,' ',b.mname) AS fullname, b.active AS active,
+
+            c.department AS department, c.position AS position, c.team AS team, c.employment_status AS employment_status
+
+            FROM tbl_emp_proj AS a LEFT JOIN hris_csi_b.personal_information AS b ON a.emp_id = b.company_id
+            LEFT JOIN hris_csi_b.employee_information AS c ON a.emp_id = c.company_id
+            WHERE (b.active = 'yes') AND projCode = '".$request->code."' AND a.deleted = 0 AND type = 'STAKEHOLDER'
+        ");
+
+        $data = "";
+        $counterStake = 1;
+
+        if(count($projStake)){
+            foreach($projStake as $fieldStake){
+                $data .='
+                    <tr>
+                        <td>'.$fieldStake->fullname.'</td>
+                        <td>'.$fieldStake->csi_email.'</td>
+                        <td>'.$fieldStake->position.'</td>
+                    </tr>
+                ';
+                $counterStake++;
             }
         }
 
@@ -1261,10 +1382,10 @@ class MainController extends Controller
             $messages = "Choose Stakeholder for this project!";
             $error[] = $messages;
         }
-        else if($request->cusChck == ""){
-            $messages = "Choose Customer for this project!";
-            $error[] = $messages;
-        }
+        // else if($request->cusChck == ""){
+        //     $messages = "Choose Customer for this project!";
+        //     $error[] = $messages;
+        // }
         else if($request->pmChck == ""){
             $messages = "Choose Project Manger for this project!";
             $error[] = $messages;
@@ -1315,6 +1436,22 @@ class MainController extends Controller
         }
         else if($request->dataWeightAttr == ""){
             $messages = "Invalid request of task weight";
+            $error[] = $messages;
+        }
+        else if($request->dataPlan == ""){
+            $messages = "Please specify Planned # of days";
+            $error[] = $messages;
+        }
+        else if($request->dataPlanAttr == ""){
+            $messages = "Invalid request of Planned # of days";
+            $error[] = $messages;
+        }
+        else if($request->dataActual == ""){
+            $messages = "Please specify Actual # of days";
+            $error[] = $messages;
+        }
+        else if($request->dataActualAttr == ""){
+            $messages = "Invalid request of Actual # of days";
             $error[] = $messages;
         }
         else if($request->resPercent != 100){
@@ -1418,6 +1555,38 @@ class MainController extends Controller
                 ]);
             }
 
+
+            $dataPlan = $request->dataPlan; 
+            $dataPlanAttr = $request->dataPlanAttr; 
+
+            foreach($dataPlanAttr as $keyPlan => $valuePlan){
+                DB::table('tbl_projtask')
+                ->where('taskCode', $valuePlan)
+                ->where('projCode',$request->code)
+                ->update([
+                'plan_days'=> $dataPlan[$keyPlan],
+                'by_id'=> auth()->user()->id,
+                'updated_by'=> auth()->user()->name,
+                'updated_at' => now()
+                ]);
+            }
+
+
+            $dataActual = $request->dataActual; 
+            $dataActualAttr = $request->dataActualAttr; 
+
+            foreach($dataActualAttr as $keyActual => $valueActual){
+                DB::table('tbl_projtask')
+                ->where('taskCode', $valueActual)
+                ->where('projCode',$request->code)
+                ->update([
+                'actual_days'=> $dataActual[$keyActual],
+                'by_id'=> auth()->user()->id,
+                'updated_by'=> auth()->user()->name,
+                'updated_at' => now()
+                ]);
+            }
+
             //PM
             DB::table('tbl_emp_proj')
             ->where('projCode', $request->code)
@@ -1492,28 +1661,28 @@ class MainController extends Controller
 
 
             //Customer
-            DB::table('tbl_emp_proj')
-            ->where('projCode', $request->code)
-            ->where('type', 'CUSTOMER')
-            ->update([
-            'deleted'=> 1,
-            'by_id'=> auth()->user()->id,
-            'updated_by'=> auth()->user()->name,
-            'updated_at' => now()
-            ]);
-            $myString5 = $request->cusChck;
-            foreach($myString5 as $value5){
-                $ProjCUS = new EmpProj;
-                $ProjCUS->projCode = $request->code;
-                $ProjCUS->emp_id = $value5;
-                $ProjCUS->type = "CUSTOMER";
-                $ProjCUS->deleted = 0;
-                $ProjCUS->by_id = auth()->user()->id;
-                $ProjCUS->updated_by = auth()->user()->name;
-                $ProjCUS->created_at = now();
-                $ProjCUS->updated_at = now();
-                $ProjCUS->save();
-            }
+            // DB::table('tbl_emp_proj')
+            // ->where('projCode', $request->code)
+            // ->where('type', 'CUSTOMER')
+            // ->update([
+            // 'deleted'=> 1,
+            // 'by_id'=> auth()->user()->id,
+            // 'updated_by'=> auth()->user()->name,
+            // 'updated_at' => now()
+            // ]);
+            // $myString5 = $request->cusChck;
+            // foreach($myString5 as $value5){
+            //     $ProjCUS = new EmpProj;
+            //     $ProjCUS->projCode = $request->code;
+            //     $ProjCUS->emp_id = $value5;
+            //     $ProjCUS->type = "CUSTOMER";
+            //     $ProjCUS->deleted = 0;
+            //     $ProjCUS->by_id = auth()->user()->id;
+            //     $ProjCUS->updated_by = auth()->user()->name;
+            //     $ProjCUS->created_at = now();
+            //     $ProjCUS->updated_at = now();
+            //     $ProjCUS->save();
+            // }
             
             $messages = "Successfully Updated!";
             $success[] = $messages;
@@ -1557,6 +1726,79 @@ class MainController extends Controller
             'success'=>$success
         );
         echo json_encode($output);
+    }
+
+    public function project_import_excel(Request $request){
+        // $validator = Validator::make($request->all(), [
+        //     // 'file' => 'required|max:5000'
+        //     'file' => 'required|max:5000|mimes:xlsx,xls,csv'
+        // ]);
+        
+        $validator = Validator::make(
+            [
+                'file'      => $request->file,
+                'extension' => strtolower($request->file->getClientOriginalExtension()),
+            ],
+            [
+                'file'          => 'required|max:5000',
+                'extension'      => 'required|in:,csv,xlsx,xls',
+            ]
+        );
+
+        $modal = "active";
+        if($validator->fails()){
+            return redirect()
+            ->back()
+            ->with(['errors'=>$validator->errors()->all()])
+            ->with('modal',$modal);
+        }
+
+        $dateTime = date('Ymd_His');
+        $file = $request->file('file');
+        $fileName = $dateTime . '-' . $file->getClientOriginalName();
+        $savePath = public_path('/upload/projectlist/');
+        $file->move($savePath, $fileName);
+
+        $excel = Importer::make('Excel');
+        $excel->hasHeader(true);
+        $excel->load($savePath.$fileName);
+        $collection = $excel->getCollection();
+
+        // $sample = DB::connection('mysql')->select("SELECT * FROM tbl_sampleimport");
+        // return $sample;
+        // return Importer::make('Excel')->load($savePath.$fileName)->getCollection();
+
+        if(sizeof($collection[1]) == 5)
+        {
+            // return $collection;
+           $arr = json_decode($collection,true);
+                foreach ($arr as $row) {
+                    $insert_data[] = array(
+                        'first_name'  => $row['first_name'],
+                        'last_name'  => $row['last_name'],
+                        'email'  => $row['email'],
+                        'birthdate'  => $row['birthdate']['date'],
+                        'created_at'  => now(),
+                        'updated_at'  => now(),
+                    );
+                    
+                }
+            
+            DB::table('tbl_sampleimport')->insert($insert_data);
+        }
+        else
+        {
+            return redirect()
+            ->back()
+            ->with(['errors'=> [0=> 'Please provide date in file according to your format.']])
+            ->with('modal',$modal);
+        }
+         
+
+        return redirect()->back()
+        ->with(['success'=>'File uploaded successfully!'])
+        ->with('modal',$modal);
+        
     }
 
     public function assignproject(){
@@ -1650,7 +1892,6 @@ class MainController extends Controller
         );
         echo json_encode($output);
     }
-
 
     // ------------------------------------------------------------------------//
     // This section all reusable codes are commented for future purposes       //

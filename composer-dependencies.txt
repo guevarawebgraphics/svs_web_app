@@ -1,0 +1,9 @@
+# SVS - Web Console
+# List of Composer Dependencies (Needed when moving the project to another machine)
+#
+# 1.) https://packagist.org/packages/cyber-duck/laravel-excel
+# 2.) composer require cyber-duck/laravel-excel
+# 3.) composer require "maatwebsite/excel":"~2.1.8" --no-update
+#
+#
+#

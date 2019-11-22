@@ -94,6 +94,10 @@
                                                 <a class="nav-link font-svs-normal waves-light" id="contact-tab-classic-shadow" data-toggle="tab" href="#contact-classic-shadow{{$field->proj_code}}"
                                                 role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Employee</a>
                                             </li>
+                                            <li class="nav-item svs-nav-item">
+                                                <a class="nav-link font-svs-normal waves-light" id="stakeh-tab-classic-shadow" data-toggle="tab" href="#stakeh-classic-shadow{{$field->proj_code}}"
+                                                role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Stakeholder</a>
+                                            </li>
                                         </ul>
                                     
                                         <div class="tab-content" id="myClassicTabContentShadow">
@@ -133,9 +137,8 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th><b>Project Manager Name</b></th>
+                                                                    <th><b>Email</b></th>
                                                                     <th><b>Position</b></th>
-                                                                    <th><b>Department</b></th>
-                                                                    <th><b>Team</b></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="divPm{{$field->proj_code}}">
@@ -167,6 +170,26 @@
                                                     </table>
                                                 </div>
 
+                                            </div>
+                                            <div class="tab-pane fade" id="stakeh-classic-shadow{{$field->proj_code}}" role="tabpanel" aria-labelledby="stakeh-tab-classic-shadow{{$field->proj_code}}">
+                                                <div class="container svs-overflow">
+                                                    <table id="stakeRow{{$field->proj_code}}" class="svs-table-mini" cellspacing="0" width="100%" summary="test">
+                                                        <colgroup>
+                                                            <col width="40px">
+                                                                <col span="4" width="25%">
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr>
+                                                                <th><b>Stakeholder Name</b></th>
+                                                                <th><b>Email</b></th>
+                                                                <th><b>Position</b></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="divStake{{$field->proj_code}}">
+                                                        
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     
@@ -327,7 +350,7 @@
                     });
                 //EndPm
 
-                //Pm
+                //Emp
                     $.ajax({
                         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         url: "{{ route('project_info_emp') }}",
@@ -360,7 +383,42 @@
                             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
                         }
                     });
-                //EndPm
+                //EndEmp
+                
+                //Stakeholder
+                    $.ajax({
+                        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        url: "{{ route('project_info_stakeholder') }}",
+                        method: "POST",
+                        data:{
+                            proceed:"TRUE",
+                            code:projCode
+                        }, 
+                        success:function(data)
+                        {
+                            $("#divStake"+projCode).html(data);
+                            $("#stakeRow"+projCode).DataTable();
+                            $('#stakeRow'+projCode+'_wrapper').find('label').each(function () {
+                                $(this).parent().append($(this).children());
+                            });
+                            $('#stakeRow'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
+                                const $this = $(this);
+                                $this.attr("placeholder", "Search");
+                                $this.removeClass('form-control-sm');
+                            });
+                            $('#stakeRow'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                            $('#stakeRow'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
+                            $('#stakeRow'+projCode+'_wrapper select').removeClass(
+                            'custom-select custom-select-sm form-control form-control-sm');
+                            $('#stakeRow'+projCode+'_wrapper select').addClass('mdb-select');
+                            // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                            $('#stakeRow'+projCode+'_wrapper .dataTables_filter').find('label').remove();
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                //Stakeholder
             }  
         });
     });

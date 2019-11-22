@@ -45,6 +45,7 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/projectlist/project_update_val', 'MainController@project_update_val')->name('project_update_val');
     Route::post('/projectlist/project_update', 'MainController@project_update')->name('project_update');
     Route::post('/projectlist/project_delete', 'MainController@project_delete')->name('project_delete');
+    Route::post('/projectlist/project_import_excel','MainController@project_import_excel')->name('project_import_excel');
 
     Route::get('/assignproject', 'MainController@assignproject');
 
@@ -53,6 +54,7 @@ Route::group(['middleware'=> ['admin']], function(){
 
     Route::get('/retrack_project', 'MainController@retrack_project');
     Route::post('/retrack_task/retrack_project', 'MainController@retrack')->name('retrack_project');
+
 
     // ------------------------------------------------------------------------//
     // This section all reusable codes will be commented for future purposes   //
@@ -68,6 +70,8 @@ Route::group(['middleware'=> ['auth']], function(){
     Route::post('/dashboard/pm_view', 'MainController@project_view')->name('pm_view');
     Route::post('/dashboard/emp_view', 'MainController@project_view')->name('emp_view');
     Route::post('/dashboard/act_view', 'MainController@project_view')->name('act_view');
+    Route::post('/dashboard/stake_view', 'MainController@project_view')->name('stake_view');
+    Route::post('/dashboard/customer_view', 'MainController@project_view')->name('customer_view');
     Route::post('/dashboard/open_task_view', 'MainController@open_task_view')->name('open_task_view');
     
     Route::get('/location', 'MainController@location');
@@ -89,6 +93,7 @@ Route::group(['middleware'=> ['auth']], function(){
     Route::post('/projectlist/project_info_task', 'MainController@project_info_task')->name('project_info_task');
     Route::post('/projectlist/project_info_pm', 'MainController@project_info_pm')->name('project_info_pm');
     Route::post('/projectlist/project_info_emp', 'MainController@project_info_emp')->name('project_info_emp');
+    Route::post('/projectlist/project_info_stakeholder', 'MainController@project_info_stakeholder')->name('project_info_stakeholder');
     Route::post('/projectlist/project_dropdown', 'MainController@project_dropdown')->name('project_dropdown');
     Route::post('/projectlist/open_task_view_list', 'MainController@open_task_view')->name('open_task_view_list');
     Route::post('/projectlist/project_unselected', 'MainController@project_unselected')->name('project_unselected');

@@ -36,18 +36,25 @@
       <!--Body-->
       <div class="modal-body">
         <div class="container">
+            
+            @include('main.projectlistRedirectBack')
+
             <p class="note note-success">
                 <strong>Note upload:</strong> 
                 You are trying to upload multiple project records that containas multiple task records. This record will be useful to any transaction
                 <br>
-                *format : <b><em>.csv</em></b><br>
-            </p>
-            <div class="file-field">
-                <div class="btn-sm float-left">
-                  <span>Choose file</span>
-                  <input type="file">
+                *format : <b><em>xlsx,xls,csv</em></b><br>
+                </p>
+
+                <form action="{{ url('/projectlist/project_import_excel') }}" method="POST" enctype="multipart/form-data">
+
+                {{ csrf_field() }}
+                <div class="file-field">
+                    <div class="btn-sm float-left">
+                        <span>Choose file</span>
+                        <input type="file" name="file" id="file">
+                    </div>
                 </div>
-              </div>
         </div>
     
 
@@ -55,7 +62,8 @@
       <!--Footer-->
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-        <button class="btn btn-success waves-effect" id="upBulkSubmit">Upload</button>
+        <button type="submit" name="submitImport" class="btn btn-success waves-effect" id="upBulkSubmit">Upload</button>
+            </form>
       </div>
     </div>
   </div>
@@ -209,7 +217,7 @@
                         
                         <!--Grid column-->
                         <div class="col-md-6">
-                            <div class="md-form mb-0">
+                            {{-- <div class="md-form mb-0">
                                 <input type="text" id="epSearchCUS" onkeyup="searchCUS();" placeholder="Click here to search" name="epSearchCUS" class="form-control">
                                 <label id="epSearchCUS" class="active" for="epTitle">Current Customer</label>
                             </div>
@@ -224,7 +232,7 @@
                                 <div class="container" id="cusUnselect" style="display:none;">
                                     
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <!--Grid column-->
                     </div>
@@ -526,7 +534,7 @@
 
                     <!--Grid column-->
                     <div class="col-md-6">
-                            <label for="cusSOL" class="svs-small"><small>Customer</small></label>
+                            {{-- <label for="cusSOL" class="svs-small"><small>Customer</small></label>
                             <select id="cusSOL" name="cusSOL" class="mdb-select multi-sol-svs" multiple="multiple">
                                 <optgroup label="Customer Name" title="Opiton Group 1">
                                 @if(count($emp_info))
@@ -534,7 +542,7 @@
                                         <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
                                     @endforeach
                                 @endif
-                        </select>
+                        </select> --}}
                     </div>
                     <!--Grid column-->
                     
@@ -881,6 +889,15 @@ function searchCUS(){
 </script>
 
 <script>
+$(document).ready(function () {
+    var active_modal = "{{ session('modal') }}";
+    if(active_modal == "active"){
+        $('#bulkProjMod').modal('show');
+    }
+});
+</script>
+
+<script>
 $(".upBulk").click(function () {
     $('#bulkProjMod').modal('show');
 });
@@ -1007,14 +1024,35 @@ $(document).ready(function () {
         
         var dataWeight = [],
         resPercent = 0,
+        dataPlan = [],
+        dataActual = [],
         i; 
         var dataWeightAttr = []; 
+        var dataPlanAttr = []; 
+        var dataActualAttr = []; 
+
         $('input[name="taskTxtFld"]').each(function() {
             if($(this).val() != ''){
                 dataWeight.push($(this).val());
                 dataWeightAttr.push($(this).attr('data-tcode'));
             }
         });
+
+        $('input[name="planTxtFld"]').each(function() {
+            if($(this).val() != ''){
+                dataPlan.push($(this).val());
+                dataPlanAttr.push($(this).attr('data-tcode'));
+            }
+        });
+
+        $('input[name="actualTxtFld"]').each(function() {
+            if($(this).val() != ''){
+                dataActual.push($(this).val());
+                dataActualAttr.push($(this).attr('data-tcode'));
+            }
+        });
+
+
         for (i = 0; i < dataWeight.length; i += 1) 
         {
             resPercent += parseInt(dataWeight[i]);
@@ -1047,6 +1085,10 @@ $(document).ready(function () {
                 act_end_time:act_end_time,
                 dataWeight:dataWeight,
                 dataWeightAttr:dataWeightAttr,
+                dataPlan:dataPlan,
+                dataPlanAttr:dataPlanAttr,
+                dataActual:dataActual,
+                dataActualAttr:dataActualAttr,
                 resPercent:resPercent
             }, 
             dataType: "json",
@@ -1084,6 +1126,10 @@ $(document).ready(function () {
                             act_end_time:act_end_time,
                             dataWeight:dataWeight,
                             dataWeightAttr:dataWeightAttr,
+                            dataPlan:dataPlan,
+                            dataPlanAttr:dataPlanAttr,
+                            dataActual:dataActual,
+                            dataActualAttr:dataActualAttr,
                             resPercent:resPercent
                         }, 
                         dataType: "json",
@@ -1342,23 +1388,24 @@ $(".editProj").click(function () {
     });
 
     //Customer
-    $.ajax({
-        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: "{{ route('project_dropdown') }}",
-        method: "POST",
-        data:{
-            proceed:"TRUE",
-            type:"CUSTOMER",
-            code:projCode
-        }, 
-        success:function(data)
-        {
-            $("#cusDivEdit").html(data);
-        },
-        error: function(xhr, ajaxOptions, thrownError){
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+        // $.ajax({
+        //     headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        //     url: "{{ route('project_dropdown') }}",
+        //     method: "POST",
+        //     data:{
+        //         proceed:"TRUE",
+        //         type:"CUSTOMER",
+        //         code:projCode
+        //     }, 
+        //     success:function(data)
+        //     {
+        //         $("#cusDivEdit").html(data);
+        //     },
+        //     error: function(xhr, ajaxOptions, thrownError){
+        //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        //     }
+        // });
+    //Customer
 
     $('#taskDivEdit').hide();
     $('#taskUnselect').hide();
@@ -1767,6 +1814,7 @@ $(".editProj").click(function () {
 </script>
 
 <script type="text/javascript">
+//Map New Project
     var startlat = 14.599512;
     var startlon = 120.984222;
     
@@ -1843,11 +1891,11 @@ $(".editProj").click(function () {
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
     }
-
+//Map New Project
 </script>
 
 <script>
-
+//Update Location Map
     var startlatE = 14.599512;
     var startlonE = 120.984222;
     
@@ -1938,10 +1986,11 @@ $(".editProj").click(function () {
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
     }
-
+//Update Location Map
 </script>
 
 <script>
+//Datepicker
     $(function (){
         $('[data-toggle="datepicker"]').datetimepicker({
             format: 'L'
@@ -2002,19 +2051,20 @@ $(document).ready(function() {
 </script>
 
 <script>
-var check = function ($checkbox) {
-  $('#myWeight'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
-  $('#myPlanned'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
-  $('#myActual'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
-};
+//Validation for checkbox task
+    var check = function ($checkbox) {
+        $('#myWeight'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
+        $('#myPlanned'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
+        $('#myActual'+$checkbox.val()).prop('readonly', !$checkbox.is(':checked'));
+        };
 
-$('input[name=myTask]').each(function () {
-  check($(this));
-  
-  $(this).on('change', function () {
-    check($(this));
-  });
-});
+        $('input[name=myTask]').each(function () {
+        check($(this));
+        
+        $(this).on('change', function () {
+            check($(this));
+        });
+    });
 </script>
 
 <script>
@@ -2166,6 +2216,10 @@ $('#subNewProj').click(function(){
                         cusData:cusData,
                         dataWeight:dataWeight,
                         dataWeightAttr:dataWeightAttr,
+                        dataPlan:dataPlan,
+                        dataPlanAttr:dataPlanAttr,
+                        dataActual:dataActual,
+                        dataActualAttr:dataActualAttr,
                         resPercent:resPercent
                     }, 
                     dataType: "json",

@@ -83,10 +83,6 @@ ul {
 
 <!--Grid row-->
 
-
-
-
-
 <!-- Modal: Task -->
 <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
@@ -210,7 +206,14 @@ ul {
                                 <a class="nav-link font-svs-normal waves-light" id="contact-tab-classic-shadow" data-toggle="tab" href="#contact-classic-shadow"
                                 role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Employee</a>
                             </li>
-                            
+                            <li class="nav-item svs-nav-item">
+                                <a class="nav-link font-svs-normal waves-light" id="stake-tab-classic-shadow" data-toggle="tab" href="#stake-classic-shadow"
+                                role="tab" aria-controls="stake-classic-shadow" aria-selected="true">Stakeholder</a>
+                            </li>
+                            {{-- <li class="nav-item svs-nav-item">
+                                <a class="nav-link font-svs-normal waves-light" id="customer-tab-classic-shadow" data-toggle="tab" href="#customer-classic-shadow"
+                                role="tab" aria-controls="customer-classic-shadow" aria-selected="true">Customer</a>
+                            </li> --}}
                         </ul>
                     
                         <div class="tab-content" id="myClassicTabContentShadow">
@@ -223,11 +226,11 @@ ul {
                                             </colgroup>
                                             <thead>
                                                 <tr>
-                                                    <th><b>Date</b></th>
-                                                    <th><b>Activity</b></th>
-                                                    <th><b>Type</b></th>
-                                                    <th><b>SubmittedBy</b></th>
-                                                    <th><b>Attachment</b></th>
+                                                    <th><small><b>Date</b></small></th>
+                                                    <th><small><b>Activity</b></small></th>
+                                                    <th><small><b>Type</b></small></th>
+                                                    <th><small><b>SubmittedBy</b></small></th>
+                                                    <th><small><b>Attachment</b></small></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="logView">
@@ -245,11 +248,13 @@ ul {
                                             </colgroup>
                                             <thead>
                                                 <tr>
-                                                    <th><b>Task Code</b></th>
-                                                    <th><b>Title</b></th>
-                                                    <th><b>Description</b></th>
-                                                    <th><b>Weight</b></th>
-                                                    <th><b>Action</b></th>
+                                                    <th><small><b>TaskCode</b></small></th>
+                                                    <th><small><b>Title</b></small></th>
+                                                    <th><small><b>Description</b></small></th>
+                                                    <th><small><b>Weight</b></small></th>
+                                                    <th><small><b>PlanDays</b></small></th>
+                                                    <th><small><b>ActualDays</b></small></th>
+                                                    <th><small><b>Action</b></small></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="taskView">
@@ -267,10 +272,9 @@ ul {
                                             </colgroup>
                                             <thead>
                                                 <tr>
-                                                    <th><b>Project Manager</b></th>
-                                                    <th><b>Position</b></th>
-                                                    <th><b>Department</b></th>
-                                                    <th><b>Team</b></th>
+                                                    <th><small><b>Project Manager</b></small></th>
+                                                    <th><small><b>Email</b></small></th>
+                                                    <th><small><b>Position</b></small></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="pmView">
@@ -288,10 +292,10 @@ ul {
                                             </colgroup>
                                             <thead>
                                                 <tr>
-                                                    <th><b>Employee</b></th>
-                                                    <th><b>Position</b></th>
-                                                    <th><b>Department</b></th>
-                                                    <th><b>Team</b></th>
+                                                    <th><small><b>Employee</b></small></th>
+                                                    <th><small><b>Position</b></small></th>
+                                                    <th><small><b>Department</b></small></th>
+                                                    <th><small><b>Team</b></small></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="empView">
@@ -300,7 +304,46 @@ ul {
                                         </table>
                                     </div>
                             </div>
-                            
+                            <div class="tab-pane fade" id="stake-classic-shadow" role="tabpanel" aria-labelledby="stake-tab-classic-shadow">
+                                <div class="container svs-overflow">
+                                    <table id="stakeViewMod" class="table table-striped table-view stake-tb-mod" cellspacing="0" width="100%" summary="test">
+                                        <colgroup>
+                                            <col width="40px">
+                                                <col span="4" width="25%">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th><small><b>Name</b></small></th>
+                                                <th><small><b>Email</b></small></th>
+                                                <th><small><b>Position</b></small></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="stakeView">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            {{-- <div class="tab-pane fade" id="customer-classic-shadow" role="tabpanel" aria-labelledby="customer-tab-classic-shadow">
+                                <div class="container svs-overflow">
+                                    <table id="customerViewMod" class="table table-striped table-view customer-tb-mod" cellspacing="0" width="100%" summary="test">
+                                        <colgroup>
+                                            <col width="40px">
+                                                <col span="4" width="25%">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th><small><b>Name</b></small></th>
+                                                <th><small><b>Email</b></small></th>
+                                                <th><small><b>Position</b></small></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="customerView">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> --}}
                         </div>
                     
                     </div>
@@ -383,8 +426,15 @@ ul {
       </div>
       <!--Body-->
       <div class="modal-body">
+        {{-- <p class="note note-success">
+            <strong>Download Image:</strong> 
+            <em>Click the image to download.</em>
+            <br>
+        </p> --}}
         <div class="container">
-            <img id="activityImg" style="width:100%;height:100%;">
+            <a id="activityImgHref" download>
+                <img id="activityImg" style="width:100%;height:100%;">
+            </a>
         </div>
     
 
@@ -405,17 +455,16 @@ $('.proj-status-list').simpleLoadMore({
   itemsToLoad: 5,
   btnHTML: '<a href="#" class="btn btn-primary waves-effect load-more__btn" style="height:50px; margin:0 auto; margin-top: 2.5em!important;">View More <i class="fas fa-angle-down"></i></a>'
 });
-
 //Prevents showing error for multiple warning alert message
 $.fn.dataTable.ext.errMode = 'none';
 </script>
 
 <script>
-
     function activityLog(projCode,attachment){
         var img = attachment;
-        $('#activityImg').attr('src',img);
-        $('#imgMod').modal('show');
+        $("#activityImg").attr("src","{{ env('APP_API_BACKEND') }}"+img);
+        $("#activityImgHref").attr("href","{{ env('APP_API_BACKEND') }}"+img);
+        $("#imgMod").modal("show");
         
     }
 </script>
@@ -556,7 +605,7 @@ $(".showModal").click(function () {
                 $("#taskView").html(data);
                 $("#taskViewMod").DataTable({
                     "columnDefs": [
-                        { "orderable": false, "targets": 4 }
+                        { "orderable": false, "targets": 6 }
                     ]
                 });
                 $('#taskViewMod_wrapper').find('label').each(function () {
@@ -688,6 +737,78 @@ $(".showModal").click(function () {
             }
         });
     //EndActivityLogs
+
+    //Stakeholder
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{ route('stake_view') }}",
+            method: "POST",
+            data:{
+                proceed:"TRUE",
+                type:"STAKE",
+                code:projCode
+            }, 
+            success:function(data)
+            {
+                $("#stakeView").html(data);
+                $("#stakeViewMod").DataTable();
+                $('#stakeViewMod_wrapper').find('label').each(function () {
+                    $(this).parent().append($(this).children());
+                });
+                $('#stakeViewMod_wrapper .dataTables_filter').find('input').each(function () {
+                    const $this = $(this);
+                    $this.attr("placeholder", "Search");
+                    $this.removeClass('form-control-sm');
+                });
+                $('#stakeViewMod_wrapper .dataTables_length').addClass('d-flex flex-row');
+                $('#stakeViewMod_wrapper .dataTables_filter').addClass('md-form');
+                $('#stakeViewMod_wrapper select').removeClass(
+                'custom-select custom-select-sm form-control form-control-sm');
+                $('#stakeViewMod_wrapper select').addClass('mdb-select');
+                // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                $('#stakeViewMod_wrapper .dataTables_filter').find('label').remove();
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    //Stakeholder
+
+    //Customer
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{ route('customer_view') }}",
+            method: "POST",
+            data:{
+                proceed:"TRUE",
+                type:"CUSTOMER",
+                code:projCode
+            }, 
+            success:function(data)
+            {
+                $("#customerView").html(data);
+                $("#customerViewMod").DataTable();
+                $('#customerViewMod_wrapper').find('label').each(function () {
+                    $(this).parent().append($(this).children());
+                });
+                $('#customerViewMod_wrapper .dataTables_filter').find('input').each(function () {
+                    const $this = $(this);
+                    $this.attr("placeholder", "Search");
+                    $this.removeClass('form-control-sm');
+                });
+                $('#customerViewMod_wrapper .dataTables_length').addClass('d-flex flex-row');
+                $('#customerViewMod_wrapper .dataTables_filter').addClass('md-form');
+                $('#customerViewMod_wrapper select').removeClass(
+                'custom-select custom-select-sm form-control form-control-sm');
+                $('#customerViewMod_wrapper select').addClass('mdb-select');
+                // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                $('#customerViewMod_wrapper .dataTables_filter').find('label').remove();
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    //Customer
 
     // SelectAddr(Number(lat),Number(lon),'\"'+location+'"\'');
 
