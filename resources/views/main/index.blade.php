@@ -167,20 +167,25 @@ ul {
                     </div>
                     <br>
                     <div class="row container">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <center><a class="svs-text-center">Reports</a></center>
                             <br>
                             <div class="card rounded-circle svs-circle btn-danger"><h5 class="svs-round-text"><b id="vReport">23</b></h5></div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <center><a class="svs-text-center">Issues</a></center>
                             <br>
                             <div class="card rounded-circle svs-circle btn-warning"><h5 class="svs-round-text"><b id="vIssue">23</b></h5></div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <center><a class="svs-text-center">Project Status</a></center>
                             <br>
                             <div class="card rounded-circle svs-circle btn-info"><h5 class="svs-round-text"><b id="vStatus">23</b></h5></div>
+                        </div>
+                        <div class="col-md-3">
+                            <center><a class="svs-text-center">Remaining Days</a></center>
+                            <br>
+                            <div class="card rounded-circle svs-circle btn-success"><h5 class="svs-round-text"><b id="vRDays">3</b></h5></div>
                         </div>
                     </div>
                     <br>
@@ -251,7 +256,7 @@ ul {
                                                     <th><small><b>TaskCode</b></small></th>
                                                     <th><small><b>Title</b></small></th>
                                                     <th><small><b>Description</b></small></th>
-                                                    <th><small><b>Weight</b></small></th>
+                                                    <th><small><b>Total%/Weight</b></small></th>
                                                     <th><small><b>PlanDays</b></small></th>
                                                     <th><small><b>ActualDays</b></small></th>
                                                     <th><small><b>Action</b></small></th>
@@ -590,6 +595,25 @@ $(".showModal").click(function () {
     $('#vAet').html(aed);
     $('#vFooter').html("Created by : "+byname+"<br><small><em>"+formatCDate+"</small></em>");
 
+    //Get Remaining Days
+        var curDate = new Date();
+        var date1 = new Date(now_asd.toLocaleDateString());
+        var date2 = new Date(now_aed.toLocaleDateString());
+        var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
+        if(date1 > curDate){
+            if(diffDays < 0)
+            {
+                remDays = 0;
+            }
+            else
+            {
+                remDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
+            }
+        }else{
+            remDays = 0;
+        }
+        $('#vRDays').html(remDays);
+
     //Task
         $.ajax({
             headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -603,11 +627,7 @@ $(".showModal").click(function () {
             success:function(data)
             {
                 $("#taskView").html(data);
-                $("#taskViewMod").DataTable({
-                    "columnDefs": [
-                        { "orderable": false, "targets": 6 }
-                    ]
-                });
+                $("#taskViewMod").DataTable();
                 $('#taskViewMod_wrapper').find('label').each(function () {
                     $(this).parent().append($(this).children());
                 });

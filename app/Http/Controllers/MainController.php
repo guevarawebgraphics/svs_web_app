@@ -45,6 +45,11 @@ class MainController extends Controller
                     }else{
                         $taskWeight = 0.00."%";
                     }
+                    if($field->total_task_weight != ""){
+                        $total_task_weight = $field->total_task_weight."%";
+                    }else{
+                        $total_task_weight = 0.00."%";
+                    }
                     $data .= '
                     <tr class="row-element-lm">
                         <td>'.$field->taskCode.'</td>
@@ -53,7 +58,7 @@ class MainController extends Controller
 
                         <td>'.$field->task_desc.'</td>
 
-                        <td>'.$taskWeight.'</td>
+                        <td>'.$total_task_weight.'/'.$taskWeight.'</td>
 
                         <td>'.$field->plan_days.'</td>
 
@@ -451,8 +456,8 @@ class MainController extends Controller
             ->update([
             'task_title'=> $request->title,
             'task_desc'=> $request->desc,
-            'by_id'=> auth()->user()->id,
-            'updated_by'=> auth()->user()->name,
+            // 'by_id'=> auth()->user()->id,
+            // 'updated_by'=> auth()->user()->name,
             'updated_at' => now()
             ]);
 
@@ -1513,8 +1518,8 @@ class MainController extends Controller
             'longitude'=> $request->lon,
             'latitude'=> $request->lat,
             'location'=> $request->addr,
-            'by_id'=> auth()->user()->id,
-            'updated_by'=> auth()->user()->name,
+            // 'by_id'=> auth()->user()->id,
+            // 'updated_by'=> auth()->user()->name,
             'updated_at' => now()
             ]);
 
@@ -1523,8 +1528,8 @@ class MainController extends Controller
             ->where('projCode', $request->code)
             ->update([
             'deleted'=> 1,
-            'by_id'=> auth()->user()->id,
-            'updated_by'=> auth()->user()->name,
+            // 'by_id'=> auth()->user()->id,
+            // 'updated_by'=> auth()->user()->name,
             'updated_at' => now()
             ]);
             $myString = $request->taskChck;
@@ -1549,8 +1554,8 @@ class MainController extends Controller
                 ->where('projCode',$request->code)
                 ->update([
                 'taskWeight'=> $dataWeight[$keyWeight],
-                'by_id'=> auth()->user()->id,
-                'updated_by'=> auth()->user()->name,
+                // 'by_id'=> auth()->user()->id,
+                // 'updated_by'=> auth()->user()->name,
                 'updated_at' => now()
                 ]);
             }
@@ -1565,8 +1570,8 @@ class MainController extends Controller
                 ->where('projCode',$request->code)
                 ->update([
                 'plan_days'=> $dataPlan[$keyPlan],
-                'by_id'=> auth()->user()->id,
-                'updated_by'=> auth()->user()->name,
+                // 'by_id'=> auth()->user()->id,
+                // 'updated_by'=> auth()->user()->name,
                 'updated_at' => now()
                 ]);
             }
@@ -1581,8 +1586,8 @@ class MainController extends Controller
                 ->where('projCode',$request->code)
                 ->update([
                 'actual_days'=> $dataActual[$keyActual],
-                'by_id'=> auth()->user()->id,
-                'updated_by'=> auth()->user()->name,
+                // 'by_id'=> auth()->user()->id,
+                // 'updated_by'=> auth()->user()->name,
                 'updated_at' => now()
                 ]);
             }
@@ -1593,8 +1598,8 @@ class MainController extends Controller
             ->where('type', 'PM')
             ->update([
             'deleted'=> 1,
-            'by_id'=> auth()->user()->id,
-            'updated_by'=> auth()->user()->name,
+            // 'by_id'=> auth()->user()->id,
+            // 'updated_by'=> auth()->user()->name,
             'updated_at' => now()
             ]);
             $myString2 = $request->pmChck;
@@ -1617,8 +1622,8 @@ class MainController extends Controller
             ->where('type', 'EMP')
             ->update([
             'deleted'=> 1,
-            'by_id'=> auth()->user()->id,
-            'updated_by'=> auth()->user()->name,
+            // 'by_id'=> auth()->user()->id,
+            // 'updated_by'=> auth()->user()->name,
             'updated_at' => now()
             ]);
             $myString3 = $request->empChck;
@@ -1641,8 +1646,8 @@ class MainController extends Controller
             ->where('type', 'STAKEHOLDER')
             ->update([
             'deleted'=> 1,
-            'by_id'=> auth()->user()->id,
-            'updated_by'=> auth()->user()->name,
+            // 'by_id'=> auth()->user()->id,
+            // 'updated_by'=> auth()->user()->name,
             'updated_at' => now()
             ]);
             $myString4 = $request->stakeChck;
@@ -1729,11 +1734,6 @@ class MainController extends Controller
     }
 
     public function project_import_excel(Request $request){
-        // $validator = Validator::make($request->all(), [
-        //     // 'file' => 'required|max:5000'
-        //     'file' => 'required|max:5000|mimes:xlsx,xls,csv'
-        // ]);
-        
         $validator = Validator::make(
             [
                 'file'      => $request->file,
@@ -1758,42 +1758,198 @@ class MainController extends Controller
         $fileName = $dateTime . '-' . $file->getClientOriginalName();
         $savePath = public_path('/upload/projectlist/');
         $file->move($savePath, $fileName);
+        $projCode = strtoupper(str_random(12));
 
-        $excel = Importer::make('Excel');
-        $excel->hasHeader(true);
-        $excel->load($savePath.$fileName);
-        $collection = $excel->getCollection();
+        //Project Info
+            $error = "";
+            $success = "";
+            $excel = Importer::make('Excel');
+            $excel->hasHeader(true);
+            $excel->load($savePath.$fileName);
+            $excel->setSheet(1);
+            $collection = $excel->getCollection();
 
-        // $sample = DB::connection('mysql')->select("SELECT * FROM tbl_sampleimport");
-        // return $sample;
-        // return Importer::make('Excel')->load($savePath.$fileName)->getCollection();
-
-        if(sizeof($collection[1]) == 5)
-        {
-            // return $collection;
-           $arr = json_decode($collection,true);
-                foreach ($arr as $row) {
-                    $insert_data[] = array(
-                        'first_name'  => $row['first_name'],
-                        'last_name'  => $row['last_name'],
-                        'email'  => $row['email'],
-                        'birthdate'  => $row['birthdate']['date'],
-                        'created_at'  => now(),
-                        'updated_at'  => now(),
-                    );
-                    
+            if(sizeof($collection[0]) == 7){
+                $arr = json_decode($collection,true);
+                
+                if(count($arr) == 1){
+                    $success = "TRUE";
+                    $error = "FALSE";
+                }else{
+                    $success = "FALSE";
+                    $error = "TRUE";
                 }
-            
-            DB::table('tbl_sampleimport')->insert($insert_data);
-        }
-        else
-        {
+            }else{
+                $success = "FALSE";
+                $error = "TRUE";
+            }
+        //Project Info
+
+        //Project Employee
+            $error1 = "";
+            $success1 = "";
+            $excel1 = Importer::make('Excel');
+            $excel1->hasHeader(true);
+            $excel1->load($savePath.$fileName);
+            $excel1->setSheet(2);
+            $collection1 = $excel1->getCollection();
+
+            if(sizeof($collection1[0]) == 1){
+                $arr1 = json_decode($collection1,true);
+                
+                if(count($arr1) > 0){
+                    $success1 = "TRUE";
+                    $error1 = "FALSE";
+                }else{
+                    $success1 = "FALSE";
+                    $error1 = "TRUE";
+                }
+            }else{
+                $success1 = "FALSE";
+                $error1 = "TRUE";
+            }
+        //Project Employee
+
+        //Project Stakeholder
+            $error2 = "";
+            $success2 = "";
+            $excel2 = Importer::make('Excel');
+            $excel2->hasHeader(true);
+            $excel2->load($savePath.$fileName);
+            $excel2->setSheet(3);
+            $collection2 = $excel2->getCollection();
+
+            if(sizeof($collection2[0]) == 1){
+                $arr2 = json_decode($collection2,true);
+                
+                if(count($arr2) > 0){
+                    $success2 = "TRUE";
+                    $error2 = "FALSE";
+                }else{
+                    $success2 = "FALSE";
+                    $error2 = "TRUE";
+                }
+            }else{
+                $success2 = "FALSE";
+                $error2 = "TRUE";
+            }
+        //Project Stakeholder
+
+        //Project Manager
+            $error3 = "";
+            $success3 = "";
+            $excel3 = Importer::make('Excel');
+            $excel3->hasHeader(true);
+            $excel3->load($savePath.$fileName);
+            $excel3->setSheet(4);
+            $collection3 = $excel3->getCollection();
+
+            if(sizeof($collection3[0]) == 1){
+                $arr3 = json_decode($collection3,true);
+                
+                if(count($arr3) > 0){
+                    $success3 = "TRUE";
+                    $error3 = "FALSE";
+                }else{
+                    $success3 = "FALSE";
+                    $error3 = "TRUE";
+                }
+            }else{
+                $success3 = "FALSE";
+                $error3 = "TRUE";
+            }
+        //Project Manager
+
+        if($success != "TRUE"){
             return redirect()
             ->back()
-            ->with(['errors'=> [0=> 'Please provide date in file according to your format.']])
+            ->with(['errors'=> [0=> 'Please provide correct format for Project Information Sheet']])
             ->with('modal',$modal);
         }
-         
+        else if($success1 != "TRUE"){
+            return redirect()
+            ->back()
+            ->with(['errors'=> [0=> 'Please provide correct format for Project Employee Sheet']])
+            ->with('modal',$modal);
+        }
+        else if($success2 != "TRUE"){
+            return redirect()
+            ->back()
+            ->with(['errors'=> [0=> 'Please provide correct format for Project Stakeholder Sheet']])
+            ->with('modal',$modal);
+        }
+        else if($success3 != "TRUE"){
+            return redirect()
+            ->back()
+            ->with(['errors'=> [0=> 'Please provide correct format for Project Manager Sheet']])
+            ->with('modal',$modal);
+        }
+        else{
+            foreach ($arr as $row) {
+                $projCode = strtoupper(str_random(12));
+                $insert_data[] = array(
+                    'proj_code'  => $projCode,
+                    'proj_title'  => $row['project_title'],
+                    'proj_desc'  => $row['project_description'],
+                    'est_start_date'  =>  $row['estimated_start_date']['date'],
+                    'est_end_date'  => $row['estimated_end_date']['date'],
+                    'act_start_date'  =>  $row['actual_start_date']['date'],
+                    'act_end_date'  =>  $row['actual_end_date']['date'],
+                    'longitude'  =>  '121.33365260',
+                    'latitude'  =>  '14.16964760',
+                    'location'  =>  $row['project_location'],
+                    'deleted'  =>  0,
+                    'by_id'  => auth()->user()->id,
+                    'updated_by'    =>  auth()->user()->name,
+                    'created_at'    =>  now(),
+                    'updated_at'    => now(),
+                );
+            }
+    
+            foreach ($arr1 as $row1) {
+                $insert_data1[] = array(
+                    'projCode'  =>  $projCode,
+                    'emp_id'  =>  $row1['company_id'],
+                    'type'  =>  'EMP',
+                    'deleted'  =>  0,
+                    'by_id'  => auth()->user()->id,
+                    'updated_by'    =>  auth()->user()->name,
+                    'created_at'    =>  now(),
+                    'updated_at'    => now(),
+                );
+            }
+            foreach ($arr2 as $row2) {
+                $insert_data2[] = array(
+                    'projCode'  =>  $projCode,
+                    'emp_id'  =>  $row2['stakeholder_member_code'],
+                    'type'  =>  'STAKEHOLDER',
+                    'deleted'  =>  0,
+                    'by_id'  => auth()->user()->id,
+                    'updated_by'    =>  auth()->user()->name,
+                    'created_at'    =>  now(),
+                    'updated_at'    => now(),
+                );
+            }
+            foreach ($arr3 as $row3) {
+                $insert_data3[] = array(
+                    'projCode'  =>  $projCode,
+                    'emp_id'  =>  $row3['pm_member_code'],
+                    'type'  =>  'PM',
+                    'deleted'  =>  0,
+                    'by_id'  => auth()->user()->id,
+                    'updated_by'    =>  auth()->user()->name,
+                    'created_at'    =>  now(),
+                    'updated_at'    => now(),
+                );
+            }
+            DB::table('tbl_projectlist')->insert($insert_data);
+            DB::table('tbl_emp_proj')->insert($insert_data1);
+            DB::table('tbl_emp_proj')->insert($insert_data2);
+            DB::table('tbl_emp_proj')->insert($insert_data3);
+        }
+
+
+
 
         return redirect()->back()
         ->with(['success'=>'File uploaded successfully!'])

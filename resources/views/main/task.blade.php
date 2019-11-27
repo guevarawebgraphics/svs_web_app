@@ -36,7 +36,6 @@
 
                 <!--Grid row-->
                 <div class="row">
-
                     <!--Grid column-->
                     <div class="col-md-12">
                         <div class="md-form mb-0">
@@ -45,8 +44,6 @@
                         </div>
                     </div>
                     <!--Grid column-->
-
-
                 </div>
                 <!--Grid row-->
 
@@ -55,13 +52,11 @@
 
                     <!--Grid column-->
                     <div class="col-md-12">
-
                         <div class="md-form">
                             <textarea type="text" id="desc" name="desc" maxlength="190" class="form-control md-textarea"></textarea>
                             {{-- <label for="desc">Description</label> --}}
                             <label for="desc">Work Breakdown Structure</label>
                         </div>
-
                     </div>
                 </div>
                 <!--Grid row-->
@@ -327,6 +322,7 @@ $("#delSubmit").click(function () {
         }
     });  
 });
+
 </script>
 
 <!-- Modal: Submit -->
@@ -414,8 +410,6 @@ $("#delSubmit").click(function () {
             });
         }
     });
-
-
 </script>
 <!-- Modal: Submit -->
 
@@ -423,23 +417,23 @@ $("#delSubmit").click(function () {
 <!-- Modal: modalTask -->
 <script>
     // Material Design example
-        $(document).ready(function () {
-            $('#dtMaterialDesignExample').DataTable();
-            $('#dtMaterialDesignExample_wrapper').find('label').each(function () {
-                $(this).parent().append($(this).children());
-            });
-            $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('input').each(function () {
-                const $this = $(this);
-                $this.attr("placeholder", "Search");
-                $this.removeClass('form-control-sm');
-            });
-            $('#dtMaterialDesignExample_wrapper .dataTables_length').addClass('d-flex flex-row');
-            $('#dtMaterialDesignExample_wrapper .dataTables_filter').addClass('md-form');
-            $('#dtMaterialDesignExample_wrapper select').removeClass(
-            'custom-select custom-select-sm form-control form-control-sm');
-            $('#dtMaterialDesignExample_wrapper select').addClass('mdb-select');
-            // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
-            $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('label').remove();
+    $(document).ready(function () {
+        $('#dtMaterialDesignExample').DataTable();
+        $('#dtMaterialDesignExample_wrapper').find('label').each(function () {
+            $(this).parent().append($(this).children());
         });
+        $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('input').each(function () {
+            const $this = $(this);
+            $this.attr("placeholder", "Search");
+            $this.removeClass('form-control-sm');
+        });
+        $('#dtMaterialDesignExample_wrapper .dataTables_length').addClass('d-flex flex-row');
+        $('#dtMaterialDesignExample_wrapper .dataTables_filter').addClass('md-form');
+        $('#dtMaterialDesignExample_wrapper select').removeClass(
+        'custom-select custom-select-sm form-control form-control-sm');
+        $('#dtMaterialDesignExample_wrapper select').addClass('mdb-select');
+        // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+        $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('label').remove();
+    });
 </script>
 @endsection
