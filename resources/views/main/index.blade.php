@@ -49,21 +49,34 @@ ul {
                 <div class="col-md-12 element-item">
                     <div class="card-deck two-col">
                 @foreach($view_project_percentage as $field)
+                    
                     <div class="proj-status-item rounded-rectangle-svs card current-proj showModal" data-modalid="{{$counter}}" data-code="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}" data-issue="{{$field->issue}}" data-report="{{$field->report}}">
+                            
                             <h5 class="svs-text"><b>{{$field->proj_title}}</b></h5>
+                            
                             <div class="row" style="overflow-x:auto;">
+                            
                                 <div class="col-md-8">
+                            
                                 <p class="">{{$field->proj_desc}}</p>
+                            
                                 <small><em>Created at : {{date("F d Y - h:i a",strtotime($field->created_at))}}</em></small>
-                                </div>
+                            
+                            </div>
+                            
                                 <div class="col-md-4 text-center">
-                                <h1 class="svs-text-2"><b>
-                                    @if(!empty($field->total_weight_progress))
-                                        {{$field->total_weight_progress}}%
-                                    @else
-                                        0.00%
-                                    @endif
-                                </b></h1>
+                                
+                                    <h1 class="svs-text-2">
+                                        <b>
+                                        @if(!empty($field->total_weight_progress))
+                                            {{$field->total_weight_progress}}%
+                                        @else
+                                            0.00%
+                                        @endif
+                                            
+                                        </b>
+                                    </h1>
+                                    
                                 </div>
                                 
                             </div>
@@ -215,10 +228,10 @@ ul {
                                 <a class="nav-link font-svs-normal waves-light" id="stake-tab-classic-shadow" data-toggle="tab" href="#stake-classic-shadow"
                                 role="tab" aria-controls="stake-classic-shadow" aria-selected="true">Stakeholder</a>
                             </li>
-                            {{-- <li class="nav-item svs-nav-item">
+                            <li class="nav-item svs-nav-item">
                                 <a class="nav-link font-svs-normal waves-light" id="customer-tab-classic-shadow" data-toggle="tab" href="#customer-classic-shadow"
                                 role="tab" aria-controls="customer-classic-shadow" aria-selected="true">Customer</a>
-                            </li> --}}
+                            </li>
                         </ul>
                     
                         <div class="tab-content" id="myClassicTabContentShadow">
@@ -245,7 +258,8 @@ ul {
                                     </div>
                             </div>
                             <div class="tab-pane fade" id="profile-classic-shadow" role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
-                                    <div class="container svs-overflow">
+                                    {{-- <div class="container svs-overflow"> --}}
+                                        <div class="container" style="overflow:auto!important;">
                                         <table id="taskViewMod" class="table table-striped table-view task-tb-mod" cellspacing="0" width="100%" summary="test">
                                             <colgroup>
                                                 <col width="40px">
@@ -329,7 +343,7 @@ ul {
                                     </table>
                                 </div>
                             </div>
-                            {{-- <div class="tab-pane fade" id="customer-classic-shadow" role="tabpanel" aria-labelledby="customer-tab-classic-shadow">
+                            <div class="tab-pane fade" id="customer-classic-shadow" role="tabpanel" aria-labelledby="customer-tab-classic-shadow">
                                 <div class="container svs-overflow">
                                     <table id="customerViewMod" class="table table-striped table-view customer-tb-mod" cellspacing="0" width="100%" summary="test">
                                         <colgroup>
@@ -348,7 +362,7 @@ ul {
                                         </tbody>
                                     </table>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     
                     </div>
@@ -399,6 +413,7 @@ ul {
                                     <th><b>Report</b></th>
                                     <th><b>Submitted by</b></th>
                                     <th><b>Created At</b></th>
+                                    <th><b>Attachment</b></th>
                                 </tr>
                             </thead>
                             <tbody id="taskOpenView">

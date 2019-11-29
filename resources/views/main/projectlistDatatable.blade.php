@@ -98,6 +98,10 @@
                                                 <a class="nav-link font-svs-normal waves-light" id="stakeh-tab-classic-shadow" data-toggle="tab" href="#stakeh-classic-shadow{{$field->proj_code}}"
                                                 role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Stakeholder</a>
                                             </li>
+                                            <li class="nav-item svs-nav-item">
+                                                <a class="nav-link font-svs-normal waves-light" id="customer-tab-classic-shadow" data-toggle="tab" href="#customer-classic-shadow{{$field->proj_code}}"
+                                                role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Customer</a>
+                                            </li>
                                         </ul>
                                     
                                         <div class="tab-content" id="myClassicTabContentShadow">
@@ -113,7 +117,7 @@
                                                                 <tr>
                                                                     <th><b>Task Code</b></th>
                                                                     <th><b>Title</b></th>
-                                                                    <th><b>Description</b></th>
+                                                                    <th><b>Work breakdown Structure</b></th>
                                                                     <th><b>Weight</b></th>
                                                                     <th><b>Action</b></th>
                                                                 </tr>
@@ -187,6 +191,26 @@
                                                         </thead>
                                                         <tbody id="divStake{{$field->proj_code}}">
                                                         
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="customer-classic-shadow{{$field->proj_code}}" role="tabpanel" aria-labelledby="customer-tab-classic-shadow{{$field->proj_code}}">
+                                                <div class="container svs-overflow">
+                                                    <table id="customerViewMod{{$field->proj_code}}"class="svs-table-mini" cellspacing="0" width="100%" summary="test">
+                                                        <colgroup>
+                                                            <col width="40px">
+                                                                <col span="4" width="25%">
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr>
+                                                                <th><small><b>Name</b></small></th>
+                                                                <th><small><b>Email</b></small></th>
+                                                                <th><small><b>Position</b></small></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="customerView{{$field->proj_code}}">
+                
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -419,6 +443,41 @@
                         }
                     });
                 //Stakeholder
+
+                //Customer
+                    $.ajax({
+                        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        url: "{{ route('project_info_customer') }}",
+                        method: "POST",
+                        data:{
+                            proceed:"TRUE",
+                            code:projCode
+                        }, 
+                        success:function(data)
+                        {
+                            $("#customerView"+projCode).html(data);
+                            $("#customerViewMod"+projCode).DataTable();
+                            $('#customerViewMod'+projCode+'_wrapper').find('label').each(function () {
+                                $(this).parent().append($(this).children());
+                            });
+                            $('#customerViewMod'+projCode+'_wrapper .dataTables_filter').find('input').each(function () {
+                                const $this = $(this);
+                                $this.attr("placeholder", "Search");
+                                $this.removeClass('form-control-sm');
+                            });
+                            $('#customerViewMod'+projCode+'_wrapper .dataTables_length').addClass('d-flex flex-row');
+                            $('#customerViewMod'+projCode+'_wrapper .dataTables_filter').addClass('md-form');
+                            $('#customerViewMod'+projCode+'_wrapper select').removeClass(
+                            'custom-select custom-select-sm form-control form-control-sm');
+                            $('#customerViewMod'+projCode+'_wrapper select').addClass('mdb-select');
+                            // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+                            $('#customerViewMod'+projCode+'_wrapper .dataTables_filter').find('label').remove();
+                        },
+                        error: function(xhr, ajaxOptions, thrownError){
+                            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                        }
+                    });
+                //Customer
             }  
         });
     });

@@ -46,7 +46,21 @@
                 *format : <b><em>xlsx,xls,csv</em></b><br>
                 </p>
 
-                <form action="{{ url('/projectlist/project_import_excel') }}" method="POST" enctype="multipart/form-data">
+                <!-- Default unchecked -->
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input import-radio" id="defaultUnchecked" value="NEW" name="importRadio" checked>
+                    <label class="custom-control-label" for="defaultUnchecked">New Project List</label>
+                </div>
+                
+                <!-- Default checked -->
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input import-radio" id="defaultChecked" value="UPDATE" name="importRadio">
+                    <label class="custom-control-label" for="defaultChecked">Update Project List</label>
+                </div>
+
+                <br>
+
+                <form action="{{ url('/projectlist/project_import_excel') }}" method="POST" id="importExcelFile" enctype="multipart/form-data">
 
                 {{ csrf_field() }}
                 <div class="file-field">
@@ -217,7 +231,7 @@
                         
                         <!--Grid column-->
                         <div class="col-md-6">
-                            {{-- <div class="md-form mb-0">
+                            <div class="md-form mb-0">
                                 <input type="text" id="epSearchCUS" onkeyup="searchCUS();" placeholder="Click here to search" name="epSearchCUS" class="form-control">
                                 <label id="epSearchCUS" class="active" for="epTitle">Current Customer</label>
                             </div>
@@ -232,7 +246,7 @@
                                 <div class="container" id="cusUnselect" style="display:none;">
                                     
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                         <!--Grid column-->
                     </div>
@@ -534,7 +548,7 @@
 
                     <!--Grid column-->
                     <div class="col-md-6">
-                            {{-- <label for="cusSOL" class="svs-small"><small>Customer</small></label>
+                            <label for="cusSOL" class="svs-small"><small>Customer</small></label>
                             <select id="cusSOL" name="cusSOL" class="mdb-select multi-sol-svs" multiple="multiple">
                                 <optgroup label="Customer Name" title="Opiton Group 1">
                                 @if(count($emp_info))
@@ -542,7 +556,7 @@
                                         <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
                                     @endforeach
                                 @endif
-                        </select> --}}
+                        </select>
                     </div>
                     <!--Grid column-->
                     
@@ -804,6 +818,24 @@
     $('#pmSOLEdit').searchableOptionList();
     // $("#pmDivEdit").hide();
     // $("#empDivEdit").hide();
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.import-radio').change(function(){ 
+            var x = $('input[name=importRadio]:checked').val();
+            if(x == "NEW")
+            {
+                attr="{{ url('/projectlist/project_import_excel') }}";
+                $('#importExcelFile').attr('action',attr);
+            }
+            else if(x == "UPDATE")
+            {
+                attr="{{ url('/projectlist/project_import_excel_update') }}";
+                $('#importExcelFile').attr('action',attr);
+            }
+        });
+    });
 </script>
 
 <script>
@@ -1388,23 +1420,23 @@ $(".editProj").click(function () {
     });
 
     //Customer
-        // $.ajax({
-        //     headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        //     url: "{{ route('project_dropdown') }}",
-        //     method: "POST",
-        //     data:{
-        //         proceed:"TRUE",
-        //         type:"CUSTOMER",
-        //         code:projCode
-        //     }, 
-        //     success:function(data)
-        //     {
-        //         $("#cusDivEdit").html(data);
-        //     },
-        //     error: function(xhr, ajaxOptions, thrownError){
-        //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        //     }
-        // });
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{ route('project_dropdown') }}",
+            method: "POST",
+            data:{
+                proceed:"TRUE",
+                type:"CUSTOMER",
+                code:projCode
+            }, 
+            success:function(data)
+            {
+                $("#cusDivEdit").html(data);
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
     //Customer
 
     $('#taskDivEdit').hide();
