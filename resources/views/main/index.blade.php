@@ -54,19 +54,18 @@ ul {
                             
                             <h5 class="svs-text"><b>{{$field->proj_title}}</b></h5>
                             
-                            <div class="row" style="overflow-x:auto;">
+                            <div class="row">
                             
                                 <div class="col-md-8">
                             
-                                <p class="">{{$field->proj_desc}}</p>
+                                    <p class="">{{$field->proj_desc}}</p>
+                                    <br>
+                                    <small><em>Created at : {{date("F d Y - h:i a",strtotime($field->created_at))}}</em></small>
+                                </div>
                             
-                                <small><em>Created at : {{date("F d Y - h:i a",strtotime($field->created_at))}}</em></small>
-                            
-                            </div>
-                            
-                                <div class="col-md-4 text-center">
+                                <div class="col-md-4">
                                 
-                                    <h1 class="svs-text-2">
+                                    <h2 class="svs-text-2" >
                                         <b>
                                         @if(!empty($field->total_weight_progress))
                                             {{$field->total_weight_progress}}%
@@ -75,8 +74,36 @@ ul {
                                         @endif
                                             
                                         </b>
-                                    </h1>
-                                    
+                                    </h2>
+                                    <br>
+                                    <div style="margin-top: -2em;">
+                                   <small>Target Man Days: 
+                                        @php
+                                              $overall_man_hours = $field->total_employee * $field->total_actual_days * 8;
+                                              $overall_man_days = $overall_man_hours / 8;
+                                              if(!empty($overall_man_days)){
+                                                echo $overall_man_days;  
+                                              }else{
+                                                echo 0;
+                                              }
+                                        @endphp
+
+                                   </small>
+                                   
+                                   <br>
+                                   <small>Total Man Days: 
+
+                                        @php
+                                              $man_hours = $field->total_employee * $field->total_man_days * 8;
+                                              $man_days = $man_hours / 8;
+                                              if(!empty($man_days)){
+                                                echo $man_days;  
+                                              }else{
+                                                echo 0;
+                                              }
+                                        @endphp
+                                   </small>
+                                    </div>
                                 </div>
                                 
                             </div>
@@ -112,7 +139,7 @@ ul {
       <div class="modal-body">
                 <p class="note note-light">
                     <strong>Reminder:</strong> 
-                    Shows the broad details about this project
+                    Shows the broad details of this project
                     <br>
                 </p>
             <div class="row">
@@ -183,17 +210,17 @@ ul {
                         <div class="col-md-3">
                             <center><a class="svs-text-center">Reports</a></center>
                             <br>
-                            <div class="card rounded-circle svs-circle btn-danger"><h5 class="svs-round-text"><b id="vReport">23</b></h5></div>
+                            <div class="card rounded-circle svs-circle btn-danger"><h5 class="svs-round-text"><b id="vReport"></b></h5></div>
                         </div>
                         <div class="col-md-3">
                             <center><a class="svs-text-center">Issues</a></center>
                             <br>
-                            <div class="card rounded-circle svs-circle btn-warning"><h5 class="svs-round-text"><b id="vIssue">23</b></h5></div>
+                            <div class="card rounded-circle svs-circle btn-warning"><h5 class="svs-round-text"><b id="vIssue"></b></h5></div>
                         </div>
                         <div class="col-md-3">
                             <center><a class="svs-text-center">Project Status</a></center>
                             <br>
-                            <div class="card rounded-circle svs-circle btn-info"><h5 class="svs-round-text"><b id="vStatus">23</b></h5></div>
+                            <div class="card rounded-circle svs-circle btn-info"><h5 class="svs-round-text"><b id="vStatus"></b></h5></div>
                         </div>
                         <div class="col-md-3">
                             <center><a class="svs-text-center">Remaining Days</a></center>

@@ -66,7 +66,7 @@
                 <div class="file-field">
                     <div class="btn-sm float-left">
                         <span>Choose file</span>
-                        <input type="file" name="file" id="file">
+                        <input type="file" name="file" id="file" required>
                     </div>
                 </div>
         </div>

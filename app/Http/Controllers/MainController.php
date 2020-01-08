@@ -19,7 +19,7 @@ use Validator;
 class MainController extends Controller
 {
     public function index(){
-        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
+        // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){adadadadadadadadadadad
         if(!empty(auth()->user()->id)){
             $view_project_percentage = DB::connection('mysql')->select("SELECT * from view_project_percentage WHERE deleted = 0 ORDER BY created_at DESC");
         
