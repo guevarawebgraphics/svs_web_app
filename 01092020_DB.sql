@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 11:47 AM
+-- Generation Time: Jan 09, 2020 at 11:49 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -1763,6 +1763,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('70b2a8613e4961ffae5584e946a529193de4c0f454f353cb9aa9fd86087591cbf9006670286fccea', 1, 2, NULL, '[]', 1, '2019-10-24 02:52:59', '2019-10-24 02:52:59', '2019-10-25 10:52:59'),
 ('8127fac1eaf7c324a42bca31259c3d6841b9af3733fbec96c5d2cb4462009f1fa1e24f0fef340a77', 1, 2, NULL, '[]', 1, '2019-10-24 08:48:37', '2019-10-24 08:48:37', '2019-10-25 16:48:37'),
 ('884c351706609f3094b7456d8816c321c6039c8dc4f0ed3ccd5a1a04e0a06ce13b096a974bdbc9fa', 1, 2, NULL, '[]', 0, '2019-11-11 09:25:07', '2019-11-11 09:25:07', '2019-11-12 17:25:07'),
+('8880ac600d786f57d79ab28b31c4d2a0591190c3ccc3be8a879d01430148176e19ecc7e35c8f99aa', 1, 2, NULL, '[]', 0, '2020-01-06 01:58:31', '2020-01-06 01:58:31', '2020-01-07 09:58:30'),
 ('994b9c6867cc13a8bcf20d15dd2cf5ff2a4555b5e2fad06d2f139b9ed442aee9e4d91135fb186bd4', 1, 2, NULL, '[]', 1, '2019-10-24 02:25:07', '2019-10-24 02:25:07', '2019-10-25 10:25:06'),
 ('a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 1, 2, NULL, '[]', 1, '2019-10-01 05:02:11', '2019-10-01 05:02:11', '2019-10-02 13:02:11'),
 ('aa7e36971c9e7bf6e0cab02e4dffc0460a02e78fafd2b14ace9301e8c862b8b171cd99a6b4e76ac1', 1, 2, NULL, '[]', 1, '2019-10-24 04:56:00', '2019-10-24 04:56:00', '2019-10-25 12:56:00'),
@@ -1856,6 +1857,7 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('47234ca1689040dbcdf3cf254e225a6199e4344e530ecd3f136a3452f169aad3187bc6bb6a4fe5ae', '135ee862ec7ebaf1621bd1a5debaa17abf1b74decb328ace10ecb4ea4104d48b6354e27a0b9dd752', 0, '2019-11-13 17:52:30'),
 ('5ba4674eac897ac1b0d808d66fac284aa8198ddd7c0d3cb95bdccf31db89b308af6c0cc9343e9a3c', '70b2a8613e4961ffae5584e946a529193de4c0f454f353cb9aa9fd86087591cbf9006670286fccea', 0, '2019-10-26 10:52:59'),
 ('712b83f6e008d876e7bbfdae717ce099651b61d2d4bb4436a24346c32264a028b0fa4fab6d61d368', 'b7325b52360600c36f3e9fb51fffb239ae9bd127c5d6d2eaf3ec7ed94b017dc99970bee8169680c6', 0, '2019-11-22 15:47:17'),
+('7a3f081e624669bb8eb52dbfde8c092e11d57de9a6eeca550d9ebb4c252f66d2383aa6f9b58ac49b', '8880ac600d786f57d79ab28b31c4d2a0591190c3ccc3be8a879d01430148176e19ecc7e35c8f99aa', 0, '2020-01-08 09:58:31'),
 ('7a4cd6adde43340910a865bf3541cb4e332b41b9235b3f64960c68d8c4a091dc84e4a83bc3e8d042', '994b9c6867cc13a8bcf20d15dd2cf5ff2a4555b5e2fad06d2f139b9ed442aee9e4d91135fb186bd4', 0, '2019-10-26 10:25:07'),
 ('833464d1b01f1de70fdeee9020cba3cb01d812264c01400eb25a12ba30dca2d2036387ceb72672fe', 'cd08675b02296d14ca19f51d417f158585f618be97629744f1d8465ac4265c3b2aa63d0fe760ca37', 0, '2019-10-26 17:04:56'),
 ('8ff716b074fb585bf87ff157cd049bbb2e532927bc8438d15ab81c9e9f6e6f58fdb38c28486feab3', 'cc8c6be590f2f9edf4b9c68eefdd0911a50d481b29f8b306059b69cb3107accfffc631a3133e403d', 0, '2019-10-26 10:57:04'),
@@ -5390,7 +5392,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"svs_web\",\"table\":\"view_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"tbl_task\"},{\"db\":\"svs_web\",\"table\":\"tbl_sampleimport\"},{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"tbl_activity_log_img\"},{\"db\":\"svs_web\",\"table\":\"tbl_activity_log\"},{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"}]');
+('root', '[{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"tbl_projtask\"},{\"db\":\"svs_web\",\"table\":\"users\"},{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"},{\"db\":\"svs_web\",\"table\":\"view_date_time_records\"},{\"db\":\"svs_web\",\"table\":\"date_time_records\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"view_employee_info\"},{\"db\":\"svs_web\",\"table\":\"view_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"}]');
 
 -- --------------------------------------------------------
 
@@ -5470,8 +5472,12 @@ INSERT INTO `pma__table_uiprefs` (`username`, `db_name`, `table_name`, `prefs`, 
 ('root', 'api_tk', 'date_time_records', '{\"sorted_col\":\"`date_time_records`.`created_at` DESC\"}', '2019-11-11 09:25:17'),
 ('root', 'resellerdb', 'top_up_history', '{\"sorted_col\":\"`created_at`  DESC\"}', '2019-09-27 09:54:24'),
 ('root', 'resellerdb', 'total_userbalance', '{\"sorted_col\":\"`total_userbalance`.`created_at`  DESC\"}', '2019-10-01 01:55:55'),
-('root', 'svs_web', 'tbl_emp_proj', '{\"sorted_col\":\"`created_at` DESC\"}', '2019-11-19 09:15:05'),
+('root', 'svs_web', 'date_time_records', '{\"sorted_col\":\"`date_time_records`.`created_at`  DESC\"}', '2020-01-09 01:43:21'),
+('root', 'svs_web', 'tbl_emp_proj', '{\"sorted_col\":\"`tbl_emp_proj`.`emp_id`  DESC\"}', '2020-01-06 02:24:29'),
 ('root', 'svs_web', 'tbl_proj_progress', '{\"sorted_col\":\"`created_at` DESC\"}', '2019-11-06 02:06:44'),
+('root', 'svs_web', 'users', '{\"sorted_col\":\"`users`.`created_at`  ASC\"}', '2020-01-06 07:48:19'),
+('root', 'svs_web', 'view_date_time_records', '{\"sorted_col\":\"`view_date_time_records`.`ACNo` ASC\"}', '2020-01-08 08:27:13'),
+('root', 'svs_web', 'view_project_percentage', '{\"sorted_col\":\"`view_project_percentage`.`proj_desc` ASC\"}', '2020-01-08 02:14:35'),
 ('root', 'timekeeping_b', 'users', '{\"sorted_col\":\"`users`.`password`  DESC\"}', '2019-11-20 03:28:58');
 
 -- --------------------------------------------------------
@@ -5510,7 +5516,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2019-11-25 10:47:43', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":4}');
+('root', '2020-01-09 10:02:07', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":27,\"NavigationWidth\":242}');
 
 -- --------------------------------------------------------
 
@@ -6103,7 +6109,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `address`, `contact_no`, `is_blocked`, `on_hold`, `wallet_bal`, `is_admin`, `remember_token`, `deleted`, `created_at`, `updated_at`) VALUES
 (1, 'Sample One', 'sampOne@gmail.com', '2019-06-05 06:45:56', '$2y$10$2Fgnu7sK0STxr9IuNHjz5u42/8dmBSvEO0NtViUZBbVQ5XvmMQ2qq', 'Sample Onee', '09184352441', 0, 0, '0.00', 1, NULL, 0, '2019-06-05 06:48:09', '2019-10-04 08:03:53'),
 (2, 'Admin', 'admin@pinoytravel.com.ph', NULL, '$2y$10$2Fgnu7sK0STxr9IuNHjz5u42/8dmBSvEO0NtViUZBbVQ5XvmMQ2qq', 'Sample Twoo', '09852421542', 0, 0, '0.00', 1, NULL, 0, '2019-06-05 07:16:18', '2019-06-05 07:16:18'),
-(3, 'Reseller Acct1', 'reselleract1@pinoytravel.com.ph', NULL, '$2y$10$zriBwmxr13uwj2/WVuGsjew1GhkLHi0VuEG7t4Lc44iuV3knmMyEi', '49 Peralta Compound San Miguel Pasig City, NCR Manila Philippines Asia', '09776927838', 0, 0, '3000.00', 0, 'DvMj6TexIxO5DZ3M0BBrPjiIwIIyIWTIYm0eQOAkOUB6YbRn1W69FzSHwBpX', 0, '2019-06-06 02:27:19', '2019-10-07 03:15:47'),
+(3, 'Reseller Acct1', 'reselleract1@pinoytravel.com.ph', NULL, '$2y$10$zriBwmxr13uwj2/WVuGsjew1GhkLHi0VuEG7t4Lc44iuV3knmMyEi', '49 Peralta Compound San Miguel Pasig City, NCR Manila Philippines Asia', '09776927838', 0, 0, '3000.00', 0, 'dE7rnXDUNvfTGPWUZbVeTxfluy6vCPAOUtK3FaWQSPDYdEl4tZaGGUYE4LB7', 0, '2019-06-06 02:27:19', '2019-10-07 03:15:47'),
 (9, 'Reseller Acct2', 'reselleract2@pinoytravel.com.ph', NULL, '$2y$10$aeySRF7/h1VOrc6B6gZoK.xNIel0Wq/8d5g.xGS8VC4fobUPD61IK', '49 Peralta Compound San Miguel Pasig City, NCR Manila Philippines Asia', '09254214520', 0, 1, '0.00', 0, '93NUbs4dhxFPlTjYLINxVNDYJyP5tjzcrANoGOkDsPMG3Fo1eNAs73zI3jiT', 0, '2019-06-09 05:38:04', '2019-10-04 09:37:58'),
 (10, 'Kay Louise Diaz', 'kaydiaz@gmail.com', NULL, '$2y$10$bQoCj9I8Yk88sJarnMySh.y1TAMUJDgKaIuMMWtUOq.7rGkgCNNju', 'Mandaluyong', '09776927838', 0, 0, '0.00', 1, NULL, 0, '2019-09-19 06:05:32', '2019-09-24 08:10:56'),
 (16, 'Richard Guevara', 'guevara.richard17@gmail.com', NULL, '$2y$10$nG8tk6VyX8ah.EoeRZnkCekktp2Rdrwx74YXE/DDXT6hTdqxRKuZO', '49 Peralta compound san miguel pasig city, NCR Manila Philippines Asia', '12341234', 0, 0, '0.00', 1, NULL, 0, '2019-09-19 08:45:05', '2019-09-19 08:45:05'),
@@ -6429,10 +6435,491 @@ CREATE TABLE `date_time_records` (
 --
 
 INSERT INTO `date_time_records` (`id`, `user_id`, `company_id`, `ACNo`, `name`, `email`, `apiKey`, `datetime`, `address`, `longitude`, `latitude`, `report`, `state`, `deviceID`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2019-10-30 02:30:40', 'WTF', 'long', 'lat', 'w', 'C/In', '12345678910', NULL, NULL, '2019-10-30 02:30:40', '2019-10-30 02:30:40'),
-(2, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2019-10-30 03:00:00', 'WTF', 'long', 'lat', 'w', 'C/In', '12345678910', NULL, NULL, '2019-10-30 03:00:00', '2019-10-30 03:00:00'),
-(3, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2019-10-30 03:00:23', 'WTF', 'long', 'lat', 'w', 'C/In', '12345678910', NULL, NULL, '2019-10-30 03:00:23', '2019-10-30 03:00:23'),
-(4, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2019-10-30 03:02:25', 'WTF', 'long', 'lat', 'w', 'C/In', '12345678910', NULL, NULL, '2019-10-30 03:02:25', '2019-10-30 03:02:25');
+(1, 1, '2018-101', '1010', 'Employee10', 'abueva@gmail.com', NULL, '2019-08-28 17:38:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 01:10:11', '2019-08-29 01:10:11'),
+(2, 1, '2018-101', '1010', 'Employee10', 'abueva@gmail.com', NULL, '2019-08-29 00:50:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 01:10:16', '2019-08-29 01:10:16'),
+(3, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-06-30 09:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:26', '2019-08-29 23:51:26'),
+(4, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-06-30 16:08:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:29', '2019-08-29 23:51:29'),
+(5, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-06-30 16:08:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:32', '2019-08-29 23:51:32'),
+(6, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-06-30 16:28:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:35', '2019-08-29 23:51:35'),
+(7, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-06-30 16:28:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:38', '2019-08-29 23:51:38'),
+(8, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-06-30 16:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:41', '2019-08-29 23:51:41'),
+(9, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-06-30 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:44', '2019-08-29 23:51:44'),
+(10, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-06-30 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:47', '2019-08-29 23:51:47'),
+(11, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-06-30 16:38:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:50', '2019-08-29 23:51:50'),
+(12, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-06-30 18:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:53', '2019-08-29 23:51:53'),
+(13, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-06-30 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:56', '2019-08-29 23:51:56'),
+(14, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-06-30 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:51:59', '2019-08-29 23:51:59'),
+(15, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-06-30 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:02', '2019-08-29 23:52:02'),
+(16, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-01 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:05', '2019-08-29 23:52:05'),
+(17, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-01 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:08', '2019-08-29 23:52:08'),
+(18, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-01 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:11', '2019-08-29 23:52:11'),
+(19, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-01 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:14', '2019-08-29 23:52:14'),
+(20, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-01 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:17', '2019-08-29 23:52:17'),
+(21, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-01 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:21', '2019-08-29 23:52:21'),
+(22, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-01 03:08:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:24', '2019-08-29 23:52:24'),
+(23, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-01 03:08:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:26', '2019-08-29 23:52:26'),
+(24, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-01 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:29', '2019-08-29 23:52:29'),
+(25, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-01 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:32', '2019-08-29 23:52:32'),
+(26, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-01 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:35', '2019-08-29 23:52:35'),
+(27, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-01 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:38', '2019-08-29 23:52:38'),
+(28, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-01 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:41', '2019-08-29 23:52:41'),
+(29, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-01 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:44', '2019-08-29 23:52:44'),
+(30, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-01 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:47', '2019-08-29 23:52:47'),
+(31, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-01 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:50', '2019-08-29 23:52:50'),
+(32, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-01 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:53', '2019-08-29 23:52:53'),
+(33, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-01 15:12:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:56', '2019-08-29 23:52:56'),
+(34, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-01 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:52:59', '2019-08-29 23:52:59'),
+(35, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-01 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:02', '2019-08-29 23:53:02'),
+(36, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-01 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:05', '2019-08-29 23:53:05'),
+(37, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-01 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:08', '2019-08-29 23:53:08'),
+(38, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-01 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:11', '2019-08-29 23:53:11'),
+(39, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-01 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:14', '2019-08-29 23:53:14'),
+(40, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-01 16:21:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:17', '2019-08-29 23:53:17'),
+(41, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-01 16:21:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:20', '2019-08-29 23:53:20'),
+(42, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-01 16:22:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:23', '2019-08-29 23:53:23'),
+(43, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-01 16:51:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:26', '2019-08-29 23:53:26'),
+(44, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-01 20:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:29', '2019-08-29 23:53:29'),
+(45, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-02 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:32', '2019-08-29 23:53:32'),
+(46, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-02 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:35', '2019-08-29 23:53:35'),
+(47, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-02 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:39', '2019-08-29 23:53:39'),
+(48, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-02 01:10:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:42', '2019-08-29 23:53:42'),
+(49, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-02 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:45', '2019-08-29 23:53:45'),
+(50, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-02 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:47', '2019-08-29 23:53:47'),
+(51, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-02 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:50', '2019-08-29 23:53:50'),
+(52, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-02 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:53', '2019-08-29 23:53:53'),
+(53, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-02 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:56', '2019-08-29 23:53:56'),
+(54, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-02 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:53:59', '2019-08-29 23:53:59'),
+(55, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-02 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:03', '2019-08-29 23:54:03'),
+(56, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-02 02:36:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:05', '2019-08-29 23:54:05'),
+(57, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-02 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:08', '2019-08-29 23:54:08'),
+(58, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-02 03:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:11', '2019-08-29 23:54:11'),
+(59, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-02 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:14', '2019-08-29 23:54:14'),
+(60, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-02 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:17', '2019-08-29 23:54:17'),
+(61, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-02 16:28:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:20', '2019-08-29 23:54:20'),
+(62, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-02 16:28:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:23', '2019-08-29 23:54:23'),
+(63, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-02 16:28:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:26', '2019-08-29 23:54:26'),
+(64, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-02 16:28:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:29', '2019-08-29 23:54:29'),
+(65, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-02 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:32', '2019-08-29 23:54:32'),
+(66, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-02 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:36', '2019-08-29 23:54:36'),
+(67, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-02 16:32:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:38', '2019-08-29 23:54:38'),
+(68, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-02 16:38:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:41', '2019-08-29 23:54:41'),
+(69, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-02 16:38:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:44', '2019-08-29 23:54:44'),
+(70, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-03 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:47', '2019-08-29 23:54:47'),
+(71, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-03 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:50', '2019-08-29 23:54:50'),
+(72, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-03 08:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:53', '2019-08-29 23:54:53'),
+(73, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-03 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:56', '2019-08-29 23:54:56'),
+(74, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-03 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:54:59', '2019-08-29 23:54:59'),
+(75, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-03 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:03', '2019-08-29 23:55:03'),
+(76, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-03 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:05', '2019-08-29 23:55:05'),
+(77, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-03 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:08', '2019-08-29 23:55:08'),
+(78, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-03 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:11', '2019-08-29 23:55:11'),
+(79, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-03 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:14', '2019-08-29 23:55:14'),
+(80, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-03 02:40:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:17', '2019-08-29 23:55:17'),
+(81, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-03 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:20', '2019-08-29 23:55:20'),
+(82, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-03 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:23', '2019-08-29 23:55:23'),
+(83, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-03 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:26', '2019-08-29 23:55:26'),
+(84, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-03 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:29', '2019-08-29 23:55:29'),
+(85, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-03 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:32', '2019-08-29 23:55:32'),
+(86, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-03 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:35', '2019-08-29 23:55:35'),
+(87, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-03 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:38', '2019-08-29 23:55:38'),
+(88, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-03 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:41', '2019-08-29 23:55:41'),
+(89, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-03 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:45', '2019-08-29 23:55:45'),
+(90, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-03 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:47', '2019-08-29 23:55:47'),
+(91, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-03 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:50', '2019-08-29 23:55:50'),
+(92, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-04 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:53', '2019-08-29 23:55:53'),
+(93, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-04 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:55:56', '2019-08-29 23:55:56'),
+(94, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-04 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:00', '2019-08-29 23:56:00'),
+(95, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-04 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:02', '2019-08-29 23:56:02'),
+(96, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-04 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:05', '2019-08-29 23:56:05'),
+(97, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-04 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:08', '2019-08-29 23:56:08'),
+(98, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-04 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:11', '2019-08-29 23:56:11'),
+(99, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-04 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:14', '2019-08-29 23:56:14'),
+(100, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-04 03:15:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:17', '2019-08-29 23:56:17'),
+(101, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-04 05:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:20', '2019-08-29 23:56:20'),
+(102, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-04 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:23', '2019-08-29 23:56:23'),
+(103, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-04 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:26', '2019-08-29 23:56:26'),
+(104, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-04 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:29', '2019-08-29 23:56:29'),
+(105, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-04 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:32', '2019-08-29 23:56:32'),
+(106, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-04 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:35', '2019-08-29 23:56:35'),
+(107, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-04 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:38', '2019-08-29 23:56:38'),
+(108, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-04 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:41', '2019-08-29 23:56:41'),
+(109, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-04 18:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:44', '2019-08-29 23:56:44'),
+(110, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-05 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:47', '2019-08-29 23:56:47'),
+(111, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-05 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:50', '2019-08-29 23:56:50'),
+(112, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-05 03:20:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:53', '2019-08-29 23:56:53'),
+(113, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-05 03:21:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:56', '2019-08-29 23:56:56'),
+(114, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-05 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:56:59', '2019-08-29 23:56:59'),
+(115, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-05 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:02', '2019-08-29 23:57:02'),
+(116, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-05 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:05', '2019-08-29 23:57:05'),
+(117, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-05 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:08', '2019-08-29 23:57:08'),
+(118, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-05 03:45:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:12', '2019-08-29 23:57:12'),
+(119, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-05 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:15', '2019-08-29 23:57:15'),
+(120, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-06 02:40:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:17', '2019-08-29 23:57:17'),
+(121, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-07 16:21:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:20', '2019-08-29 23:57:20'),
+(122, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-07 16:21:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:23', '2019-08-29 23:57:23'),
+(123, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-07 16:21:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:26', '2019-08-29 23:57:26'),
+(124, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-07 16:21:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:29', '2019-08-29 23:57:29'),
+(125, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-07 16:22:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:32', '2019-08-29 23:57:32'),
+(126, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-07 16:22:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:35', '2019-08-29 23:57:35'),
+(127, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-07 16:22:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:38', '2019-08-29 23:57:38'),
+(128, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-07 16:22:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:41', '2019-08-29 23:57:41'),
+(129, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-07 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:44', '2019-08-29 23:57:44'),
+(130, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-07 18:10:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:47', '2019-08-29 23:57:47'),
+(131, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-07 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:50', '2019-08-29 23:57:50'),
+(132, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-07 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:53', '2019-08-29 23:57:53'),
+(133, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-07 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:56', '2019-08-29 23:57:56'),
+(134, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-08 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:57:59', '2019-08-29 23:57:59'),
+(135, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-08 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:02', '2019-08-29 23:58:02'),
+(136, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-08 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:05', '2019-08-29 23:58:05'),
+(137, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-08 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:08', '2019-08-29 23:58:08'),
+(138, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-08 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:11', '2019-08-29 23:58:11'),
+(139, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-08 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:14', '2019-08-29 23:58:14'),
+(140, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-08 03:01:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:18', '2019-08-29 23:58:18'),
+(141, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-08 03:01:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:21', '2019-08-29 23:58:21'),
+(142, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-08 04:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:23', '2019-08-29 23:58:23'),
+(143, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-08 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:26', '2019-08-29 23:58:26'),
+(144, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-08 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:29', '2019-08-29 23:58:29'),
+(145, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-08 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:32', '2019-08-29 23:58:32'),
+(146, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-08 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:35', '2019-08-29 23:58:35'),
+(147, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-08 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:38', '2019-08-29 23:58:38'),
+(148, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-08 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:41', '2019-08-29 23:58:41'),
+(149, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-08 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:44', '2019-08-29 23:58:44'),
+(150, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-08 15:10:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:47', '2019-08-29 23:58:47'),
+(151, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-08 15:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:50', '2019-08-29 23:58:50'),
+(152, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-08 15:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:54', '2019-08-29 23:58:54'),
+(153, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-08 16:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:56', '2019-08-29 23:58:56'),
+(154, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-08 16:21:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:58:59', '2019-08-29 23:58:59'),
+(155, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-08 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:02', '2019-08-29 23:59:02'),
+(156, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-08 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:05', '2019-08-29 23:59:05'),
+(157, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-08 20:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:08', '2019-08-29 23:59:08'),
+(158, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-08 21:05:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:11', '2019-08-29 23:59:11'),
+(159, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-09 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:14', '2019-08-29 23:59:14'),
+(160, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-09 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:17', '2019-08-29 23:59:17'),
+(161, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-09 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:20', '2019-08-29 23:59:20'),
+(162, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-09 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:23', '2019-08-29 23:59:23'),
+(163, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-09 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:26', '2019-08-29 23:59:26'),
+(164, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-09 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:29', '2019-08-29 23:59:29'),
+(165, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-09 03:01:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:32', '2019-08-29 23:59:32'),
+(166, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-09 03:01:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:35', '2019-08-29 23:59:35'),
+(167, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-09 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:38', '2019-08-29 23:59:38'),
+(168, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-09 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:41', '2019-08-29 23:59:41'),
+(169, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-09 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:44', '2019-08-29 23:59:44'),
+(170, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-09 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:47', '2019-08-29 23:59:47'),
+(171, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-09 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:50', '2019-08-29 23:59:50'),
+(172, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-09 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:53', '2019-08-29 23:59:53'),
+(173, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-09 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:56', '2019-08-29 23:59:56'),
+(174, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-09 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-29 23:59:59', '2019-08-29 23:59:59'),
+(175, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-10 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:02', '2019-08-30 00:00:02'),
+(176, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-10 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:05', '2019-08-30 00:00:05'),
+(177, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-10 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:08', '2019-08-30 00:00:08'),
+(178, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-10 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:11', '2019-08-30 00:00:11'),
+(179, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-10 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:14', '2019-08-30 00:00:14'),
+(180, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-10 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:17', '2019-08-30 00:00:17'),
+(181, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-10 03:01:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:20', '2019-08-30 00:00:20'),
+(182, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-10 03:05:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:23', '2019-08-30 00:00:23'),
+(183, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-10 04:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:26', '2019-08-30 00:00:26'),
+(184, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-10 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:29', '2019-08-30 00:00:29'),
+(185, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-10 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:32', '2019-08-30 00:00:32'),
+(186, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-10 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:35', '2019-08-30 00:00:35'),
+(187, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-10 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:38', '2019-08-30 00:00:38'),
+(188, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-10 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:41', '2019-08-30 00:00:41'),
+(189, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-10 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:44', '2019-08-30 00:00:44'),
+(190, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-10 16:19:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:47', '2019-08-30 00:00:47'),
+(191, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-10 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:50', '2019-08-30 00:00:50'),
+(192, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-10 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:53', '2019-08-30 00:00:53'),
+(193, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-10 17:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:56', '2019-08-30 00:00:56'),
+(194, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-10 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:00:59', '2019-08-30 00:00:59'),
+(195, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-10 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:02', '2019-08-30 00:01:02'),
+(196, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-11 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:06', '2019-08-30 00:01:06'),
+(197, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-11 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:08', '2019-08-30 00:01:08'),
+(198, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-11 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:11', '2019-08-30 00:01:11'),
+(199, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-11 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:14', '2019-08-30 00:01:14'),
+(200, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-11 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:17', '2019-08-30 00:01:17'),
+(201, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-11 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:20', '2019-08-30 00:01:20'),
+(202, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-11 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:23', '2019-08-30 00:01:23'),
+(203, 1, '2018-101', '12', 'TEST CHERRY', 'abueva@gmail.com', NULL, '2019-07-11 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:26', '2019-08-30 00:01:26'),
+(204, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-11 03:05:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:29', '2019-08-30 00:01:29'),
+(205, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-11 03:10:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:32', '2019-08-30 00:01:32'),
+(206, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-11 03:18:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:35', '2019-08-30 00:01:35'),
+(207, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-11 03:18:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:38', '2019-08-30 00:01:38'),
+(208, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-11 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:41', '2019-08-30 00:01:41'),
+(209, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-11 16:28:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:44', '2019-08-30 00:01:44'),
+(210, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-11 16:28:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:47', '2019-08-30 00:01:47'),
+(211, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-12 03:03:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:50', '2019-08-30 00:01:50'),
+(212, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-12 03:03:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:53', '2019-08-30 00:01:53'),
+(213, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-12 03:20:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:56', '2019-08-30 00:01:56'),
+(214, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-12 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:01:59', '2019-08-30 00:01:59'),
+(215, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-13 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:02', '2019-08-30 00:02:02'),
+(216, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-14 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:05', '2019-08-30 00:02:05'),
+(217, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-14 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:08', '2019-08-30 00:02:08'),
+(218, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-14 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:11', '2019-08-30 00:02:11'),
+(219, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-14 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:14', '2019-08-30 00:02:14'),
+(220, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-14 17:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:17', '2019-08-30 00:02:17'),
+(221, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-14 17:19:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:20', '2019-08-30 00:02:20'),
+(222, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-14 18:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:23', '2019-08-30 00:02:23'),
+(223, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-14 18:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:26', '2019-08-30 00:02:26'),
+(224, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-14 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:29', '2019-08-30 00:02:29'),
+(225, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-14 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:32', '2019-08-30 00:02:32'),
+(226, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-15 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:35', '2019-08-30 00:02:35'),
+(227, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-15 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:38', '2019-08-30 00:02:38'),
+(228, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-15 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:41', '2019-08-30 00:02:41'),
+(229, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-15 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:44', '2019-08-30 00:02:44'),
+(230, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-15 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:47', '2019-08-30 00:02:47'),
+(231, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-15 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:50', '2019-08-30 00:02:50'),
+(232, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-15 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:53', '2019-08-30 00:02:53'),
+(233, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-15 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:56', '2019-08-30 00:02:56'),
+(234, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-15 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:02:59', '2019-08-30 00:02:59'),
+(235, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-15 04:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:02', '2019-08-30 00:03:02'),
+(236, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-15 16:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:05', '2019-08-30 00:03:05'),
+(237, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-15 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:08', '2019-08-30 00:03:08'),
+(238, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-15 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:11', '2019-08-30 00:03:11'),
+(239, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-15 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:14', '2019-08-30 00:03:14'),
+(240, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-15 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:17', '2019-08-30 00:03:17'),
+(241, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-16 02:31:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:20', '2019-08-30 00:03:20'),
+(242, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-16 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:23', '2019-08-30 00:03:23'),
+(243, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-16 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:26', '2019-08-30 00:03:26'),
+(244, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-16 03:02:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:30', '2019-08-30 00:03:30'),
+(245, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-16 03:03:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:32', '2019-08-30 00:03:32'),
+(246, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-16 16:15:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:35', '2019-08-30 00:03:35'),
+(247, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-16 16:15:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:38', '2019-08-30 00:03:38'),
+(248, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-16 16:15:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:41', '2019-08-30 00:03:41'),
+(249, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-16 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:45', '2019-08-30 00:03:45'),
+(250, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-16 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:47', '2019-08-30 00:03:47'),
+(251, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-16 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:50', '2019-08-30 00:03:50'),
+(252, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-16 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:53', '2019-08-30 00:03:53'),
+(253, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-16 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:56', '2019-08-30 00:03:56'),
+(254, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-16 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:03:59', '2019-08-30 00:03:59'),
+(255, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-16 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:02', '2019-08-30 00:04:02'),
+(256, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-16 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:05', '2019-08-30 00:04:05'),
+(257, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-17 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:08', '2019-08-30 00:04:08'),
+(258, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-17 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:11', '2019-08-30 00:04:11'),
+(259, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-17 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:14', '2019-08-30 00:04:14'),
+(260, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-17 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:18', '2019-08-30 00:04:18'),
+(261, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-17 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:20', '2019-08-30 00:04:20'),
+(262, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-17 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:23', '2019-08-30 00:04:23');
+INSERT INTO `date_time_records` (`id`, `user_id`, `company_id`, `ACNo`, `name`, `email`, `apiKey`, `datetime`, `address`, `longitude`, `latitude`, `report`, `state`, `deviceID`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(263, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-17 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:26', '2019-08-30 00:04:26'),
+(264, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-17 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:29', '2019-08-30 00:04:29'),
+(265, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-17 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:32', '2019-08-30 00:04:32'),
+(266, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-17 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:35', '2019-08-30 00:04:35'),
+(267, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-17 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:39', '2019-08-30 00:04:39'),
+(268, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-17 16:15:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:41', '2019-08-30 00:04:41'),
+(269, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-17 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:47', '2019-08-30 00:04:47'),
+(270, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-17 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:48', '2019-08-30 00:04:48'),
+(271, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-17 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:51', '2019-08-30 00:04:51'),
+(272, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-17 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:54', '2019-08-30 00:04:54'),
+(273, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-17 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:04:57', '2019-08-30 00:04:57'),
+(274, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-17 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:01', '2019-08-30 00:05:01'),
+(275, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-17 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:03', '2019-08-30 00:05:03'),
+(276, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-17 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:06', '2019-08-30 00:05:06'),
+(277, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-17 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:10', '2019-08-30 00:05:10'),
+(278, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-17 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:12', '2019-08-30 00:05:12'),
+(279, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-17 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:15', '2019-08-30 00:05:15'),
+(280, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-18 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:19', '2019-08-30 00:05:19'),
+(281, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-18 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:21', '2019-08-30 00:05:21'),
+(282, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-18 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:24', '2019-08-30 00:05:24'),
+(283, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-18 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:27', '2019-08-30 00:05:27'),
+(284, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-18 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:30', '2019-08-30 00:05:30'),
+(285, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-18 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:33', '2019-08-30 00:05:33'),
+(286, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-18 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:36', '2019-08-30 00:05:36'),
+(287, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-18 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:40', '2019-08-30 00:05:40'),
+(288, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-18 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:42', '2019-08-30 00:05:42'),
+(289, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-18 03:05:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:45', '2019-08-30 00:05:45'),
+(290, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-18 03:05:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:49', '2019-08-30 00:05:49'),
+(291, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-18 03:06:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:51', '2019-08-30 00:05:51'),
+(292, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-18 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:54', '2019-08-30 00:05:54'),
+(293, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-18 16:23:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:05:57', '2019-08-30 00:05:57'),
+(294, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-18 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:00', '2019-08-30 00:06:00'),
+(295, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-18 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:03', '2019-08-30 00:06:03'),
+(296, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-18 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:06', '2019-08-30 00:06:06'),
+(297, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-18 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:10', '2019-08-30 00:06:10'),
+(298, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-18 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:12', '2019-08-30 00:06:12'),
+(299, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-18 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:15', '2019-08-30 00:06:15'),
+(300, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-18 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:18', '2019-08-30 00:06:18'),
+(301, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-18 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:21', '2019-08-30 00:06:21'),
+(302, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-18 17:15:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:24', '2019-08-30 00:06:24'),
+(303, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-18 17:20:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:27', '2019-08-30 00:06:27'),
+(304, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-18 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:31', '2019-08-30 00:06:31'),
+(305, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-19 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:33', '2019-08-30 00:06:33'),
+(306, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-19 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:36', '2019-08-30 00:06:36'),
+(307, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-19 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:39', '2019-08-30 00:06:39'),
+(308, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-19 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:42', '2019-08-30 00:06:42'),
+(309, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-19 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:45', '2019-08-30 00:06:45'),
+(310, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-19 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:48', '2019-08-30 00:06:48'),
+(311, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-19 02:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:52', '2019-08-30 00:06:52'),
+(312, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-19 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:54', '2019-08-30 00:06:54'),
+(313, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-19 02:44:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:06:57', '2019-08-30 00:06:57'),
+(314, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-19 02:44:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:00', '2019-08-30 00:07:00'),
+(315, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-19 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:03', '2019-08-30 00:07:03'),
+(316, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-19 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:06', '2019-08-30 00:07:06'),
+(317, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-19 03:40:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:09', '2019-08-30 00:07:09'),
+(318, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-19 05:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:12', '2019-08-30 00:07:12'),
+(319, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-19 15:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:15', '2019-08-30 00:07:15'),
+(320, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-21 16:13:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:18', '2019-08-30 00:07:18'),
+(321, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-21 16:13:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:21', '2019-08-30 00:07:21'),
+(322, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-21 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:24', '2019-08-30 00:07:24'),
+(323, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-21 16:24:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:27', '2019-08-30 00:07:27'),
+(324, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-21 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:30', '2019-08-30 00:07:30'),
+(325, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-21 18:12:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:33', '2019-08-30 00:07:33'),
+(326, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-21 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:36', '2019-08-30 00:07:36'),
+(327, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-21 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:39', '2019-08-30 00:07:39'),
+(328, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-22 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:42', '2019-08-30 00:07:42'),
+(329, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-22 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:45', '2019-08-30 00:07:45'),
+(330, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-22 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:48', '2019-08-30 00:07:48'),
+(331, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-22 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:51', '2019-08-30 00:07:51'),
+(332, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-22 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:54', '2019-08-30 00:07:54'),
+(333, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-22 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:07:57', '2019-08-30 00:07:57'),
+(334, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-22 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:00', '2019-08-30 00:08:00'),
+(335, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-22 04:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:03', '2019-08-30 00:08:03'),
+(336, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-22 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:06', '2019-08-30 00:08:06'),
+(337, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-22 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:09', '2019-08-30 00:08:09'),
+(338, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-22 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:13', '2019-08-30 00:08:13'),
+(339, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-22 15:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:15', '2019-08-30 00:08:15'),
+(340, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-22 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:18', '2019-08-30 00:08:18'),
+(341, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-22 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:21', '2019-08-30 00:08:21'),
+(342, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-22 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:24', '2019-08-30 00:08:24'),
+(343, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-22 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:27', '2019-08-30 00:08:27'),
+(344, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-22 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:30', '2019-08-30 00:08:30'),
+(345, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-22 16:26:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:33', '2019-08-30 00:08:33'),
+(346, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-22 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:36', '2019-08-30 00:08:36'),
+(347, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-22 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:39', '2019-08-30 00:08:39'),
+(348, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-22 16:35:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:42', '2019-08-30 00:08:42'),
+(349, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-22 16:35:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:45', '2019-08-30 00:08:45'),
+(350, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-22 16:36:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:49', '2019-08-30 00:08:49'),
+(351, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-23 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:51', '2019-08-30 00:08:51'),
+(352, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-23 01:10:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:54', '2019-08-30 00:08:54'),
+(353, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-23 01:10:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:08:57', '2019-08-30 00:08:57'),
+(354, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-23 01:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:00', '2019-08-30 00:09:00'),
+(355, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-23 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:03', '2019-08-30 00:09:03'),
+(356, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-23 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:06', '2019-08-30 00:09:06'),
+(357, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-23 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:09', '2019-08-30 00:09:09'),
+(358, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-23 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:12', '2019-08-30 00:09:12'),
+(359, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-23 02:33:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:15', '2019-08-30 00:09:15'),
+(360, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-23 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:18', '2019-08-30 00:09:18'),
+(361, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-23 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:21', '2019-08-30 00:09:21'),
+(362, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-23 02:36:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:24', '2019-08-30 00:09:24'),
+(363, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-23 03:02:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:27', '2019-08-30 00:09:27'),
+(364, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-23 03:02:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:30', '2019-08-30 00:09:30'),
+(365, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-23 03:02:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:33', '2019-08-30 00:09:33'),
+(366, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-23 16:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:36', '2019-08-30 00:09:36'),
+(367, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-23 16:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:39', '2019-08-30 00:09:39'),
+(368, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-23 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:42', '2019-08-30 00:09:42'),
+(369, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-23 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:45', '2019-08-30 00:09:45'),
+(370, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-23 16:26:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:48', '2019-08-30 00:09:48'),
+(371, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-23 16:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:51', '2019-08-30 00:09:51'),
+(372, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-23 16:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:54', '2019-08-30 00:09:54'),
+(373, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-24 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:09:57', '2019-08-30 00:09:57'),
+(374, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-24 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:00', '2019-08-30 00:10:00'),
+(375, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-24 02:36:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:03', '2019-08-30 00:10:03'),
+(376, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-24 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:06', '2019-08-30 00:10:06'),
+(377, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-24 02:40:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:09', '2019-08-30 00:10:09'),
+(378, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-24 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:12', '2019-08-30 00:10:12'),
+(379, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-24 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:15', '2019-08-30 00:10:15'),
+(380, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-24 04:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:18', '2019-08-30 00:10:18'),
+(381, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-24 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:21', '2019-08-30 00:10:21'),
+(382, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-24 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:24', '2019-08-30 00:10:24'),
+(383, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-24 16:26:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:27', '2019-08-30 00:10:27'),
+(384, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-24 16:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:30', '2019-08-30 00:10:30'),
+(385, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-24 16:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:33', '2019-08-30 00:10:33'),
+(386, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-24 16:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:36', '2019-08-30 00:10:36'),
+(387, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-24 16:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:39', '2019-08-30 00:10:39'),
+(388, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-24 16:39:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:42', '2019-08-30 00:10:42'),
+(389, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-24 16:39:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:45', '2019-08-30 00:10:45'),
+(390, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-24 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:48', '2019-08-30 00:10:48'),
+(391, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-24 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:51', '2019-08-30 00:10:51'),
+(392, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-24 17:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:54', '2019-08-30 00:10:54'),
+(393, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-24 17:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:10:57', '2019-08-30 00:10:57'),
+(394, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-24 18:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:00', '2019-08-30 00:11:00'),
+(395, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-24 18:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:03', '2019-08-30 00:11:03'),
+(396, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-25 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:06', '2019-08-30 00:11:06'),
+(397, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-25 02:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:09', '2019-08-30 00:11:09'),
+(398, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-25 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:12', '2019-08-30 00:11:12'),
+(399, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-25 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:15', '2019-08-30 00:11:15'),
+(400, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-25 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:18', '2019-08-30 00:11:18'),
+(401, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-25 02:32:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:21', '2019-08-30 00:11:21'),
+(402, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-25 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:24', '2019-08-30 00:11:24'),
+(403, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-25 02:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:27', '2019-08-30 00:11:27'),
+(404, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-25 02:36:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:30', '2019-08-30 00:11:30'),
+(405, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-25 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:33', '2019-08-30 00:11:33'),
+(406, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-25 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:36', '2019-08-30 00:11:36'),
+(407, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-25 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:39', '2019-08-30 00:11:39'),
+(408, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-25 03:02:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:42', '2019-08-30 00:11:42'),
+(409, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-25 03:10:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:45', '2019-08-30 00:11:45'),
+(410, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-25 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:48', '2019-08-30 00:11:48'),
+(411, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-25 16:18:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:51', '2019-08-30 00:11:51'),
+(412, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-25 16:26:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:54', '2019-08-30 00:11:54'),
+(413, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-25 16:39:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:11:57', '2019-08-30 00:11:57'),
+(414, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-25 16:40:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:00', '2019-08-30 00:12:00'),
+(415, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-25 17:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:03', '2019-08-30 00:12:03'),
+(416, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-25 17:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:06', '2019-08-30 00:12:06'),
+(417, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-25 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:09', '2019-08-30 00:12:09'),
+(418, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-25 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:12', '2019-08-30 00:12:12'),
+(419, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-25 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:15', '2019-08-30 00:12:15'),
+(420, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-26 02:36:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:18', '2019-08-30 00:12:18'),
+(421, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-26 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:21', '2019-08-30 00:12:21'),
+(422, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-26 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:24', '2019-08-30 00:12:24'),
+(423, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-26 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:27', '2019-08-30 00:12:27'),
+(424, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-26 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:30', '2019-08-30 00:12:30'),
+(425, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-26 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:33', '2019-08-30 00:12:33'),
+(426, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-26 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:36', '2019-08-30 00:12:36'),
+(427, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-26 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:39', '2019-08-30 00:12:39'),
+(428, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-26 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:42', '2019-08-30 00:12:42'),
+(429, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-26 03:35:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:45', '2019-08-30 00:12:45'),
+(430, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-26 05:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:48', '2019-08-30 00:12:48'),
+(431, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-26 15:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:54', '2019-08-30 00:12:54'),
+(432, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-26 17:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:54', '2019-08-30 00:12:54'),
+(433, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-27 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:12:57', '2019-08-30 00:12:57'),
+(434, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-28 15:49:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:00', '2019-08-30 00:13:00'),
+(435, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-28 16:26:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:03', '2019-08-30 00:13:03'),
+(436, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-28 16:39:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:06', '2019-08-30 00:13:06'),
+(437, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-28 16:39:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:09', '2019-08-30 00:13:09'),
+(438, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-28 16:39:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:12', '2019-08-30 00:13:12'),
+(439, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-28 16:49:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:15', '2019-08-30 00:13:15'),
+(440, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-28 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:18', '2019-08-30 00:13:18'),
+(441, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-28 18:30:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:21', '2019-08-30 00:13:21'),
+(442, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-28 18:35:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:24', '2019-08-30 00:13:24'),
+(443, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-29 02:36:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:27', '2019-08-30 00:13:27'),
+(444, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-29 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:30', '2019-08-30 00:13:30'),
+(445, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-29 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:33', '2019-08-30 00:13:33'),
+(446, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-29 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:36', '2019-08-30 00:13:36'),
+(447, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-29 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:39', '2019-08-30 00:13:39'),
+(448, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-29 03:03:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:42', '2019-08-30 00:13:42'),
+(449, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-29 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:45', '2019-08-30 00:13:45'),
+(450, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-29 04:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:48', '2019-08-30 00:13:48'),
+(451, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-29 04:34:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:51', '2019-08-30 00:13:51'),
+(452, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-29 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:54', '2019-08-30 00:13:54'),
+(453, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-29 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:13:57', '2019-08-30 00:13:57'),
+(454, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-29 15:00:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:00', '2019-08-30 00:14:00'),
+(455, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-29 15:12:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:03', '2019-08-30 00:14:03'),
+(456, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-29 16:09:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:06', '2019-08-30 00:14:06'),
+(457, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-29 16:25:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:09', '2019-08-30 00:14:09'),
+(458, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-29 16:26:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:12', '2019-08-30 00:14:12'),
+(459, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-29 16:39:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:15', '2019-08-30 00:14:15'),
+(460, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-29 16:49:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:18', '2019-08-30 00:14:18'),
+(461, 1, '2018-101', '700', 'EMPLOYEE', 'abueva@gmail.com', NULL, '2019-07-30 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:21', '2019-08-30 00:14:21'),
+(462, 1, '2018-101', '1515', 'TEST PAUL', 'abueva@gmail.com', NULL, '2019-07-30 01:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:24', '2019-08-30 00:14:24'),
+(463, 1, '2018-101', '29', 'TEST KYLE', 'abueva@gmail.com', NULL, '2019-07-30 01:10:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:27', '2019-08-30 00:14:27'),
+(464, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-30 02:36:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:30', '2019-08-30 00:14:30'),
+(465, 1, '2018-101', '96', 'ATOM', 'abueva@gmail.com', NULL, '2019-07-30 02:38:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:33', '2019-08-30 00:14:33'),
+(466, 1, '2018-101', '98', 'DIANA', 'abueva@gmail.com', NULL, '2019-07-30 02:39:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:36', '2019-08-30 00:14:36'),
+(467, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-30 03:03:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:39', '2019-08-30 00:14:39'),
+(468, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-30 03:03:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:42', '2019-08-30 00:14:42'),
+(469, 1, '2018-101', '27', 'TEST', 'abueva@gmail.com', NULL, '2019-07-30 03:30:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:45', '2019-08-30 00:14:45'),
+(470, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-30 16:19:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:48', '2019-08-30 00:14:48'),
+(471, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-30 16:26:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:51', '2019-08-30 00:14:51'),
+(472, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-30 16:29:00', NULL, NULL, NULL, NULL, 'C/In', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:54', '2019-08-30 00:14:54'),
+(473, 1, '2018-101', '99', 'DIANE', 'abueva@gmail.com', NULL, '2019-07-31 02:03:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:14:57', '2019-08-30 00:14:57'),
+(474, 1, '2018-101', '97', 'DANTE', 'abueva@gmail.com', NULL, '2019-07-31 02:36:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:15:00', '2019-08-30 00:15:00'),
+(475, 1, '2018-101', '900', 'DEMO', 'abueva@gmail.com', NULL, '2019-07-31 03:00:00', NULL, NULL, NULL, NULL, 'C/Out', 'cs1t3st', 'saved', NULL, '2019-08-30 00:15:03', '2019-08-30 00:15:03'),
+(476, 51, '0000-000', '1', 'TEST RND', 'csi.notifcation2019@gmail.com', NULL, '2019-08-22 02:05:00', NULL, NULL, NULL, NULL, 'C/Out', '1234567910', 'saved', NULL, '2019-12-16 19:09:47', '2019-12-16 19:09:47'),
+(477, 7, '1996-001', '1007', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678S910', 'saved', NULL, '2020-01-08 05:36:30', '2020-01-08 05:36:30'),
+(478, 7, '1996-001', '1007', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 10:28:00', NULL, NULL, NULL, NULL, 'C/Out', '12345678S910', 'saved', NULL, '2020-01-08 05:36:51', '2020-01-08 05:36:51'),
+(479, 7, '1996-001', '1008', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 10:28:00', NULL, NULL, NULL, NULL, 'C/Out', '12345678S910', 'saved', NULL, '2020-01-08 05:37:03', '2020-01-08 05:37:03'),
+(480, 7, '1996-001', '1008', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678S910', 'saved', NULL, '2020-01-08 05:37:19', '2020-01-08 05:37:19'),
+(481, 7, '1996-001', '1009', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678S910', 'saved', NULL, '2020-01-09 01:41:55', '2020-01-09 01:41:55'),
+(482, 7, '1996-001', '1009', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 10:28:00', NULL, NULL, NULL, NULL, 'C/Out', '12345678S910', 'saved', NULL, '2020-01-09 01:42:08', '2020-01-09 01:42:08'),
+(483, 7, '1996-001', '1010', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 10:28:00', NULL, NULL, NULL, NULL, 'C/Out', '12345678S910', 'saved', NULL, '2020-01-09 01:42:37', '2020-01-09 01:42:37'),
+(484, 7, '1996-001', '1010', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678S910', 'saved', NULL, '2020-01-09 01:42:45', '2020-01-09 01:42:45');
 
 -- --------------------------------------------------------
 
@@ -6483,18 +6970,52 @@ CREATE TABLE `oauth_access_tokens` (
 --
 
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
-('38eff98bbdc23df9bd116023f5a02a9dcd023ae582a28ed0a65cf4524257248ae154dd93684ee758', 1, 2, NULL, '[]', 0, '2019-10-29 09:10:11', '2019-10-29 09:10:11', '2019-10-30 17:10:11'),
-('3ee6794df90f4b3d00a927608fac24f942d1a00adbc3b13516ab192b543e14911604236174ea30a8', 1, 2, NULL, '[]', 0, '2019-11-25 02:17:33', '2019-11-25 02:17:33', '2019-11-26 10:17:32'),
-('40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 1, 2, NULL, '[]', 0, '2019-10-01 04:43:57', '2019-10-01 04:43:57', '2019-10-02 12:43:57'),
-('580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 1, 2, NULL, '[]', 0, '2019-10-01 05:01:50', '2019-10-01 05:01:50', '2019-10-02 13:01:50'),
-('775fe0d59e11bfbce51e4b4be649185b9e6026d1b22a3962269d602577091378e4ec5c03ad674894', 1, 2, NULL, '[]', 0, '2019-11-20 07:51:31', '2019-11-20 07:51:31', '2019-11-21 15:51:30'),
-('a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 1, 2, NULL, '[]', 0, '2019-10-01 05:02:11', '2019-10-01 05:02:11', '2019-10-02 13:02:11'),
-('bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 1, 2, NULL, '[]', 0, '2019-11-05 10:42:54', '2019-11-05 10:42:54', '2019-11-06 18:42:53'),
-('cbabdc1ecc4acef56efbc9f55f604d2ab8862759a0cd5da5cac1a0642681823468ac34eacb345709', 1, 2, NULL, '[]', 0, '2019-11-06 05:29:29', '2019-11-06 05:29:29', '2019-11-07 13:29:29'),
-('d39e4200b5a4272f24b3b4a0ecf30829cfd79572ab2b689fa30f6487ffeea12c09c5d0bd754e0285', 1, 2, NULL, '[]', 0, '2019-11-22 05:24:45', '2019-11-22 05:24:45', '2019-11-23 13:24:45'),
-('dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 1, 2, NULL, '[]', 0, '2019-10-01 04:45:07', '2019-10-01 04:45:07', '2019-10-02 12:45:07'),
-('e9d4a39dae4e239a6dc4612fd6516d57f30f40c1120708777c26ac7711dde997f8362f15cd092258', 1, 2, NULL, '[]', 0, '2019-10-30 02:29:59', '2019-10-30 02:29:59', '2019-10-31 10:29:59'),
-('f7f5f47e3b810d897c8ea2b4b834cf227c54597f88d73fbd11893b815072b9c4afd527c4df7606d3', 1, 2, NULL, '[]', 0, '2019-11-12 11:03:10', '2019-11-12 11:03:10', '2019-11-13 19:03:09');
+('07c88259f3bb06709fe8836d9dec1029b7e031fa732280250b292e02fcbed871ece3b84151dd1d11', 45, 2, NULL, '[]', 0, '2020-01-06 08:14:41', '2020-01-06 08:14:41', '2020-01-07 16:14:41'),
+('092505ffb6c4a1c91c72382d9318063c3780fef8be11a80da0d72c5b941074e1ebd5caa3faf38693', 1, 2, NULL, '[]', 1, '2020-01-06 06:59:50', '2020-01-06 06:59:50', '2020-01-07 14:59:50'),
+('10249abdc2631d924135967a01920d9b6c972c3c199ab39174186a82c168a661c079354bc2bb8702', 52, 2, NULL, '[]', 0, '2020-01-06 08:41:34', '2020-01-06 08:41:34', '2020-01-07 16:41:34'),
+('1234a05ad7666d40a929c0bc2d7564a5dc661a6be9d87fc923962b66171ae4307597e759f5fe2f6d', 1, 2, NULL, '[]', 1, '2020-01-06 02:08:43', '2020-01-06 02:08:43', '2020-01-07 10:08:43'),
+('14ea62a76df826db94fcc868a58b40a8cd50bf75cc65a40ec54ebe3205aaa2a265099cd936cb9ff1', 45, 2, NULL, '[]', 0, '2020-01-06 08:15:02', '2020-01-06 08:15:02', '2020-01-07 16:15:02'),
+('15c84cbcf5f583ffd3f0999612cc4b9c5e980e41fb37327fc43db25f5c0da6f430862f1c450fd42a', 1, 2, NULL, '[]', 1, '2020-01-07 02:29:14', '2020-01-07 02:29:14', '2020-01-08 10:29:14'),
+('2cbbe019841a44586a783e8f2e70a3e057bc39af319f4fe45c86fe4984c8e9f31dee773e8f2cf632', 45, 2, NULL, '[]', 0, '2020-01-06 06:52:54', '2020-01-06 06:52:54', '2020-01-07 14:52:54'),
+('3503294c2cf54d5b93fac89bf29dc3c20f9f4055f38b5bb5bf1929ad441addd2d4ef6cbbf73c06b2', 1, 2, NULL, '[]', 1, '2020-01-06 02:06:08', '2020-01-06 02:06:08', '2020-01-07 10:06:08'),
+('38eff98bbdc23df9bd116023f5a02a9dcd023ae582a28ed0a65cf4524257248ae154dd93684ee758', 1, 2, NULL, '[]', 1, '2019-10-29 09:10:11', '2019-10-29 09:10:11', '2019-10-30 17:10:11'),
+('3a5324b9306ac6bb55ddd1cdb28b86b0985610d00d621c959d105b53f344eef47b4cb0317a4523bf', 46, 2, NULL, '[]', 0, '2020-01-06 08:39:33', '2020-01-06 08:39:33', '2020-01-07 16:39:33'),
+('3d9068d02256099296f6093e6a07228f74c212a8b363206452b87f4213a7af0a239af5104fc30dca', 1, 2, NULL, '[]', 1, '2020-01-06 08:08:27', '2020-01-06 08:08:27', '2020-01-07 16:08:27'),
+('3ee6794df90f4b3d00a927608fac24f942d1a00adbc3b13516ab192b543e14911604236174ea30a8', 1, 2, NULL, '[]', 1, '2019-11-25 02:17:33', '2019-11-25 02:17:33', '2019-11-26 10:17:32'),
+('40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 1, 2, NULL, '[]', 1, '2019-10-01 04:43:57', '2019-10-01 04:43:57', '2019-10-02 12:43:57'),
+('4a595f91658d68c8ccf74a8510cddeb5355a5e435f55908b173970e58bb0aa235e7de57b47957e21', 1, 2, NULL, '[]', 1, '2020-01-06 01:58:51', '2020-01-06 01:58:51', '2020-01-07 09:58:51'),
+('4afe3002a6a88a93da8d5285658f7479a14b874bb2833740156c9a3118b4c26504b4bc85e06f0c17', 45, 2, NULL, '[]', 0, '2020-01-06 06:46:31', '2020-01-06 06:46:31', '2020-01-07 14:46:31'),
+('5418ff4388e2fec30f279657fa7602d9b2f881e2dd258211013c220f83c99db545b733973c524f99', 54, 2, NULL, '[]', 0, '2020-01-07 07:52:06', '2020-01-07 07:52:06', '2020-01-08 15:52:06'),
+('580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 1, 2, NULL, '[]', 1, '2019-10-01 05:01:50', '2019-10-01 05:01:50', '2019-10-02 13:01:50'),
+('60d80c8484a190b72d68000c3e47f0ac461d3f14a93128db8a101304871bd450aa44d48e1e25ceb9', 1, 2, NULL, '[]', 1, '2020-01-06 06:22:32', '2020-01-06 06:22:32', '2020-01-07 14:22:32'),
+('775cd47d03e94d5f95da3f8837947a7a0b023c95db1f30378da6bac97a766ac2941a142040361f0d', 45, 2, NULL, '[]', 0, '2020-01-06 08:06:46', '2020-01-06 08:06:46', '2020-01-07 16:06:46'),
+('775fe0d59e11bfbce51e4b4be649185b9e6026d1b22a3962269d602577091378e4ec5c03ad674894', 1, 2, NULL, '[]', 1, '2019-11-20 07:51:31', '2019-11-20 07:51:31', '2019-11-21 15:51:30'),
+('8987c8ff216e13fab967ed4cd42f32739c466b00306e9a1c0d7445fc67d7ef767f68262445057f9b', 45, 2, NULL, '[]', 0, '2020-01-06 08:33:56', '2020-01-06 08:33:56', '2020-01-07 16:33:56'),
+('8acdeae57079f2a949d6ebb0dff398f925684636888d88f467cdfd867e7231a98b0974e888d64198', 45, 2, NULL, '[]', 0, '2020-01-06 08:22:34', '2020-01-06 08:22:34', '2020-01-07 16:22:34'),
+('9285f46604409f3a93f88620ba00c63bf067cbe281225b4f4d7ebd6f923914be2b117e33687d3419', 1, 2, NULL, '[]', 1, '2020-01-06 07:13:22', '2020-01-06 07:13:22', '2020-01-07 15:13:22'),
+('a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 1, 2, NULL, '[]', 1, '2019-10-01 05:02:11', '2019-10-01 05:02:11', '2019-10-02 13:02:11'),
+('a3f4e4f55a4a67e65637dd75e5c4556dca5c8f2497bfaac089b495c6c13f3690ebb29b332eaf05c9', 45, 2, NULL, '[]', 0, '2020-01-06 08:07:36', '2020-01-06 08:07:36', '2020-01-07 16:07:36'),
+('b1262ad5c70641939497e3acefda24955f357a3d6730fb0d020aa9f205a5ae7ff63f43a0a5f1ac04', 1, 2, NULL, '[]', 1, '2020-01-07 00:00:45', '2020-01-07 00:00:45', '2020-01-08 08:00:45'),
+('b34494e6aa4133cd09d491b2d039fa9062ab66a0fe30db7e98c457cb81408fbd6a662289800d83ca', 45, 2, NULL, '[]', 0, '2020-01-06 07:52:06', '2020-01-06 07:52:06', '2020-01-07 15:52:06'),
+('b84d2e4a2c53a63d8f022adc788640fa503b826c2d1298652a17417700d75b593cccf6ab6073ed9d', 1, 2, NULL, '[]', 1, '2020-01-07 00:11:36', '2020-01-07 00:11:36', '2020-01-08 08:11:36'),
+('bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 1, 2, NULL, '[]', 1, '2019-11-05 10:42:54', '2019-11-05 10:42:54', '2019-11-06 18:42:53'),
+('bf7cfe0b978a9437009c58f65e17b996f0e90c2cfe403be3d79db557d23c4657293938379ebf22e5', 1, 2, NULL, '[]', 1, '2020-01-07 03:14:56', '2020-01-07 03:14:56', '2020-01-08 11:14:56'),
+('bfd2e34834ee9b0f955bd2301d9b1f733fac5efb860debfd03e4b20ccb4ddbc880a85a322800f980', 45, 2, NULL, '[]', 0, '2020-01-06 06:51:01', '2020-01-06 06:51:01', '2020-01-07 14:51:01'),
+('c9055b9ee0552e1daf6d829b20d971498d95990f9e755d4bd384c2688ad22ac3247b9b6949b45aad', 45, 2, NULL, '[]', 0, '2020-01-06 08:29:05', '2020-01-06 08:29:05', '2020-01-07 16:29:05'),
+('c9bb0eb6f96a09df449e72f14ab0a9f3df3e8f6a8964c367f1039cdc8aca9707aa2286aa1ac55883', 54, 2, NULL, '[]', 0, '2020-01-06 08:44:08', '2020-01-06 08:44:08', '2020-01-07 16:44:08'),
+('cbabdc1ecc4acef56efbc9f55f604d2ab8862759a0cd5da5cac1a0642681823468ac34eacb345709', 1, 2, NULL, '[]', 1, '2019-11-06 05:29:29', '2019-11-06 05:29:29', '2019-11-07 13:29:29'),
+('cc0ed543cab375eb4e0837ed9212ac19c9b21970de6777647dd1ffe2cfd08a94e0a6dc01d2f4556c', 1, 2, NULL, '[]', 1, '2019-11-29 02:59:59', '2019-11-29 02:59:59', '2019-11-30 10:59:59'),
+('d39e4200b5a4272f24b3b4a0ecf30829cfd79572ab2b689fa30f6487ffeea12c09c5d0bd754e0285', 1, 2, NULL, '[]', 1, '2019-11-22 05:24:45', '2019-11-22 05:24:45', '2019-11-23 13:24:45'),
+('dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 1, 2, NULL, '[]', 1, '2019-10-01 04:45:07', '2019-10-01 04:45:07', '2019-10-02 12:45:07'),
+('e29aae218894ea847173d02eb7fe2e0f1aaacea8c6db01e716de627150fa98df34ac40b4d8064e96', 45, 2, NULL, '[]', 0, '2020-01-06 08:32:34', '2020-01-06 08:32:34', '2020-01-07 16:32:34'),
+('e9ae2f2903592522400158e995e2bb2420722e0c12a5dff85725ee879522c02022b3325f00038454', 45, 2, NULL, '[]', 0, '2020-01-06 08:08:29', '2020-01-06 08:08:29', '2020-01-07 16:08:29'),
+('e9d4a39dae4e239a6dc4612fd6516d57f30f40c1120708777c26ac7711dde997f8362f15cd092258', 1, 2, NULL, '[]', 1, '2019-10-30 02:29:59', '2019-10-30 02:29:59', '2019-10-31 10:29:59'),
+('ea1a6e78fb0ef15c34346621a164fd6dcec1b4f6e06f145e1e6b9e356b507d82faa7ca4e477ddc31', 1, 2, NULL, '[]', 0, '2020-01-07 05:42:59', '2020-01-07 05:42:59', '2020-01-08 13:42:59'),
+('ec28618698f81d56f6c087cdca51647e3b042968c1c3c4e64bac0daabcdface695250fe664f914f7', 45, 2, NULL, '[]', 0, '2020-01-06 06:44:40', '2020-01-06 06:44:40', '2020-01-07 14:44:40'),
+('f63005172b907588ddb8ae0301031857e58f8ba4e70b5ba0055030e8a639bd3aff868ac1b3771b25', 45, 2, NULL, '[]', 0, '2020-01-06 06:51:13', '2020-01-06 06:51:13', '2020-01-07 14:51:13'),
+('f7ac299dbe2b03c915c8d9baf49fabf7c018039401b6934adb93afc9421dd9e8e8fef73c705fa5bb', 1, 2, NULL, '[]', 1, '2020-01-07 02:00:42', '2020-01-07 02:00:42', '2020-01-08 10:00:42'),
+('f7f5f47e3b810d897c8ea2b4b834cf227c54597f88d73fbd11893b815072b9c4afd527c4df7606d3', 1, 2, NULL, '[]', 1, '2019-11-12 11:03:10', '2019-11-12 11:03:10', '2019-11-13 19:03:09'),
+('fcabcabf40d60af2ac2e47dcdd19c753ce13a38d57beec1dafec5ecaea909618d6d1fa21f138ff5c', 45, 2, NULL, '[]', 0, '2020-01-06 07:04:11', '2020-01-06 07:04:11', '2020-01-07 15:04:11');
 
 -- --------------------------------------------------------
 
@@ -6569,18 +7090,52 @@ CREATE TABLE `oauth_refresh_tokens` (
 --
 
 INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires_at`) VALUES
+('03b21f58c0085290ec03a53a04775ab07aee4b51443c4d84d88bd785116b2a560252b9cd7845ea5f', '60d80c8484a190b72d68000c3e47f0ac461d3f14a93128db8a101304871bd450aa44d48e1e25ceb9', 0, '2020-01-08 14:22:32'),
+('03f9876a14e3d9501db124992856cdaa773407cf12d6e7bf7e9a5f572e0a5d9ae54cf352a46d1ba2', '4a595f91658d68c8ccf74a8510cddeb5355a5e435f55908b173970e58bb0aa235e7de57b47957e21', 0, '2020-01-08 09:58:51'),
 ('12856754477f2b7122d64abd79be4cda27af7568424c232adc0a059f8fec79fbe6ce3d7695a27d07', 'a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 0, '2019-10-03 13:02:11'),
 ('12c5a56569b8e43a5fb028673b94eb4429a07e3abd35dce2e655d38f0cc83d5ad5ff232b35b88551', '775fe0d59e11bfbce51e4b4be649185b9e6026d1b22a3962269d602577091378e4ec5c03ad674894', 0, '2019-11-22 15:51:31'),
+('13fc58a9d4724668027e736bb47b2a6bd0a431404acb1c403a15ca3e6d5c70e720d59707b8508a08', 'f7ac299dbe2b03c915c8d9baf49fabf7c018039401b6934adb93afc9421dd9e8e8fef73c705fa5bb', 0, '2020-01-09 10:00:42'),
+('1780152b4d5f52599f8037a367ca404214a78324c80e2dc1ad17404bc2fba7e99c6f77f63c98df4a', 'ea1a6e78fb0ef15c34346621a164fd6dcec1b4f6e06f145e1e6b9e356b507d82faa7ca4e477ddc31', 0, '2020-01-09 13:42:59'),
+('187e58c8a3436173873f99c0f3bc3c163713719842edb55eb6762a4d0fbed5fefa535ffbcf6c4a45', 'e9ae2f2903592522400158e995e2bb2420722e0c12a5dff85725ee879522c02022b3325f00038454', 0, '2020-01-08 16:08:29'),
+('1d9aab73ed88f094078cf8e879e3d73b30c98d5627bb7eb0bae03ac6c20f7c525c464209a2060293', 'bf7cfe0b978a9437009c58f65e17b996f0e90c2cfe403be3d79db557d23c4657293938379ebf22e5', 0, '2020-01-09 11:14:56'),
+('32025a9fdcfb476c2abbfbd23c2cf1de80c01d38f4b30d7cbe76a485baf7e40ab0dfa00017b874b5', '15c84cbcf5f583ffd3f0999612cc4b9c5e980e41fb37327fc43db25f5c0da6f430862f1c450fd42a', 0, '2020-01-09 10:29:14'),
+('416e8434f0a94916956da8356d802405380a754a75cbcdebef5502ad9726d7120383f9611f725e54', 'b1262ad5c70641939497e3acefda24955f357a3d6730fb0d020aa9f205a5ae7ff63f43a0a5f1ac04', 0, '2020-01-09 08:00:45'),
+('448a4a87a42ddc7d57c3b5fb1977aeede180a92c40b44a17f1ac1e62d0b730542ed1b126f7853e07', 'fcabcabf40d60af2ac2e47dcdd19c753ce13a38d57beec1dafec5ecaea909618d6d1fa21f138ff5c', 0, '2020-01-08 15:04:11'),
+('4724209546bb03d0006eb5c37ba34b4edf677250beb38ddf839854cd9ec523ab42c3bb359e5ab342', '14ea62a76df826db94fcc868a58b40a8cd50bf75cc65a40ec54ebe3205aaa2a265099cd936cb9ff1', 0, '2020-01-08 16:15:02'),
+('5237589b2270735a4f2d8e3a46b2baa4916c446af7f9b2f676598dc4d4028fd93478e7c17f295c34', '3a5324b9306ac6bb55ddd1cdb28b86b0985610d00d621c959d105b53f344eef47b4cb0317a4523bf', 0, '2020-01-08 16:39:33'),
 ('54a16bfa7520e7712e90525e8f1b6ebe8b93626f25ffba07fd0db727216abffea11b4035af49cf33', '38eff98bbdc23df9bd116023f5a02a9dcd023ae582a28ed0a65cf4524257248ae154dd93684ee758', 0, '2019-10-31 17:10:11'),
+('5e0dc0fa3110f1ed1c3fb73f25da72478273cab4fa3809d430c02c54d72943b57a1ab3359249af66', 'c9055b9ee0552e1daf6d829b20d971498d95990f9e755d4bd384c2688ad22ac3247b9b6949b45aad', 0, '2020-01-08 16:29:05'),
+('610996911c67ffb548bdef3d071ba31c64c0351001beb6df8f1c0483f2d4c4aa3a4a30632579deba', 'c9bb0eb6f96a09df449e72f14ab0a9f3df3e8f6a8964c367f1039cdc8aca9707aa2286aa1ac55883', 0, '2020-01-08 16:44:08'),
+('6165f31effe3be171736b8385ecb866688089ec7b56685313cff90061a9ace2f91f5690cafc313d7', '5418ff4388e2fec30f279657fa7602d9b2f881e2dd258211013c220f83c99db545b733973c524f99', 0, '2020-01-09 15:52:06'),
+('6a09c72013cabd8fc302872ce86d342089cd296dec2a30571bf22604a030b1a949cdc405501cdc51', 'f63005172b907588ddb8ae0301031857e58f8ba4e70b5ba0055030e8a639bd3aff868ac1b3771b25', 0, '2020-01-08 14:51:13'),
+('6ea86d48a76a9df7f277041bdb537d5d3ffbe5b976775d5ebbfed3014d2b45ee9c23d262b1538949', '3503294c2cf54d5b93fac89bf29dc3c20f9f4055f38b5bb5bf1929ad441addd2d4ef6cbbf73c06b2', 0, '2020-01-08 10:06:08'),
 ('74ef7de631f8ae31798e6c3d24c65f2942a71b42ddf2abea71f97501939f894e28c0bc486491ce4b', 'e9d4a39dae4e239a6dc4612fd6516d57f30f40c1120708777c26ac7711dde997f8362f15cd092258', 0, '2019-11-01 10:29:59'),
+('756b3e3b45c5fc8730796d9afc7aba1309385939614fd1fdf15174cb835f38d17b7bee2132334a4c', '10249abdc2631d924135967a01920d9b6c972c3c199ab39174186a82c168a661c079354bc2bb8702', 0, '2020-01-08 16:41:34'),
+('7b60dcfee6a67fb6e2e20a96f1f6867aba65458289667ed36839eb8da24934ad8453fab269b835d6', '775cd47d03e94d5f95da3f8837947a7a0b023c95db1f30378da6bac97a766ac2941a142040361f0d', 0, '2020-01-08 16:06:46'),
 ('7bae36c1aa73a53759bfe93d5e26bf3bf8a3f31ea996c26e3eba3f151ca80214dd07c845c4ac22f7', '3ee6794df90f4b3d00a927608fac24f942d1a00adbc3b13516ab192b543e14911604236174ea30a8', 0, '2019-11-27 10:17:33'),
+('8395a700be6ce955fe364ae5cf5342051a346b2fec2ff15c6e535252b3936b352b695d9e717eb08e', 'a3f4e4f55a4a67e65637dd75e5c4556dca5c8f2497bfaac089b495c6c13f3690ebb29b332eaf05c9', 0, '2020-01-08 16:07:36'),
+('8bc49f7be2744ccc323315fff5636c3c43ae468dab96eb65519175256d6038533f45aa960ac73e80', 'bfd2e34834ee9b0f955bd2301d9b1f733fac5efb860debfd03e4b20ccb4ddbc880a85a322800f980', 0, '2020-01-08 14:51:01'),
+('9134a644af6e69580e94d14116fef53308799174f18d52121c7fc221b92c0e6f7e82c210a45c9e2d', 'b34494e6aa4133cd09d491b2d039fa9062ab66a0fe30db7e98c457cb81408fbd6a662289800d83ca', 0, '2020-01-08 15:52:06'),
 ('9235fee9af58dbf56688faad4aa56526a66ea727371fd43ba5d32041bae981d5195058c1eb71b81f', 'bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 0, '2019-11-07 18:42:53'),
+('96240b36d3aad0be111e6939f55cde7f4fbf547455a331d707a968af1864d644c102528f4e065c05', '8acdeae57079f2a949d6ebb0dff398f925684636888d88f467cdfd867e7231a98b0974e888d64198', 0, '2020-01-08 16:22:34'),
+('96fba27e9dc8ea444e84e0bbf3e9607acb34103bccc5b4c52e4bfcde9b825e8fa66db825acb22309', 'ec28618698f81d56f6c087cdca51647e3b042968c1c3c4e64bac0daabcdface695250fe664f914f7', 0, '2020-01-08 14:44:40'),
+('abef8c5ce9909f2873eec18836df43dbfc9bb9cc9a285f3e063242e484ad0376b54adb4b2b6a5c0d', 'cc0ed543cab375eb4e0837ed9212ac19c9b21970de6777647dd1ffe2cfd08a94e0a6dc01d2f4556c', 0, '2019-12-01 10:59:59'),
 ('b418a518662e54841d19a10ebc59777887742892c530e58fac7ed1282d9adb2ff83097655b7e0410', '580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 0, '2019-10-03 13:01:50'),
 ('bda8ffb929cd2120c8dce090315e9144709bcb943bee8a4e309afebec0d37cad194c9aad7dc4f333', 'dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 0, '2019-10-03 12:45:07'),
+('c2ba64f47215ae105a087cdb8e8f35139ee9b63208f6539994a120660e5bde0c2c19c97a88ee5472', '2cbbe019841a44586a783e8f2e70a3e057bc39af319f4fe45c86fe4984c8e9f31dee773e8f2cf632', 0, '2020-01-08 14:52:54'),
+('cb8b11fcf60eb7ac353d964accfd15cdbf1a9fb196286d7b28314183756f7ad8f09a1a6b2b0b086d', '092505ffb6c4a1c91c72382d9318063c3780fef8be11a80da0d72c5b941074e1ebd5caa3faf38693', 0, '2020-01-08 14:59:50'),
+('cc67c1a486d50e40df6dd03f71a159ae9211d236b12a68478ab0bff82e8b5087c56b94a778480ff7', '8987c8ff216e13fab967ed4cd42f32739c466b00306e9a1c0d7445fc67d7ef767f68262445057f9b', 0, '2020-01-08 16:33:56'),
+('d34a32daddbffa8bdce3c89ffe169b3e69d3686f0320e440dbfa3d2d5cf737f6d44139165d9a265c', '9285f46604409f3a93f88620ba00c63bf067cbe281225b4f4d7ebd6f923914be2b117e33687d3419', 0, '2020-01-08 15:13:22'),
+('d4f3a4920d9fb4e20fda0bfadd16b2e7e517e6bd6d7761fdba71b4e1a206881170e87ceb80d0c0de', '1234a05ad7666d40a929c0bc2d7564a5dc661a6be9d87fc923962b66171ae4307597e759f5fe2f6d', 0, '2020-01-08 10:08:43'),
 ('d8c36d4f847419c1653f46c351e2ae5d2615ab4fbede486ac9cec1e8ecc9ed69385a8393225ae665', 'f7f5f47e3b810d897c8ea2b4b834cf227c54597f88d73fbd11893b815072b9c4afd527c4df7606d3', 0, '2019-11-14 19:03:09'),
+('d9644871fd67c02f76edf2c21170ea4dce7a427a92b0f645a3b5ec047b88e0c90014d59d6ef34ec1', '4afe3002a6a88a93da8d5285658f7479a14b874bb2833740156c9a3118b4c26504b4bc85e06f0c17', 0, '2020-01-08 14:46:31'),
+('db219cf67d72d27f21e6ab07d355af0b52543d2ae81370062d47aed556ea5d599e7e60ffc337435a', '3d9068d02256099296f6093e6a07228f74c212a8b363206452b87f4213a7af0a239af5104fc30dca', 0, '2020-01-08 16:08:27'),
+('e4c59a26d94a8a4969b50932e630f692bcc8feb8f91e26cca41487ff03ee5c17eac14effe87ad78d', 'e29aae218894ea847173d02eb7fe2e0f1aaacea8c6db01e716de627150fa98df34ac40b4d8064e96', 0, '2020-01-08 16:32:34'),
 ('e522866110d586141b17426cbae00c233f2b496efbf6adabef32d51a8466c36a9b0e823548fa7c4d', 'd39e4200b5a4272f24b3b4a0ecf30829cfd79572ab2b689fa30f6487ffeea12c09c5d0bd754e0285', 0, '2019-11-24 13:24:45'),
+('e79b7a22814deb3cfe317d395b168e2cba1e8d0db46416ad493edf45456a96befe6c483ef8b0987f', 'b84d2e4a2c53a63d8f022adc788640fa503b826c2d1298652a17417700d75b593cccf6ab6073ed9d', 0, '2020-01-09 08:11:36'),
 ('e9dd674679f9c6fe3ca0f82f76f5aa212d97de14e89f589343c72a5391bba5b035bd6a0bfbf0e1aa', '40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 0, '2019-10-03 12:43:57'),
-('efd16dc4a8626175f9dab76de7562b89c566eef6f4756df19fb417f61adcbcfb1d91ff7f0b573be2', 'cbabdc1ecc4acef56efbc9f55f604d2ab8862759a0cd5da5cac1a0642681823468ac34eacb345709', 0, '2019-11-08 13:29:29');
+('efd16dc4a8626175f9dab76de7562b89c566eef6f4756df19fb417f61adcbcfb1d91ff7f0b573be2', 'cbabdc1ecc4acef56efbc9f55f604d2ab8862759a0cd5da5cac1a0642681823468ac34eacb345709', 0, '2019-11-08 13:29:29'),
+('f2f2917a19c3f3d9f1e9d073f4ca0dda6ee399240de943dca0277f61a49f8ed4768f242247d06a2f', '07c88259f3bb06709fe8836d9dec1029b7e031fa732280250b292e02fcbed871ece3b84151dd1d11', 0, '2020-01-08 16:14:41');
 
 -- --------------------------------------------------------
 
@@ -6614,14 +7169,6 @@ CREATE TABLE `tbl_activity_log` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_activity_log`
---
-
-INSERT INTO `tbl_activity_log` (`id`, `actCode`, `projCode`, `activity_desc`, `type`, `attachment`, `deleted`, `created_by_id`, `created_by_name`, `created_at`, `updated_at`) VALUES
-(1, 'QEGZCBH6B2WE', 'PHLJ3MOYYIRS', 'My Description for this report!!!', 'ISSUE', '/upload/img/20191125_151958-buko.jpg', 0, '2018-101', 'Kay Diaz', '2019-11-25 07:19:58', '2019-11-25 07:19:58'),
-(2, 'T5Q6OACLKWMU', 'PHLJ3MOYYIRS', 'My Description for this report!!!', 'REPORT', '/upload/img/20191125_152004-buko.jpg', 0, '2018-101', 'Kay Diaz', '2019-11-25 07:20:04', '2019-11-25 07:20:04');
-
 -- --------------------------------------------------------
 
 --
@@ -6640,14 +7187,6 @@ CREATE TABLE `tbl_activity_log_img` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_activity_log_img`
---
-
-INSERT INTO `tbl_activity_log_img` (`id`, `actCode`, `projCode`, `attachment`, `type`, `deleted`, `created_by_id`, `created_by_name`, `created_at`, `updated_at`) VALUES
-(1, 'QEGZCBH6B2WE', 'PHLJ3MOYYIRS', '/upload/img/20191125_151958-buko.jpg', 'IMAGE', 0, '2018-101', 'Kay Diaz', '2019-11-25 07:19:58', '2019-11-25 07:19:58'),
-(2, 'T5Q6OACLKWMU', 'PHLJ3MOYYIRS', '/upload/img/20191125_152004-buko.jpg', 'IMAGE', 0, '2018-101', 'Kay Diaz', '2019-11-25 07:20:04', '2019-11-25 07:20:04');
 
 -- --------------------------------------------------------
 
@@ -6672,61 +7211,105 @@ CREATE TABLE `tbl_emp_proj` (
 --
 
 INSERT INTO `tbl_emp_proj` (`id`, `projCode`, `emp_id`, `type`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'ZSWUFZUHUN0D', '2019-1007', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:05:40', '2019-11-25 07:05:40'),
-(2, 'ZSWUFZUHUN0D', '2019-110', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:05:40', '2019-11-25 07:05:40'),
-(3, 'ZSWUFZUHUN0D', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:05:41', '2019-11-25 07:05:41'),
-(4, 'ZSWUFZUHUN0D', '2019-8000', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:05:41', '2019-11-25 07:05:41'),
-(5, 'ZSWUFZUHUN0D', '2019-1009', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:05:41', '2019-11-25 07:05:41'),
-(6, 'ZSWUFZUHUN0D', '2019-1007', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:05:41', '2019-11-25 07:05:41'),
-(7, 'PHLJ3MOYYIRS', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:05'),
-(8, 'PHLJ3MOYYIRS', '2019-110', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:05'),
-(9, 'PHLJ3MOYYIRS', '2019-1001', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:05'),
-(10, 'PHLJ3MOYYIRS', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:05'),
-(11, 'PHLJ3MOYYIRS', '2019-100', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:05'),
-(12, 'PHLJ3MOYYIRS', '2019-1009', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:05'),
-(13, 'PHLJ3MOYYIRS', '2019-2', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:05'),
-(14, 'W67EHJTX2FPQ', '2019-1007', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:08:13', '2019-11-25 07:08:13'),
-(15, 'W67EHJTX2FPQ', '2019-103', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:08:13', '2019-11-25 07:08:13'),
-(16, 'W67EHJTX2FPQ', '2019-1007', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:08:13', '2019-11-25 07:08:13'),
-(17, 'W67EHJTX2FPQ', '2019-1002', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:08:13', '2019-11-25 07:08:13'),
-(18, 'W67EHJTX2FPQ', '2019-1008', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:08:13', '2019-11-25 07:08:13'),
-(19, 'PLRKXC9V6UJA', '2019-156', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:08:59'),
-(20, 'PLRKXC9V6UJA', '2019-2', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:08:59'),
-(21, 'PLRKXC9V6UJA', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:08:59'),
-(22, 'PLRKXC9V6UJA', '2019-103', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:08:59'),
-(23, 'PLRKXC9V6UJA', '2019-1008', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:08:59'),
-(24, 'PLRKXC9V6UJA', '2019-171', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:08:59'),
-(25, 'TBEKR9Z6NMBP', '2019-1008', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(26, 'TBEKR9Z6NMBP', '2019-1002', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(27, 'TBEKR9Z6NMBP', '2019-1009', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(28, 'TBEKR9Z6NMBP', '2019-1008', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(29, 'TBEKR9Z6NMBP', '2019-110', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(30, 'TBEKR9Z6NMBP', '2019-1008', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(31, 'TBEKR9Z6NMBP', '2019-1010', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(32, 'QYETPLXCX85C', '2019-0900', 'PM', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(33, 'QYETPLXCX85C', '2019-103', 'PM', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(34, '6LLAQNRNJO0C', '2019-0900', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(35, 'QYETPLXCX85C', '2019-156', 'PM', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(36, '6LLAQNRNJO0C', '2019-103', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(37, 'QYETPLXCX85C', '2019-0900', 'EMP', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(38, '6LLAQNRNJO0C', '2019-156', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(39, 'QYETPLXCX85C', '2019-103', 'EMP', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(40, '6LLAQNRNJO0C', '2019-0900', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(41, 'QYETPLXCX85C', '2019-156', 'EMP', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(42, '6LLAQNRNJO0C', '2019-103', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(43, 'QYETPLXCX85C', '2019-1004', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(44, '6LLAQNRNJO0C', '2019-156', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(45, 'QYETPLXCX85C', '2019-1003', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(46, '6LLAQNRNJO0C', '2019-1004', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(47, '6LLAQNRNJO0C', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(48, 'QYETPLXCX85C', '2019-0900', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:41:30', '2019-11-25 07:41:30'),
-(49, 'QYETPLXCX85C', '2019-156', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:41:30', '2019-11-25 07:41:30'),
-(50, 'QYETPLXCX85C', '2019-103', 'PM', 0, 7, 'Keigh Dee', '2019-11-25 07:41:30', '2019-11-25 07:41:30'),
-(51, 'QYETPLXCX85C', '2019-0900', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:41:30', '2019-11-25 07:41:30'),
-(52, 'QYETPLXCX85C', '2019-156', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:41:30', '2019-11-25 07:41:30'),
-(53, 'QYETPLXCX85C', '2019-103', 'EMP', 0, 7, 'Keigh Dee', '2019-11-25 07:41:30', '2019-11-25 07:41:30'),
-(54, 'QYETPLXCX85C', '2019-1004', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:41:30', '2019-11-25 07:41:30'),
-(55, 'QYETPLXCX85C', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2019-11-25 07:41:30', '2019-11-25 07:41:30');
+(1, '7VIAIGYVGOG7', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
+(2, '7VIAIGYVGOG7', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
+(3, '7VIAIGYVGOG7', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:28'),
+(4, '7VIAIGYVGOG7', '2019-1007', 'EMP', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:28'),
+(5, '7VIAIGYVGOG7', '2019-1009', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
+(6, '7VIAIGYVGOG7', '2019-1008', 'CUSTOMER', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
+(7, '7VIAIGYVGOG7', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-09 08:04:29'),
+(8, '7VIAIGYVGOG7', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-09 08:04:29'),
+(9, '7VIAIGYVGOG7', '2019-1007', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:28'),
+(10, '7VIAIGYVGOG7', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:28'),
+(11, '7VIAIGYVGOG7', '2019-1010', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:28'),
+(12, '7VIAIGYVGOG7', '2019-1009', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:29'),
+(13, '7VIAIGYVGOG7', '2019-1008', 'CUSTOMER', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:29'),
+(14, 'WDYQDZTDBPY2', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(15, 'WDYQDZTDBPY2', '2019-1002', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(16, 'WDYQDZTDBPY2', '', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(17, 'WDYQDZTDBPY2', '', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(18, 'WDYQDZTDBPY2', '', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(19, 'WDYQDZTDBPY2', '', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(20, 'WDYQDZTDBPY2', '', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(21, 'WDYQDZTDBPY2', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(22, 'WDYQDZTDBPY2', '', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(23, 'WDYQDZTDBPY2', '', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(24, 'WDYQDZTDBPY2', '', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(25, 'WDYQDZTDBPY2', '', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(26, 'WDYQDZTDBPY2', '', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(27, 'WDYQDZTDBPY2', '2019-1010', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(28, 'WDYQDZTDBPY2', '', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(29, 'WDYQDZTDBPY2', '', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(30, 'WDYQDZTDBPY2', '', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(31, 'WDYQDZTDBPY2', '', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(32, 'WDYQDZTDBPY2', '', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(33, 'WDYQDZTDBPY2', '', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(34, 'WDYQDZTDBPY2', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(35, 'WDYQDZTDBPY2', '', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(36, 'WDYQDZTDBPY2', '', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(37, 'WDYQDZTDBPY2', '', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(38, 'GAPTORI4RT3Y', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(39, 'GAPTORI4RT3Y', '2019-1002', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(40, 'GAPTORI4RT3Y', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(41, 'GAPTORI4RT3Y', '2019-1010', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(42, 'GAPTORI4RT3Y', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(43, '7VIAIGYVGOG7', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
+(44, '7VIAIGYVGOG7', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
+(45, '7VIAIGYVGOG7', '2019-1006', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
+(46, '7VIAIGYVGOG7', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
+(47, '7VIAIGYVGOG7', '2019-1002', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
+(48, 'DC366K7RG2A2', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(49, 'DC366K7RG2A2', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(50, 'DC366K7RG2A2', '2019-1010', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(51, 'DC366K7RG2A2', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(52, 'DC366K7RG2A2', '2019-1002', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_member`
+--
+
+CREATE TABLE `tbl_member` (
+  `id` bigint(11) NOT NULL,
+  `memberCode` varchar(191) NOT NULL,
+  `member_name` varchar(191) NOT NULL,
+  `member_email` varchar(191) NOT NULL,
+  `member_contact_no` varchar(191) NOT NULL,
+  `member_address` varchar(191) NOT NULL,
+  `member_type` varchar(191) NOT NULL,
+  `deleted` int(2) NOT NULL DEFAULT 0,
+  `by_id` varchar(191) NOT NULL,
+  `updated_by` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_member`
+--
+
+INSERT INTO `tbl_member` (`id`, `memberCode`, `member_name`, `member_email`, `member_contact_no`, `member_address`, `member_type`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '2019-UIDMS', 'Customer Lastname1, First Name1', 'cus1@gmail.com', '09776927838', 'Bogota Colombia', 'CUSTOMER', 0, '7', 'Keigh Dee', '2019-11-26 19:00:00', '2019-11-26 19:00:00'),
+(2, '2019-DSACM', 'Stakeholder Lastname1, Firstname1', 'stake1@gmail.com', '09779263258', 'Medellin', 'STAKEHOLDER', 0, '7', 'Keigh Dee', '2019-11-26 21:00:00', '2019-11-26 21:00:00'),
+(3, '2019-FSWQF', 'Project Manager Lastname1, Firstname1', 'pm1@gmail.com', '09778239428', 'Bogota Colombia', 'PM', 0, '7', 'Keigh Dee', '2019-11-26 22:00:00', '2019-11-26 21:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_member_proj`
+--
+
+CREATE TABLE `tbl_member_proj` (
+  `id` bigint(11) NOT NULL,
+  `projCode` varchar(191) NOT NULL,
+  `memberCode` varchar(191) NOT NULL,
+  `deleted` int(2) NOT NULL DEFAULT 0,
+  `by_id` varchar(191) NOT NULL,
+  `updated_by` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -6759,13 +7342,10 @@ CREATE TABLE `tbl_projectlist` (
 --
 
 INSERT INTO `tbl_projectlist` (`id`, `proj_code`, `proj_title`, `proj_desc`, `est_start_date`, `est_end_date`, `act_start_date`, `act_end_date`, `longitude`, `latitude`, `location`, `status`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'ZSWUFZUHUN0D', 'SVS Web', 'Web Console', '2019-11-25 03:05:00', '2019-11-25 15:05:00', '2019-11-25 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-25 07:05:40', '2019-11-25 07:05:40'),
-(2, 'PHLJ3MOYYIRS', 'SVS App', 'Mobile Application', '2019-11-25 03:06:00', '2019-11-25 15:06:00', '2019-11-25 03:06:00', '2019-11-25 15:06:00', '121.08191480', '14.57841075', 'Pasig, Metro Manila, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:05'),
-(3, 'W67EHJTX2FPQ', 'Project 1', 'Project Description 1', '2019-11-25 03:07:00', '2019-11-25 15:07:00', '2019-11-25 03:07:00', '2019-11-25 15:07:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-25 07:08:13', '2019-11-25 07:08:13'),
-(4, 'PLRKXC9V6UJA', 'Project 2', 'Project Description 2', '2019-11-25 03:08:00', '2019-11-25 15:08:00', '2019-11-25 03:08:00', '2019-11-25 15:08:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:08:59'),
-(5, 'TBEKR9Z6NMBP', 'Project 1', 'Project Description', '2019-11-25 03:12:00', '2019-11-25 15:12:00', '2019-11-25 03:12:00', '2019-11-25 15:12:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-25 07:13:07', '2019-11-25 07:13:07'),
-(6, 'QYETPLXCX85C', 'Project 4', 'Project Description 4', '2019-11-25 03:14:00', '2019-11-25 15:14:00', '2019-11-25 03:14:00', '2019-11-27 15:14:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-25 07:15:01', '2019-11-25 07:41:29'),
-(7, '6LLAQNRNJO0C', 'Project 4', 'Project Description 4', '2019-11-25 03:14:00', '2019-11-25 15:14:00', '2019-11-25 03:14:00', '2019-11-25 15:14:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2019-11-25 07:15:01', '2019-11-25 07:15:01');
+(1, '7VIAIGYVGOG7', '2020 SVS Project', 'Project Description Edit', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-25 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:28'),
+(2, 'WDYQDZTDBPY2', '2021 SVS Project', 'Project Description', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(3, 'GAPTORI4RT3Y', '2021 SVS Project', 'Project Description', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(4, 'DC366K7RG2A2', '2021 SVS Project', 'Project Description', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01');
 
 -- --------------------------------------------------------
 
@@ -6792,26 +7372,24 @@ CREATE TABLE `tbl_projtask` (
 --
 
 INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `taskWeight`, `plan_days`, `actual_days`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'ZSWUFZUHUN0D', 'A27Y3CSPMOXB', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:05:40', '2019-11-25 07:05:41'),
-(2, 'ZSWUFZUHUN0D', 'YYH8LNQDHFNB', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:05:40', '2019-11-25 07:05:41'),
-(3, 'PHLJ3MOYYIRS', 'A27Y3CSPMOXB', '30.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:06'),
-(4, 'PHLJ3MOYYIRS', 'YYH8LNQDHFNB', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:06'),
-(5, 'PHLJ3MOYYIRS', 'P7CSN24DL0RO', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:07:05', '2019-11-25 07:07:06'),
-(6, 'W67EHJTX2FPQ', 'YYH8LNQDHFNB', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:08:13', '2019-11-25 07:08:13'),
-(7, 'W67EHJTX2FPQ', 'P7CSN24DL0RO', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:08:13', '2019-11-25 07:08:13'),
-(8, 'PLRKXC9V6UJA', 'YYH8LNQDHFNB', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:09:00'),
-(9, 'PLRKXC9V6UJA', 'P7CSN24DL0RO', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:08:59', '2019-11-25 07:09:00'),
-(10, 'TBEKR9Z6NMBP', 'JHXVKWYNQUM8', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:13:07', '2019-11-25 07:13:08'),
-(11, 'TBEKR9Z6NMBP', 'FF8PGARK9Y7V', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(12, 'TBEKR9Z6NMBP', 'A27Y3CSPMOXB', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(13, 'TBEKR9Z6NMBP', 'YYH8LNQDHFNB', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(14, 'TBEKR9Z6NMBP', 'P7CSN24DL0RO', '20.00', '5', NULL, 0, 7, 'Keigh Dee', '2019-11-25 07:13:08', '2019-11-25 07:13:08'),
-(15, 'QYETPLXCX85C', 'YYH8LNQDHFNB', '50.00', '5', '5', 1, 7, 'Keigh Dee', '2019-11-25 07:15:01', '2019-11-25 07:41:30'),
-(16, 'QYETPLXCX85C', 'P7CSN24DL0RO', '50.00', '5', '5', 1, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:41:30'),
-(17, '6LLAQNRNJO0C', 'YYH8LNQDHFNB', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(18, '6LLAQNRNJO0C', 'P7CSN24DL0RO', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:15:02', '2019-11-25 07:15:02'),
-(19, 'QYETPLXCX85C', 'P7CSN24DL0RO', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:41:29', '2019-11-25 07:41:30'),
-(20, 'QYETPLXCX85C', 'YYH8LNQDHFNB', '50.00', '5', '5', 0, 7, 'Keigh Dee', '2019-11-25 07:41:29', '2019-11-25 07:41:30');
+(1, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
+(2, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-09 08:04:29'),
+(3, 'WDYQDZTDBPY2', 'H7DPREIWPMLM', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(4, 'WDYQDZTDBPY2', 'O7ILKUXOAZWR', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(5, 'WDYQDZTDBPY2', 'PM0IJBVPN0BW', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(6, 'WDYQDZTDBPY2', 'MIZIHKIM6SGV', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(7, 'WDYQDZTDBPY2', 'SR2GB4SFQSDH', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(8, 'GAPTORI4RT3Y', '7MSQUDDX9ILB', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(9, 'GAPTORI4RT3Y', 'PYDVWBVDOZBV', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(10, 'GAPTORI4RT3Y', 'RJZWAMKXSBJ9', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(11, 'GAPTORI4RT3Y', 'EX00MFGSICI0', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(12, 'GAPTORI4RT3Y', 'KDJBTSDGDQGE', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(13, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
+(14, 'DC366K7RG2A2', 'D0ANDBWVI4FW', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(15, 'DC366K7RG2A2', 'GAIMDNO5ZLLU', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(16, 'DC366K7RG2A2', 'BPGXUJTX5URC', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(17, 'DC366K7RG2A2', 'NRVH0YUWBESS', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(18, 'DC366K7RG2A2', 'OWKDYFMBRQO5', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01');
 
 -- --------------------------------------------------------
 
@@ -6824,6 +7402,7 @@ CREATE TABLE `tbl_proj_progress` (
   `projCode` varchar(191) NOT NULL,
   `taskCode` varchar(191) NOT NULL,
   `weight_progress` decimal(13,2) NOT NULL,
+  `attachment` varchar(191) DEFAULT NULL,
   `report` varchar(191) DEFAULT NULL,
   `reported_by_id` bigint(11) DEFAULT NULL,
   `deleted` int(11) NOT NULL DEFAULT 0,
@@ -6837,40 +7416,8 @@ CREATE TABLE `tbl_proj_progress` (
 -- Dumping data for table `tbl_proj_progress`
 --
 
-INSERT INTO `tbl_proj_progress` (`id`, `projCode`, `taskCode`, `weight_progress`, `report`, `reported_by_id`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'QYETPLXCX85C', 'P7CSN24DL0RO', '35.30', 'Sample Description of Report', 1, 0, '1', 'Kay Diaz', '2019-11-25 07:30:41', '2019-11-25 07:30:41'),
-(2, 'QYETPLXCX85C', 'P7CSN24DL0RO', '1.90', 'Sample Description of Report', 1, 0, '1', 'Kay Diaz', '2019-11-25 07:31:01', '2019-11-25 07:31:01'),
-(3, 'QYETPLXCX85C', 'YYH8LNQDHFNB', '1.90', 'Sample Description of Report', 1, 0, '1', 'Kay Diaz', '2019-11-25 07:31:58', '2019-11-25 07:31:58');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_sampleimport`
---
-
-CREATE TABLE `tbl_sampleimport` (
-  `id` bigint(11) NOT NULL,
-  `first_name` varchar(191) NOT NULL,
-  `last_name` varchar(191) NOT NULL,
-  `email` varchar(191) NOT NULL,
-  `birthdate` date NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_sampleimport`
---
-
-INSERT INTO `tbl_sampleimport` (`id`, `first_name`, `last_name`, `email`, `birthdate`, `created_at`, `updated_at`) VALUES
-(1, 'richard', 'guevara', 'richard.guevara@gmail.com', '2019-11-15', '2019-11-27 22:25:00', '2019-11-13 16:00:00'),
-(2, 'kay louise', 'diaz', 'keighdee@gmail.com', '2019-11-29', '2019-11-07 16:00:00', '2019-11-07 16:00:00'),
-(3, 'j.doe17', 'Jun Doe', 'j.doe@gmail.com', '1996-09-07', '2019-11-22 04:30:24', '2019-11-22 04:30:24'),
-(4, 'j.doe18', 'Jun Doe', 'jan.doe@gmail.com', '1996-09-07', '2019-11-22 04:30:24', '2019-11-22 04:30:24'),
-(5, 'j.doe17', 'Jun Doe', 'j.doe@gmail.com', '1996-09-07', '2019-11-22 05:10:57', '2019-11-22 05:10:57'),
-(6, 'j.doe18', 'Jun Doe', 'jan.doe@gmail.com', '1996-09-07', '2019-11-22 05:10:57', '2019-11-22 05:10:57'),
-(7, 'j.doe17', 'Jun Doe', 'j.doe@gmail.com', '1996-09-07', '2019-11-25 01:30:46', '2019-11-25 01:30:46'),
-(8, 'j.doe18', 'Jun Doe', 'jan.doe@gmail.com', '1996-09-07', '2019-11-25 01:30:46', '2019-11-25 01:30:46');
+INSERT INTO `tbl_proj_progress` (`id`, `projCode`, `taskCode`, `weight_progress`, `attachment`, `report`, `reported_by_id`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.90', '/upload/img/20200107_155230-images (1).jpg', 'Sample Description of Report', 54, 0, '54', 'Employee8, Employee8', '2020-01-07 07:52:30', '2020-01-07 07:52:30');
 
 -- --------------------------------------------------------
 
@@ -6895,12 +7442,86 @@ CREATE TABLE `tbl_task` (
 --
 
 INSERT INTO `tbl_task` (`id`, `taskCode`, `task_title`, `task_desc`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'P7CSN24DL0RO', 'Task 1', 'Desc', 0, 7, 'Keigh Dee', '2019-11-04 18:32:31', '2019-11-12 09:47:16'),
-(2, 'YYH8LNQDHFNB', 'Task 2', 'Desc', 0, 7, 'Keigh Dee', '2019-11-04 18:32:42', '2019-11-12 11:05:23'),
-(3, 'A27Y3CSPMOXB', 'Task 3', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-04 18:32:51', '2019-11-25 02:41:38'),
-(4, 'B2NLDYN53TY0', 'Task 4', 'Description', 1, 7, 'Keigh Dee', '2019-11-12 11:21:28', '2019-11-19 08:37:55'),
-(5, 'FF8PGARK9Y7V', 'Task 4', 'Description', 0, 7, 'Keigh Dee', '2019-11-13 01:31:48', '2019-11-13 01:31:48'),
-(6, 'JHXVKWYNQUM8', 'Task 5', 'desc', 0, 7, 'Keigh Dee', '2019-11-13 02:06:21', '2019-11-13 02:06:21');
+(1, 'OKIX19IR1DST', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
+(2, 'FZPRFIWOKBFQ', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
+(3, '1CSAHSINWX4K', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
+(4, '4TQCNMVQTZEW', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
+(5, 'PYLEURTMKQSR', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
+(6, 'OTBGEE8ZGXLT', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:07:22', '2019-11-28 05:07:22'),
+(7, 'SBPMGLRN97KH', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:07:22', '2019-11-28 05:07:22'),
+(8, 'MU0YLKNOFA2U', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:07:22', '2019-11-28 05:07:22'),
+(9, 'EFKDJVFFBY85', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:07:22', '2019-11-28 05:07:22'),
+(10, 'FEHLYUNTZ8FM', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:07:22', '2019-11-28 05:07:22'),
+(11, 'NNOBQZZ9ANHE', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:11:19', '2019-11-28 05:11:19'),
+(12, 'UU9VEFUYPQII', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:11:19', '2019-11-28 05:11:19'),
+(13, '9EY9PSM9NX8R', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:11:19', '2019-11-28 05:11:19'),
+(14, '6QQ00YJVZSDR', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:11:19', '2019-11-28 05:11:19'),
+(15, 'BGJ0GQBDRL5X', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:11:19', '2019-11-28 05:11:19'),
+(16, 'J3HPZP0ZLN9L', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:22:17', '2019-11-28 05:22:17'),
+(17, 'XLCO5ZOTPVEC', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:22:17', '2019-11-28 05:22:17'),
+(18, 'WSL8FBZACOLO', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:22:17', '2019-11-28 05:22:17'),
+(19, 'MRK9GTE1UXV4', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:22:17', '2019-11-28 05:22:17'),
+(20, '6JTHMBGVBKTR', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:22:17', '2019-11-28 05:22:17'),
+(21, 'TE1SSQ8LJRMO', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:58:15', '2019-11-28 05:58:15'),
+(22, 'HRAM2EHBCPM6', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:58:15', '2019-11-28 05:58:15'),
+(23, 'JUMKU1V89ZLF', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:58:15', '2019-11-28 05:58:15'),
+(24, 'MB34JSF0RWDT', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:58:15', '2019-11-28 05:58:15'),
+(25, 'HPM3ENGOBWOK', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:58:15', '2019-11-28 05:58:15'),
+(26, 'ZG0ZVZJQRO8V', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:58:30', '2019-11-28 05:58:30'),
+(27, 'QBHDFRWCVM8R', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:58:30', '2019-11-28 05:58:30'),
+(28, 'JG2AS4913YWG', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:58:30', '2019-11-28 05:58:30'),
+(29, 'QKFDRZHBINDY', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:58:30', '2019-11-28 05:58:30'),
+(30, 'JAEDHGIX2DW1', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:58:30', '2019-11-28 05:58:30'),
+(31, 'YWEJ44AR4JZA', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:58:45', '2019-11-28 05:58:45'),
+(32, 'SMPKKQKX5MPJ', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:58:45', '2019-11-28 05:58:45'),
+(33, 'MRGYVMYUX0DL', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:58:45', '2019-11-28 05:58:45'),
+(34, 'IFFE4XBCFLQF', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:58:45', '2019-11-28 05:58:45'),
+(35, 'RZ1LGJ3LOFJB', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:58:45', '2019-11-28 05:58:45'),
+(36, 'QH2NSXB0WKYY', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:58:56', '2019-11-28 05:58:56'),
+(37, 'GXCJX09GH7QK', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:58:56', '2019-11-28 05:58:56'),
+(38, 'ENIROAHS8OMG', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:58:56', '2019-11-28 05:58:56'),
+(39, 'RVCVGC88PTAO', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:58:56', '2019-11-28 05:58:56'),
+(40, 'NYLLSYWYUZHQ', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:58:56', '2019-11-28 05:58:56'),
+(41, 'CHNMAVUGWQRB', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:59:12', '2019-11-28 05:59:12'),
+(42, 'UA0KUF2YC4VR', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:59:12', '2019-11-28 05:59:12'),
+(43, 'GOLPMAA4LYZ9', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:59:12', '2019-11-28 05:59:12'),
+(44, 'MWEBJURZAJJU', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:59:12', '2019-11-28 05:59:12'),
+(45, '9A7E3PWNY77K', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:59:12', '2019-11-28 05:59:12'),
+(46, 'AL6LUVGMDAKM', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:59:26', '2019-11-28 05:59:26'),
+(47, 'TS09UWSCUXAC', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:59:26', '2019-11-28 05:59:26'),
+(48, 'AQZUVTAN4QUI', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:59:26', '2019-11-28 05:59:26'),
+(49, 'P3YRTNSGJSNE', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:59:26', '2019-11-28 05:59:26'),
+(50, '1M1IGI6TBO34', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:59:26', '2019-11-28 05:59:26'),
+(51, 'UF1UZJBXZJTX', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:59:42', '2019-11-28 05:59:42'),
+(52, 'FPEHCPMZQP46', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 05:59:42', '2019-11-28 05:59:42'),
+(53, '7NAG0FZ1YH4E', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 05:59:42', '2019-11-28 05:59:42'),
+(54, '5GYTYAWQQMKF', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 05:59:42', '2019-11-28 05:59:42'),
+(55, 'PB302EW794WN', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 05:59:42', '2019-11-28 05:59:42'),
+(56, '1ERFSSLVS5OW', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-29 05:45:59', '2019-11-29 05:45:59'),
+(57, 'XXV5L3YFGTKK', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-29 05:45:59', '2019-11-29 05:45:59'),
+(58, '1K6ATZNVT4EM', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-29 05:45:59', '2019-11-29 05:45:59'),
+(59, 'JUSSCIBR1Y2Z', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-29 05:45:59', '2019-11-29 05:45:59'),
+(60, '1TPFOFYU53W0', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-29 05:45:59', '2019-11-29 05:45:59'),
+(61, 'NVPLBPPKOE3D', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
+(62, 'RFUJNT0BW9BI', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
+(63, 'CVXLWDKT2TVK', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
+(64, 'PBUYQICMKWXE', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
+(65, 'QALVC3UFEUDC', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
+(66, 'H7DPREIWPMLM', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(67, 'O7ILKUXOAZWR', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(68, 'PM0IJBVPN0BW', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(69, 'MIZIHKIM6SGV', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(70, 'SR2GB4SFQSDH', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(71, '7MSQUDDX9ILB', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(72, 'PYDVWBVDOZBV', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(73, 'RJZWAMKXSBJ9', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(74, 'EX00MFGSICI0', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(75, 'KDJBTSDGDQGE', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(76, 'D0ANDBWVI4FW', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(77, 'GAIMDNO5ZLLU', '', 'Description 2', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(78, 'BPGXUJTX5URC', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(79, 'NRVH0YUWBESS', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(80, 'OWKDYFMBRQO5', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01');
 
 -- --------------------------------------------------------
 
@@ -6933,19 +7554,15 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `company_id`, `apiKey`, `ACNo`, `name`, `email`, `email_verified_at`, `password`, `deleted`, `is_admin`, `updated_by`, `created_by`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, '2018-101', NULL, '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, '2018-103', '2018-101', 'L1nlZYy6CPSK514sv2TdxF91oOf4JdEn2xofErTuPaGRl09rhmRMHiygpnFK', '2019-05-06 02:48:49', '2019-10-08 03:03:30'),
 (7, '1996-001', NULL, '001', 'Keigh Dee', 'pabs@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 1, NULL, '2018-101', NULL, '2019-05-10 01:03:23', '2019-05-10 01:03:23'),
-(26, '2019-6', NULL, '6', 'Paguinto, Eugene', 'paguintoeugene@test.com', NULL, '$2y$10$KJbCp/6JsPkuHsmRhxggGOvAUsRnCqEkWbuBfWamgPDjKWMa2Ab0W', 0, 0, NULL, '2018-004', NULL, '2019-06-13 21:49:56', '2019-06-13 21:49:56'),
-(27, '2019-001', NULL, '01', 'Yao, Vincent', 'yaovincent@test.com', NULL, '$2y$10$snnRIF1vjlQ5ooEEH.SjfeHcTjSKbHyAJCdFxgRtOZi2yQSmF1lm6', 0, 0, NULL, '2018-004', NULL, '2019-06-13 21:50:14', '2019-06-13 21:50:14'),
-(28, '2019-112', NULL, '112', 'Aquino, Emerson Mauricio', 'ae.mauricio@gmail.com', NULL, '$2y$10$MYVgybYadD1LvBBqlrOiKuI66YzORGLrgTwgQxt1lOh/ualu4MaAK', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:48:41', '2019-06-19 17:48:41'),
-(29, '2019-117', NULL, '117', 'Astor, Reynaldo Calderon', 'ar.calderon@gmail.com', NULL, '$2y$10$IaiAxrg/wpK9C46QEuUj6eqXdCKz.faSszj1vmjCglaMHE7/0jKVq', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:48:49', '2019-06-19 17:48:49'),
-(30, '2019-115', NULL, '115', 'Balbuena, Roberto Evardone', 'br.evardone@gmail.com', NULL, '$2y$10$mF4X.h2beUTgUhzL2CSYluvm4AtvoE7EcSugUcTJiklj1MgYadgC.', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:48:57', '2019-06-19 17:48:57'),
-(31, '2019-2', NULL, '2', 'Baraquiel, Arnel Guillermo', 'ba.guillermo@gmail.com', NULL, '$2y$10$P//dhNUpOyGmzZgL0ujHx.OcO8Zvfu5pcbniF8AVVRH1IuFg.Mlaq', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:49:29', '2019-06-19 17:49:29'),
-(32, '2019-8', NULL, '8', 'Catapang, Fritz John', 'fj.catapang@gmail.com', NULL, '$2y$10$k.bIoG4O5yMWda5CeQP2SepxZFytfBzf0tZYs7GA7CUUwhxhyHDBK', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:49:38', '2019-06-19 17:49:38'),
-(33, '2019-110', NULL, '110', 'Gochangco, Nikko Emerson Alipio', 'nma.gochangco@gmail.com', NULL, '$2y$10$g5BzAr05fBJ9bJbBy8H/Bu6ljwPMIzNfxbSJO50KOpJO7KhG0lXe2', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:49:46', '2019-06-19 17:49:46'),
-(34, '2019-100', NULL, '100', 'Guitierrez, Ruben', 'g.ruben@gmail.com', NULL, '$2y$10$I1o3FWDNEQoiaI8/HSaAieQD8ExxHZdjgNwv6qkDlXxC.Roax5HMC', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:50:21', '2019-06-19 17:50:21'),
-(35, '2019-113', NULL, '113', 'Hernandez, Gabriel Lacanaria', 'hg.lacanaria@gmail.com', NULL, '$2y$10$5ZLTFhp4LkWOxc/812AW6OB68NLgntEnv.kK.h2bTSdiXGHAEhRt2', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:50:29', '2019-06-19 17:50:29'),
-(36, '2019-11', NULL, '11', 'Guntang, Jerico', 'g.jericho@gmail.com', NULL, '$2y$10$xsNgu5lrS5f7sJwwVH9zEOTcFEGPh.KWi1zZyOgSv5L2uHKzSJtuq', 0, 0, NULL, '2018-101', NULL, '2019-06-19 17:57:57', '2019-06-19 17:57:57'),
-(37, '2019-003', NULL, '3', 'Laqui Jr., Romeo Galleto', 'rg.laquijr@gmail.com', NULL, '$2y$10$snnRIF1vjlQ5ooEEH.SjfeHcTjSKbHyAJCdFxgRtOZi2yQSmF1lm6', 0, 0, '2018-004', '2018-101', NULL, '2019-06-19 18:06:51', '2019-06-19 18:06:51'),
-(38, '2019-0180', NULL, '180', 'Tamad, Juan', 'juan.tamad@test.com', NULL, '$2y$10$8CXfWgeKBXWw7894srO/AuAifW2nyaJP2MKOxRxsSITi1uSifRSNG', 0, 0, NULL, '2018-004', NULL, '2019-08-15 18:12:58', '2019-08-15 18:12:58');
+(46, '2019-1006', NULL, '1006', 'Employee6, Employee6', 'cherryann_anis3@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, '', NULL, '2020-01-05 21:00:00', '2020-01-05 19:00:00'),
+(47, '2019-1005', NULL, '1005', 'Employee5, Employee5', 'cherryann_anis5@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 22:00:00', '2020-01-05 19:00:00'),
+(48, '2019-1004', NULL, '1004', 'Employee4, Employee4', 'cherryann_anis8@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-06 00:00:00', '2020-01-06 01:00:00'),
+(49, '2019-1003', NULL, '1003', 'Employee3, Employee3', 'cherryann_anis2@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, '', NULL, '2020-01-05 19:00:00', '2020-01-05 21:00:00'),
+(50, '2019-1002', NULL, '1002', 'Employee2, Employee2', 'cherryann_anis9@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-06 00:00:00', '2020-01-05 18:00:00'),
+(51, '2019-1001', NULL, '1001', 'Employee1, Employee1', 'cherryann_anis6@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 22:00:00', '2020-01-05 20:00:00'),
+(52, '2019-1010', NULL, '1010', 'Employee10, Employee10', 'cherryann_anis4@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 21:06:00', '2020-01-05 22:13:00'),
+(53, '2019-1009', NULL, '1009', 'Employee9, Employee9', 'cherryann_anis7@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 23:00:00', '2020-01-05 20:00:00'),
+(54, '2019-1008', NULL, '1008', 'Employee8, Employee8', 'cherryann_anis1@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 18:00:00', '2020-01-05 20:00:00');
 
 -- --------------------------------------------------------
 
@@ -6965,6 +7582,21 @@ CREATE TABLE `view_activity_log` (
 ,`ACNo` varchar(191)
 ,`name` varchar(191)
 ,`email` varchar(191)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_date_time_records`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_date_time_records` (
+`ACNo` varchar(191)
+,`name` varchar(191)
+,`time_in` mediumtext
+,`time_out` mediumtext
+,`hours` bigint(21)
+,`recDate` date
 );
 
 -- --------------------------------------------------------
@@ -7002,6 +7634,9 @@ CREATE TABLE `view_project_percentage` (
 ,`proj_desc` varchar(191)
 ,`issue` bigint(21)
 ,`report` bigint(21)
+,`total_employee` bigint(21)
+,`total_actual_days` int(7)
+,`total_man_days` bigint(21)
 ,`total_weight_progress` decimal(35,2)
 ,`est_start_date` datetime
 ,`est_end_date` datetime
@@ -7053,6 +7688,7 @@ CREATE TABLE `view_proj_progress` (
 ,`projCode` varchar(191)
 ,`taskCode` varchar(191)
 ,`weight_progress` decimal(13,2)
+,`attachment` varchar(191)
 ,`report` varchar(191)
 ,`reported_by_id` bigint(11)
 ,`by_id` varchar(191)
@@ -7075,11 +7711,20 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `view_date_time_records`
+--
+DROP TABLE IF EXISTS `view_date_time_records`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_date_time_records`  AS  select `date_time_records`.`ACNo` AS `ACNo`,`date_time_records`.`name` AS `name`,substring_index(group_concat(case when `date_time_records`.`state` = 'C/In' then `date_time_records`.`datetime` end order by `date_time_records`.`datetime` ASC separator ','),',',1) AS `time_in`,substring_index(group_concat(case when `date_time_records`.`state` = 'C/Out' then `date_time_records`.`datetime` end order by `date_time_records`.`datetime` ASC separator ','),',',-1) AS `time_out`,timestampdiff(HOUR,substring_index(group_concat(case when `date_time_records`.`state` = 'C/In' then `date_time_records`.`datetime` end order by `date_time_records`.`datetime` ASC separator ','),',',1),substring_index(group_concat(case when `date_time_records`.`state` = 'C/Out' then `date_time_records`.`datetime` end order by `date_time_records`.`datetime` ASC separator ','),',',-1)) AS `hours`,cast(`date_time_records`.`datetime` as date) AS `recDate` from `date_time_records` group by `date_time_records`.`ACNo`,`date_time_records`.`name`,cast(`date_time_records`.`datetime` as date) order by `date_time_records`.`ACNo` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `view_employee_info`
 --
 DROP TABLE IF EXISTS `view_employee_info`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_employee_info`  AS  select `a`.`emp_no` AS `emp_no`,`a`.`company_id` AS `company_id`,concat(`a`.`lname`,', ',`a`.`fname`,' ',`a`.`mname`) AS `fullname`,`a`.`lname` AS `lname`,`a`.`fname` AS `fname`,`a`.`csi_email` AS `csi_email`,`b`.`company_ind` AS `company_ind`,`d`.`company_name` AS `company_name`,`b`.`department` AS `department`,`b`.`position` AS `position`,`b`.`team` AS `team`,`b`.`employment_status` AS `employment_status`,`a`.`active` AS `active` from ((`hris_csi_b`.`personal_information` `a` left join `hris_csi_b`.`employee_information` `b` on(`a`.`company_id` = `b`.`company_id`)) left join `hris_csi_b`.`company` `d` on(`b`.`company_ind` = `d`.`id`)) where `a`.`active` = 'yes' order by `b`.`department` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_employee_info`  AS  select `a`.`emp_no` AS `emp_no`,`a`.`company_id` AS `company_id`,concat(`a`.`lname`,', ',`a`.`fname`,' ',`a`.`mname`) AS `fullname`,`a`.`lname` AS `lname`,`a`.`fname` AS `fname`,`a`.`csi_email` AS `csi_email`,`b`.`company_ind` AS `company_ind`,`d`.`company_name` AS `company_name`,`b`.`department` AS `department`,`b`.`position` AS `position`,`b`.`team` AS `team`,`b`.`employment_status` AS `employment_status`,`a`.`active` AS `active` from (((`hris_csi_b`.`personal_information` `a` left join `hris_csi_b`.`employee_information` `b` on(`a`.`company_id` = `b`.`company_id`)) left join `users` `e` on(`a`.`company_id` = `e`.`company_id`)) left join `hris_csi_b`.`company` `d` on(`b`.`company_ind` = `d`.`id`)) where `a`.`active` = 'yes' group by `e`.`company_id` order by `b`.`department` ;
 
 -- --------------------------------------------------------
 
@@ -7088,7 +7733,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_project_percentage`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_project_percentage`  AS  select `a`.`id` AS `id`,`a`.`proj_code` AS `proj_code`,`a`.`proj_title` AS `proj_title`,`a`.`proj_desc` AS `proj_desc`,(select count(0) from `tbl_activity_log` `tal` where `tal`.`projCode` = `a`.`proj_code` and `tal`.`type` = 'ISSUE') AS `issue`,(select count(0) from `tbl_activity_log` `tal` where `tal`.`projCode` = `a`.`proj_code` and `tal`.`type` = 'REPORT') AS `report`,(select sum(`tpp`.`weight_progress`) from (`tbl_proj_progress` `tpp` left join `tbl_task` `tt` on(`tpp`.`taskCode` = `tt`.`taskCode`)) where `tpp`.`projCode` = `a`.`proj_code` and `tpp`.`deleted` = 0 and `tt`.`deleted` = 0) AS `total_weight_progress`,`a`.`est_start_date` AS `est_start_date`,`a`.`est_end_date` AS `est_end_date`,`a`.`act_start_date` AS `act_start_date`,`a`.`act_end_date` AS `act_end_date`,`a`.`longitude` AS `longitude`,`a`.`latitude` AS `latitude`,`a`.`location` AS `location`,`a`.`status` AS `status`,`a`.`deleted` AS `deleted`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at` from `tbl_projectlist` `a` order by `a`.`created_at` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_project_percentage`  AS  select `a`.`id` AS `id`,`a`.`proj_code` AS `proj_code`,`a`.`proj_title` AS `proj_title`,`a`.`proj_desc` AS `proj_desc`,(select count(0) from `tbl_activity_log` `tal` where `tal`.`projCode` = `a`.`proj_code` and `tal`.`type` = 'ISSUE') AS `issue`,(select count(0) from `tbl_activity_log` `tal` where `tal`.`projCode` = `a`.`proj_code` and `tal`.`type` = 'REPORT') AS `report`,(select count(distinct `xx`.`emp_id`) from `tbl_emp_proj` `xx` where `xx`.`type` in ('EMP','PM') and `xx`.`projCode` = `a`.`proj_code`) AS `total_employee`,to_days(cast(`a`.`act_end_date` as date)) - to_days(cast(`a`.`act_start_date` as date)) AS `total_actual_days`,(select count(distinct `y`.`recDate`) from ((`date_time_records` `x` left join `view_date_time_records` `y` on(`x`.`ACNo` = `y`.`ACNo`)) left join `tbl_emp_proj` `z` on(substring_index(`z`.`emp_id`,'-',-1) = `x`.`ACNo`)) where `x`.`ACNo` = substring_index(`z`.`emp_id`,'-',-1) and `z`.`type` in ('EMP','PM') and `y`.`hours` >= 8 and `z`.`projCode` = `a`.`proj_code`) AS `total_man_days`,(select sum(`tpp`.`weight_progress`) from (`tbl_proj_progress` `tpp` left join `tbl_task` `tt` on(`tpp`.`taskCode` = `tt`.`taskCode`)) where `tpp`.`projCode` = `a`.`proj_code` and `tpp`.`deleted` = 0 and `tt`.`deleted` = 0) AS `total_weight_progress`,`a`.`est_start_date` AS `est_start_date`,`a`.`est_end_date` AS `est_end_date`,`a`.`act_start_date` AS `act_start_date`,`a`.`act_end_date` AS `act_end_date`,`a`.`longitude` AS `longitude`,`a`.`latitude` AS `latitude`,`a`.`location` AS `location`,`a`.`status` AS `status`,`a`.`deleted` AS `deleted`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at` from `tbl_projectlist` `a` order by `a`.`created_at` desc ;
 
 -- --------------------------------------------------------
 
@@ -7106,7 +7751,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_proj_progress`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_proj_progress`  AS  select `a`.`id` AS `id`,`a`.`projCode` AS `projCode`,`a`.`taskCode` AS `taskCode`,`a`.`weight_progress` AS `weight_progress`,`a`.`report` AS `report`,`a`.`reported_by_id` AS `reported_by_id`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at`,`b`.`deleted` AS `taskDeleted`,`a`.`deleted` AS `deleted` from (`tbl_proj_progress` `a` left join `tbl_task` `b` on(`a`.`taskCode` = `b`.`taskCode`)) order by `a`.`created_at` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_proj_progress`  AS  select `a`.`id` AS `id`,`a`.`projCode` AS `projCode`,`a`.`taskCode` AS `taskCode`,`a`.`weight_progress` AS `weight_progress`,`a`.`attachment` AS `attachment`,`a`.`report` AS `report`,`a`.`reported_by_id` AS `reported_by_id`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at`,`b`.`deleted` AS `taskDeleted`,`a`.`deleted` AS `deleted` from (`tbl_proj_progress` `a` left join `tbl_task` `b` on(`a`.`taskCode` = `b`.`taskCode`)) order by `a`.`created_at` desc ;
 
 --
 -- Indexes for dumped tables
@@ -7189,6 +7834,18 @@ ALTER TABLE `tbl_emp_proj`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_member`
+--
+ALTER TABLE `tbl_member`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_member_proj`
+--
+ALTER TABLE `tbl_member_proj`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_projectlist`
 --
 ALTER TABLE `tbl_projectlist`
@@ -7204,12 +7861,6 @@ ALTER TABLE `tbl_projtask`
 -- Indexes for table `tbl_proj_progress`
 --
 ALTER TABLE `tbl_proj_progress`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_sampleimport`
---
-ALTER TABLE `tbl_sampleimport`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -7238,7 +7889,7 @@ ALTER TABLE `activity_records`
 -- AUTO_INCREMENT for table `date_time_records`
 --
 ALTER TABLE `date_time_records`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -7262,55 +7913,61 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `tbl_activity_log`
 --
 ALTER TABLE `tbl_activity_log`
-  MODIFY `id` bigint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_activity_log_img`
 --
 ALTER TABLE `tbl_activity_log_img`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_emp_proj`
 --
 ALTER TABLE `tbl_emp_proj`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT for table `tbl_member`
+--
+ALTER TABLE `tbl_member`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_member_proj`
+--
+ALTER TABLE `tbl_member_proj`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_projectlist`
 --
 ALTER TABLE `tbl_projectlist`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_projtask`
 --
 ALTER TABLE `tbl_projtask`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_proj_progress`
 --
 ALTER TABLE `tbl_proj_progress`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tbl_sampleimport`
---
-ALTER TABLE `tbl_sampleimport`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_task`
 --
 ALTER TABLE `tbl_task`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- Database: `test`
 --

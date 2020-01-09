@@ -1797,6 +1797,7 @@ class MainController extends Controller
         );
 
         $modal = "active";
+        $ttlTaskWeight = 0;
         if($validator->fails()){
             return redirect()
             ->back()
@@ -2002,7 +2003,7 @@ class MainController extends Controller
             }
             else
             {
-
+                //Project List Validation
                 foreach ($arr as $row) {
                     
                     $insert_data[] = array(
@@ -2023,7 +2024,21 @@ class MainController extends Controller
                         'updated_at'    => now(),
                     );
                 }
+                $validatorSave = Validator::make(
+                    $insert_data,
+                    [
+                        '*.proj_code' => "required",
+                        '*.proj_title' => 'required',
+                        '*.proj_desc' => 'required',
+                        '*.est_start_date' => 'required',
+                        '*.est_end_date' => 'required',
+                        '*.act_start_date' => 'required',
+                        '*.act_end_date' => 'required',
+                        '*.location' => 'required',
+                    ]
+                );
         
+                //Employee Validation
                 foreach ($arr1 as $row1) {
                     $insert_data1[] = array(
                         'projCode'  =>  $projCode,
@@ -2036,7 +2051,17 @@ class MainController extends Controller
                         'updated_at'    => now(),
                     );
                 }
+                $validatorSave1 = Validator::make(
+                    $insert_data1,
+                    [
+                        '*.emp_id' => "required|exists:users,company_id",
+                    ],
+                    [
+                        '*.emp_id.exists' => 'The selected :attribute is invalid. Employee does not exists!',
+                    ]
+                );
 
+                //Stakeholder Validation
                 foreach ($arr2 as $row2) {
                     $insert_data2[] = array(
                         'projCode'  =>  $projCode,
@@ -2049,7 +2074,17 @@ class MainController extends Controller
                         'updated_at'    => now(),
                     );
                 }
+                $validatorSave2 = Validator::make(
+                    $insert_data2,
+                    [
+                        '*.emp_id' => "required|exists:users,company_id",
+                    ],
+                    [
+                        '*.emp_id.exists' => 'The selected :attribute is invalid. Stakeholder does not exists!',
+                    ]
+                );
 
+                //Project Manager Validation
                 foreach ($arr3 as $row3) {
                     $insert_data3[] = array(
                         'projCode'  =>  $projCode,
@@ -2062,7 +2097,17 @@ class MainController extends Controller
                         'updated_at'    => now(),
                     );
                 }
-
+                $validatorSave3 = Validator::make(
+                    $insert_data3,
+                    [
+                        '*.emp_id' => "required|exists:users,company_id",
+                    ],
+                    [
+                        '*.emp_id.exists' => 'The selected :attribute is invalid. Project Manager does not exists!',
+                    ]
+                );
+                
+                //Task List & Project Task Validation
                 foreach ($arr4 as $row4) {
                     $taskCode = strtoupper(str_random(12));
                     $insert_data4[] = array(
@@ -2089,8 +2134,29 @@ class MainController extends Controller
                         'updated_at'    => now(),
                     );
 
-                }
+                    $ttlTaskWeight += $row4['weight'];
 
+                }
+                $validatorSave6 = Validator::make(
+                    $insert_data4,
+                    [
+                        '*.taskCode' => "required",
+                        '*.task_title' => "required",
+                        '*.task_desc' => "required",
+                    ]
+                );
+                $validatorSave7 = Validator::make(
+                    $insert_data5,
+                    [
+                        '*.projCode' => "required",
+                        '*.taskCode' => "required",
+                        '*.taskWeight' => "required",
+                        '*.plan_days' => 'required',
+                        '*.actual_days' => 'required',
+                    ]
+                );
+
+                //Customer Validation
                 foreach ($arr5 as $row5) {
                     $insert_data6[] = array(
                         'projCode'  =>  $projCode,
@@ -2102,6 +2168,73 @@ class MainController extends Controller
                         'created_at'    =>  now(),
                         'updated_at'    => now(),
                     );
+                }
+                $validatorSave5 = Validator::make(
+                    $insert_data6,
+                    [
+                        '*.emp_id' => "required|exists:users,company_id",
+                    ],
+                    [
+                        '*.emp_id.exists' => 'The selected :attribute is invalid. Customer does not exists!',
+                    ]
+                );
+                
+
+                if($validatorSave->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($validatorSave1->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave1->errors()->all()])
+                    ->with('modal',$modal);
+                }
+                
+                if($validatorSave2->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave2->errors()->all()])
+                    ->with('modal',$modal);
+                }
+                
+                if($validatorSave3->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave3->errors()->all()])
+                    ->with('modal',$modal);
+                }
+                
+                if($validatorSave5->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave5->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($validatorSave6->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave6->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($validatorSave7->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave7->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($ttlTaskWeight != 100){
+                    $errMsgTask = 'Total Task Weight must be exact 100% and you have '.$ttlTaskWeight.'%';
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=> [0=> $errMsgTask]])
+                    ->with('modal',$modal);
                 }
 
                 DB::table('tbl_projectlist')->insert($insert_data);
@@ -2133,6 +2266,7 @@ class MainController extends Controller
         );
 
         $modal = "active";
+        $ttlTaskWeight = 0;
         if($validator->fails()){
             return redirect()
             ->back()
@@ -2304,6 +2438,202 @@ class MainController extends Controller
                 ->with(['errors'=> [0=> 'Please provide correct format for Project Information Sheet']])
                 ->with('modal',$modal);
             }else{
+
+                //Project Code Validations
+                foreach ($arr as $rowValidate) {
+                    $projCodeValidate = $rowValidate['proj_code'];
+                    $validate_data[] = array(
+                        'projCodeVal'  =>  $rowValidate['proj_code'],
+                        'proj_title'  => $rowValidate['project_title'],
+                        'proj_desc'  => $rowValidate['project_description'],
+                        'est_start_date'  =>  $rowValidate['estimated_start_date']['date'],
+                        'est_end_date'  => $rowValidate['estimated_end_date']['date'],
+                        'act_start_date'  =>  $rowValidate['actual_start_date']['date'],
+                        'act_end_date'  =>  $rowValidate['actual_end_date']['date'],
+                        'longitude'  =>  '121.33365260',
+                        'latitude'  =>  '14.16964760',
+                        'location'  =>  $rowValidate['project_location'],
+                        'deleted'  =>  0,
+                        'by_id'  => auth()->user()->id,
+                        'updated_by'    =>  auth()->user()->name,
+                        'created_at'    =>  now(),
+                        'updated_at'    => now(),
+                    );
+                }
+                $validatorSave = Validator::make(
+                    $validate_data,
+                    [
+                        '*.projCodeVal' => "required|exists:tbl_projectlist,proj_code",
+                        '*.proj_title' => 'required',
+                        '*.proj_desc' => 'required',
+                        '*.est_start_date' => 'required',
+                        '*.est_end_date' => 'required',
+                        '*.act_start_date' => 'required',
+                        '*.act_end_date' => 'required',
+                        '*.location' => 'required',
+                    ],
+                    [
+                        '*.projCodeVal.exists' => 'The selected :attribute is invalid. Project Code does not exists!',
+                    ]
+                );
+
+
+                //Employee Validations
+                foreach ($arr1 as $rowValidate1) {
+                    $validate_data1[] = array(
+                        'emp_id'  =>  $rowValidate1['company_id'],
+                        'type'  =>  'EMP',
+                    );
+                }
+                $validatorSave1 = Validator::make(
+                    $validate_data1,
+                    [
+                        '*.emp_id' => "required|exists:users,company_id",
+                    ],
+                    [
+                        '*.emp_id.exists' => 'The selected :attribute is invalid. Employee does not exists!',
+                    ]
+                );
+
+                //Stakeholder Validations
+                foreach ($arr2 as $rowValidate2) {
+                    $validate_data2[] = array(
+                        'emp_id'  =>  $rowValidate2['stakeholder_member_code'],
+                        'type'  =>  'STAKEHOLDER',
+                    );
+                }
+                $validatorSave2 = Validator::make(
+                    $validate_data2,
+                    [
+                        '*.emp_id' => "required|exists:users,company_id",
+                    ],
+                    [
+                        '*.emp_id.exists' => 'The selected :attribute is invalid. Stakeholder does not exists!',
+                    ]
+                );
+
+                //Project Manager Validations
+                foreach ($arr3 as $rowValidate3) {
+                    $validate_data3[] = array(
+                        'emp_id'  =>  $rowValidate3['pm_member_code'],
+                        'type'  =>  'PM',
+                    );
+                }
+                $validatorSave3 = Validator::make(
+                    $validate_data3,
+                    [
+                        '*.emp_id' => "required|exists:users,company_id",
+                    ],
+                    [
+                        '*.emp_id.exists' => 'The selected :attribute is invalid. Project Manager does not exists!',
+                    ]
+                );
+
+
+
+                //Task Code Validations
+                foreach ($arr4 as $rowValidate4) {
+                    
+                    $validate_data4[] = array(
+                        'projCode'  =>  $projCodeValidate,
+                        'taskCode'  =>   $rowValidate4['task_code'],
+                        'taskWeight'  =>  $rowValidate4['weight'],
+                        'plan_days' =>  $rowValidate4['planned_days'],
+                        'actual_days'  =>  $rowValidate4['actual_days'],
+                        'deleted'  =>  0,
+                        'by_id'  => auth()->user()->id,
+                        'updated_by'    =>  auth()->user()->name,
+                        'created_at'    =>  now(),
+                        'updated_at'    => now(),
+                    );
+
+                    $ttlTaskWeight += $rowValidate4['weight'];
+                }
+                $validatorSave4 = Validator::make(
+                    $validate_data4,
+                    [
+                        '*.projCode' => "required",
+                        '*.taskCode' => "required|exists:tbl_projtask,taskCode",
+                        '*.taskWeight' => "required",
+                        '*.plan_days' => "required",
+                        '*.actual_days' => "required",
+                    ],
+                    [
+                        '*.taskCode.exists' => 'The selected :attribute is invalid. Task Code does not exists!',
+                    ]
+                );
+
+
+                //Customer Validations
+                foreach ($arr5 as $rowValidate5) {
+                    $validate_data5[] = array(
+                        'emp_id'  =>  $rowValidate5['customer_id'],
+                        'type'  =>  'CUSTOMER',
+                    );
+                }
+                $validatorSave5 = Validator::make(
+                    $validate_data5,
+                    [
+                        '*.emp_id' => "required|exists:users,company_id",
+                    ],
+                    [
+                        '*.emp_id.exists' => 'The selected :attribute is invalid. Customer does not exists!',
+                    ]
+                );
+
+
+                if($validatorSave->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($validatorSave1->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave1->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($validatorSave2->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave2->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($validatorSave3->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave3->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($validatorSave4->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave4->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($validatorSave5->fails()){
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=>$validatorSave5->errors()->all()])
+                    ->with('modal',$modal);
+                }
+
+                if($ttlTaskWeight != 100){
+                    $errMsgTask = 'Total Task Weight must be exact 100% and you have '.$ttlTaskWeight.'%';
+                    return redirect()
+                    ->back()
+                    ->with(['errors'=> [0=> $errMsgTask]])
+                    ->with('modal',$modal);
+                }
+
+
+                //Update Project Info
                 foreach ($arr as $row) {
                     $projCode = $row['proj_code'];
 
@@ -2430,6 +2760,7 @@ class MainController extends Controller
                         'updated_at'    => now(),
                     );
                 }
+
 
                 DB::table('tbl_emp_proj')->insert($insert_data1);
                 DB::table('tbl_emp_proj')->insert($insert_data2);

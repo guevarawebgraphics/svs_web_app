@@ -43,7 +43,7 @@
                 <strong>Note upload:</strong> 
                 You are trying to upload multiple project records that containas multiple task records. This record will be useful to any transaction
                 <br>
-                *format : <b><em>xlsx,xls,csv</em></b><br>
+                *format : <b><em>xlsx,xls</em></b><br>
                 </p>
 
                 <!-- Default unchecked -->
