@@ -146,6 +146,17 @@
                     <div class="row">
                         <div class="container col-md-6">
                                 <div id="svsMapE" style="width: 100%; height:300px;"></div>
+
+                                <!--Grid row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <input type="number" id="target_man_days_edit" name="target_man_days_edit" class="form-control">
+                                            <label for="target_man_days_edit" id="target_man_days_elabel" class="">Target Man Days</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            
                         </div>
                         <div class="container col-md-6">
                                     
@@ -524,6 +535,14 @@
                             </div>
                         </div>
                         <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="number" id="target_man_days" name="target_man_days" class="form-control">
+                                    <label for="target_man_days" class="">Target Man Days</label>
+                                </div>
+                            </div>
+                        </div>
                     
                     </div>
                 </div>
@@ -722,6 +741,7 @@
                                                     <input type="checkbox" class="custom-control-input myTask" name="myTask" value="{{$field->taskCode}}" id="myTask{{$field->taskCode}}">
                                                     <label class="custom-control-label" for="myTask{{$field->taskCode}}">{{$field->task_title}}</label>
                                                 </div>
+                                                <small><p>WBS: {{$field->task_desc}}</p></small>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="md-form svs-md-form">
@@ -1012,6 +1032,8 @@ $(document).ready(function () {
         var lon = $("#epLon").html();
         var lat = $("#epLat").html();
 
+        var target_man_days_edit = $('#target_man_days_edit').val();
+
         var projCode = $(this).attr('data-projcode');
 
         var pmChck = []; 
@@ -1100,6 +1122,7 @@ $(document).ready(function () {
                 title:title,
                 desc:desc,
                 addr:addr,
+                target_man_days_edit:target_man_days_edit,
                 lon:lon,
                 lat:lat,
                 pmChck:pmChck,
@@ -1141,6 +1164,7 @@ $(document).ready(function () {
                             title:title,
                             desc:desc,
                             addr:addr,
+                            target_man_days_edit:target_man_days_edit,
                             lon:lon,
                             lat:lat,
                             pmChck:pmChck,
@@ -1259,6 +1283,7 @@ $(".editProj").click(function () {
     var title = $(this).attr('data-title');
     var desc = $(this).attr('data-desc');
     var location = $(this).attr('data-location');
+    var manDays = $(this).attr('data-target-man-days');
     var date = $(this).attr('data-date');
     var longitude = $(this).attr('data-lon');
     var latitude = $(this).attr('data-lat');
@@ -1303,6 +1328,7 @@ $(".editProj").click(function () {
     $('#epDesc').val(desc);
     $('#epAddrHidden').html(location);
     $('#epAddr').val(location);
+    $('#target_man_days_edit').val(manDays);
 
     $('#epLat').html(longitude);
     $('#epLon').html(latitude);
@@ -1323,7 +1349,9 @@ $(".editProj").click(function () {
     $('#ESTEditLabel').attr('class','active');
     $('#EEDEditLabel').attr('class','active');
     $('#EETEditLabel').attr('class','active');
-
+    
+    $('#target_man_days_elabel').attr('class','active');
+    
     //Actual DateTime
     $('#actStartDEdit').val(asd);
     $('#actStartTEdit').val(ast);
@@ -2118,6 +2146,7 @@ $('#subNewProj').click(function(){
     var act_start_t = $('#actStartT').val();
     var act_end_d = $('#actEndD').val();
     var act_end_t = $('#actEndT').val();
+    var target_man_days = $('#target_man_days').val();
 
     var taskData = []; 
     $("input:checkbox[name=myTask]:checked").each(function() { 
@@ -2189,6 +2218,7 @@ $('#subNewProj').click(function(){
             type:"NEWPROJECT",
             proj_title:proj_title,
             proj_desc:proj_desc,
+            target_man_days:target_man_days,
             lon:lon,
             lat:lat,
             addr:addr,
@@ -2230,6 +2260,7 @@ $('#subNewProj').click(function(){
                         type:"NEWPROJECT",
                         proj_title:proj_title,
                         proj_desc:proj_desc,
+                        target_man_days:target_man_days,
                         lon:lon,
                         lat:lat,
                         addr:addr,

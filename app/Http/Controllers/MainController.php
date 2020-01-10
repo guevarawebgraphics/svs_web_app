@@ -673,6 +673,10 @@ class MainController extends Controller
             $messages = "Description is required!";
             $error[] = $messages;
         }
+        else if($request->target_man_days == ""){
+            $messages = "Target Man Days is required!";
+            $error[] = $messages;
+        }
         else if($request->lon == ""){
             $messages = "Please search and choose location..";
             $error[] = $messages;
@@ -814,6 +818,7 @@ class MainController extends Controller
             $projectList->proj_code = $projCode;
             $projectList->proj_title = $request->proj_title;
             $projectList->proj_desc = $request->proj_desc;
+            $projectList->target_man_days = $request->target_man_days;
             $projectList->est_start_date = $est_start_dt;
             $projectList->est_end_date = $est_end_dt;
             $projectList->act_start_date = $act_start_dt;
@@ -1426,6 +1431,10 @@ class MainController extends Controller
             $messages = "Address is required!";
             $error[] = $messages;
         }
+        else if($request->target_man_days_edit == ""){
+            $messages = "Man Day is required!";
+            $error[] = $messages;
+        }
         else if($request->lon == ""){
             $messages = "Longitude is required!";
             $error[] = $messages;
@@ -1562,6 +1571,7 @@ class MainController extends Controller
             ->update([
             'proj_title'=> $request->title,
             'proj_desc'=> $request->desc,
+            'target_man_days'=> $request->target_man_days_edit,
             'est_start_date'=> $est_start_dt,
             'est_end_date'=> $est_end_dt,
             'act_start_date'=> $act_start_dt,
@@ -1822,7 +1832,7 @@ class MainController extends Controller
             $excel->setSheet(1);
             $collection = $excel->getCollection();
 
-            if(sizeof($collection[0]) == 7){
+            if(sizeof($collection[0]) == 8){
                 $arr = json_decode($collection,true);
                 
                 if(count($arr) == 1){
@@ -2010,6 +2020,7 @@ class MainController extends Controller
                         'proj_code'  => $projCode,
                         'proj_title'  => $row['project_title'],
                         'proj_desc'  => $row['project_description'],
+                        'target_man_days'  => $row['target_man_days'],
                         'est_start_date'  =>  $row['estimated_start_date']['date'],
                         'est_end_date'  => $row['estimated_end_date']['date'],
                         'act_start_date'  =>  $row['actual_start_date']['date'],
@@ -2030,6 +2041,7 @@ class MainController extends Controller
                         '*.proj_code' => "required",
                         '*.proj_title' => 'required',
                         '*.proj_desc' => 'required',
+                        '*.target_man_days' => 'required',
                         '*.est_start_date' => 'required',
                         '*.est_end_date' => 'required',
                         '*.act_start_date' => 'required',
@@ -2290,7 +2302,7 @@ class MainController extends Controller
             $excel->setSheet(1);
             $collection = $excel->getCollection();
 
-            if(sizeof($collection[0]) == 8){
+            if(sizeof($collection[0]) == 9){
                 $arr = json_decode($collection,true);
                 
                 if(count($arr) == 1){
@@ -2446,6 +2458,7 @@ class MainController extends Controller
                         'projCodeVal'  =>  $rowValidate['proj_code'],
                         'proj_title'  => $rowValidate['project_title'],
                         'proj_desc'  => $rowValidate['project_description'],
+                        'target_man_days'  => $rowValidate['target_man_days'],
                         'est_start_date'  =>  $rowValidate['estimated_start_date']['date'],
                         'est_end_date'  => $rowValidate['estimated_end_date']['date'],
                         'act_start_date'  =>  $rowValidate['actual_start_date']['date'],
@@ -2466,6 +2479,7 @@ class MainController extends Controller
                         '*.projCodeVal' => "required|exists:tbl_projectlist,proj_code",
                         '*.proj_title' => 'required',
                         '*.proj_desc' => 'required',
+                        '*.target_man_days' => 'required',
                         '*.est_start_date' => 'required',
                         '*.est_end_date' => 'required',
                         '*.act_start_date' => 'required',

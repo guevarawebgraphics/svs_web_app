@@ -77,31 +77,15 @@ ul {
                                     </h2>
                                     <br>
                                     <div style="margin-top: -2em;">
-                                   <small>Target Man Days: 
-                                        @php
-                                              $overall_man_hours = $field->total_employee * $field->total_actual_days * 8;
-                                              $overall_man_days = $overall_man_hours / 8;
-                                              if(!empty($overall_man_days)){
-                                                echo $overall_man_days;  
-                                              }else{
-                                                echo 0;
-                                              }
-                                        @endphp
-
-                                   </small>
+                                    <small>Target Man Days: {{$field->target_man_days}}</small>
                                    
                                    <br>
                                    <small>Total Man Days: 
+                                    @php
+                                        $total_man_days = $field->hours_8 + $field->hours_6 + $field->hours_3;
+                                        echo $total_man_days   
+                                    @endphp
 
-                                        @php
-                                              $man_hours = $field->total_employee * $field->total_man_days * 8;
-                                              $man_days = $man_hours / 8;
-                                              if(!empty($man_days)){
-                                                echo $man_days;  
-                                              }else{
-                                                echo 0;
-                                              }
-                                        @endphp
                                    </small>
                                     </div>
                                 </div>

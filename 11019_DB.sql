@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2020 at 11:49 AM
+-- Generation Time: Jan 10, 2020 at 09:37 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -5392,7 +5392,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"tbl_projtask\"},{\"db\":\"svs_web\",\"table\":\"users\"},{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"},{\"db\":\"svs_web\",\"table\":\"view_date_time_records\"},{\"db\":\"svs_web\",\"table\":\"date_time_records\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"view_employee_info\"},{\"db\":\"svs_web\",\"table\":\"view_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"}]');
+('root', '[{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"},{\"db\":\"svs_web\",\"table\":\"view_date_time_records\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"view_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"date_time_records\"},{\"db\":\"svs_web\",\"table\":\"view_projtask\"},{\"db\":\"svs_web\",\"table\":\"tbl_projtask\"},{\"db\":\"svs_web\",\"table\":\"users\"}]');
 
 -- --------------------------------------------------------
 
@@ -5516,7 +5516,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2020-01-09 10:02:07', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":27,\"NavigationWidth\":242}');
+('root', '2020-01-10 08:05:37', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":27,\"NavigationWidth\":242}');
 
 -- --------------------------------------------------------
 
@@ -6988,6 +6988,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('5418ff4388e2fec30f279657fa7602d9b2f881e2dd258211013c220f83c99db545b733973c524f99', 54, 2, NULL, '[]', 0, '2020-01-07 07:52:06', '2020-01-07 07:52:06', '2020-01-08 15:52:06'),
 ('580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 1, 2, NULL, '[]', 1, '2019-10-01 05:01:50', '2019-10-01 05:01:50', '2019-10-02 13:01:50'),
 ('60d80c8484a190b72d68000c3e47f0ac461d3f14a93128db8a101304871bd450aa44d48e1e25ceb9', 1, 2, NULL, '[]', 1, '2020-01-06 06:22:32', '2020-01-06 06:22:32', '2020-01-07 14:22:32'),
+('7088ed4b237ad664130080851abbec0c9d7365a51e8a5fb45a0de0a7e4c8fbe865993e29b16407b8', 54, 2, NULL, '[]', 0, '2020-01-10 01:56:07', '2020-01-10 01:56:07', '2020-01-11 09:56:06'),
 ('775cd47d03e94d5f95da3f8837947a7a0b023c95db1f30378da6bac97a766ac2941a142040361f0d', 45, 2, NULL, '[]', 0, '2020-01-06 08:06:46', '2020-01-06 08:06:46', '2020-01-07 16:06:46'),
 ('775fe0d59e11bfbce51e4b4be649185b9e6026d1b22a3962269d602577091378e4ec5c03ad674894', 1, 2, NULL, '[]', 1, '2019-11-20 07:51:31', '2019-11-20 07:51:31', '2019-11-21 15:51:30'),
 ('8987c8ff216e13fab967ed4cd42f32739c466b00306e9a1c0d7445fc67d7ef767f68262445057f9b', 45, 2, NULL, '[]', 0, '2020-01-06 08:33:56', '2020-01-06 08:33:56', '2020-01-07 16:33:56'),
@@ -7115,6 +7116,7 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('7bae36c1aa73a53759bfe93d5e26bf3bf8a3f31ea996c26e3eba3f151ca80214dd07c845c4ac22f7', '3ee6794df90f4b3d00a927608fac24f942d1a00adbc3b13516ab192b543e14911604236174ea30a8', 0, '2019-11-27 10:17:33'),
 ('8395a700be6ce955fe364ae5cf5342051a346b2fec2ff15c6e535252b3936b352b695d9e717eb08e', 'a3f4e4f55a4a67e65637dd75e5c4556dca5c8f2497bfaac089b495c6c13f3690ebb29b332eaf05c9', 0, '2020-01-08 16:07:36'),
 ('8bc49f7be2744ccc323315fff5636c3c43ae468dab96eb65519175256d6038533f45aa960ac73e80', 'bfd2e34834ee9b0f955bd2301d9b1f733fac5efb860debfd03e4b20ccb4ddbc880a85a322800f980', 0, '2020-01-08 14:51:01'),
+('90c44904bca76f4b06934720da258207fee8047be6080bb93da123c461bc183344c8df884f1dcfef', '7088ed4b237ad664130080851abbec0c9d7365a51e8a5fb45a0de0a7e4c8fbe865993e29b16407b8', 0, '2020-01-12 09:56:06'),
 ('9134a644af6e69580e94d14116fef53308799174f18d52121c7fc221b92c0e6f7e82c210a45c9e2d', 'b34494e6aa4133cd09d491b2d039fa9062ab66a0fe30db7e98c457cb81408fbd6a662289800d83ca', 0, '2020-01-08 15:52:06'),
 ('9235fee9af58dbf56688faad4aa56526a66ea727371fd43ba5d32041bae981d5195058c1eb71b81f', 'bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 0, '2019-11-07 18:42:53'),
 ('96240b36d3aad0be111e6939f55cde7f4fbf547455a331d707a968af1864d644c102528f4e065c05', '8acdeae57079f2a949d6ebb0dff398f925684636888d88f467cdfd867e7231a98b0974e888d64198', 0, '2020-01-08 16:22:34'),
@@ -7211,19 +7213,19 @@ CREATE TABLE `tbl_emp_proj` (
 --
 
 INSERT INTO `tbl_emp_proj` (`id`, `projCode`, `emp_id`, `type`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '7VIAIGYVGOG7', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
-(2, '7VIAIGYVGOG7', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
-(3, '7VIAIGYVGOG7', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:28'),
-(4, '7VIAIGYVGOG7', '2019-1007', 'EMP', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:28'),
-(5, '7VIAIGYVGOG7', '2019-1009', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
-(6, '7VIAIGYVGOG7', '2019-1008', 'CUSTOMER', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
-(7, '7VIAIGYVGOG7', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-09 08:04:29'),
-(8, '7VIAIGYVGOG7', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-09 08:04:29'),
-(9, '7VIAIGYVGOG7', '2019-1007', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:28'),
-(10, '7VIAIGYVGOG7', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:28'),
-(11, '7VIAIGYVGOG7', '2019-1010', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:28'),
-(12, '7VIAIGYVGOG7', '2019-1009', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:29'),
-(13, '7VIAIGYVGOG7', '2019-1008', 'CUSTOMER', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-09 08:04:29'),
+(1, '7VIAIGYVGOG7', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-10 08:05:32'),
+(2, '7VIAIGYVGOG7', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-10 08:05:32'),
+(3, '7VIAIGYVGOG7', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-10 08:05:32'),
+(4, '7VIAIGYVGOG7', '2019-1007', 'EMP', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-10 08:05:32'),
+(5, '7VIAIGYVGOG7', '2019-1009', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-10 08:05:32'),
+(6, '7VIAIGYVGOG7', '2019-1008', 'CUSTOMER', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-10 08:05:32'),
+(7, '7VIAIGYVGOG7', '2019-1008', 'PM', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-10 08:05:32'),
+(8, '7VIAIGYVGOG7', '2019-1009', 'PM', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-10 08:05:32'),
+(9, '7VIAIGYVGOG7', '2019-1007', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-10 08:05:32'),
+(10, '7VIAIGYVGOG7', '2019-1008', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-10 08:05:32'),
+(11, '7VIAIGYVGOG7', '2019-1010', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-10 08:05:32'),
+(12, '7VIAIGYVGOG7', '2019-1009', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-10 08:05:32'),
+(13, '7VIAIGYVGOG7', '2019-1008', 'CUSTOMER', 1, 7, 'Keigh Dee', '2020-01-09 01:43:53', '2020-01-10 08:05:32'),
 (14, 'WDYQDZTDBPY2', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
 (15, 'WDYQDZTDBPY2', '2019-1002', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
 (16, 'WDYQDZTDBPY2', '', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
@@ -7253,16 +7255,26 @@ INSERT INTO `tbl_emp_proj` (`id`, `projCode`, `emp_id`, `type`, `deleted`, `by_i
 (40, 'GAPTORI4RT3Y', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
 (41, 'GAPTORI4RT3Y', '2019-1010', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
 (42, 'GAPTORI4RT3Y', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
-(43, '7VIAIGYVGOG7', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
-(44, '7VIAIGYVGOG7', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
-(45, '7VIAIGYVGOG7', '2019-1006', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
-(46, '7VIAIGYVGOG7', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
-(47, '7VIAIGYVGOG7', '2019-1002', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
+(43, '7VIAIGYVGOG7', '2019-1004', 'EMP', 1, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-10 08:05:32'),
+(44, '7VIAIGYVGOG7', '2019-1003', 'STAKEHOLDER', 1, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-10 08:05:32'),
+(45, '7VIAIGYVGOG7', '2019-1006', 'PM', 1, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-10 08:05:32'),
+(46, '7VIAIGYVGOG7', '2019-1006', 'CUSTOMER', 1, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-10 08:05:32'),
+(47, '7VIAIGYVGOG7', '2019-1002', 'CUSTOMER', 1, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-10 08:05:32'),
 (48, 'DC366K7RG2A2', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
 (49, 'DC366K7RG2A2', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
 (50, 'DC366K7RG2A2', '2019-1010', 'PM', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
 (51, 'DC366K7RG2A2', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
-(52, 'DC366K7RG2A2', '2019-1002', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01');
+(52, 'DC366K7RG2A2', '2019-1002', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(53, '7VIAIGYVGOG7', '2019-1006', 'PM', 0, 7, 'Keigh Dee', '2020-01-10 08:05:32', '2020-01-10 08:05:32'),
+(54, '7VIAIGYVGOG7', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-10 08:05:32', '2020-01-10 08:05:32'),
+(55, '7VIAIGYVGOG7', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-10 08:05:32', '2020-01-10 08:05:32'),
+(56, '7VIAIGYVGOG7', '2019-1002', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-10 08:05:32', '2020-01-10 08:05:32'),
+(57, '7VIAIGYVGOG7', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-10 08:05:32', '2020-01-10 08:05:32'),
+(58, 'EG10K95DTIUK', '2019-1004', 'EMP', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(59, 'EG10K95DTIUK', '2019-1003', 'STAKEHOLDER', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(60, 'EG10K95DTIUK', '2019-1010', 'PM', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(61, 'EG10K95DTIUK', '2019-1006', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(62, 'EG10K95DTIUK', '2019-1002', 'CUSTOMER', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04');
 
 -- --------------------------------------------------------
 
@@ -7322,6 +7334,7 @@ CREATE TABLE `tbl_projectlist` (
   `proj_code` varchar(191) NOT NULL,
   `proj_title` varchar(191) NOT NULL,
   `proj_desc` varchar(191) NOT NULL,
+  `target_man_days` bigint(50) DEFAULT 0,
   `est_start_date` datetime NOT NULL,
   `est_end_date` datetime NOT NULL,
   `act_start_date` datetime NOT NULL,
@@ -7341,11 +7354,12 @@ CREATE TABLE `tbl_projectlist` (
 -- Dumping data for table `tbl_projectlist`
 --
 
-INSERT INTO `tbl_projectlist` (`id`, `proj_code`, `proj_title`, `proj_desc`, `est_start_date`, `est_end_date`, `act_start_date`, `act_end_date`, `longitude`, `latitude`, `location`, `status`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '7VIAIGYVGOG7', '2020 SVS Project', 'Project Description Edit', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-25 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:28'),
-(2, 'WDYQDZTDBPY2', '2021 SVS Project', 'Project Description', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
-(3, 'GAPTORI4RT3Y', '2021 SVS Project', 'Project Description', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
-(4, 'DC366K7RG2A2', '2021 SVS Project', 'Project Description', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01');
+INSERT INTO `tbl_projectlist` (`id`, `proj_code`, `proj_title`, `proj_desc`, `target_man_days`, `est_start_date`, `est_end_date`, `act_start_date`, `act_end_date`, `longitude`, `latitude`, `location`, `status`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '7VIAIGYVGOG7', '2020 SVS Project', 'Project Description Edit', 5, '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-25 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-10 08:05:31'),
+(2, 'WDYQDZTDBPY2', '2021 SVS Project', 'Project Description', 0, '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
+(3, 'GAPTORI4RT3Y', '2021 SVS Project', 'Project Description', 0, '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
+(4, 'DC366K7RG2A2', '2021 SVS Project', 'Project Description', 0, '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(5, 'EG10K95DTIUK', '2021 SVS Project', 'Project Description', 10, '2019-11-01 03:05:00', '2019-11-25 15:05:00', '2019-11-01 03:05:00', '2019-11-25 15:05:00', '121.33365260', '14.16964760', 'Laguna, Calabarzon, Philippines', NULL, 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04');
 
 -- --------------------------------------------------------
 
@@ -7372,8 +7386,8 @@ CREATE TABLE `tbl_projtask` (
 --
 
 INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `taskWeight`, `plan_days`, `actual_days`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-09 08:04:29'),
-(2, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-09 08:04:29'),
+(1, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 1, 7, 'Keigh Dee', '2020-01-06 06:43:42', '2020-01-10 08:05:32'),
+(2, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 1, 7, 'Keigh Dee', '2020-01-09 01:43:52', '2020-01-10 08:05:32'),
 (3, 'WDYQDZTDBPY2', 'H7DPREIWPMLM', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
 (4, 'WDYQDZTDBPY2', 'O7ILKUXOAZWR', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
 (5, 'WDYQDZTDBPY2', 'PM0IJBVPN0BW', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
@@ -7384,12 +7398,18 @@ INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `taskWeight`, `plan_da
 (10, 'GAPTORI4RT3Y', 'RJZWAMKXSBJ9', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
 (11, 'GAPTORI4RT3Y', 'EX00MFGSICI0', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
 (12, 'GAPTORI4RT3Y', 'KDJBTSDGDQGE', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 06:22:04', '2020-01-09 06:22:04'),
-(13, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-09 08:04:29'),
+(13, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 1, 7, 'Keigh Dee', '2020-01-09 08:04:29', '2020-01-10 08:05:32'),
 (14, 'DC366K7RG2A2', 'D0ANDBWVI4FW', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
 (15, 'DC366K7RG2A2', 'GAIMDNO5ZLLU', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
 (16, 'DC366K7RG2A2', 'BPGXUJTX5URC', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
 (17, 'DC366K7RG2A2', 'NRVH0YUWBESS', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
-(18, 'DC366K7RG2A2', 'OWKDYFMBRQO5', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01');
+(18, 'DC366K7RG2A2', 'OWKDYFMBRQO5', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(19, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '100.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-10 08:05:31', '2020-01-10 08:05:32'),
+(20, 'EG10K95DTIUK', '5VYC9TS0KEYK', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(21, 'EG10K95DTIUK', 'BEFKMYDDL3UY', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(22, 'EG10K95DTIUK', '1DUJDM7U1AIX', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(23, 'EG10K95DTIUK', 'W2R9KTYP0AOA', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(24, 'EG10K95DTIUK', 'GJUOH95T7GXF', '20.00', '5', '5', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04');
 
 -- --------------------------------------------------------
 
@@ -7521,7 +7541,12 @@ INSERT INTO `tbl_task` (`id`, `taskCode`, `task_title`, `task_desc`, `deleted`, 
 (77, 'GAIMDNO5ZLLU', '', 'Description 2', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
 (78, 'BPGXUJTX5URC', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
 (79, 'NRVH0YUWBESS', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
-(80, 'OWKDYFMBRQO5', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01');
+(80, 'OWKDYFMBRQO5', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-09 10:37:01', '2020-01-09 10:37:01'),
+(81, '5VYC9TS0KEYK', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(82, 'BEFKMYDDL3UY', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(83, '1DUJDM7U1AIX', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(84, 'W2R9KTYP0AOA', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04'),
+(85, 'GJUOH95T7GXF', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-10 08:36:04', '2020-01-10 08:36:04');
 
 -- --------------------------------------------------------
 
@@ -7632,11 +7657,13 @@ CREATE TABLE `view_project_percentage` (
 ,`proj_code` varchar(191)
 ,`proj_title` varchar(191)
 ,`proj_desc` varchar(191)
+,`target_man_days` bigint(50)
 ,`issue` bigint(21)
 ,`report` bigint(21)
 ,`total_employee` bigint(21)
-,`total_actual_days` int(7)
-,`total_man_days` bigint(21)
+,`hours_8` decimal(22,0)
+,`hours_6` decimal(24,1)
+,`hours_3` decimal(22,0)
 ,`total_weight_progress` decimal(35,2)
 ,`est_start_date` datetime
 ,`est_end_date` datetime
@@ -7733,7 +7760,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_project_percentage`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_project_percentage`  AS  select `a`.`id` AS `id`,`a`.`proj_code` AS `proj_code`,`a`.`proj_title` AS `proj_title`,`a`.`proj_desc` AS `proj_desc`,(select count(0) from `tbl_activity_log` `tal` where `tal`.`projCode` = `a`.`proj_code` and `tal`.`type` = 'ISSUE') AS `issue`,(select count(0) from `tbl_activity_log` `tal` where `tal`.`projCode` = `a`.`proj_code` and `tal`.`type` = 'REPORT') AS `report`,(select count(distinct `xx`.`emp_id`) from `tbl_emp_proj` `xx` where `xx`.`type` in ('EMP','PM') and `xx`.`projCode` = `a`.`proj_code`) AS `total_employee`,to_days(cast(`a`.`act_end_date` as date)) - to_days(cast(`a`.`act_start_date` as date)) AS `total_actual_days`,(select count(distinct `y`.`recDate`) from ((`date_time_records` `x` left join `view_date_time_records` `y` on(`x`.`ACNo` = `y`.`ACNo`)) left join `tbl_emp_proj` `z` on(substring_index(`z`.`emp_id`,'-',-1) = `x`.`ACNo`)) where `x`.`ACNo` = substring_index(`z`.`emp_id`,'-',-1) and `z`.`type` in ('EMP','PM') and `y`.`hours` >= 8 and `z`.`projCode` = `a`.`proj_code`) AS `total_man_days`,(select sum(`tpp`.`weight_progress`) from (`tbl_proj_progress` `tpp` left join `tbl_task` `tt` on(`tpp`.`taskCode` = `tt`.`taskCode`)) where `tpp`.`projCode` = `a`.`proj_code` and `tpp`.`deleted` = 0 and `tt`.`deleted` = 0) AS `total_weight_progress`,`a`.`est_start_date` AS `est_start_date`,`a`.`est_end_date` AS `est_end_date`,`a`.`act_start_date` AS `act_start_date`,`a`.`act_end_date` AS `act_end_date`,`a`.`longitude` AS `longitude`,`a`.`latitude` AS `latitude`,`a`.`location` AS `location`,`a`.`status` AS `status`,`a`.`deleted` AS `deleted`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at` from `tbl_projectlist` `a` order by `a`.`created_at` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_project_percentage`  AS  select `a`.`id` AS `id`,`a`.`proj_code` AS `proj_code`,`a`.`proj_title` AS `proj_title`,`a`.`proj_desc` AS `proj_desc`,`a`.`target_man_days` AS `target_man_days`,(select count(0) from `tbl_activity_log` `tal` where `tal`.`projCode` = `a`.`proj_code` and `tal`.`type` = 'ISSUE') AS `issue`,(select count(0) from `tbl_activity_log` `tal` where `tal`.`projCode` = `a`.`proj_code` and `tal`.`type` = 'REPORT') AS `report`,(select count(distinct `xx`.`emp_id`) from `tbl_emp_proj` `xx` where `xx`.`type` in ('EMP','PM') and `xx`.`projCode` = `a`.`proj_code`) AS `total_employee`,(select sum(case when `dtr`.`hours` >= 8 then 1 else 0 end) from (`view_date_time_records` `dtr` left join `tbl_emp_proj` `temp` on(substring_index(`temp`.`emp_id`,'-',-1) = `dtr`.`ACNo`)) where `temp`.`projCode` = `a`.`proj_code`) AS `hours_8`,(select sum(case when `dtr`.`hours` <= 6 then 0.5 else 0 end) from (`view_date_time_records` `dtr` left join `tbl_emp_proj` `temp` on(substring_index(`temp`.`emp_id`,'-',-1) = `dtr`.`ACNo`)) where `temp`.`projCode` = `a`.`proj_code`) AS `hours_6`,(select sum(case when `dtr`.`hours` <= 3 then 0 else 0 end) from (`view_date_time_records` `dtr` left join `tbl_emp_proj` `temp` on(substring_index(`temp`.`emp_id`,'-',-1) = `dtr`.`ACNo`)) where `temp`.`projCode` = `a`.`proj_code`) AS `hours_3`,(select sum(`tpp`.`weight_progress`) from (`tbl_proj_progress` `tpp` left join `tbl_task` `tt` on(`tpp`.`taskCode` = `tt`.`taskCode`)) where `tpp`.`projCode` = `a`.`proj_code` and `tpp`.`deleted` = 0 and `tt`.`deleted` = 0) AS `total_weight_progress`,`a`.`est_start_date` AS `est_start_date`,`a`.`est_end_date` AS `est_end_date`,`a`.`act_start_date` AS `act_start_date`,`a`.`act_end_date` AS `act_end_date`,`a`.`longitude` AS `longitude`,`a`.`latitude` AS `latitude`,`a`.`location` AS `location`,`a`.`status` AS `status`,`a`.`deleted` AS `deleted`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at` from `tbl_projectlist` `a` order by `a`.`created_at` desc ;
 
 -- --------------------------------------------------------
 
@@ -7925,7 +7952,7 @@ ALTER TABLE `tbl_activity_log_img`
 -- AUTO_INCREMENT for table `tbl_emp_proj`
 --
 ALTER TABLE `tbl_emp_proj`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `tbl_member`
@@ -7943,13 +7970,13 @@ ALTER TABLE `tbl_member_proj`
 -- AUTO_INCREMENT for table `tbl_projectlist`
 --
 ALTER TABLE `tbl_projectlist`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_projtask`
 --
 ALTER TABLE `tbl_projtask`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_proj_progress`
@@ -7961,7 +7988,7 @@ ALTER TABLE `tbl_proj_progress`
 -- AUTO_INCREMENT for table `tbl_task`
 --
 ALTER TABLE `tbl_task`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `users`

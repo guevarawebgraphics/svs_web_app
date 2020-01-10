@@ -41,9 +41,9 @@
                                     <td>{{date("F d Y - h:i a",strtotime($field->created_at))}}</td>
                                     <td>
                                         <div class="row text-center">
-                                        <button class="svs-action rowdt btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-href="{{$field->id}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-list"></i></button>
-                                        <button class="svs-action delProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-trash"></i></button>
-                                        <button class="svs-action editProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-pencil-alt"></i></button>
+                                        <button class="svs-action rowdt btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-href="{{$field->id}}" data-title="{{$field->proj_title}}" data-target-man-days="{{$field->target_man_days}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-list"></i></button>
+                                        <button class="svs-action delProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-target-man-days="{{$field->target_man_days}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-trash"></i></button>
+                                        <button class="svs-action editProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-target-man-days="{{$field->target_man_days}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-pencil-alt"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -75,6 +75,14 @@
                                             <label><b>Estimated End Date : </b></label>&nbsp;{{date('F d Y - h:i a',strtotime($field->est_end_date))}}<br>
                                             <label><b>Actual Start Date : </b></label>&nbsp;{{date('F d Y - h:i a',strtotime($field->act_start_date))}}<br>
                                             <label><b>Actual End Date : </b></label>&nbsp;{{date('F d Y - h:i a',strtotime($field->act_end_date))}}<br>
+                                            <label><b>Target Man Days : </b></label>&nbsp;{{$field->target_man_days}}<br>
+                                            <label><b>Current Man Days : </b></label>&nbsp;
+                                            @php
+                                            $current_man_days_sum = $field->hours_8 + $field->hours_6 + $field->hours_3;
+                                            echo $current_man_days_sum;
+
+                                            @endphp
+                                            <br>
                                     </div>
                                 </div>
                                 <hr>
