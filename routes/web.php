@@ -57,7 +57,7 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::get('/retrack_project', 'MainController@retrack_project');
     Route::post('/retrack_task/retrack_project', 'MainController@retrack')->name('retrack_project');
 
-
+    Route::get('/member', 'MainController@member');
     // ------------------------------------------------------------------------//
     // This section all reusable codes will be commented for future purposes   //
     // ------------------------------------------------------------------------//

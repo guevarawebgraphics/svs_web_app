@@ -13,6 +13,7 @@ use App\Models\EmpProj;
 use App\Models\ProjectPercentage;
 use App\Models\ProjTaskView;
 use App\Models\Sample;
+use App\Models\Member;
 use Importer;
 use Validator;
 
@@ -2878,6 +2879,18 @@ class MainController extends Controller
             'success'=>$success
         );
         echo json_encode($output);
+    }
+    
+    public function member(){
+        if(!empty(auth()->user()->id)){
+            $member_record = Member::where('deleted', 0)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            return view('main.member', compact('member_record'));
+        }else{
+            return redirect('/');
+        }
     }
 
     // ------------------------------------------------------------------------//
