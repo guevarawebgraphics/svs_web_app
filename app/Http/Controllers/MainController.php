@@ -171,11 +171,12 @@ class MainController extends Controller
         else if($request->type == "STAKE")
         {
             $stake_selected = DB::connection('mysql')->select("
-            SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
-            b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
-            FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
-            WHERE a.type = 'STAKEHOLDER' AND a.projCode = '".$request->code."' and a.deleted = 0
-            GROUP BY a.emp_id
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
+                b.member_contact_no, b.member_address, b.member_type 
+                FROM tbl_emp_proj AS a
+                LEFT JOIN tbl_member AS b 
+                ON a.emp_id = b.memberCode
+                WHERE a.deleted = 0 AND b.deleted = 0 AND a.type = 'STAKEHOLDER' AND projCode = '".$request->code."'
             ");
             
             if($stake_selected != ""){
@@ -183,11 +184,11 @@ class MainController extends Controller
 
                     $data .= '
                     <tr>
-                        <td>'.$field->fullname.'</td>
+                        <td>'.$field->member_name.'</td>
 
-                        <td>'.$field->csi_email.'</td>
+                        <td>'.$field->member_email.'</td>
 
-                        <td>'.$field->position.'</td>
+                        <td>'.$field->member_contact_no.'</td>
 
                     </tr>
                     ';
@@ -198,11 +199,12 @@ class MainController extends Controller
         else if($request->type == "CUSTOMER")
         {
             $customer_selected = DB::connection('mysql')->select("
-            SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
-            b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
-            FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
-            WHERE a.type = 'CUSTOMER' AND a.projCode = '".$request->code."' and a.deleted = 0
-            GROUP BY a.emp_id
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
+                b.member_contact_no, b.member_address, b.member_type 
+                FROM tbl_emp_proj AS a
+                LEFT JOIN tbl_member AS b 
+                ON a.emp_id = b.memberCode
+                WHERE a.deleted = 0 AND b.deleted = 0 AND a.type = 'CUSTOMER' AND projCode = '".$request->code."'
             ");
             
             if($customer_selected != ""){
@@ -210,11 +212,11 @@ class MainController extends Controller
 
                     $data .= '
                     <tr>
-                        <td>'.$field->fullname.'</td>
+                        <td>'.$field->member_name.'</td>
 
-                        <td>'.$field->csi_email.'</td>
+                        <td>'.$field->member_email.'</td>
 
-                        <td>'.$field->position.'</td>
+                        <td>'.$field->member_contact_no.'</td>
 
                     </tr>
                     ';
@@ -611,6 +613,10 @@ class MainController extends Controller
 
             $emp_info = DB::connection('mysql')->select("SELECT * FROM view_employee_info");
 
+            $stakeholder_info = DB::connection('mysql')->select("SELECT * FROM tbl_member WHERE member_type = 'STAKEHOLDER' AND deleted = 0");
+
+            $customer_info = DB::connection('mysql')->select("SELECT * FROM tbl_member WHERE member_type = 'CUSTOMER' AND deleted = 0");
+
             $emp_selected = DB::connection('mysql')->select("
             SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
             b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
@@ -627,7 +633,7 @@ class MainController extends Controller
             GROUP BY a.emp_id
             ");
 
-            return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info','emp_selected','pm_selected'));
+            return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info','emp_selected','pm_selected','stakeholder_info','customer_info'));
         }else{
             return redirect('/');
         }
@@ -1061,14 +1067,12 @@ class MainController extends Controller
     public function project_info_stakeholder(Request $request){
         
         $projStake = DB::connection('mysql')->select("
-            SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
-            b.emp_no AS emp_no, b.company_id AS company_id, concat(b.lname,', ',b.fname,' ',b.mname) AS fullname, b.active AS active,
-
-            c.department AS department, c.position AS position, c.team AS team, c.employment_status AS employment_status
-
-            FROM tbl_emp_proj AS a LEFT JOIN hris_csi_b.personal_information AS b ON a.emp_id = b.company_id
-            LEFT JOIN hris_csi_b.employee_information AS c ON a.emp_id = c.company_id
-            WHERE (b.active = 'yes') AND projCode = '".$request->code."' AND a.deleted = 0 AND type = 'STAKEHOLDER'
+        SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
+        b.member_contact_no, b.member_address, b.member_type 
+        FROM tbl_emp_proj AS a
+        LEFT JOIN tbl_member AS b 
+        ON a.emp_id = b.memberCode
+        WHERE a.deleted = 0 AND b.deleted = 0 AND a.type = 'STAKEHOLDER' AND projCode = '".$request->code."'
         ");
 
         $data = "";
@@ -1078,9 +1082,9 @@ class MainController extends Controller
             foreach($projStake as $fieldStake){
                 $data .='
                     <tr>
-                        <td>'.$fieldStake->fullname.'</td>
-                        <td>'.$fieldStake->csi_email.'</td>
-                        <td>'.$fieldStake->position.'</td>
+                        <td>'.$fieldStake->member_name.'</td>
+                        <td>'.$fieldStake->member_email.'</td>
+                        <td>'.$fieldStake->member_contact_no.'</td>
                     </tr>
                 ';
                 $counterStake++;
@@ -1091,15 +1095,14 @@ class MainController extends Controller
     }
 
     public function project_info_customer(Request $request){
+
         $projCustomer = DB::connection('mysql')->select("
-            SELECT a.id, a.projCode, a.emp_id, b.csi_email, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
-            b.emp_no AS emp_no, b.company_id AS company_id, concat(b.lname,', ',b.fname,' ',b.mname) AS fullname, b.active AS active,
-
-            c.department AS department, c.position AS position, c.team AS team, c.employment_status AS employment_status
-
-            FROM tbl_emp_proj AS a LEFT JOIN hris_csi_b.personal_information AS b ON a.emp_id = b.company_id
-            LEFT JOIN hris_csi_b.employee_information AS c ON a.emp_id = c.company_id
-            WHERE (b.active = 'yes') AND projCode = '".$request->code."' AND a.deleted = 0 AND type = 'CUSTOMER'
+        SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
+        b.member_contact_no, b.member_address, b.member_type 
+        FROM tbl_emp_proj AS a
+        LEFT JOIN tbl_member AS b 
+        ON a.emp_id = b.memberCode
+        WHERE a.deleted = 0 AND b.deleted = 0 AND a.type = 'CUSTOMER' AND projCode = '".$request->code."'
         ");
 
         $data = "";
@@ -1109,9 +1112,9 @@ class MainController extends Controller
             foreach($projCustomer as $fieldCustomer){
                 $data .='
                     <tr>
-                        <td>'.$fieldCustomer->fullname.'</td>
-                        <td>'.$fieldCustomer->csi_email.'</td>
-                        <td>'.$fieldCustomer->position.'</td>
+                    <td>'.$fieldCustomer->member_name.'</td>
+                    <td>'.$fieldCustomer->member_email.'</td>
+                    <td>'.$fieldCustomer->member_contact_no.'</td>
                     </tr>
                 ';
                 $counterCustomer++;
@@ -1176,18 +1179,19 @@ class MainController extends Controller
         else if($request->type == "STAKE")
         {
             $stake_selected = DB::connection('mysql')->select("
-                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
-                b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
-                FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
-                WHERE a.type = 'STAKEHOLDER' AND a.projCode = '".$request->code."' and a.deleted = 0
-                GROUP BY a.emp_id
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
+                b.member_contact_no, b.member_address, b.member_type 
+                FROM tbl_emp_proj AS a
+                LEFT JOIN tbl_member AS b 
+                ON a.emp_id = b.memberCode
+                WHERE a.deleted = 0 AND b.deleted = 0 AND a.type = 'STAKEHOLDER' AND projCode = '".$request->code."'
             ");
             if(count($stake_selected)){
                 foreach($stake_selected as $field){
                     $data .= '
                         <div class="custom-control custom-checkbox current-stake">
-                        <input type="checkbox" class="custom-control-input" name="stakeChck" value="'.$field->emp_id.'" id="stakeChck'.$field->emp_id.'" checked>
-                        <label class="custom-control-label" for="stakeChck'.$field->emp_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
+                        <input type="checkbox" class="custom-control-input" name="stakeChck" value="'.$field->memberCode.'" id="stakeChck'.$field->memberCode.'" checked>
+                        <label class="custom-control-label" for="stakeChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1199,18 +1203,19 @@ class MainController extends Controller
         else if($request->type == "CUSTOMER")
         {
             $cus_selected = DB::connection('mysql')->select("
-                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, a.by_id, a.updated_by, a.created_at, a.updated_at,
-                b.emp_no, b.company_id, b.fullname, b.lname, b.fname, b.company_ind, b.company_name, b.department, b.position, b.team, b.employment_status, b.active
-                FROM tbl_emp_proj AS a LEFT JOIN view_employee_info AS b ON a.emp_id = b.company_id
-                WHERE a.type = 'CUSTOMER' AND a.projCode = '".$request->code."' and a.deleted = 0
-                GROUP BY a.emp_id
+                SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
+                b.member_contact_no, b.member_address, b.member_type 
+                FROM tbl_emp_proj AS a
+                LEFT JOIN tbl_member AS b 
+                ON a.emp_id = b.memberCode
+                WHERE a.deleted = 0 AND b.deleted = 0 AND a.type = 'CUSTOMER' AND projCode = '".$request->code."'
             ");
             if(count($cus_selected)){
                 foreach($cus_selected as $field){
                     $data .= '
                         <div class="custom-control custom-checkbox current-stake">
-                        <input type="checkbox" class="custom-control-input" name="cusChck" value="'.$field->emp_id.'" id="cusChck'.$field->emp_id.'" checked>
-                        <label class="custom-control-label" for="cusChck'.$field->emp_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
+                        <input type="checkbox" class="custom-control-input" name="cusChck" value="'.$field->memberCode.'" id="cusChck'.$field->memberCode.'" checked>
+                        <label class="custom-control-label" for="cusChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1313,14 +1318,14 @@ class MainController extends Controller
         else if($request->type == "STAKE")
         {
             $arrays = implode("', '", $request->stakeChck);
-            $stake_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
+            $stake_selected = DB::connection('mysql')->select("SELECT * FROM tbl_member WHERE memberCode NOT IN('".$arrays."') AND member_type = 'STAKEHOLDER' AND deleted = 0");
            
             if(count($stake_selected)){
                 foreach($stake_selected as $field){
                     $data .= '
                         <div class="custom-control custom-checkbox current-stake">
-                        <input type="checkbox" class="custom-control-input stakeChck" name="stakeChck" value="'.$field->company_id.'" id="stakeChck'.$field->company_id.'">
-                        <label class="custom-control-label" for="stakeChck'.$field->company_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
+                        <input type="checkbox" class="custom-control-input stakeChck" name="stakeChck" value="'.$field->memberCode.'" id="stakeChck'.$field->memberCode.'">
+                        <label class="custom-control-label" for="stakeChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1331,14 +1336,14 @@ class MainController extends Controller
         else if($request->type == "CUSTOMER")
         {
             $arrays = implode("', '", $request->cusChck);
-            $cus_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
+            $cus_selected = DB::connection('mysql')->select("SELECT * FROM tbl_member WHERE memberCode NOT IN('".$arrays."') AND member_type = 'CUSTOMER' AND deleted = 0");
            
             if(count($cus_selected)){
                 foreach($cus_selected as $field){
                     $data .= '
                         <div class="custom-control custom-checkbox current-stake">
-                        <input type="checkbox" class="custom-control-input cusChck" name="cusChck" value="'.$field->company_id.'" id="cusChck'.$field->company_id.'">
-                        <label class="custom-control-label" for="cusChck'.$field->company_id.'">'.$field->fullname.'<em><small> ('.$field->position.') - '.$field->department.'</small></em></label>
+                        <input type="checkbox" class="custom-control-input cusChck" name="cusChck" value="'.$field->memberCode.'" id="cusChck'.$field->memberCode.'">
+                        <label class="custom-control-label" for="cusChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.'</small></em></label>
                         </div>
                     ';
                 }
@@ -2090,7 +2095,7 @@ class MainController extends Controller
                 $validatorSave2 = Validator::make(
                     $insert_data2,
                     [
-                        '*.emp_id' => "required|exists:users,company_id",
+                        '*.emp_id' => "required|exists:tbl_member,memberCode",
                     ],
                     [
                         '*.emp_id.exists' => 'The selected :attribute is invalid. Stakeholder does not exists!',
@@ -2185,7 +2190,7 @@ class MainController extends Controller
                 $validatorSave5 = Validator::make(
                     $insert_data6,
                     [
-                        '*.emp_id' => "required|exists:users,company_id",
+                        '*.emp_id' => "required|exists:tbl_member,memberCode",
                     ],
                     [
                         '*.emp_id.exists' => 'The selected :attribute is invalid. Customer does not exists!',
@@ -2520,7 +2525,7 @@ class MainController extends Controller
                 $validatorSave2 = Validator::make(
                     $validate_data2,
                     [
-                        '*.emp_id' => "required|exists:users,company_id",
+                        '*.emp_id' => "required|exists:tbl_member,memberCode",
                     ],
                     [
                         '*.emp_id.exists' => 'The selected :attribute is invalid. Stakeholder does not exists!',
@@ -2589,7 +2594,7 @@ class MainController extends Controller
                 $validatorSave5 = Validator::make(
                     $validate_data5,
                     [
-                        '*.emp_id' => "required|exists:users,company_id",
+                        '*.emp_id' => "required|exists:tbl_member,memberCode",
                     ],
                     [
                         '*.emp_id.exists' => 'The selected :attribute is invalid. Customer does not exists!',

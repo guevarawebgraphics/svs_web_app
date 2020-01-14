@@ -556,11 +556,16 @@
                             <label for="stakeSOL" class="svs-small"><small>Stakeholder Name</small></label>
                             <select id="stakeSOL" name="stakeSOL" class="mdb-select multi-sol-svs" multiple="multiple">
                                 <optgroup label="Stakeholders Name" title="Opiton Group 1">
-                                @if(count($emp_info))
+                                {{-- @if(count($emp_info))
                                     @foreach($emp_info as $field)
                                         <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
                                     @endforeach
-                                @endif
+                                @endif --}}
+                                @if(count($stakeholder_info))
+                                @foreach($stakeholder_info as $field)
+                                    <option title="Subgroup 1" value="{{$field->memberCode}}">{{$field->member_name}}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                     <!--Grid column-->
@@ -570,10 +575,15 @@
                             <label for="cusSOL" class="svs-small"><small>Customer</small></label>
                             <select id="cusSOL" name="cusSOL" class="mdb-select multi-sol-svs" multiple="multiple">
                                 <optgroup label="Customer Name" title="Opiton Group 1">
-                                @if(count($emp_info))
+                                {{-- @if(count($emp_info))
                                         @foreach($emp_info as $field)
                                         <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
                                     @endforeach
+                                @endif --}}
+                                @if(count($customer_info))
+                                @foreach($customer_info as $field)
+                                    <option title="Subgroup 1" value="{{$field->memberCode}}">{{$field->member_name}}</option>
+                                @endforeach
                                 @endif
                         </select>
                     </div>
