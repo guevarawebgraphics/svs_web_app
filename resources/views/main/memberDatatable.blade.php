@@ -15,6 +15,8 @@
                         </th>
                         <th class="th-sm">Contact No
                         </th>
+                        <th class="th-sm">Type
+                        </th>
                         <th class="th-sm">Addresss
                         </th>
                         <th class="th-sm">Created At
@@ -31,8 +33,9 @@
                                 <td>{{$field->member_name}}</td>
                                 <td>{{$field->member_email}}</td>
                                 <td>{{$field->member_contact_no}}</td>
+                                <td>{{$field->member_type}}</td>
                                 <td>{{$field->member_address}}</td>
-                                <td>{{ date('F d Y - h:i a',strtotime($field->created_at)) }}</td>
+                                <td><small>{{ date('F d Y - h:i a',strtotime($field->created_at)) }}</small></td>
                                 <td>
                                     <div class="row text-center">
                                         {{-- <button class="svs-action btn" data-id="{{$field->id}}" data-memcode="{{$field->memberCode}}" data-name="{{$field->member_name}}" data-email="{{$field->member_email}}" data-contact="{{$field->member_contact_no}}" data-address="{{$field->member_address}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-type="{{$field->member_type}}" ><i class="fa fa-list"></i></button> --}}

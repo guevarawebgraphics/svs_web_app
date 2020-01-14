@@ -2893,6 +2893,152 @@ class MainController extends Controller
         }
     }
 
+    public function val_new_member(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->type == "NEW_MEMBER" || $request->type == "EDIT_MEMBER" || $request->type == "DELETE_MEMBER")
+        {
+            if($request->name == ""){
+                $messages = "Name is required!";
+                $error[] = $messages;
+            }
+            else if($request->email == ""){
+                $messages = "Email is required!";
+                $error[] = $messages;
+            }
+            else if($request->contact == ""){
+                $messages = "Contact is required!";
+                $error[] = $messages;
+            }
+            else if($request->addr == ""){
+                $messages = "Address is required!";
+                $error[] = $messages;
+            }
+            else if($request->cat == ""){
+                $messages = "Select your category";
+                $error[] = $messages;
+            }
+            else if($request->type == "EDIT_MEMBER" && $request->code == ""){
+                $messages = "Member Code is required!";
+                $error[] = $messages;
+            }
+            else if($request->type == "DELETE_MEMBER" && $request->code == ""){
+                $messages = "Member Code is required!";
+                $error[] = $messages;
+            }
+            else{
+                $messages = "Successfully Saved!";
+                $success[] = $messages;
+            }
+
+            
+        }
+        else{
+            $messages = "Invalid request...";
+            $error[] = $messages;
+        }
+        
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+
+        echo json_encode($output);
+    }
+
+    public function new_member(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+        if($request->type == "NEW_MEMBER"){
+            $memCode = date("Y")."-".strtoupper(str_random(8));
+            $member = new Member;
+            $member->memberCode = $memCode;
+            $member->member_name = $request->name;
+            $member->member_email = $request->email;
+            $member->member_contact_no = $request->contact;
+            $member->member_address = $request->addr;
+            $member->member_type = $request->cat;
+            $member->deleted = 0;
+            $member->by_id = auth()->user()->id;
+            $member->updated_by = auth()->user()->name;
+            $member->created_at = now();
+            $member->updated_at = now();
+            $member->save();
+
+            $request->session()->put('successMem',"Successfully Saved!");
+            $request->session()->put('memCode',$memCode);
+            $request->session()->put('memName',$request->name);
+            $request->session()->put('memEmail',$request->email);
+            $request->session()->put('memContact',$request->contact);
+            $request->session()->put('memAddr',$request->addr);
+            $request->session()->put('memCat',$request->cat);
+
+            $messages = "Successfully Saved!";
+            $success[] = $messages;
+        }
+        else if($request->type == "EDIT_MEMBER"){
+            DB::table('tbl_member')
+                ->where('memberCode', $request->code)
+                ->update([
+                'member_name'  =>  $request->name,
+                'member_email'  =>  $request->email,
+                'member_contact_no'  =>  $request->contact,
+                'member_address'  =>  $request->addr,
+                'member_type'  =>  $request->cat,
+                'deleted'=> 0,
+                'updated_at' => now()
+            ]);
+
+            $request->session()->put('successMem',"Successfully Updated!");
+            $request->session()->put('memCode',$request->code);
+            $request->session()->put('memName',$request->name);
+            $request->session()->put('memEmail',$request->email);
+            $request->session()->put('memContact',$request->contact);
+            $request->session()->put('memAddr',$request->addr);
+            $request->session()->put('memCat',$request->cat);
+
+            $messages = "Successfully Updated!";
+            $success[] = $messages;
+        }
+        else if($request->type == "DELETE_MEMBER"){
+            DB::table('tbl_member')
+            ->where('memberCode', $request->code)
+            ->update([
+            'deleted'=> 1,
+            'updated_at' => now()
+            ]);
+
+            $request->session()->put('deleteMem',"Successfully Deleted!");
+            $request->session()->put('memCode',$request->code);
+            $request->session()->put('memName',$request->name);
+            $request->session()->put('memEmail',$request->email);
+            $request->session()->put('memContact',$request->contact);
+            $request->session()->put('memAddr',$request->addr);
+            $request->session()->put('memCat',$request->cat);
+
+            $messages = "Successfully Deleted!";
+            $success[] = $messages;
+        }
+        else{
+            $messages = "Invalid request...";
+            $error[] = $messages;
+        }
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+
+        echo json_encode($output);
+    }
+
+
+
     // ------------------------------------------------------------------------//
     // This section all reusable codes are commented for future purposes       //
     // ------------------------------------------------------------------------//
