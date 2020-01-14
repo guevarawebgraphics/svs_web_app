@@ -31,7 +31,7 @@
                       {{-- <a class="dropdown-item svs-text" href="/admin/location">Location</a> --}}
                       <a class="dropdown-item svs-text" href="/task">Tasks</a>
                       <a class="dropdown-item svs-text" href="/projectlist">Project List</a>
-                      <a class="dropdown-item svs-text" href="/projectlist">Member List</a>
+                      <a class="dropdown-item svs-text" href="/member">Member List</a>
                       {{-- <a class="dropdown-item svs-text" href="/assignproject">Assign Project</a> --}}
                     </div>
                 {{-- @else
