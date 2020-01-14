@@ -563,7 +563,7 @@
                                 @endif --}}
                                 @if(count($stakeholder_info))
                                 @foreach($stakeholder_info as $field)
-                                    <option title="Subgroup 1" value="{{$field->memberCode}}">{{$field->member_name}} ({{$field->member_email}} - {{$field->member_contact_no}})</option>
+                                    <option title="Subgroup 1" value="{{$field->memberCode}}">{{$field->member_name}} ({{$field->member_email}} - {{$field->member_contact_no}} - {{$field->member_position}})</option>
                                 @endforeach
                             @endif
                         </select>
@@ -582,7 +582,7 @@
                                 @endif --}}
                                 @if(count($customer_info))
                                 @foreach($customer_info as $field)
-                                    <option title="Subgroup 1" value="{{$field->memberCode}}">{{$field->member_name}} ({{$field->member_email}} - {{$field->member_contact_no}})</option>
+                                    <option title="Subgroup 1" value="{{$field->memberCode}}">{{$field->member_name}} ({{$field->member_email}} - {{$field->member_contact_no}} - {{$field->member_position}})</option>
                                 @endforeach
                                 @endif
                         </select>

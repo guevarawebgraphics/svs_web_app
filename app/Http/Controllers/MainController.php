@@ -172,7 +172,7 @@ class MainController extends Controller
         {
             $stake_selected = DB::connection('mysql')->select("
                 SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
-                b.member_contact_no, b.member_address, b.member_type 
+                b.member_contact_no, b.member_address, b.member_type, b.member_position  
                 FROM tbl_emp_proj AS a
                 LEFT JOIN tbl_member AS b 
                 ON a.emp_id = b.memberCode
@@ -190,6 +190,8 @@ class MainController extends Controller
 
                         <td>'.$field->member_contact_no.'</td>
 
+                        <td>'.$field->member_position.'</td>
+
                     </tr>
                     ';
                 }
@@ -200,7 +202,7 @@ class MainController extends Controller
         {
             $customer_selected = DB::connection('mysql')->select("
                 SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
-                b.member_contact_no, b.member_address, b.member_type 
+                b.member_contact_no, b.member_address, b.member_type, b.member_position  
                 FROM tbl_emp_proj AS a
                 LEFT JOIN tbl_member AS b 
                 ON a.emp_id = b.memberCode
@@ -217,6 +219,8 @@ class MainController extends Controller
                         <td>'.$field->member_email.'</td>
 
                         <td>'.$field->member_contact_no.'</td>
+
+                        <td>'.$field->member_position.'</td>
 
                     </tr>
                     ';
@@ -1068,7 +1072,7 @@ class MainController extends Controller
         
         $projStake = DB::connection('mysql')->select("
         SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
-        b.member_contact_no, b.member_address, b.member_type 
+        b.member_contact_no, b.member_address, b.member_type, b.member_position 
         FROM tbl_emp_proj AS a
         LEFT JOIN tbl_member AS b 
         ON a.emp_id = b.memberCode
@@ -1085,6 +1089,7 @@ class MainController extends Controller
                         <td>'.$fieldStake->member_name.'</td>
                         <td>'.$fieldStake->member_email.'</td>
                         <td>'.$fieldStake->member_contact_no.'</td>
+                        <td>'.$fieldStake->member_position.'</td>
                     </tr>
                 ';
                 $counterStake++;
@@ -1098,7 +1103,7 @@ class MainController extends Controller
 
         $projCustomer = DB::connection('mysql')->select("
         SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
-        b.member_contact_no, b.member_address, b.member_type 
+        b.member_contact_no, b.member_address, b.member_type, b.member_position 
         FROM tbl_emp_proj AS a
         LEFT JOIN tbl_member AS b 
         ON a.emp_id = b.memberCode
@@ -1115,6 +1120,7 @@ class MainController extends Controller
                     <td>'.$fieldCustomer->member_name.'</td>
                     <td>'.$fieldCustomer->member_email.'</td>
                     <td>'.$fieldCustomer->member_contact_no.'</td>
+                    <td>'.$fieldCustomer->member_position.'</td>
                     </tr>
                 ';
                 $counterCustomer++;
@@ -1180,7 +1186,7 @@ class MainController extends Controller
         {
             $stake_selected = DB::connection('mysql')->select("
                 SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
-                b.member_contact_no, b.member_address, b.member_type 
+                b.member_contact_no, b.member_address, b.member_type, b.member_position 
                 FROM tbl_emp_proj AS a
                 LEFT JOIN tbl_member AS b 
                 ON a.emp_id = b.memberCode
@@ -1191,7 +1197,7 @@ class MainController extends Controller
                     $data .= '
                         <div class="custom-control custom-checkbox current-stake">
                         <input type="checkbox" class="custom-control-input" name="stakeChck" value="'.$field->memberCode.'" id="stakeChck'.$field->memberCode.'" checked>
-                        <label class="custom-control-label" for="stakeChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.'</small></em></label>
+                        <label class="custom-control-label" for="stakeChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.' - '.$field->member_position.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1204,7 +1210,7 @@ class MainController extends Controller
         {
             $cus_selected = DB::connection('mysql')->select("
                 SELECT a.id, a.projCode, a.emp_id, a.type, a.deleted, b.memberCode, b.member_name, b.member_email,
-                b.member_contact_no, b.member_address, b.member_type 
+                b.member_contact_no, b.member_address, b.member_type, b.member_position 
                 FROM tbl_emp_proj AS a
                 LEFT JOIN tbl_member AS b 
                 ON a.emp_id = b.memberCode
@@ -1215,7 +1221,7 @@ class MainController extends Controller
                     $data .= '
                         <div class="custom-control custom-checkbox current-stake">
                         <input type="checkbox" class="custom-control-input" name="cusChck" value="'.$field->memberCode.'" id="cusChck'.$field->memberCode.'" checked>
-                        <label class="custom-control-label" for="cusChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.'</small></em></label>
+                        <label class="custom-control-label" for="cusChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.' - '.$field->member_position.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1325,7 +1331,7 @@ class MainController extends Controller
                     $data .= '
                         <div class="custom-control custom-checkbox current-stake">
                         <input type="checkbox" class="custom-control-input stakeChck" name="stakeChck" value="'.$field->memberCode.'" id="stakeChck'.$field->memberCode.'">
-                        <label class="custom-control-label" for="stakeChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.'</small></em></label>
+                        <label class="custom-control-label" for="stakeChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.' - '.$field->member_position.'</small></em></label>
                         </div>
                     ';
                 }
@@ -1343,7 +1349,7 @@ class MainController extends Controller
                     $data .= '
                         <div class="custom-control custom-checkbox current-stake">
                         <input type="checkbox" class="custom-control-input cusChck" name="cusChck" value="'.$field->memberCode.'" id="cusChck'.$field->memberCode.'">
-                        <label class="custom-control-label" for="cusChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.'</small></em></label>
+                        <label class="custom-control-label" for="cusChck'.$field->memberCode.'">'.$field->member_name.'<em><small> ('.$field->member_email.') - '.$field->member_contact_no.' - '.$field->member_position.'</small></em></label>
                         </div>
                     ';
                 }
@@ -2918,6 +2924,10 @@ class MainController extends Controller
                 $messages = "Contact is required!";
                 $error[] = $messages;
             }
+            else if($request->position == ""){
+                $messages = "Position is required!";
+                $error[] = $messages;
+            }
             else if($request->addr == ""){
                 $messages = "Address is required!";
                 $error[] = $messages;
@@ -2967,6 +2977,7 @@ class MainController extends Controller
             $member->member_name = $request->name;
             $member->member_email = $request->email;
             $member->member_contact_no = $request->contact;
+            $member->member_position = $request->position;
             $member->member_address = $request->addr;
             $member->member_type = $request->cat;
             $member->deleted = 0;
@@ -2994,6 +3005,7 @@ class MainController extends Controller
                 'member_name'  =>  $request->name,
                 'member_email'  =>  $request->email,
                 'member_contact_no'  =>  $request->contact,
+                'member_position'  =>  $request->position,
                 'member_address'  =>  $request->addr,
                 'member_type'  =>  $request->cat,
                 'deleted'=> 0,

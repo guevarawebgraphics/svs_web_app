@@ -63,9 +63,17 @@
                     </div>
                 </div>
             </div>
-            <!--Grid row-->
+            
             <div class="row">
-                <!--Grid column-->
+                <div class="col-md-12">
+                    <div class="md-form mb-0">
+                        <input type="text" id="memPosition" name="memPosition" class="form-control">
+                        <label for="memPosition" class="">Position</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-12">
                     <div class="md-form">
                         <textarea type="text" id="memAddr" name="memAddr" maxlength="190" class="form-control md-textarea"></textarea>
@@ -178,6 +186,16 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="md-form mb-0">
+                        <input type="text" id="memPositionEdit" name="memPositionEdit" class="form-control">
+                        <label for="memPositionEdit" class="" id="memPositionEditLabel">Position</label>
+                    </div>
+                </div>
+            </div>
+
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
@@ -224,6 +242,7 @@
     var name = $("#memName").val();
     var email = $("#memEmail").val();
     var contact = $("#memNo").val();
+    var position = $("#memPosition").val();
     var addr = $("#memAddr").val();
     var cat = $("#memCat").val();
 
@@ -237,6 +256,7 @@
           name:name,
           email:email,
           contact:contact,
+          position:position,
           addr:addr,
           cat:cat
       }, 
@@ -258,6 +278,7 @@
                   name:name,
                   email:email,
                   contact:contact,
+                  position:position,
                   addr:addr,
                   cat:cat
               }, 
@@ -391,6 +412,7 @@
       var name = $(this).attr('data-name');
       var email = $(this).attr('data-email');
       var contact = $(this).attr('data-contact');
+      var position = $(this).attr('data-position');
       var address = $(this).attr('data-address');
       var date = $(this).attr('data-date');
       var type = $(this).attr('data-type');
@@ -403,6 +425,9 @@
 
       $('#memNoEditLabel').attr('class','active');
       $('#memNoEdit').val(contact);
+
+      $('#memPositionEditLabel').attr('class','active');
+      $('#memPositionEdit').val(position);
 
       $('#memAddrEditLabel').attr('class','active');
       $('#memAddrEdit').val(address);
@@ -423,6 +448,7 @@
       $('#editSubmit').attr('data-name',name);
       $('#editSubmit').attr('data-email',email);
       $('#editSubmit').attr('data-contact',contact);
+      $('#editSubmit').attr('data-position',position);
       $('#editSubmit').attr('data-address',address);
       $('#editSubmit').attr('data-date',date);
       $('#editSubmit').attr('data-type',type);
@@ -438,6 +464,7 @@
     var name = $("#memFNameEdit").val();
     var email = $("#memEmailEdit").val();
     var contact = $("#memNoEdit").val();
+    var position = $("#memPositionEdit").val();
     var addr = $("#memAddrEdit").val();
     var cat = $("#memCatEdit").val();
 
@@ -452,6 +479,7 @@
           name:name,
           email:email,
           contact:contact,
+          position:position,
           addr:addr,
           cat:cat
       }, 
@@ -474,6 +502,7 @@
                   name:name,
                   email:email,
                   contact:contact,
+                  position:position,
                   addr:addr,
                   cat:cat
               }, 

@@ -346,6 +346,7 @@ ul {
                                                 <th><small><b>Name</b></small></th>
                                                 <th><small><b>Email</b></small></th>
                                                 <th><small><b>Contact</b></small></th>
+                                                <th><small><b>Position</b></small></th>
                                             </tr>
                                         </thead>
                                         <tbody id="stakeView">
@@ -366,6 +367,7 @@ ul {
                                                 <th><small><b>Name</b></small></th>
                                                 <th><small><b>Email</b></small></th>
                                                 <th><small><b>Contact</b></small></th>
+                                                <th><small><b>Position</b></small></th>
                                             </tr>
                                         </thead>
                                         <tbody id="customerView">
