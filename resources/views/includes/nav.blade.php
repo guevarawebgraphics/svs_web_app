@@ -47,6 +47,7 @@
               <div class="dropdown-menu dropdown-default svs-text" aria-labelledby="navbarDropdownMenuLink-444">
                 <a class="dropdown-item svs-text" href="/retrack_task">Task Records <small><em>(Inactive)</em></small></a>
                 <a class="dropdown-item svs-text" href="/retrack_project">Project List <small><em>(Inactive)</em></small></a>
+                <a class="dropdown-item svs-text" href="/retrack_member">Member Records <small><em>(Inactive)</em></small></a>
               </div>
             </li>
           </ul>

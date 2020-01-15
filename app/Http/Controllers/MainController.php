@@ -2834,6 +2834,18 @@ class MainController extends Controller
         }
     }
 
+    public function retrack_member(){
+        if(!empty(auth()->user()->id)){
+            $member_record = Member::where('deleted', 1)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            return view('main.retrackmember', compact('member_record'));
+        }else{
+            return redirect('/');
+        }
+    }
+
     public function retrack(Request $request){
         $message = "";
         $output = array();
@@ -2876,6 +2888,27 @@ class MainController extends Controller
             $request->session()->put('titleRetrack',$proj[0]->proj_title);
             $request->session()->put('descRetrack',$proj[0]->proj_desc);
             $request->session()->put('codeRetrack',$request->code);
+
+            $messages = "Successfully Reactivated!";
+            $success[] = $messages;
+        }
+        else if($request->type == "retrack_member" && $request->code != ""){
+            $mem = DB::connection('mysql')->select("SELECT * from tbl_member WHERE memberCode = '".$request->code."'");
+        
+            DB::table('tbl_member')
+            ->where('memberCode', $request->code)
+            ->update([
+            'deleted'=> 0,
+            'updated_at' => now()
+            ]);
+
+            $request->session()->put('successRetrackMem',"Successfully Member Retracked!");
+            $request->session()->put('RetrackMemName',$mem[0]->member_name);
+            $request->session()->put('RetrackMemEmail',$mem[0]->member_email);
+            $request->session()->put('RetrackMemContact',$mem[0]->member_contact_no);
+            $request->session()->put('RetrackMemType',$mem[0]->member_type);
+            $request->session()->put('RetrackMemPosition',$mem[0]->member_position);
+            $request->session()->put('RetrackMemCode',$request->code);
 
             $messages = "Successfully Reactivated!";
             $success[] = $messages;
@@ -2924,7 +2957,7 @@ class MainController extends Controller
                 $messages = "Contact is required!";
                 $error[] = $messages;
             }
-            else if($request->position == ""){
+            else if($request->position == "" && $request->type != "DELETE_MEMBER"){
                 $messages = "Position is required!";
                 $error[] = $messages;
             }
@@ -3053,9 +3086,6 @@ class MainController extends Controller
 
         echo json_encode($output);
     }
-
-
-
     // ------------------------------------------------------------------------//
     // This section all reusable codes are commented for future purposes       //
     // ------------------------------------------------------------------------//

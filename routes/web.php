@@ -61,6 +61,9 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/val_new_member', 'MainController@val_new_member')->name('val_new_member');
     Route::post('/new_member', 'MainController@new_member')->name('new_member');
 
+    Route::get('/retrack_member', 'MainController@retrack_member');
+    Route::post('/retrack_member/retrack_member', 'MainController@retrack')->name('retrack_member');
+
     // ------------------------------------------------------------------------//
     // This section all reusable codes will be commented for future purposes   //
     // ------------------------------------------------------------------------//
