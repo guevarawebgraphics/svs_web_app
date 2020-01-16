@@ -43,13 +43,22 @@
             
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Retrack</a>
+              aria-haspopup="true" aria-expanded="false">Retrack <small><em>(Inactive)</em></small></a>
               <div class="dropdown-menu dropdown-default svs-text" aria-labelledby="navbarDropdownMenuLink-444">
-                <a class="dropdown-item svs-text" href="/retrack_task">Task Records <small><em>(Inactive)</em></small></a>
-                <a class="dropdown-item svs-text" href="/retrack_project">Project List <small><em>(Inactive)</em></small></a>
-                <a class="dropdown-item svs-text" href="/retrack_member">Member Records <small><em>(Inactive)</em></small></a>
+                <a class="dropdown-item svs-text" href="/retrack_task">Task </a>
+                <a class="dropdown-item svs-text" href="/retrack_project">Project List </a>
+                <a class="dropdown-item svs-text" href="/retrack_member">Member Records </a>
               </div>
             </li>
+
+            <li class="nav-item">
+              
+                {{-- @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0) --}}
+                <a class="nav-link svs-text" href="/user_management">
+                User Management
+              </a>
+            </li>
+
           </ul>
           <ul class="navbar-nav ml-auto nav-flex-icons">
             {{-- <li class="nav-item">

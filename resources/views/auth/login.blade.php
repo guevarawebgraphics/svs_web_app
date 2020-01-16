@@ -17,7 +17,7 @@
                         <div class="md-form">
                             <input type="email" id="materialLoginFormEmail" class="form-control @error('email') is-invalid @enderror" name="email" required>
                             <label for="materialLoginFormEmail">{{ __('E-Mail Address') }}</label>
-
+                            
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

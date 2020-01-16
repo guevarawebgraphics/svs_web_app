@@ -85,6 +85,9 @@ background-color:#222222;
     .svs-modal-sm{
         max-width:60%!important;
     }
+    .svs-modal-xs{
+        max-width:50%!important;
+    }
     .svs-modal-md{
         max-width:60%!important;
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2020 at 10:37 AM
+-- Generation Time: Jan 16, 2020 at 04:11 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -5392,7 +5392,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"svs_web\",\"table\":\"tbl_member\"},{\"db\":\"svs_web\",\"table\":\"tbl_member_proj\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"users\"},{\"db\":\"svs_web\",\"table\":\"view_date_time_records\"},{\"db\":\"svs_web\",\"table\":\"date_time_records\"},{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"},{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"view_proj_progress\"}]');
+('root', '[{\"db\":\"svs_web\",\"table\":\"users\"},{\"db\":\"svs_web\",\"table\":\"tbl_member\"},{\"db\":\"svs_web\",\"table\":\"tbl_member_proj\"},{\"db\":\"svs_web\",\"table\":\"tbl_emp_proj\"},{\"db\":\"svs_web\",\"table\":\"view_date_time_records\"},{\"db\":\"svs_web\",\"table\":\"date_time_records\"},{\"db\":\"svs_web\",\"table\":\"view_project_percentage\"},{\"db\":\"svs_web\",\"table\":\"tbl_projectlist\"},{\"db\":\"svs_web\",\"table\":\"tbl_proj_progress\"},{\"db\":\"svs_web\",\"table\":\"view_proj_progress\"}]');
 
 -- --------------------------------------------------------
 
@@ -5516,7 +5516,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2020-01-14 08:48:43', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":26.9965,\"NavigationWidth\":242}');
+('root', '2020-01-16 03:10:21', '{\"Console\\/Mode\":\"show\",\"Console\\/Height\":26.9965,\"NavigationWidth\":242}');
 
 -- --------------------------------------------------------
 
@@ -6403,6 +6403,17 @@ CREATE TABLE `activity_records` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `activity_records`
+--
+
+INSERT INTO `activity_records` (`id`, `token_id`, `by_user_id`, `for_company_id`, `type`, `status`, `created_at`, `updated_at`) VALUES
+(1, '328bb22f961aff0f50e97c4f860bd99cfd6898fda54c25fe0a821f2b815c97caa935b3c0116c6798', 1, '2020-1001', 'REGISTER', NULL, '2020-01-16 02:54:18', '2020-01-16 02:54:18'),
+(2, '328bb22f961aff0f50e97c4f860bd99cfd6898fda54c25fe0a821f2b815c97caa935b3c0116c6798', 1, '2020-1001', 'REGISTER', NULL, '2020-01-16 02:54:59', '2020-01-16 02:54:59'),
+(3, '328bb22f961aff0f50e97c4f860bd99cfd6898fda54c25fe0a821f2b815c97caa935b3c0116c6798', 1, '2020-1001', 'REGISTER', NULL, '2020-01-16 02:56:15', '2020-01-16 02:56:15'),
+(4, '7ceb4da5ba0dc637fb6a126d491127666dc375592cbc59b8997fa1c44b5bbffb871c3fb52104ac86', 1, NULL, 'SHOW_DTR_LIST', NULL, '2020-01-16 03:04:10', '2020-01-16 03:04:10'),
+(5, '99948b0af1b44c86b279432d26b62161a73d6381f7fb371390863ce0bf308efbf57a5263d84ac7e5', 1, '2020-1001', 'UPDATE', NULL, '2020-01-16 03:10:15', '2020-01-16 03:10:15');
+
 -- --------------------------------------------------------
 
 --
@@ -6919,7 +6930,9 @@ INSERT INTO `date_time_records` (`id`, `user_id`, `company_id`, `ACNo`, `name`, 
 (481, 7, '1996-001', '1009', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678S910', 'saved', NULL, '2020-01-09 01:41:55', '2020-01-09 01:41:55'),
 (482, 7, '1996-001', '1009', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 10:28:00', NULL, NULL, NULL, NULL, 'C/Out', '12345678S910', 'saved', NULL, '2020-01-09 01:42:08', '2020-01-09 01:42:08'),
 (483, 7, '1996-001', '1010', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 10:28:00', NULL, NULL, NULL, NULL, 'C/Out', '12345678S910', 'saved', NULL, '2020-01-09 01:42:37', '2020-01-09 01:42:37'),
-(484, 7, '1996-001', '1010', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678S910', 'saved', NULL, '2020-01-09 01:42:45', '2020-01-09 01:42:45');
+(484, 7, '1996-001', '1010', 'ABUEVA', 'pabs@gmail.com', NULL, '2019-07-24 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678S910', 'saved', NULL, '2020-01-09 01:42:45', '2020-01-09 01:42:45'),
+(485, 1, '2018-101', '5', 'ABUEVA', 'keighdee@gmail.com', NULL, '2019-04-07 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678910', 'saved', NULL, '2020-01-16 03:05:02', '2020-01-16 03:05:02'),
+(486, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2020-01-16 03:06:02', 'ADDRESS', 'longitude', 'latitude', NULL, 'C/In', '12345678910', NULL, NULL, '2020-01-16 03:06:02', '2020-01-16 03:06:02');
 
 -- --------------------------------------------------------
 
@@ -6978,10 +6991,12 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('15c84cbcf5f583ffd3f0999612cc4b9c5e980e41fb37327fc43db25f5c0da6f430862f1c450fd42a', 1, 2, NULL, '[]', 1, '2020-01-07 02:29:14', '2020-01-07 02:29:14', '2020-01-08 10:29:14'),
 ('22974f6cdc137ea0f55fa105575176519b79a79f707a3cfd652f22028cbb2de645708dbc73803857', 54, 2, NULL, '[]', 0, '2020-01-13 02:01:50', '2020-01-13 02:01:50', '2020-01-14 10:01:50'),
 ('2cbbe019841a44586a783e8f2e70a3e057bc39af319f4fe45c86fe4984c8e9f31dee773e8f2cf632', 45, 2, NULL, '[]', 0, '2020-01-06 06:52:54', '2020-01-06 06:52:54', '2020-01-07 14:52:54'),
+('328bb22f961aff0f50e97c4f860bd99cfd6898fda54c25fe0a821f2b815c97caa935b3c0116c6798', 1, 2, NULL, '[]', 1, '2020-01-16 02:52:44', '2020-01-16 02:52:44', '2020-01-17 10:52:44'),
 ('33efdafbecbbb34ac0a44752bc725b7d0a599105ac72b013a1f0bac99481b125d804c43e75f66ea4', 54, 2, NULL, '[]', 0, '2020-01-13 02:06:39', '2020-01-13 02:06:39', '2020-01-14 10:06:39'),
 ('3503294c2cf54d5b93fac89bf29dc3c20f9f4055f38b5bb5bf1929ad441addd2d4ef6cbbf73c06b2', 1, 2, NULL, '[]', 1, '2020-01-06 02:06:08', '2020-01-06 02:06:08', '2020-01-07 10:06:08'),
 ('38eff98bbdc23df9bd116023f5a02a9dcd023ae582a28ed0a65cf4524257248ae154dd93684ee758', 1, 2, NULL, '[]', 1, '2019-10-29 09:10:11', '2019-10-29 09:10:11', '2019-10-30 17:10:11'),
 ('3a5324b9306ac6bb55ddd1cdb28b86b0985610d00d621c959d105b53f344eef47b4cb0317a4523bf', 46, 2, NULL, '[]', 0, '2020-01-06 08:39:33', '2020-01-06 08:39:33', '2020-01-07 16:39:33'),
+('3a9149b5eb4f79a37bf45304c800e549fc65e6b956e1c103a7393b10f3b96934001b341215f2cefe', 54, 2, NULL, '[]', 0, '2020-01-15 08:35:59', '2020-01-15 08:35:59', '2020-01-16 16:35:59'),
 ('3ad4cd734585e3bc19184d0cf1a35bc2e96313b60f32eac6a54a65b44b279cc9a7b55705f7ab75b0', 1, 2, NULL, '[]', 1, '2020-01-10 08:56:29', '2020-01-10 08:56:29', '2020-01-11 16:56:29'),
 ('3d9068d02256099296f6093e6a07228f74c212a8b363206452b87f4213a7af0a239af5104fc30dca', 1, 2, NULL, '[]', 1, '2020-01-06 08:08:27', '2020-01-06 08:08:27', '2020-01-07 16:08:27'),
 ('3ee6794df90f4b3d00a927608fac24f942d1a00adbc3b13516ab192b543e14911604236174ea30a8', 1, 2, NULL, '[]', 1, '2019-11-25 02:17:33', '2019-11-25 02:17:33', '2019-11-26 10:17:32'),
@@ -6992,19 +7007,23 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 1, 2, NULL, '[]', 1, '2019-10-01 05:01:50', '2019-10-01 05:01:50', '2019-10-02 13:01:50'),
 ('60d80c8484a190b72d68000c3e47f0ac461d3f14a93128db8a101304871bd450aa44d48e1e25ceb9', 1, 2, NULL, '[]', 1, '2020-01-06 06:22:32', '2020-01-06 06:22:32', '2020-01-07 14:22:32'),
 ('61d0c361b589717d2aed1fd3688682a5af0dc87be9dd41e8c9146db3f222e469469892cf389145dc', 54, 2, NULL, '[]', 0, '2020-01-10 08:53:40', '2020-01-10 08:53:40', '2020-01-11 16:53:40'),
+('681dd32c6ee72ed66f08f2e51eb2a99cc0ad1c19e7120c10e4474618e5552cf5af2466fbdeae2433', 54, 2, NULL, '[]', 0, '2020-01-16 01:55:30', '2020-01-16 01:55:30', '2020-01-17 09:55:30'),
 ('6a07dad26886203dd97578817b24860817f3581b6c1fa80d9a051784ef4f5c3d48ff3fc6a82d2bf9', 1, 2, NULL, '[]', 1, '2020-01-13 03:56:15', '2020-01-13 03:56:15', '2020-01-14 11:56:15'),
 ('7088ed4b237ad664130080851abbec0c9d7365a51e8a5fb45a0de0a7e4c8fbe865993e29b16407b8', 54, 2, NULL, '[]', 0, '2020-01-10 01:56:07', '2020-01-10 01:56:07', '2020-01-11 09:56:06'),
 ('775cd47d03e94d5f95da3f8837947a7a0b023c95db1f30378da6bac97a766ac2941a142040361f0d', 45, 2, NULL, '[]', 0, '2020-01-06 08:06:46', '2020-01-06 08:06:46', '2020-01-07 16:06:46'),
 ('775fe0d59e11bfbce51e4b4be649185b9e6026d1b22a3962269d602577091378e4ec5c03ad674894', 1, 2, NULL, '[]', 1, '2019-11-20 07:51:31', '2019-11-20 07:51:31', '2019-11-21 15:51:30'),
 ('7ac6cf61ddf5443b95ef006881b495cba0514d37b19d1fcb450465cabf975b0303a26964b7560af8', 54, 2, NULL, '[]', 0, '2020-01-14 03:17:13', '2020-01-14 03:17:13', '2020-01-15 11:17:13'),
+('7ceb4da5ba0dc637fb6a126d491127666dc375592cbc59b8997fa1c44b5bbffb871c3fb52104ac86', 1, 2, NULL, '[]', 1, '2020-01-16 03:01:14', '2020-01-16 03:01:14', '2020-01-17 11:01:14'),
+('7fa66f972273894dfb81992968bc218bb6b9f777d4cca972e2c8868e2b256a4a1be9967716fa995b', 1, 2, NULL, '[]', 1, '2020-01-16 03:06:35', '2020-01-16 03:06:35', '2020-01-17 11:06:35'),
 ('8987c8ff216e13fab967ed4cd42f32739c466b00306e9a1c0d7445fc67d7ef767f68262445057f9b', 45, 2, NULL, '[]', 0, '2020-01-06 08:33:56', '2020-01-06 08:33:56', '2020-01-07 16:33:56'),
 ('8acdeae57079f2a949d6ebb0dff398f925684636888d88f467cdfd867e7231a98b0974e888d64198', 45, 2, NULL, '[]', 0, '2020-01-06 08:22:34', '2020-01-06 08:22:34', '2020-01-07 16:22:34'),
 ('9285f46604409f3a93f88620ba00c63bf067cbe281225b4f4d7ebd6f923914be2b117e33687d3419', 1, 2, NULL, '[]', 1, '2020-01-06 07:13:22', '2020-01-06 07:13:22', '2020-01-07 15:13:22'),
+('99948b0af1b44c86b279432d26b62161a73d6381f7fb371390863ce0bf308efbf57a5263d84ac7e5', 1, 2, NULL, '[]', 0, '2020-01-16 03:08:09', '2020-01-16 03:08:09', '2020-01-17 11:08:09'),
 ('a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 1, 2, NULL, '[]', 1, '2019-10-01 05:02:11', '2019-10-01 05:02:11', '2019-10-02 13:02:11'),
 ('a3f4e4f55a4a67e65637dd75e5c4556dca5c8f2497bfaac089b495c6c13f3690ebb29b332eaf05c9', 45, 2, NULL, '[]', 0, '2020-01-06 08:07:36', '2020-01-06 08:07:36', '2020-01-07 16:07:36'),
 ('b1262ad5c70641939497e3acefda24955f357a3d6730fb0d020aa9f205a5ae7ff63f43a0a5f1ac04', 1, 2, NULL, '[]', 1, '2020-01-07 00:00:45', '2020-01-07 00:00:45', '2020-01-08 08:00:45'),
 ('b34494e6aa4133cd09d491b2d039fa9062ab66a0fe30db7e98c457cb81408fbd6a662289800d83ca', 45, 2, NULL, '[]', 0, '2020-01-06 07:52:06', '2020-01-06 07:52:06', '2020-01-07 15:52:06'),
-('b5819d04fc450c131a3efd991e3da4f64ad47cbc56c701ae2be1e2fa9ed7586a20e6cd51dbfeb8e3', 1, 2, NULL, '[]', 0, '2020-01-14 03:17:01', '2020-01-14 03:17:01', '2020-01-15 11:17:01'),
+('b5819d04fc450c131a3efd991e3da4f64ad47cbc56c701ae2be1e2fa9ed7586a20e6cd51dbfeb8e3', 1, 2, NULL, '[]', 1, '2020-01-14 03:17:01', '2020-01-14 03:17:01', '2020-01-15 11:17:01'),
 ('b66b0653910374f2e2717a17e2689ed63d369c277f4327b99848f8543b116047c0a2f1a6279fb565', 1, 2, NULL, '[]', 1, '2020-01-13 01:57:37', '2020-01-13 01:57:37', '2020-01-14 09:57:37'),
 ('b84d2e4a2c53a63d8f022adc788640fa503b826c2d1298652a17417700d75b593cccf6ab6073ed9d', 1, 2, NULL, '[]', 1, '2020-01-07 00:11:36', '2020-01-07 00:11:36', '2020-01-08 08:11:36'),
 ('bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 1, 2, NULL, '[]', 1, '2019-11-05 10:42:54', '2019-11-05 10:42:54', '2019-11-06 18:42:53'),
@@ -7110,8 +7129,10 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('1780152b4d5f52599f8037a367ca404214a78324c80e2dc1ad17404bc2fba7e99c6f77f63c98df4a', 'ea1a6e78fb0ef15c34346621a164fd6dcec1b4f6e06f145e1e6b9e356b507d82faa7ca4e477ddc31', 0, '2020-01-09 13:42:59'),
 ('187e58c8a3436173873f99c0f3bc3c163713719842edb55eb6762a4d0fbed5fefa535ffbcf6c4a45', 'e9ae2f2903592522400158e995e2bb2420722e0c12a5dff85725ee879522c02022b3325f00038454', 0, '2020-01-08 16:08:29'),
 ('1d9aab73ed88f094078cf8e879e3d73b30c98d5627bb7eb0bae03ac6c20f7c525c464209a2060293', 'bf7cfe0b978a9437009c58f65e17b996f0e90c2cfe403be3d79db557d23c4657293938379ebf22e5', 0, '2020-01-09 11:14:56'),
+('26cda5c95e40dc8f586c775ee36ce7546a77d2ab487fea926f673e8620013d31811ceba85470a92b', '328bb22f961aff0f50e97c4f860bd99cfd6898fda54c25fe0a821f2b815c97caa935b3c0116c6798', 0, '2020-01-18 10:52:44'),
 ('27c67d05b55f7931b9a1c96b2e1abf70c8cb2a18add27f458cc175da21fe2f44b698736a4a5a0f87', '7ac6cf61ddf5443b95ef006881b495cba0514d37b19d1fcb450465cabf975b0303a26964b7560af8', 0, '2020-01-16 11:17:13'),
 ('32025a9fdcfb476c2abbfbd23c2cf1de80c01d38f4b30d7cbe76a485baf7e40ab0dfa00017b874b5', '15c84cbcf5f583ffd3f0999612cc4b9c5e980e41fb37327fc43db25f5c0da6f430862f1c450fd42a', 0, '2020-01-09 10:29:14'),
+('34a62ca2bd31822c3cecaa9d3ba4ee7335ee198cceb8e46e77d689217daeeae8973acef1cdd0af58', '681dd32c6ee72ed66f08f2e51eb2a99cc0ad1c19e7120c10e4474618e5552cf5af2466fbdeae2433', 0, '2020-01-18 09:55:30'),
 ('39fc0a2737cf35af9c121ca519f18f6eaa59544a40f009a3b56691a87a766041547e4e8d21d6093a', 'e539383d375bfe4caac9b320837763eeebdb2847d46068f6a39b35903aa186fb23d1c01a7e0cfe74', 0, '2020-01-16 15:20:00'),
 ('416e8434f0a94916956da8356d802405380a754a75cbcdebef5502ad9726d7120383f9611f725e54', 'b1262ad5c70641939497e3acefda24955f357a3d6730fb0d020aa9f205a5ae7ff63f43a0a5f1ac04', 0, '2020-01-09 08:00:45'),
 ('448a4a87a42ddc7d57c3b5fb1977aeede180a92c40b44a17f1ac1e62d0b730542ed1b126f7853e07', 'fcabcabf40d60af2ac2e47dcdd19c753ce13a38d57beec1dafec5ecaea909618d6d1fa21f138ff5c', 0, '2020-01-08 15:04:11'),
@@ -7129,6 +7150,7 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('756b3e3b45c5fc8730796d9afc7aba1309385939614fd1fdf15174cb835f38d17b7bee2132334a4c', '10249abdc2631d924135967a01920d9b6c972c3c199ab39174186a82c168a661c079354bc2bb8702', 0, '2020-01-08 16:41:34'),
 ('7b60dcfee6a67fb6e2e20a96f1f6867aba65458289667ed36839eb8da24934ad8453fab269b835d6', '775cd47d03e94d5f95da3f8837947a7a0b023c95db1f30378da6bac97a766ac2941a142040361f0d', 0, '2020-01-08 16:06:46'),
 ('7bae36c1aa73a53759bfe93d5e26bf3bf8a3f31ea996c26e3eba3f151ca80214dd07c845c4ac22f7', '3ee6794df90f4b3d00a927608fac24f942d1a00adbc3b13516ab192b543e14911604236174ea30a8', 0, '2019-11-27 10:17:33'),
+('806de6db9dcf3526eb08971ed8323fc81ed900719f7173437586f2a076bc7ac878659f1795d9b663', '99948b0af1b44c86b279432d26b62161a73d6381f7fb371390863ce0bf308efbf57a5263d84ac7e5', 0, '2020-01-18 11:08:09'),
 ('810f7013911e78b5d1faa645176cb1d61ff339edb2e244761b084845aa64886ad7fba992c2ee4398', '22974f6cdc137ea0f55fa105575176519b79a79f707a3cfd652f22028cbb2de645708dbc73803857', 0, '2020-01-15 10:01:50'),
 ('8395a700be6ce955fe364ae5cf5342051a346b2fec2ff15c6e535252b3936b352b695d9e717eb08e', 'a3f4e4f55a4a67e65637dd75e5c4556dca5c8f2497bfaac089b495c6c13f3690ebb29b332eaf05c9', 0, '2020-01-08 16:07:36'),
 ('8bc49f7be2744ccc323315fff5636c3c43ae468dab96eb65519175256d6038533f45aa960ac73e80', 'bfd2e34834ee9b0f955bd2301d9b1f733fac5efb860debfd03e4b20ccb4ddbc880a85a322800f980', 0, '2020-01-08 14:51:01'),
@@ -7137,11 +7159,14 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('9235fee9af58dbf56688faad4aa56526a66ea727371fd43ba5d32041bae981d5195058c1eb71b81f', 'bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 0, '2019-11-07 18:42:53'),
 ('96240b36d3aad0be111e6939f55cde7f4fbf547455a331d707a968af1864d644c102528f4e065c05', '8acdeae57079f2a949d6ebb0dff398f925684636888d88f467cdfd867e7231a98b0974e888d64198', 0, '2020-01-08 16:22:34'),
 ('96fba27e9dc8ea444e84e0bbf3e9607acb34103bccc5b4c52e4bfcde9b825e8fa66db825acb22309', 'ec28618698f81d56f6c087cdca51647e3b042968c1c3c4e64bac0daabcdface695250fe664f914f7', 0, '2020-01-08 14:44:40'),
+('a1fd69d70e706bbada5fc96ed7f0f56875863b4a1b83033d0fa4c33de6137f4718add99eb2006b7c', '3a9149b5eb4f79a37bf45304c800e549fc65e6b956e1c103a7393b10f3b96934001b341215f2cefe', 0, '2020-01-17 16:35:59'),
 ('abef8c5ce9909f2873eec18836df43dbfc9bb9cc9a285f3e063242e484ad0376b54adb4b2b6a5c0d', 'cc0ed543cab375eb4e0837ed9212ac19c9b21970de6777647dd1ffe2cfd08a94e0a6dc01d2f4556c', 0, '2019-12-01 10:59:59'),
+('b10ae9c9b2824b6d6d668d6b22ab79569723a01e9202d55ad39a9ffa171c089cd79722116f4bd53b', '7fa66f972273894dfb81992968bc218bb6b9f777d4cca972e2c8868e2b256a4a1be9967716fa995b', 0, '2020-01-18 11:06:35'),
 ('b418a518662e54841d19a10ebc59777887742892c530e58fac7ed1282d9adb2ff83097655b7e0410', '580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 0, '2019-10-03 13:01:50'),
 ('bda8ffb929cd2120c8dce090315e9144709bcb943bee8a4e309afebec0d37cad194c9aad7dc4f333', 'dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 0, '2019-10-03 12:45:07'),
 ('c2ba64f47215ae105a087cdb8e8f35139ee9b63208f6539994a120660e5bde0c2c19c97a88ee5472', '2cbbe019841a44586a783e8f2e70a3e057bc39af319f4fe45c86fe4984c8e9f31dee773e8f2cf632', 0, '2020-01-08 14:52:54'),
 ('c70071c00d713d5785c4ca88c8793e3dd0b49f2d9eb5b4c8334feb3ad0c95125ebd08a13e27fbe73', '33efdafbecbbb34ac0a44752bc725b7d0a599105ac72b013a1f0bac99481b125d804c43e75f66ea4', 0, '2020-01-15 10:06:40'),
+('ca73c5f7e88b01e7afc02e5f69c2eb1380e10cbe559351eda18768ced4b4dbe63e410c3e1ea473b2', '7ceb4da5ba0dc637fb6a126d491127666dc375592cbc59b8997fa1c44b5bbffb871c3fb52104ac86', 0, '2020-01-18 11:01:14'),
 ('cb8b11fcf60eb7ac353d964accfd15cdbf1a9fb196286d7b28314183756f7ad8f09a1a6b2b0b086d', '092505ffb6c4a1c91c72382d9318063c3780fef8be11a80da0d72c5b941074e1ebd5caa3faf38693', 0, '2020-01-08 14:59:50'),
 ('cc67c1a486d50e40df6dd03f71a159ae9211d236b12a68478ab0bff82e8b5087c56b94a778480ff7', '8987c8ff216e13fab967ed4cd42f32739c466b00306e9a1c0d7445fc67d7ef767f68262445057f9b', 0, '2020-01-08 16:33:56'),
 ('d34a32daddbffa8bdce3c89ffe169b3e69d3686f0320e440dbfa3d2d5cf737f6d44139165d9a265c', '9285f46604409f3a93f88620ba00c63bf067cbe281225b4f4d7ebd6f923914be2b117e33687d3419', 0, '2020-01-08 15:13:22'),
@@ -7356,10 +7381,10 @@ CREATE TABLE `tbl_member` (
 
 INSERT INTO `tbl_member` (`id`, `memberCode`, `member_name`, `member_email`, `member_contact_no`, `member_address`, `member_position`, `member_type`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, '2019-UIDMS', 'Customer Lastname1, First Name1', 'cus1@gmail.com', '09776927838', 'Bogota Colombia', 'ANDROID DEVELOPER', 'CUSTOMER', 0, '7', 'Keigh Dee', '2019-11-26 19:00:00', '2020-01-14 09:29:12'),
-(2, '2019-DSACM', 'wowers', 'wowerz', '123', 'wowerx', 'WEB DEVELOPER', 'CUSTOMER', 1, '7', 'Keigh Dee', '2019-11-26 21:00:00', '2020-01-14 07:07:53'),
+(2, '2019-DSACM', 'wowers', 'wowerz', '123', 'wowerx', 'WEB DEVELOPER', 'CUSTOMER', 0, '7', 'Keigh Dee', '2019-11-26 21:00:00', '2020-01-15 03:54:26'),
 (17, '2020-C7DVWDZ7', 'Richard Guevara', 'guevara.richard17@gmail.com', '09776927838', 'Stratford', 'PRESIDENT', 'STAKEHOLDER', 0, '7', 'Keigh Dee', '2020-01-14 05:57:43', '2020-01-14 05:57:43'),
 (18, '2020-JH9UHG26', 'Manila Grey', 'mg@gmail.com', '09787887888', 'Singapore', 'WEB DEVELOPER', 'CUSTOMER', 0, '7', 'Keigh Dee', '2020-01-14 05:59:15', '2020-01-14 05:59:15'),
-(19, '2020-UIBFRLS1', 'Justin Bieber', 'jb@gmail.com', '090909', 'pasig city', 'PRESIDENT', 'CUSTOMER', 0, '7', 'Keigh Dee', '2020-01-14 09:25:44', '2020-01-14 09:25:44');
+(19, '2020-UIBFRLS1', 'Justin Bieber', 'jb@gmail.com', '090909', 'pasig city', 'PRESIDENT', 'CUSTOMER', 0, '7', 'Keigh Dee', '2020-01-14 09:25:44', '2020-01-15 03:44:36');
 
 -- --------------------------------------------------------
 
@@ -7516,7 +7541,7 @@ CREATE TABLE `tbl_task` (
 INSERT INTO `tbl_task` (`id`, `taskCode`, `task_title`, `task_desc`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'OKIX19IR1DST', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
 (2, 'FZPRFIWOKBFQ', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
-(3, '1CSAHSINWX4K', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
+(3, '1CSAHSINWX4K', 'Task 3', 'Description 3', 1, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2020-01-15 03:18:45'),
 (4, '4TQCNMVQTZEW', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
 (5, 'PYLEURTMKQSR', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2019-11-28 02:43:19', '2019-11-28 02:43:19'),
 (6, 'OTBGEE8ZGXLT', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2019-11-28 05:07:22', '2019-11-28 05:07:22'),
@@ -7578,7 +7603,7 @@ INSERT INTO `tbl_task` (`id`, `taskCode`, `task_title`, `task_desc`, `deleted`, 
 (62, 'RFUJNT0BW9BI', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
 (63, 'CVXLWDKT2TVK', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
 (64, 'PBUYQICMKWXE', 'Task 4', 'Description 4', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
-(65, 'QALVC3UFEUDC', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-03 02:28:22'),
+(65, 'QALVC3UFEUDC', 'Task 5', 'Description 5', 0, 7, 'Keigh Dee', '2020-01-03 02:28:22', '2020-01-15 03:57:45'),
 (66, 'H7DPREIWPMLM', 'Task 1', 'Description 1', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
 (67, 'O7ILKUXOAZWR', 'Task 2', 'Description 2', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
 (68, 'PM0IJBVPN0BW', 'Task 3', 'Description 3', 0, 7, 'Keigh Dee', '2020-01-09 06:06:43', '2020-01-09 06:06:43'),
@@ -7621,7 +7646,8 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deleted` int(191) DEFAULT 0,
-  `is_admin` int(2) NOT NULL,
+  `is_admin` int(2) DEFAULT 0,
+  `account_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_by` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -7633,18 +7659,18 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `company_id`, `apiKey`, `ACNo`, `name`, `email`, `email_verified_at`, `password`, `deleted`, `is_admin`, `updated_by`, `created_by`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '2018-101', NULL, '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, '2018-103', '2018-101', 'L1nlZYy6CPSK514sv2TdxF91oOf4JdEn2xofErTuPaGRl09rhmRMHiygpnFK', '2019-05-06 02:48:49', '2019-10-08 03:03:30'),
-(7, '1996-001', NULL, '001', 'Keigh Dee', 'pabs@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 1, NULL, '2018-101', NULL, '2019-05-10 01:03:23', '2019-05-10 01:03:23'),
-(46, '2019-1006', NULL, '1006', 'Employee6, Employee6', 'cherryann_anis3@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, '', NULL, '2020-01-05 21:00:00', '2020-01-05 19:00:00'),
-(47, '2019-1005', NULL, '1005', 'Employee5, Employee5', 'cherryann_anis5@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 22:00:00', '2020-01-05 19:00:00'),
-(48, '2019-1004', NULL, '1004', 'Employee4, Employee4', 'cherryann_anis8@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-06 00:00:00', '2020-01-06 01:00:00'),
-(49, '2019-1003', NULL, '1003', 'Employee3, Employee3', 'cherryann_anis2@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, '', NULL, '2020-01-05 19:00:00', '2020-01-05 21:00:00'),
-(50, '2019-1002', NULL, '1002', 'Employee2, Employee2', 'cherryann_anis9@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-06 00:00:00', '2020-01-05 18:00:00'),
-(51, '2019-1001', NULL, '1001', 'Employee1, Employee1', 'cherryann_anis6@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 22:00:00', '2020-01-05 20:00:00'),
-(52, '2019-1010', NULL, '1010', 'Employee10, Employee10', 'cherryann_anis4@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 21:06:00', '2020-01-05 22:13:00'),
-(53, '2019-1009', NULL, '1009', 'Employee9, Employee9', 'cherryann_anis7@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 23:00:00', '2020-01-05 20:00:00'),
-(54, '2019-1008', NULL, '1008', 'Employee8, Employee8', 'cherryann_anis1@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, NULL, 'ADMIN', NULL, '2020-01-05 18:00:00', '2020-01-05 20:00:00');
+INSERT INTO `users` (`id`, `company_id`, `apiKey`, `ACNo`, `name`, `email`, `email_verified_at`, `password`, `deleted`, `is_admin`, `account_type`, `updated_by`, `created_by`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, '2018-101', NULL, '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', '2018-103', '2018-101', 'L1nlZYy6CPSK514sv2TdxF91oOf4JdEn2xofErTuPaGRl09rhmRMHiygpnFK', '2019-05-06 02:48:49', '2019-10-08 03:03:30'),
+(7, '1996-001', NULL, '001', 'Keigh Dee', 'pabs@gmail.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 1, 'WEB', NULL, '2018-101', NULL, '2019-05-10 01:03:23', '2019-05-10 01:03:23'),
+(46, '2019-1006', NULL, '1006', 'Employee6, Employee6', 'cherryann_anis3@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, '', NULL, '2020-01-05 21:00:00', '2020-01-05 19:00:00'),
+(47, '2019-1005', NULL, '1005', 'Employee5, Employee5', 'cherryann_anis5@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, 'ADMIN', NULL, '2020-01-05 22:00:00', '2020-01-05 19:00:00'),
+(48, '2019-1004', NULL, '1004', 'Employee4, Employee4', 'cherryann_anis8@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, 'ADMIN', NULL, '2020-01-06 00:00:00', '2020-01-06 01:00:00'),
+(49, '2019-1003', NULL, '1003', 'Employee3, Employee3', 'cherryann_anis2@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, '', NULL, '2020-01-05 19:00:00', '2020-01-05 21:00:00'),
+(50, '2019-1002', NULL, '1002', 'Employee2, Employee2', 'cherryann_anis9@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, 'ADMIN', NULL, '2020-01-06 00:00:00', '2020-01-05 18:00:00'),
+(51, '2019-1001', NULL, '1001', 'Employee1, Employee1', 'cherryann_anis6@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, 'ADMIN', NULL, '2020-01-05 22:00:00', '2020-01-05 20:00:00'),
+(52, '2019-1010', NULL, '1010', 'Employee10, Employee10', 'cherryann_anis4@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, 'ADMIN', NULL, '2020-01-05 21:06:00', '2020-01-05 22:13:00'),
+(53, '2019-1009', NULL, '1009', 'Employee9, Employee9', 'cherryann_anis7@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, 'ADMIN', NULL, '2020-01-05 23:00:00', '2020-01-05 20:00:00'),
+(54, '2019-1008', NULL, '1008', 'Employee8, Employee8', 'cherryann_anis1@yahoo.com', NULL, '$2y$10$MP4BPAbSSwE1gZEarp8qlu7mFZruGkiOy7J1IjH.LFe0r4m0.Cno2', 0, 0, 'APP', NULL, 'ADMIN', NULL, '2020-01-05 18:00:00', '2020-01-05 20:00:00');
 
 -- --------------------------------------------------------
 
@@ -7961,13 +7987,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_records`
 --
 ALTER TABLE `activity_records`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `date_time_records`
 --
 ALTER TABLE `date_time_records`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=487;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -8039,7 +8065,7 @@ ALTER TABLE `tbl_task`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- Database: `test`
 --
