@@ -48,6 +48,7 @@
                 <a class="dropdown-item svs-text" href="/retrack_task">Task </a>
                 <a class="dropdown-item svs-text" href="/retrack_project">Project List </a>
                 <a class="dropdown-item svs-text" href="/retrack_member">Member Records </a>
+                <a class="dropdown-item svs-text" href="/retrack_web_users">Web Console Users</a>
               </div>
             </li>
 
@@ -56,7 +57,7 @@
                 {{-- @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0) --}}
                 <a class="nav-link svs-text" href="/user_management">
                 User Management
-              </a>
+                </a>
             </li>
 
           </ul>
@@ -71,15 +72,25 @@
                 <i class="fab fa-google-plus-g svs-text"></i>
               </a>
             </li> --}}
+            @php
+                $userType = "";
+                 if(auth()->user()->is_admin == 1){
+                    $userType = "Admin";
+                 }else if(auth()->user()->is_admin == 2){
+                    $userType = "Super Admin";
+                 }
+                @endphp
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user svs-text"></i>
+                <i class="fas fa-user svs-text"></i>&nbsp;&nbsp;&nbsp;{{ auth()->user()->name }} <small>({{$userType}})</small>
               </a>
               <div class="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333">
-                <a class="dropdown-item svs-text" href="#">{{ auth()->user()->name }}</a>
-                <a class="dropdown-item svs-text" href="#">Settings</a>
+
+                
+                {{-- <a class="dropdown-item svs-text" href="#">{{ auth()->user()->name }} <small><em><b>({{$userType}})</b></em></small></a> --}}
+                <a class="dropdown-item svs-text" href="/account_settings">Account Settings</a>
                 <form id="out" action="{{route('logout')}}" method="POST">
                     @csrf                                                                                              
                 </form>

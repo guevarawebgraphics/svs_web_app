@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use DB;
+use Illuminate\Support\Facades\Hash;
 use App\Models\TaskModel;
 use App\Models\UserAccount;
 use App\Models\ProjectList;
@@ -2846,6 +2847,21 @@ class MainController extends Controller
         }
     }
 
+    public function retrack_web_users(){
+        if(!empty(auth()->user()->id)){
+            $user_records_web = UserAccount::where('deleted', 1)
+            ->where('account_type','WEB')
+            // ->where('is_admin','1')
+            ->where('company_id', '<>', auth()->user()->company_id)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            return view('main.retrackusermanagement', compact('user_records_web'));
+        }else{
+            return redirect('/');
+        }
+    }
+
     public function retrack(Request $request){
         $message = "";
         $output = array();
@@ -2911,6 +2927,25 @@ class MainController extends Controller
             $request->session()->put('RetrackMemCode',$request->code);
 
             $messages = "Successfully Reactivated!";
+            $success[] = $messages;
+        }
+        else if($request->type == "retrack_web_user" && $request->code != ""){
+            $users = DB::connection('mysql')->select("SELECT * from users WHERE company_id = '".$request->code."'");
+        
+            DB::table('users')
+            ->where('company_id', $request->code)
+            ->update([
+            'deleted'=> 0,
+            'updated_at' => now()
+            ]);
+
+            $request->session()->put('successRetrackUser',"Successfully User Retracked!");
+            $request->session()->put('RetrackUserName',$users[0]->name);
+            $request->session()->put('RetrackUserEmail',$users[0]->email);
+            $request->session()->put('RetrackUserType',$users[0]->is_admin);
+            $request->session()->put('RetrackUserCode',$request->code);
+
+            $messages = "Successfully Retracked!";
             $success[] = $messages;
         }
         else{
@@ -3091,6 +3126,8 @@ class MainController extends Controller
         if(!empty(auth()->user()->id)){
             $user_records_web = UserAccount::where('deleted', 0)
             ->where('account_type','WEB')
+            // ->where('is_admin','1')
+            ->where('company_id', '<>', auth()->user()->company_id)
             ->orderBy('created_at','desc')
             ->get();
 
@@ -3099,4 +3136,344 @@ class MainController extends Controller
             return redirect('/');
         }
     }
+
+    public function web_user_val(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->type == "NEW_USER"){
+            if($request->name == ""){
+                $messages = "Name is required!";
+                $error[] = $messages;
+            }
+            else if($request->email == ""){
+                $messages = "Email is required!";
+                $error[] = $messages;
+            }
+            else if($request->newPass == ""){
+                $messages = "New Password is required!";
+                $error[] = $messages;
+            }
+            else if($request->confirmPass == ""){
+                $messages = "Confirm Password is required!";
+                $error[] = $messages;
+            }
+            else if($request->newPass != $request->confirmPass){
+                $messages = "Password didn't matched! Please try again";
+                $error[] = $messages;
+            }
+            else if($request->isAdmin == ""){
+                $messages = "Select User Type";
+                $error[] = $messages;
+            }
+            else{
+                $messages = "Sucessfully Validated!";
+                $success[] = $messages;
+            }
+        }
+        else if($request->type == "EDIT_USER"){
+            if($request->name == ""){
+                $messages = "Name is required!";
+                $error[] = $messages;
+            }
+            else if($request->email == ""){
+                $messages = "Email is required!";
+                $error[] = $messages;
+            }
+            else if($request->isAdmin == ""){
+                $messages = "Select User Type";
+                $error[] = $messages;
+            }
+            else if($request->newPass != "" || $request->confirmPass != ""){
+                if($request->newPass == ""){
+                    $messages = "New Password is required!";
+                    $error[] = $messages;
+                }
+                else if($request->confirmPass == ""){
+                    $messages = "Confirm Password is required!";
+                    $error[] = $messages;
+                }
+                else if($request->newPass != $request->confirmPass){
+                    $messages = "Password didn't matched! Please try again";
+                    $error[] = $messages;
+                }
+                else{
+                    $messages = "Sucessfully Validated!";
+                    $success[] = $messages;
+                }
+            }else{
+                $messages = "Sucessfully Validated!";
+                $success[] = $messages;
+            }
+            
+        }
+        else if($request->type == "DELETE_USER"){
+            if($request->code == ""){
+                $messages = "User Code is required!";
+                $error[] = $messages;
+            }
+            else if($request->name == ""){
+                $messages = "Name is required!";
+                $error[] = $messages;
+            }
+            else if($request->email == ""){
+                $messages = "Email is required!";
+                $error[] = $messages;
+            }
+            else{
+                $messages = "Sucessfully Validated!";
+                $success[] = $messages;
+            }
+        }
+        else
+        {
+            $messages = "Invalid request...";
+            $error[] = $messages;
+        }
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+
+        echo json_encode($output);
+    }
+
+    public function web_user(Request $request){
+        $message = "";
+        $userType = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->type == "NEW_USER"){
+            if($request->isAdmin == 1){
+                $userType = "Admin";
+            }else{
+                $userType = "Super Admin";
+            }
+
+            $userCode = date("Y")."-".strtoupper(str_random(8));
+            $user_record = new UserAccount;
+            $user_record->company_id = $userCode;
+            $user_record->name = $request->name;
+            $user_record->email = $request->email;
+            $user_record->password = Hash::make($request->newPass);
+            $user_record->deleted = 0;
+            $user_record->is_admin = $request->isAdmin;
+            $user_record->account_type = "WEB";
+            $user_record->created_by = auth()->user()->company_id;
+            $user_record->created_at = now();
+            $user_record->updated_at = now();
+            $user_record->save();
+
+            $request->session()->put('successUserM','Sucessfully Saved!');
+            $request->session()->put('webUserCode',$userCode);
+            $request->session()->put('webUserName',$request->name.' ('.$userType.')');
+            $request->session()->put('webUserEmail',$request->email);
+
+            $messages = "Sucessfully Saved!";
+            $success[] = $messages;
+        }
+        else if($request->type == "DELETE_USER"){
+            DB::table('users')
+                ->where('company_id', $request->code)
+                ->update([
+                'deleted'=> 1,
+                'updated_by'=> auth()->user()->company_id,
+                'updated_at' => now()
+            ]);
+
+            $request->session()->put('deleteUserM','Sucessfully Deleted!');
+            $request->session()->put('webUserCode',$request->code);
+            $request->session()->put('webUserName',$request->name);
+            $request->session()->put('webUserEmail',$request->email);
+
+            $messages = "Sucessfully Deleted!";
+            $success[] = $messages;
+        }
+        else if($request->type == "EDIT_USER"){
+            if($request->isAdmin == 1){
+                $userType = "Admin";
+            }else{
+                $userType = "Super Admin";
+            }
+
+            if($request->newPass != "" || $request->confirmPass != ""){
+                DB::table('users')
+                ->where('company_id', $request->code)
+                ->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'is_admin' => $request->isAdmin,
+                'password' => Hash::make($request->newPass),
+                'updated_by'=> auth()->user()->company_id,
+                'updated_at' => now()
+                ]);
+            }else{
+                DB::table('users')
+                ->where('company_id', $request->code)
+                ->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'is_admin' => $request->isAdmin,
+                'updated_by'=> auth()->user()->company_id,
+                'updated_at' => now()
+                ]);
+            }
+
+            $request->session()->put('successUserM','Sucessfully Updated!');
+            $request->session()->put('webUserCode',$request->code);
+            $request->session()->put('webUserName',$request->name.' ('.$userType.')');
+            $request->session()->put('webUserEmail',$request->email);
+
+            $messages = "Sucessfully Updated!";
+            $success[] = $messages;
+        }
+        else{
+            
+            $messages = "Invalid request...";
+            $error[] = $messages;
+        }
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+
+        echo json_encode($output);
+    }
+
+    public function account_settings(){
+        if(!empty(auth()->user()->id)){
+            $user_records = UserAccount::where('company_id', auth()->user()->company_id)->get();
+
+            return view('main.accountsettings', compact('user_records'));
+        }else{
+            return redirect('/');
+        }
+    }
+
+    public function account_settings_val(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        $user_records = UserAccount::where('company_id', auth()->user()->company_id)->get();
+
+
+        if($request->type == "EDIT_USER"){
+
+            if($request->code == ""){
+                $messages = "User Code is required!";
+                $error[] = $messages;
+            }
+            else if($request->currentPass == ""){
+                $messages = "Current password is required!";
+                $error[] = $messages;
+            }
+
+            else if($request->newPass != "" || $request->confirmPass){
+                if($request->newPass == "")
+                {
+                    $messages = "New Password is required!";
+                    $error[] = $messages;
+                }
+                else if($request->confirmPass == ""){
+                    $messages = "Confirm New Password is required!";
+                    $error[] = $messages;
+                }
+                else if($request->newPass != $request->confirmPass){
+                    $messages = "New Password and Confirm New Password did not matched!";
+                    $error[] = $messages;
+                }
+                else
+                {
+
+                    if(Hash::check($request->currentPass, $user_records[0]->password)){
+                        $messages = "Successfully Updated!";
+                        $success[] = $messages;
+                    }else{
+                        $messages = "Your current password is incorrect!";
+                        $error[] = $messages;
+                    }
+                }
+            }
+            else{
+                if(Hash::check($request->currentPass, $user_records[0]->password)){
+                    $messages = "Successfully Updated!";
+                    $success[] = $messages;
+                }else{
+                    $messages = "Your current password is incorrect!";
+                    $error[] = $messages;
+                }
+            }
+        }
+        else
+        {
+            $messages = "Invalid request...";
+            $error[] = $messages;
+        }
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+        echo json_encode($output);
+
+    }
+
+    public function account_settings_update(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->type == "EDIT_USER"){
+
+            if($request->newPass != "" || $request->confirmPass){
+                DB::table('users')
+                    ->where('company_id', auth()->user()->company_id)
+                    ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->newPass),
+                    'updated_by'=> auth()->user()->company_id,
+                    'updated_at' => now()
+                ]);
+
+            }else{
+
+                DB::table('users')
+                    ->where('company_id', auth()->user()->company_id)
+                    ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'updated_by'=> auth()->user()->company_id,
+                    'updated_at' => now()
+                ]);
+
+            }
+
+            $request->session()->put('successUserAS','Sucessfully Updated!');
+            $request->session()->put('webUserCode',auth()->user()->company_id);
+            $request->session()->put('webUserName',$request->name);
+            $request->session()->put('webUserEmail',$request->email);
+
+            $messages = "Successfully Updated!";
+            $success[] = $messages;
+        }else{
+            $messages = "Invalid request...";
+            $error[] = $messages;
+        }
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+        echo json_encode($output);
+    }
+
 }

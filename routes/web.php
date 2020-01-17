@@ -64,7 +64,20 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::get('/retrack_member', 'MainController@retrack_member');
     Route::post('/retrack_member/retrack_member', 'MainController@retrack')->name('retrack_member');
 
+    Route::get('/retrack_web_users', 'MainController@retrack_web_users');
+    Route::post('/retrack_web_users/retrack_web_users', 'MainController@retrack')->name('retrack_web_users');
+
     Route::get('/user_management', 'MainController@user_management');
+    Route::post('/user_management/val_web_user', 'MainController@web_user_val')->name('val_web_user');
+    Route::post('/user_management/new_web_user', 'MainController@web_user')->name('new_web_user');
+    Route::post('/user_management/val_delete_web_user', 'MainController@web_user_val')->name('val_delete_web_user');
+    Route::post('/user_management/delete_web_user', 'MainController@web_user')->name('delete_web_user');
+    Route::post('/user_management/val_edit_web_user', 'MainController@web_user_val')->name('val_edit_web_user');
+    Route::post('/user_management/edit_web_user', 'MainController@web_user')->name('edit_web_user');
+
+    Route::get('/account_settings', 'MainController@account_settings');
+    Route::post('/account_settings/account_settings_val', 'MainController@account_settings_val')->name('account_settings_val');
+    Route::post('/account_settings/account_settings_update', 'MainController@account_settings_update')->name('account_settings_update');
 
     // ------------------------------------------------------------------------//
     // This section all reusable codes will be commented for future purposes   //

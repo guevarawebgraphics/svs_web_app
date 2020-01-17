@@ -9,7 +9,7 @@
     
     <div class="container" style="margin-top:3em;">
 
-            {{-- @include('main.sessionProj') --}}
+            @include('main.sessionUsermanagement')
 
     <div class="container svs-overflow">
 
@@ -56,6 +56,17 @@
                         <div class="md-form mb-0">
                             <input type="text" id="userEmail" name="userEmail" class="form-control">
                             <label for="userEmail" class="">Email</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <select class="mdb-select isAdmin" name="isAdmin" id="isAdmin" style="width:300px!important;">
+                                <option value="" disabled selected>Select User Type</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Super Admin</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -211,6 +222,18 @@
                             </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <select class="mdb-select isAdminEdit" name="isAdminEdit" id="isAdminEdit" style="width:300px!important;">
+
+                            </select>
+                        </div>
+                    </div>
+                   
+                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="md-form mb-0">
@@ -246,9 +269,79 @@
 //Open New User Modal
 $("#newUserBtn").click(function () {
     $('#newUserModal').modal('show');
+    
+
 });
 </script>
 
+
+<script>
+$("#newUserSubmit").click(function () {
+    var name = $('#userName').val();
+    var email = $('#userEmail').val();
+    var newPass = $('#userNewPass').val();
+    var confirmPass = $('#userConfirmPass').val();
+    var isAdmin = $('#isAdmin').val();
+
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('val_web_user') }}",
+        method: "POST",
+        data:{
+            type:"NEW_USER",
+            name:name,
+            email:email,
+            newPass:newPass,
+            confirmPass:confirmPass,
+            isAdmin:isAdmin
+        }, 
+        dataType: "json",
+        success:function(data)
+        {
+            if(data.success.length > 0){
+
+                var x = document.getElementById("newUserSubmit");
+                x.innerHTML = "Loading...";
+                document.getElementById("newUserSubmit").disabled = true;
+
+                $.ajax({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('new_web_user') }}",
+                    method: "POST",
+                    data:{
+                        type:"NEW_USER",
+                        name:name,
+                        email:email,
+                        newPass:newPass,
+                        confirmPass:confirmPass,
+                        isAdmin:isAdmin
+                    }, 
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        if(data.success.length > 0){
+                            location.reload();
+                            // toastr.success(data.success[0]);
+                        }else{
+                            toastr.error(data.error[0]);
+                            // alert(data.error[0]);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                }); 
+            }else{
+                toastr.error(data.error[0]);
+                // alert(data.error[0]);
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    }); 
+});
+</script>
 
 <script>
 //Open User Delete Modal
@@ -285,6 +378,7 @@ $(".editUser").click(function () {
     var email = $(this).attr('data-email');
     var created_by = $(this).attr('data-created_by');
     var created_at = $(this).attr('data-create_at');
+    var isAdmin = $(this).attr('data-is_admin');
 
     $("#HeaderUserEdit").html(company_id);
 
@@ -296,14 +390,102 @@ $(".editUser").click(function () {
     $("#editUserSubmit").attr("data-create_at",created_at);
 
 
+
     $("#userNameEdit").val(name);
     $("#userEmailEdit").val(email);
+
+    if(isAdmin == 1){
+        $("#isAdminEdit").html("<option value='1' selected>Admin</option><option value='2'>Super Admin</option>");
+    }else{
+        $("#isAdminEdit").html("<option value='1'>Admin</option><option value='2' selected>Super Admin</option>");
+    }
     
     $("#EditLabelName").attr("class","active");
     $("#EditLabelEmail").attr("class","active");
 
     
 });
+</script>
+
+
+<script>
+$("#editUserSubmit").click(function () {
+    var id = $(this).attr('data-id');
+    var company_id = $(this).attr('data-companyid');
+    var name = $("#userNameEdit").val();
+    var email = $("#userEmailEdit").val();
+    // var name = $(this).attr('data-name');
+    // var email = $(this).attr('data-email');
+    // var created_by = $(this).attr('data-created_by');
+    // var created_at = $(this).attr('data-create_at');
+
+    var newPass = $("#userNewPassEdit").val();
+    var confirmPass = $("#userConfirmPassEdit").val();
+    var isAdmin = $("#isAdminEdit").val();
+
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('val_edit_web_user') }}",
+        method: "POST",
+        data:{
+            type:"EDIT_USER",
+            code:company_id,
+            name:name,
+            email:email,
+            newPass:newPass,
+            confirmPass:confirmPass,
+            isAdmin:isAdmin
+        }, 
+        dataType: "json",
+        success:function(data)
+        {
+            if(data.success.length > 0){
+
+                var x = document.getElementById("editUserSubmit");
+                x.innerHTML = "Loading...";
+                document.getElementById("editUserSubmit").disabled = true;
+
+                $.ajax({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('edit_web_user') }}",
+                    method: "POST",
+                    data:{
+                        type:"EDIT_USER",
+                        code:company_id,
+                        name:name,
+                        email:email,
+                        newPass:newPass,
+                        confirmPass:confirmPass,
+                        isAdmin:isAdmin
+                    }, 
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        if(data.success.length > 0){
+                            location.reload();
+                            // toastr.success(data.success[0]);
+                        }else{
+                            toastr.error(data.error[0]);
+                            // alert(data.error[0]);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                }); 
+            }else{
+                toastr.error(data.error[0]);
+                // alert(data.error[0]);
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    }); 
+
+
+});
+
 </script>
 
 <script>
@@ -315,7 +497,59 @@ $("#delSubmit").click(function () {
     var email = $(this).attr('data-email');
     var created_by = $(this).attr('data-created_by');
     var created_at = $(this).attr('data-created_at');
-    alert(id);
+    
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('val_delete_web_user') }}",
+        method: "POST",
+        data:{
+            type:"DELETE_USER",
+            code:company_id,
+            name:name,
+            email:email
+        }, 
+        dataType: "json",
+        success:function(data)
+        {
+            if(data.success.length > 0){
+                var x = document.getElementById("delSubmit");
+                x.innerHTML = "Loading...";
+                document.getElementById("delSubmit").disabled = true;
+
+                $.ajax({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('delete_web_user') }}",
+                    method: "POST",
+                    data:{
+                        type:"DELETE_USER",
+                        code:company_id,
+                        name:name,
+                        email:email
+                    }, 
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        if(data.success.length > 0){
+                            location.reload();
+                            // toastr.success(data.success[0]);
+                        }else{
+                            toastr.error(data.error[0]);
+                            // alert(data.error[0]);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                }); 
+            }else{
+                toastr.error(data.error[0]);
+                // alert(data.error[0]);
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    }); 
 });
 </script>
 

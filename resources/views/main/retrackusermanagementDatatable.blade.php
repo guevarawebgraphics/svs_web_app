@@ -26,8 +26,16 @@
                         <td>{{$field->created_by}}</td>
                         <td>{{date("F d Y - h:i a",strtotime($field->created_at))}}</td>
                         <td>
-                        <button data-id="{{$field->id}}" data-companyid="{{$field->company_id}}" data-name="{{$field->name}}" data-email = "{{$field->email}}" data-created_by = "{{$field->created_by}}" data-create_at = "{{$field->created_at}}" data-is_admin = "{{$field->is_admin}}" class="svs-action delUser btn"><i class="fa fa-trash"></i></button>
-                            <button data-id="{{$field->id}}" data-companyid="{{$field->company_id}}" data-name="{{$field->name}}" data-email = "{{$field->email}}" data-created_by = "{{$field->created_by}}" data-create_at = "{{$field->created_at}}" data-is_admin = "{{$field->is_admin}}" class="svs-action editUser btn"><i class="fa fa-pencil-alt"></i></button>
+                            <a class="svs-action retrackUser btn btn-success waves-effect" 
+                                data-id = "{{$field->id}}"
+                                data-company_id = "{{$field->company_id}}"
+                                data-name = "{{$field->name}}"
+                                data-email = "{{$field->email}}"
+                                data-user_type = "{{$field->is_admin}}"
+                                    data-created_by = "{{$field->created_by}}"
+                                    data-created_at = "{{date("F d Y - h:i a",strtotime($field->created_at))}}">
+                                    Retrack
+                            </a>
                         </td>
                     </tr>
                 @endforeach
