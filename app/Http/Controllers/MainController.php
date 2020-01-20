@@ -8,6 +8,8 @@ use DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\TaskModel;
 use App\Models\UserAccount;
+use App\Models\ManageAccessList;
+use App\Models\ViewUsers;
 use App\Models\ProjectList;
 use App\Models\ProjTask;
 use App\Models\EmpProj;
@@ -2849,12 +2851,21 @@ class MainController extends Controller
 
     public function retrack_web_users(){
         if(!empty(auth()->user()->id)){
-            $user_records_web = UserAccount::where('deleted', 1)
-            ->where('account_type','WEB')
-            // ->where('is_admin','1')
-            ->where('company_id', '<>', auth()->user()->company_id)
-            ->orderBy('created_at','desc')
-            ->get();
+            if(auth()->user()->is_admin == 2){
+                $user_records_web = ViewUsers::where('deleted', 1)
+                ->where('account_type','WEB')
+                // ->where('is_admin','1')
+                ->where('company_id', '<>', auth()->user()->company_id)
+                ->orderBy('created_at','desc')
+                ->get();
+            }else{
+                $user_records_web = ViewUsers::where('deleted', 1)
+                ->where('account_type','WEB')
+                ->where('is_admin','1')
+                ->where('company_id', '<>', auth()->user()->company_id)
+                ->orderBy('created_at','desc')
+                ->get();
+            }
 
             return view('main.retrackusermanagement', compact('user_records_web'));
         }else{
@@ -3124,14 +3135,27 @@ class MainController extends Controller
     
     public function user_management(){
         if(!empty(auth()->user()->id)){
-            $user_records_web = UserAccount::where('deleted', 0)
-            ->where('account_type','WEB')
-            // ->where('is_admin','1')
-            ->where('company_id', '<>', auth()->user()->company_id)
-            ->orderBy('created_at','desc')
-            ->get();
 
-            return view('main.usermanagement', compact('user_records_web'));
+            $manage_access_list = ManageAccessList::where('deleted', 0)->get();
+
+            if(auth()->user()->is_admin == 2){
+                $user_records_web = ViewUsers::where('deleted', 0)
+                ->where('account_type','WEB')
+                ->where('company_id', '<>', auth()->user()->company_id)
+                ->orderBy('created_at','desc')
+                ->get();
+            }
+            else{
+                $user_records_web = ViewUsers::where('deleted', 0)
+                ->where('account_type','WEB')
+                ->where('is_admin','1')
+                ->where('company_id', '<>', auth()->user()->company_id)
+                ->orderBy('created_at','desc')
+                ->get();
+            }
+            
+
+            return view('main.usermanagement', compact('user_records_web','manage_access_list'));
         }else{
             return redirect('/');
         }
@@ -3168,12 +3192,50 @@ class MainController extends Controller
                 $messages = "Select User Type";
                 $error[] = $messages;
             }
+            else if($request->select1 == ""){
+                $messages = "Dashboard Access Righ is required!";
+                $error[] = $messages;
+            }
+            else if($request->select2 == ""){
+                $messages = "Task List Access Righ is required!";
+                $error[] = $messages;
+            }
+            else if($request->select3 == ""){
+                $messages = "Project List Access Righ is required!";
+                $error[] = $messages;
+            }
+            else if($request->select4 == ""){
+                $messages = "Member Records Access Right is required!";
+                $error[] = $messages;
+            }
+            
             else{
-                $messages = "Sucessfully Validated!";
-                $success[] = $messages;
+                if($request->select1 == "CONFIG" && $request->dashboard == ""){
+                    $messages = "Dashboard Access Right is required!";
+                    $error[] = $messages;
+                }
+                else if($request->select2 == "CONFIG" && $request->tasklist == ""){
+                    $messages = "Task List Access Right is required!";
+                    $error[] = $messages;
+                }
+                else if($request->select3 == "CONFIG" && $request->projectlist == ""){
+                    $messages = "Project List Access Right is required!";
+                    $error[] = $messages;
+                }
+                else if($request->select4 == "CONFIG" && $request->memberrecords == ""){
+                    $messages = "Member Records Access Right is required!";
+                    $error[] = $messages;
+                }
+                else{
+                    $messages = "Sucessfully Validated!";
+                    $success[] = $messages;
+                }
             }
         }
         else if($request->type == "EDIT_USER"){
+
+            $user_records = ViewUsers::where('company_id', auth()->user()->company_id)->get();
+
             if($request->name == ""){
                 $messages = "Name is required!";
                 $error[] = $messages;
@@ -3184,6 +3246,10 @@ class MainController extends Controller
             }
             else if($request->isAdmin == ""){
                 $messages = "Select User Type";
+                $error[] = $messages;
+            }
+            else if($request->curPass == ""){
+                $messages = "Current Password is required!";
                 $error[] = $messages;
             }
             else if($request->newPass != "" || $request->confirmPass != ""){
@@ -3200,12 +3266,22 @@ class MainController extends Controller
                     $error[] = $messages;
                 }
                 else{
-                    $messages = "Sucessfully Validated!";
-                    $success[] = $messages;
+                    if(Hash::check($request->curPass, $user_records[0]->password)){
+                        $messages = "Successfully Updated!";
+                        $success[] = $messages;
+                    }else{
+                        $messages = "Your current password is incorrect!";
+                        $error[] = $messages;
+                    }
                 }
             }else{
-                $messages = "Sucessfully Validated!";
-                $success[] = $messages;
+                if(Hash::check($request->curPass, $user_records[0]->password)){
+                    $messages = "Successfully Updated!";
+                    $success[] = $messages;
+                }else{
+                    $messages = "Your current password is incorrect!";
+                    $error[] = $messages;
+                }
             }
             
         }
@@ -3227,8 +3303,7 @@ class MainController extends Controller
                 $success[] = $messages;
             }
         }
-        else
-        {
+        else{
             $messages = "Invalid request...";
             $error[] = $messages;
         }
@@ -3347,7 +3422,7 @@ class MainController extends Controller
 
     public function account_settings(){
         if(!empty(auth()->user()->id)){
-            $user_records = UserAccount::where('company_id', auth()->user()->company_id)->get();
+            $user_records = ViewUsers::where('company_id', auth()->user()->company_id)->get();
 
             return view('main.accountsettings', compact('user_records'));
         }else{
@@ -3361,7 +3436,7 @@ class MainController extends Controller
         $error = array();
         $success = array();
 
-        $user_records = UserAccount::where('company_id', auth()->user()->company_id)->get();
+        $user_records = ViewUsers::where('company_id', auth()->user()->company_id)->get();
 
 
         if($request->type == "EDIT_USER"){

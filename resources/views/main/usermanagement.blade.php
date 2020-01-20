@@ -22,247 +22,302 @@
 
 
 <!-- Modal: New User -->
-<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog svs-modal-sm" role="document">
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">New Web Console User</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <!--Body-->
-      <div class="modal-body">
-        <div class="container">
+    <div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog svs-modal-sm" role="document">
+        <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">New Web Console User</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <!--Body-->
+        <div class="modal-body">
+            <div class="container">
 
-            <p class="note note-primary">
-                <strong>Note:</strong> 
-                You are register new web console user. This record will be useful to any transaction.
-                
-                <br>
-            </p>
+                <p class="note note-primary">
+                    <strong>Note:</strong> 
+                    You are trying to register new web console user. This record will be useful to any transaction.
+                    
+                    <br>
+                </p>
 
-            <!--Grid row-->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="userName" name="userName" class="form-control">
-                            <label for="userName" class="">Name</label>
+                <!--Grid row-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" id="userName" name="userName" class="form-control">
+                                <label for="userName" class="">Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" id="userEmail" name="userEmail" class="form-control">
+                                <label for="userEmail" class="">Email</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="userEmail" name="userEmail" class="form-control">
-                            <label for="userEmail" class="">Email</label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form">
+                                <select class="mdb-select isAdmin" name="isAdmin" id="isAdmin" style="width:300px!important;">
+                                    
+                                    
+                                    @if(auth()->user()->is_admin == 2)
+                                    <option value="" disabled selected>Select User Type</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Super Admin</option>
+                                    @else
+                                    <option value="1">Admin</option>
+                                    @endif
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form">
-                            <select class="mdb-select isAdmin" name="isAdmin" id="isAdmin" style="width:300px!important;">
-                                <option value="" disabled selected>Select User Type</option>
-                                <option value="1">Admin</option>
-                                <option value="2">Super Admin</option>
-                            </select>
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <div class="md-form mb-0">
+                                <input type="password" id="userNewPass" name="userNewPass" class="form-control">
+                                <label for="userNewPass" class="">New Password</label>
+                            </div>
+                            <div class="md-form mb-0">
+                                <input type="password" id="userConfirmPass" name="userConfirmPass" class="form-control">
+                                <label for="userConfirmPass" class="">Confirm Password</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        
-                        <div class="md-form mb-0">
-                            <input type="password" id="userNewPass" name="userNewPass" class="form-control">
-                            <label for="userNewPass" class="">New Password</label>
-                        </div>
-                        <div class="md-form mb-0">
-                            <input type="password" id="userConfirmPass" name="userConfirmPass" class="form-control">
-                            <label for="userConfirmPass" class="">Confirm Password</label>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <p><b>Note : </b><em>You may select multiple account privileges. This serves as filtering of privileges for every user of Web Console.</em></p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h6>Viewing Records</h6>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input opt1" name="opt1" id="opt1">
-                            <label class="custom-control-label" for="opt1">Dashboard</label>
-                        </div>
-                        <br>
-                        <h6>Project Configuration</h6>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input opt2" name="opt2" id="opt2">
-                            <label class="custom-control-label" for="opt2">Task List</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input opt3" name="opt3" id="opt3">
-                            <label class="custom-control-label" for="opt3">Project List</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input opt4" name="opt4" id="opt4">
-                            <label class="custom-control-label" for="opt4">Member Records</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h6>Retrack</h6>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input opt5" name="opt5" id="opt5">
-                            <label class="custom-control-label" for="opt5">Task List</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input opt6" name="opt6" id="opt6">
-                            <label class="custom-control-label" for="opt6">Project List</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input opt7" name="opt7" id="opt7">
-                            <label class="custom-control-label" for="opt7">Member Records</label>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input opt8" name="opt8" id="opt8">
-                            <label class="custom-control-label" for="opt8">User Management</label>
-                        </div>                        
-                    </div>
-                </div>
+                    <br>
+                    <p><b>Note : </b><em>You may select multiple account privileges. This serves as filtering of privileges for every user of Web Console.</em></p>
+                    @if(count($manage_access_list))
+                        @foreach($manage_access_list as $field)
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{$field->access_desc}}
+                                </div>
+                                <div class="col-md-2">
+                                <select class="access-select mdb-select accessSelect{{$field->id}}" data-id = "{{$field->id}}" name="accessSelect{{$field->id}}" id="accessSelect{{$field->id}}" style="width: 170px!important;">
+                                        <option value="" disabled selected>Select Access Right</option>
+                                        <option value="ALL">All Access</option>
+                                        <option value="NO">No Access</option>
+                                        <option value="CONFIG">Custom Access</option>
+                                    </select>
+                                </div>
+
+                                    <div class="col-md-2 access-right-{{$field->id}}" style="display:none;">
+                                        <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input add{{$field->id}}" name="config{{$field->id}}" value = "ADD" id="add{{$field->id}}">
+                                            <label class="custom-control-label" for="add{{$field->id}}">Add</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 access-right-{{$field->id}}" style="display:none;">
+                                        <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input edit{{$field->id}}" name="config{{$field->id}}" value = "EDIT" id="edit{{$field->id}}">
+                                            <label class="custom-control-label" for="edit{{$field->id}}">Edit</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 access-right-{{$field->id}}" style="display:none;">
+                                        <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input remove{{$field->id}}" name="config{{$field->id}}" value = "REMOVE" id="remove{{$field->id}}">
+                                            <label class="custom-control-label" for="remove{{$field->id}}">Remove</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 access-right-{{$field->id}}" style="display:none;">
+                                        <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input remove{{$field->id}}" name="config{{$field->id}}" value = "RETRACK" id="retrack{{$field->id}}">
+                                            <label class="custom-control-label" for="retrack{{$field->id}}">Retrack</label>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        @endforeach
+                    @endif
+            </div>
+        
 
         </div>
-    
-
-      </div>
-      <!--Footer-->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-        <button class="btn btn-primary waves-effect" id="newUserSubmit">Submit</button>
-      </div>
+        <!--Footer-->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary waves-effect" id="newUserSubmit">Submit</button>
+        </div>
+        </div>
     </div>
-  </div>
-</div>
+    </div>
+<!-- Modal: New User -->
 
 
 
 <!-- Modal: delUser -->
-<div class="modal fade" id="delUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Delete Web Console User : <span id="HeaderDel"></span></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <!--Body-->
-      <div class="modal-body">
-        <div class="container">
-            <p class="note note-danger">
-                <strong>Note danger:</strong> 
-                You are trying to delete this record. This record will not be useful to any transaction
-                <br>
-                Name: <em id="delUserName"></em><br>
-                Email <em id="delUserEmail"></em><br>
-            </p>
+    <div class="modal fade" id="delUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Delete Web Console User : <span id="HeaderDel"></span></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
         </div>
-    
+        <!--Body-->
+        <div class="modal-body">
+            <div class="container">
+                <p class="note note-danger">
+                    <strong>Note danger:</strong> 
+                    You are trying to delete this record. This record will not be useful to any transaction
+                    <br>
+                    Name: <em id="delUserName"></em><br>
+                    Email <em id="delUserEmail"></em><br>
+                </p>
+            </div>
+        
 
-      </div>
-      <!--Footer-->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-        <button class="btn btn-danger waves-effect" id="delSubmit">Delete</button>
-      </div>
+        </div>
+        <!--Footer-->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+            <button class="btn btn-danger waves-effect" id="delSubmit">Delete</button>
+        </div>
+        </div>
     </div>
-  </div>
-</div>
-
-
+    </div>
+<!-- Modal: delUser -->
 
 
 
 <!-- Modal: Edit User -->
-<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog svs-modal-sm" role="document">
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Edit Web Console User :  <span id="HeaderUserEdit"></span></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <!--Body-->
-      <div class="modal-body">
-        <div class="container">
-
-            <p class="note note-success">
-                <strong>Note:</strong> 
-                You are trying to edit web console user. This record will be useful to any transaction.
-                
-                <br>
-            </p>
-
-            <!--Grid row-->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="userNameEdit" name="userNameEdit" class="form-control">
-                            <label for="userNameEdit" class="" id="EditLabelName">Name</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                            <div class="md-form mb-0">
-                                <input type="text" id="userEmailEdit" name="userEmailEdit" class="form-control">
-                                <label for="userEmailEdit" class="" id="EditLabelEmail">Email</label>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form">
-                            <select class="mdb-select isAdminEdit" name="isAdminEdit" id="isAdminEdit" style="width:300px!important;">
-
-                            </select>
-                        </div>
-                    </div>
-                   
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-0">
-                            <input type="password" id="userNewPassEdit" name="userNewPassEdit" class="form-control">
-                            <label for="userNewPassEdit" class="" id="EditLabelNewPass">New Password</label>
-                        </div>
-                        <div class="md-form mb-0">
-                            <input type="password" id="userConfirmPassEdit" name="userConfirmPassEdit" class="form-control">
-                            <label for="userConfirmPassEdit" class="" id="EditLabelConfirmPass">Confirm Password</label>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                {{-- <p><b>Note : </b><em>You may select multiple account privileges. This serves as filtering of privileges for every user of Web Console.</em></p> --}}
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog svs-modal-sm" role="document">
+        <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Edit Web Console User :  <span id="HeaderUserEdit"></span></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
         </div>
-    
+        <!--Body-->
+        <div class="modal-body">
+            <div class="container">
 
-      </div>
-      <!--Footer-->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-        <button class="btn btn-success waves-effect" id="editUserSubmit">Update</button>
-      </div>
+                <p class="note note-success">
+                    <strong>Note:</strong> 
+                    Update user account credential here. Current password is required, please enter your current account password.
+                    
+                    <br>
+                </p>
+
+                <br>
+                <p class="h5">Personal Information</p>
+
+                <!--Grid row-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <input type="text" id="userNameEdit" name="userNameEdit" class="form-control">
+                                <label for="userNameEdit" class="" id="EditLabelName">Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <input type="text" id="userEmailEdit" name="userEmailEdit" class="form-control">
+                                    <label for="userEmailEdit" class="" id="EditLabelEmail">Email</label>
+                                </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form">
+                                <select class="mdb-select isAdminEdit" name="isAdminEdit" id="isAdminEdit" style="width:300px!important;">
+
+                                </select>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form mb-0">
+                                <input type="password" id="userCurrPassEdit" name="userCurrPassEdit" class="form-control">
+                            <label for="userCurrPassEdit" class="" id="EditLabelCurrPass">Your Current Password *</label>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                    <br><hr><br>
+                    <p class="h5">Change Password</p>
+                    <p class="card-text">Updating account password is optional. You may leave this blank if you don't want to change it.</p>
+                
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form mb-0">
+                                <input type="password" id="userNewPassEdit" name="userNewPassEdit" class="form-control">
+                                <label for="userNewPassEdit" class="" id="EditLabelNewPass">New Password</label>
+                            </div>
+                            <div class="md-form mb-0">
+                                <input type="password" id="userConfirmPassEdit" name="userConfirmPassEdit" class="form-control">
+                                <label for="userConfirmPassEdit" class="" id="EditLabelConfirmPass">Confirm Password</label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    {{-- <p><b>Note : </b><em>You may select multiple account privileges. This serves as filtering of privileges for every user of Web Console.</em></p> --}}
+            </div>
+        
+
+        </div>
+        <!--Footer-->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+            <button class="btn btn-success waves-effect" id="editUserSubmit">Update</button>
+        </div>
+        </div>
     </div>
-  </div>
-</div>
+    </div>
+<!-- Modal: Edit User -->
 
 
+<!-- Modal: Manage Access Right -->
+    <div class="modal fade" id="MAUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Manage Access Right : <span id="HeaderMA"></span></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <!--Body-->
+        <div class="modal-body">
+            <div class="container">
+                <p class="note note-success">
+                    <strong>Note :</strong> 
+                    You are trying to update access right of <em id="userMA"></em>.
+                    <br>
+                </p>
+            </div>
+        
 
+        </div>
+        <!--Footer-->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+            <button class="btn btn-success waves-effect" id="MASubmit">Submit</button>
+        </div>
+        </div>
+    </div>
+    </div>
+<!-- Modal: Manage Access Right -->
 
 
 <script>
@@ -276,6 +331,7 @@ $("#newUserBtn").click(function () {
 
 
 <script>
+//Submit New User
 $("#newUserSubmit").click(function () {
     var name = $('#userName').val();
     var email = $('#userEmail').val();
@@ -283,6 +339,34 @@ $("#newUserSubmit").click(function () {
     var confirmPass = $('#userConfirmPass').val();
     var isAdmin = $('#isAdmin').val();
 
+    var select1 = $("#accessSelect1").val();
+    var select2 = $("#accessSelect2").val();
+    var select3 = $("#accessSelect3").val();
+    var select4 = $("#accessSelect4").val();
+
+    var config1 = [];
+    var config2 = [];
+    var config3 = [];
+    var config4 = [];
+
+    $.each($("input[name='config1']:checked"), function(){
+        config1.push($(this).val());
+    });
+    $.each($("input[name='config2']:checked"), function(){
+        config2.push($(this).val());
+    });
+    $.each($("input[name='config3']:checked"), function(){
+        config3.push($(this).val());
+    });
+    $.each($("input[name='config4']:checked"), function(){
+        config4.push($(this).val());
+    });
+
+    var dashboard = config1.join(", ");
+    var tasklist = config2.join(", ");
+    var projectlist = config3.join(", ");
+    var memberrecords = config4.join(", ");
+ 
     $.ajax({
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         url: "{{ route('val_web_user') }}",
@@ -293,7 +377,15 @@ $("#newUserSubmit").click(function () {
             email:email,
             newPass:newPass,
             confirmPass:confirmPass,
-            isAdmin:isAdmin
+            isAdmin:isAdmin,
+            select1:select1,
+            select2:select2,
+            select3:select3,
+            select4:select4,
+            dashboard:dashboard,
+            tasklist:tasklist,
+            projectlist:projectlist,
+            memberrecords:memberrecords
         }, 
         dataType: "json",
         success:function(data)
@@ -314,7 +406,15 @@ $("#newUserSubmit").click(function () {
                         email:email,
                         newPass:newPass,
                         confirmPass:confirmPass,
-                        isAdmin:isAdmin
+                        isAdmin:isAdmin,
+                        select1:select1,
+                        select2:select2,
+                        select3:select3,
+                        select4:select4,
+                        dashboard:dashboard,
+                        tasklist:tasklist,
+                        projectlist:projectlist,
+                        memberrecords:memberrecords
                     }, 
                     dataType: "json",
                     success:function(data)
@@ -379,6 +479,7 @@ $(".editUser").click(function () {
     var created_by = $(this).attr('data-created_by');
     var created_at = $(this).attr('data-create_at');
     var isAdmin = $(this).attr('data-is_admin');
+    var accountType = "{{auth()->user()->is_admin}}";
 
     $("#HeaderUserEdit").html(company_id);
 
@@ -394,10 +495,22 @@ $(".editUser").click(function () {
     $("#userNameEdit").val(name);
     $("#userEmailEdit").val(email);
 
-    if(isAdmin == 1){
+
+    if(accountType == 2){
+        if(isAdmin == 1){
         $("#isAdminEdit").html("<option value='1' selected>Admin</option><option value='2'>Super Admin</option>");
+        
+        }else{
+            $("#isAdminEdit").html("<option value='1'>Admin</option><option value='2' selected>Super Admin</option>");
+        }
     }else{
-        $("#isAdminEdit").html("<option value='1'>Admin</option><option value='2' selected>Super Admin</option>");
+        if(isAdmin == 1){
+        $("#isAdminEdit").html("<option value='1' selected>Admin</option>");
+        
+        }else{
+            $("#isAdminEdit").html("<option value='1'>Admin</option>");
+        }
+
     }
     
     $("#EditLabelName").attr("class","active");
@@ -417,7 +530,9 @@ $("#editUserSubmit").click(function () {
     // var name = $(this).attr('data-name');
     // var email = $(this).attr('data-email');
     // var created_by = $(this).attr('data-created_by');
-    // var created_at = $(this).attr('data-create_at');
+    // var created_at = $(this).attr('data-create_at');.
+
+    var curPass = $("#userCurrPassEdit").val();
 
     var newPass = $("#userNewPassEdit").val();
     var confirmPass = $("#userConfirmPassEdit").val();
@@ -432,6 +547,7 @@ $("#editUserSubmit").click(function () {
             code:company_id,
             name:name,
             email:email,
+            curPass:curPass,
             newPass:newPass,
             confirmPass:confirmPass,
             isAdmin:isAdmin
@@ -454,6 +570,7 @@ $("#editUserSubmit").click(function () {
                         code:company_id,
                         name:name,
                         email:email,
+                        curPass:curPass,
                         newPass:newPass,
                         confirmPass:confirmPass,
                         isAdmin:isAdmin
@@ -574,5 +691,55 @@ $("#delSubmit").click(function () {
         // $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
         $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('label').remove();
     });
+</script>
+
+<script>
+//Hide show
+    // $(".access-select").on('change', function() {
+    //         var id = $(this).attr('data-id');
+    //         if(this.value == "ALL"){
+    //            $(".access-right-"+id).hide();
+    //         }
+    //         else if (this.value == "NO"){
+    //             $(".access-right-"+id).hide();
+    //         }
+    //         else if(this.value == "CONFIG"){
+    //             $(".access-right-"+id).show();
+    //         }
+    //   });
+//Hide show
+$("[id^=accessSelect]").on('change', function() { 
+    var $accessRights = $(this).closest('.row').children('[class*=access-right]');
+    if($(this).val() == "CONFIG") {
+        $accessRights.show();
+    }
+    else {
+       $accessRights.hide();
+    }
+});
+  
+</script>
+
+<script>
+$(".manageAccessEdit").click(function () {
+    $('#MAUserModal').modal('show');
+    var id = $(this).attr('data-id');
+    var company_id = $(this).attr('data-companyid');
+    var name = $(this).attr('data-name');
+    var email = $(this).attr('data-email');
+    var created_by = $(this).attr('data-created_by');
+    var created_at = $(this).attr('data-create_at');
+    var isAdmin = $(this).attr('data-is_admin');
+
+    $("#HeaderMA").html(company_id);
+    $("#userMA").html(name);
+
+    $("#MASubmit").attr("data-id",id);
+    $("#MASubmit").attr("data-companyid",company_id);
+    $("#MASubmit").attr("data-name",name);
+    $("#MASubmit").attr("data-email",email);
+    $("#MASubmit").attr("data-created_by",created_by);
+    $("#MASubmit").attr("data-create_at",created_at);
+});
 </script>
 @endsection
