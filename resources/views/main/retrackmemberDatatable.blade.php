@@ -12,7 +12,11 @@
                 <th class="th-sm">Type</th>
                 <th class="th-sm">Address</th>
                 <th class="th-sm">Created At</th>
-                <th class="th-lg">Action</th>
+                @if($manage_retrack_mem[0]->full_access_data == 1 || $manage_retrack_mem[0]->custom_data == 1)
+                    @if($manage_retrack_mem[0]->full_access_data == 1 || $manage_retrack_mem[0]->retrack_data == 1)
+                        <th class="th-lg">Action</th>
+                    @endif
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -30,9 +34,15 @@
                         <td>{{$field->member_type}}</td>
                         <td>{{$field->member_address}}</td>
                         <td><small>{{ date('F d Y - h:i a',strtotime($field->created_at)) }}</small></td>
-                        <td>
-                        <a class="svs-action delMember btn btn-success waves-effect" data-id="{{$field->id}}" data-memcode="{{$field->memberCode}}" data-name="{{$field->member_name}}" data-email="{{$field->member_email}}" data-contact = "{{$field->member_contact_no}}" data-addr = "{{$field->member_address}}" data-type = "{{$field->member_type}}" data-by="{{$field->updated_by}}" data-created="{{date('F d Y - h:i a',strtotime($field->created_at))}}">Retrack</a>
-                        </td>
+                        
+                        @if($manage_retrack_mem[0]->full_access_data == 1 || $manage_retrack_mem[0]->custom_data == 1)
+                            @if($manage_retrack_mem[0]->full_access_data == 1 || $manage_retrack_mem[0]->retrack_data == 1)
+                                <td>
+                                    <a class="svs-action delMember btn btn-success waves-effect" data-id="{{$field->id}}" data-memcode="{{$field->memberCode}}" data-name="{{$field->member_name}}" data-email="{{$field->member_email}}" data-contact = "{{$field->member_contact_no}}" data-addr = "{{$field->member_address}}" data-type = "{{$field->member_type}}" data-by="{{$field->updated_by}}" data-created="{{date('F d Y - h:i a',strtotime($field->created_at))}}">Retrack</a>
+                                </td>
+                            @endif
+                        @endif
+                        
                     </tr>
                 @endforeach
             @endif

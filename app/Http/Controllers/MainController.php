@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\TaskModel;
 use App\Models\UserAccount;
 use App\Models\ManageAccessList;
+use App\Models\ManageAccessRecords;
 use App\Models\ViewUsers;
 use App\Models\ProjectList;
 use App\Models\ProjTask;
@@ -26,7 +27,7 @@ class MainController extends Controller
         // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){adadadadadadadadadadad
         if(!empty(auth()->user()->id)){
             $view_project_percentage = DB::connection('mysql')->select("SELECT * from view_project_percentage WHERE deleted = 0 ORDER BY created_at DESC");
-        
+
             return view('main.index', compact('view_project_percentage'));
         }else{
             return redirect('/');
@@ -301,11 +302,24 @@ class MainController extends Controller
     public function task(){
         // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
         if(!empty(auth()->user()->id)){
+
             $task_record = TaskModel::where('deleted', 0)
+                ->orderBy('created_at','desc')
+                ->get();
+
+            $manage_user_task = ManageAccessRecords::where('company_id', auth()->user()->company_id)
+            ->where('access_id', 2)
             ->orderBy('created_at','desc')
             ->get();
 
-            return view('main.task', compact('task_record'));
+            if($manage_user_task[0]->no_access_data == 0)
+            {
+                return view('main.task', compact('task_record','manage_user_task'));
+            }
+            else
+            {
+                abort(404);
+            }
         }else{
             return redirect('/');
         }
@@ -640,7 +654,17 @@ class MainController extends Controller
             GROUP BY a.emp_id
             ");
 
-            return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info','emp_selected','pm_selected','stakeholder_info','customer_info'));
+
+            $manage_user_proj = ManageAccessRecords::where('company_id', auth()->user()->company_id)
+            ->where('access_id', 3)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            if($manage_user_proj[0]->no_access_data == 0){
+                return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info','emp_selected','pm_selected','stakeholder_info','customer_info','manage_user_proj'));
+            }else{
+                abort(404);
+            }
         }else{
             return redirect('/');
         }
@@ -2816,8 +2840,17 @@ class MainController extends Controller
         // if(!empty(auth()->user()->id) && auth()->user()->is_admin != 0){
         if(!empty(auth()->user()->id)){
             $task = DB::connection('mysql')->select("SELECT * from tbl_task WHERE deleted = 1 ORDER BY created_at DESC");
-        
-            return view('main.retracktask', compact('task'));
+            
+            $manage_retrack_task = ManageAccessRecords::where('company_id', auth()->user()->company_id)
+            ->where('access_id', 2)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            if($manage_retrack_task[0]->no_access_data == 0){
+                return view('main.retracktask', compact('task','manage_retrack_task'));
+            }else{
+                abort(404);
+            }
         }else{
             return redirect('/');
         }
@@ -2831,7 +2864,19 @@ class MainController extends Controller
             ->orderBy('created_at','desc')
             ->get();
 
-            return view('main.retrackprojectlist', compact('project_record'));
+            $manage_retrack_proj = ManageAccessRecords::where('company_id', auth()->user()->company_id)
+            ->where('access_id', 3)
+            ->orderBy('created_at','desc')
+            ->get();
+            
+            if($manage_retrack_proj[0]->no_access_data == 0)
+            {
+                return view('main.retrackprojectlist', compact('project_record','manage_retrack_proj'));
+            }
+            else
+            {
+                abort(404);
+            }
         }else{
             return redirect('/');
         }
@@ -2843,7 +2888,19 @@ class MainController extends Controller
             ->orderBy('created_at','desc')
             ->get();
 
-            return view('main.retrackmember', compact('member_record'));
+            $manage_retrack_mem = ManageAccessRecords::where('company_id', auth()->user()->company_id)
+            ->where('access_id', 4)
+            ->orderBy('created_at','desc')
+            ->get();
+            
+            if($manage_retrack_mem[0]->no_access_data == 0)
+            {
+                return view('main.retrackmember', compact('member_record','manage_retrack_mem'));
+            }
+            else
+            {
+                abort(404);
+            }
         }else{
             return redirect('/');
         }
@@ -2867,7 +2924,20 @@ class MainController extends Controller
                 ->get();
             }
 
-            return view('main.retrackusermanagement', compact('user_records_web'));
+
+            $manage_retrack_um = ManageAccessRecords::where('company_id', auth()->user()->company_id)
+            ->where('access_id', 5)
+            ->orderBy('created_at','desc')
+            ->get();
+            
+            if($manage_retrack_um[0]->no_access_data == 0)
+            {
+                return view('main.retrackusermanagement', compact('user_records_web','manage_retrack_um'));
+            }
+            else
+            {
+                abort(404);
+            }
         }else{
             return redirect('/');
         }
@@ -2977,7 +3047,16 @@ class MainController extends Controller
             ->orderBy('created_at','desc')
             ->get();
 
-            return view('main.member', compact('member_record'));
+            $manage_user_mem = ManageAccessRecords::where('company_id', auth()->user()->company_id)
+            ->where('access_id', 4)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            if($manage_user_mem[0]->no_access_data == 0){
+                return view('main.member', compact('member_record','manage_user_mem'));
+            }else{
+                abort(404);
+            }
         }else{
             return redirect('/');
         }
@@ -3154,8 +3233,19 @@ class MainController extends Controller
                 ->get();
             }
             
-
-            return view('main.usermanagement', compact('user_records_web','manage_access_list'));
+            $manage_user_um = ManageAccessRecords::where('company_id', auth()->user()->company_id)
+            ->where('access_id', 5)
+            ->orderBy('created_at','desc')
+            ->get();
+            
+            if($manage_user_um[0]->no_access_data == 0)
+            {
+                return view('main.usermanagement', compact('user_records_web','manage_access_list','manage_user_um'));
+            }
+            else
+            {
+                abort(404);
+            }
         }else{
             return redirect('/');
         }
@@ -3192,10 +3282,6 @@ class MainController extends Controller
                 $messages = "Select User Type";
                 $error[] = $messages;
             }
-            else if($request->select1 == ""){
-                $messages = "Dashboard Access Righ is required!";
-                $error[] = $messages;
-            }
             else if($request->select2 == ""){
                 $messages = "Task List Access Righ is required!";
                 $error[] = $messages;
@@ -3208,13 +3294,13 @@ class MainController extends Controller
                 $messages = "Member Records Access Right is required!";
                 $error[] = $messages;
             }
+            else if($request->select4 == ""){
+                $messages = "User Management Access Right is required!";
+                $error[] = $messages;
+            }
             
             else{
-                if($request->select1 == "CONFIG" && $request->dashboard == ""){
-                    $messages = "Dashboard Access Right is required!";
-                    $error[] = $messages;
-                }
-                else if($request->select2 == "CONFIG" && $request->tasklist == ""){
+                if($request->select2 == "CONFIG" && $request->tasklist == ""){
                     $messages = "Task List Access Right is required!";
                     $error[] = $messages;
                 }
@@ -3224,6 +3310,10 @@ class MainController extends Controller
                 }
                 else if($request->select4 == "CONFIG" && $request->memberrecords == ""){
                     $messages = "Member Records Access Right is required!";
+                    $error[] = $messages;
+                }
+                else if($request->select5 == "CONFIG" && $request->usermanagement == ""){
+                    $messages = "User Management Access Right is required!";
                     $error[] = $messages;
                 }
                 else{
@@ -3343,6 +3433,371 @@ class MainController extends Controller
             $user_record->created_at = now();
             $user_record->updated_at = now();
             $user_record->save();
+
+            //Dashboard
+                // $ManageAccessDashboard = new ManageAccessRecords;
+                // $ManageAccessDashboard->access_id = 1;
+                // $ManageAccessDashboard->company_id = $userCode;
+                
+                // if($request->select1 == "ALL"){
+                //     $ManageAccessDashboard->read_data = 0;
+                //     $ManageAccessDashboard->full_access_data = 1;
+                //     $ManageAccessDashboard->no_access_data = 0;
+                //     $ManageAccessDashboard->custom_data = 0;
+                //     $ManageAccessDashboard->add_data = 0;
+                //     $ManageAccessDashboard->edit_data = 0;
+                //     $ManageAccessDashboard->delete_data = 0;
+                //     $ManageAccessDashboard->retrack_data = 0;
+                // }
+                // else if($request->select1 == "NO"){
+                //     $ManageAccessDashboard->read_data = 0;
+                //     $ManageAccessDashboard->full_access_data = 0;
+                //     $ManageAccessDashboard->no_access_data = 1;
+                //     $ManageAccessDashboard->custom_data = 0;
+                //     $ManageAccessDashboard->add_data = 0;
+                //     $ManageAccessDashboard->edit_data = 0;
+                //     $ManageAccessDashboard->delete_data = 0;
+                //     $ManageAccessDashboard->retrack_data = 0;
+                // }
+                // else if($request->select1 == "READ"){
+                //     $ManageAccessDashboard->read_data = 1;
+                //     $ManageAccessDashboard->full_access_data = 0;
+                //     $ManageAccessDashboard->no_access_data = 0;
+                //     $ManageAccessDashboard->custom_data = 0;
+                //     $ManageAccessDashboard->add_data = 0;
+                //     $ManageAccessDashboard->edit_data = 0;
+                //     $ManageAccessDashboard->delete_data = 0;
+                //     $ManageAccessDashboard->retrack_data = 0;
+                // }
+                // else if($request->select1 == "CONFIG"){
+                //     $ManageAccessDashboard->read_data = 0;
+                //     $ManageAccessDashboard->full_access_data = 0;
+                //     $ManageAccessDashboard->no_access_data = 0;
+                //     $ManageAccessDashboard->custom_data = 1;
+
+                //     if(in_array('ADD', $request->dashboard, true)){
+                //         $ManageAccessDashboard->add_data = 1;
+                //     }else{
+                //         $ManageAccessDashboard->add_data = 0;
+                //     }
+
+                //     if(in_array('EDIT', $request->dashboard, true)){
+                //         $ManageAccessDashboard->edit_data = 1;
+                //     }else{
+                //         $ManageAccessDashboard->edit_data = 0;
+                //     }
+
+                //     if(in_array('REMOVE', $request->dashboard, true)){
+                //         $ManageAccessDashboard->delete_data = 1;
+                //     }else{
+                //         $ManageAccessDashboard->delete_data = 0;
+                //     }
+
+                //     if(in_array('RETRACK', $request->dashboard, true)){
+                //         $ManageAccessDashboard->retrack_data = 1;
+                //     }else{
+                //         $ManageAccessDashboard->retrack_data = 0;
+                //     }
+                // }
+
+                // $ManageAccessDashboard->deleted = 0;
+                // $ManageAccessDashboard->by_id = auth()->user()->company_id;
+                // $ManageAccessDashboard->created_at = now();
+                // $ManageAccessDashboard->updated_at = now();
+                // $ManageAccessDashboard->save();
+            //Dashboard
+
+            //Task List
+                $ManageAccessTask = new ManageAccessRecords;
+                $ManageAccessTask->access_id = 2;
+                $ManageAccessTask->company_id = $userCode;
+                
+                if($request->select2 == "ALL"){
+                    $ManageAccessTask->read_data = 0;
+                    $ManageAccessTask->full_access_data = 1;
+                    $ManageAccessTask->no_access_data = 0;
+                    $ManageAccessTask->custom_data = 0;
+                    $ManageAccessTask->add_data = 0;
+                    $ManageAccessTask->edit_data = 0;
+                    $ManageAccessTask->delete_data = 0;
+                    $ManageAccessTask->retrack_data = 0;
+                }
+                else if($request->select2 == "NO"){
+                    $ManageAccessTask->read_data = 0;
+                    $ManageAccessTask->full_access_data = 0;
+                    $ManageAccessTask->no_access_data = 1;
+                    $ManageAccessTask->custom_data = 0;
+                    $ManageAccessTask->add_data = 0;
+                    $ManageAccessTask->edit_data = 0;
+                    $ManageAccessTask->delete_data = 0;
+                    $ManageAccessTask->retrack_data = 0;
+                }
+                else if($request->select2 == "READ"){
+                    $ManageAccessTask->read_data = 1;
+                    $ManageAccessTask->full_access_data = 0;
+                    $ManageAccessTask->no_access_data = 0;
+                    $ManageAccessTask->custom_data = 0;
+                    $ManageAccessTask->add_data = 0;
+                    $ManageAccessTask->edit_data = 0;
+                    $ManageAccessTask->delete_data = 0;
+                    $ManageAccessTask->retrack_data = 0;
+                }
+                else if($request->select2 == "CONFIG"){
+                    $ManageAccessTask->read_data = 0;
+                    $ManageAccessTask->full_access_data = 0;
+                    $ManageAccessTask->no_access_data = 0;
+                    $ManageAccessTask->custom_data = 1;
+
+                    if(in_array('ADD', $request->tasklist, true)){
+                        $ManageAccessTask->add_data = 1;
+                    }else{
+                        $ManageAccessTask->add_data = 0;
+                    }
+
+                    if(in_array('EDIT', $request->tasklist, true)){
+                        $ManageAccessTask->edit_data = 1;
+                    }else{
+                        $ManageAccessTask->edit_data = 0;
+                    }
+
+                    if(in_array('REMOVE', $request->tasklist, true)){
+                        $ManageAccessTask->delete_data = 1;
+                    }else{
+                        $ManageAccessTask->delete_data = 0;
+                    }
+
+                    if(in_array('RETRACK', $request->tasklist, true)){
+                        $ManageAccessTask->retrack_data = 1;
+                    }else{
+                        $ManageAccessTask->retrack_data = 0;
+                    }
+                }
+
+                $ManageAccessTask->deleted = 0;
+                $ManageAccessTask->by_id = auth()->user()->company_id;
+                $ManageAccessTask->created_at = now();
+                $ManageAccessTask->updated_at = now();
+                $ManageAccessTask->save();
+            //Task
+
+            //Project
+                $ManageAccessProject = new ManageAccessRecords;
+                $ManageAccessProject->access_id = 3;
+                $ManageAccessProject->company_id = $userCode;
+                
+                if($request->select3 == "ALL"){
+                    $ManageAccessProject->read_data = 0;
+                    $ManageAccessProject->full_access_data = 1;
+                    $ManageAccessProject->no_access_data = 0;
+                    $ManageAccessProject->custom_data = 0;
+                    $ManageAccessProject->add_data = 0;
+                    $ManageAccessProject->edit_data = 0;
+                    $ManageAccessProject->delete_data = 0;
+                    $ManageAccessProject->retrack_data = 0;
+                }
+                else if($request->select3 == "NO"){
+                    $ManageAccessProject->read_data = 0;
+                    $ManageAccessProject->full_access_data = 0;
+                    $ManageAccessProject->no_access_data = 1;
+                    $ManageAccessProject->custom_data = 0;
+                    $ManageAccessProject->add_data = 0;
+                    $ManageAccessProject->edit_data = 0;
+                    $ManageAccessProject->delete_data = 0;
+                    $ManageAccessProject->retrack_data = 0;
+                }
+                else if($request->select3 == "READ"){
+                    $ManageAccessProject->read_data = 1;
+                    $ManageAccessProject->full_access_data = 0;
+                    $ManageAccessProject->no_access_data = 0;
+                    $ManageAccessProject->custom_data = 0;
+                    $ManageAccessProject->add_data = 0;
+                    $ManageAccessProject->edit_data = 0;
+                    $ManageAccessProject->delete_data = 0;
+                    $ManageAccessProject->retrack_data = 0;
+                }
+                else if($request->select3 == "CONFIG"){
+                    $ManageAccessProject->read_data = 0;
+                    $ManageAccessProject->full_access_data = 0;
+                    $ManageAccessProject->no_access_data = 0;
+                    $ManageAccessProject->custom_data = 1;
+
+                    if(in_array('ADD', $request->projectlist, true)){
+                        $ManageAccessProject->add_data = 1;
+                    }else{
+                        $ManageAccessProject->add_data = 0;
+                    }
+
+                    if(in_array('EDIT', $request->projectlist, true)){
+                        $ManageAccessProject->edit_data = 1;
+                    }else{
+                        $ManageAccessProject->edit_data = 0;
+                    }
+
+                    if(in_array('REMOVE', $request->projectlist, true)){
+                        $ManageAccessProject->delete_data = 1;
+                    }else{
+                        $ManageAccessProject->delete_data = 0;
+                    }
+
+                    if(in_array('RETRACK', $request->projectlist, true)){
+                        $ManageAccessProject->retrack_data = 1;
+                    }else{
+                        $ManageAccessProject->retrack_data = 0;
+                    }
+                }
+
+                $ManageAccessProject->deleted = 0;
+                $ManageAccessProject->by_id = auth()->user()->company_id;
+                $ManageAccessProject->created_at = now();
+                $ManageAccessProject->updated_at = now();
+                $ManageAccessProject->save();
+            //Project
+
+            //Member
+                $ManageAccessMember = new ManageAccessRecords;
+                $ManageAccessMember->access_id = 4;
+                $ManageAccessMember->company_id = $userCode;
+                
+                if($request->select4 == "ALL"){
+                    $ManageAccessMember->read_data = 0;
+                    $ManageAccessMember->full_access_data = 1;
+                    $ManageAccessMember->no_access_data = 0;
+                    $ManageAccessMember->custom_data = 0;
+                    $ManageAccessMember->add_data = 0;
+                    $ManageAccessMember->edit_data = 0;
+                    $ManageAccessMember->delete_data = 0;
+                    $ManageAccessMember->retrack_data = 0;
+                }
+                else if($request->select4 == "NO"){
+                    $ManageAccessMember->read_data = 0;
+                    $ManageAccessMember->full_access_data = 0;
+                    $ManageAccessMember->no_access_data = 1;
+                    $ManageAccessMember->custom_data = 0;
+                    $ManageAccessMember->add_data = 0;
+                    $ManageAccessMember->edit_data = 0;
+                    $ManageAccessMember->delete_data = 0;
+                    $ManageAccessMember->retrack_data = 0;
+                }
+                else if($request->select4 == "READ"){
+                    $ManageAccessMember->read_data = 1;
+                    $ManageAccessMember->full_access_data = 0;
+                    $ManageAccessMember->no_access_data = 0;
+                    $ManageAccessMember->custom_data = 0;
+                    $ManageAccessMember->add_data = 0;
+                    $ManageAccessMember->edit_data = 0;
+                    $ManageAccessMember->delete_data = 0;
+                    $ManageAccessMember->retrack_data = 0;
+                }
+                else if($request->select4 == "CONFIG"){
+                    $ManageAccessMember->read_data = 0;
+                    $ManageAccessMember->full_access_data = 0;
+                    $ManageAccessMember->no_access_data = 0;
+                    $ManageAccessMember->custom_data = 1;
+
+                    if(in_array('ADD', $request->memberrecords, true)){
+                        $ManageAccessMember->add_data = 1;
+                    }else{
+                        $ManageAccessMember->add_data = 0;
+                    }
+
+                    if(in_array('EDIT', $request->memberrecords, true)){
+                        $ManageAccessMember->edit_data = 1;
+                    }else{
+                        $ManageAccessMember->edit_data = 0;
+                    }
+
+                    if(in_array('REMOVE', $request->memberrecords, true)){
+                        $ManageAccessMember->delete_data = 1;
+                    }else{
+                        $ManageAccessMember->delete_data = 0;
+                    }
+
+                    if(in_array('RETRACK', $request->memberrecords, true)){
+                        $ManageAccessMember->retrack_data = 1;
+                    }else{
+                        $ManageAccessMember->retrack_data = 0;
+                    }
+                }
+
+                $ManageAccessMember->deleted = 0;
+                $ManageAccessMember->by_id = auth()->user()->company_id;
+                $ManageAccessMember->created_at = now();
+                $ManageAccessMember->updated_at = now();
+                $ManageAccessMember->save();
+            //Member
+
+            //Usermanagement
+                $ManageAccessUserM = new ManageAccessRecords;
+                $ManageAccessUserM->access_id = 5;
+                $ManageAccessUserM->company_id = $userCode;
+                
+                if($request->select5 == "ALL"){
+                    $ManageAccessUserM->read_data = 0;
+                    $ManageAccessUserM->full_access_data = 1;
+                    $ManageAccessUserM->no_access_data = 0;
+                    $ManageAccessUserM->custom_data = 0;
+                    $ManageAccessUserM->add_data = 0;
+                    $ManageAccessUserM->edit_data = 0;
+                    $ManageAccessUserM->delete_data = 0;
+                    $ManageAccessUserM->retrack_data = 0;
+                }
+                else if($request->select5 == "NO"){
+                    $ManageAccessUserM->read_data = 0;
+                    $ManageAccessUserM->full_access_data = 0;
+                    $ManageAccessUserM->no_access_data = 1;
+                    $ManageAccessUserM->custom_data = 0;
+                    $ManageAccessUserM->add_data = 0;
+                    $ManageAccessUserM->edit_data = 0;
+                    $ManageAccessUserM->delete_data = 0;
+                    $ManageAccessUserM->retrack_data = 0;
+                }
+                else if($request->select5 == "READ"){
+                    $ManageAccessUserM->read_data = 1;
+                    $ManageAccessUserM->full_access_data = 0;
+                    $ManageAccessUserM->no_access_data = 0;
+                    $ManageAccessUserM->custom_data = 0;
+                    $ManageAccessUserM->add_data = 0;
+                    $ManageAccessUserM->edit_data = 0;
+                    $ManageAccessUserM->delete_data = 0;
+                    $ManageAccessUserM->retrack_data = 0;
+                }
+                else if($request->select5 == "CONFIG"){
+                    $ManageAccessUserM->read_data = 0;
+                    $ManageAccessUserM->full_access_data = 0;
+                    $ManageAccessUserM->no_access_data = 0;
+                    $ManageAccessUserM->custom_data = 1;
+
+                    if(in_array('ADD', $request->usermanagement, true)){
+                        $ManageAccessUserM->add_data = 1;
+                    }else{
+                        $ManageAccessUserM->add_data = 0;
+                    }
+
+                    if(in_array('EDIT', $request->usermanagement, true)){
+                        $ManageAccessUserM->edit_data = 1;
+                    }else{
+                        $ManageAccessUserM->edit_data = 0;
+                    }
+
+                    if(in_array('REMOVE', $request->usermanagement, true)){
+                        $ManageAccessUserM->delete_data = 1;
+                    }else{
+                        $ManageAccessUserM->delete_data = 0;
+                    }
+
+                    if(in_array('RETRACK', $request->usermanagement, true)){
+                        $ManageAccessUserM->retrack_data = 1;
+                    }else{
+                        $ManageAccessUserM->retrack_data = 0;
+                    }
+                }
+
+                $ManageAccessUserM->deleted = 0;
+                $ManageAccessUserM->by_id = auth()->user()->company_id;
+                $ManageAccessUserM->created_at = now();
+                $ManageAccessUserM->updated_at = now();
+                $ManageAccessUserM->save();
+            //Usermanagement
 
             $request->session()->put('successUserM','Sucessfully Saved!');
             $request->session()->put('webUserCode',$userCode);
@@ -3551,4 +4006,776 @@ class MainController extends Controller
         echo json_encode($output);
     }
 
+    public function manage_access_edit(Request $request){
+        $manage_access = DB::connection('mysql')->select("SELECT a.id, a.access_id, 
+        (SELECT access_desc FROM tbl_manage_access_right WHERE id = a.access_id) as access_desc,
+        a.company_id,
+        a.read_data, 
+        a.full_access_data,
+        a.no_access_data,
+        a.custom_data,
+        a.add_data,
+        a.edit_data,
+        a.delete_data,
+        a.retrack_data,
+        a.deleted,
+        a.by_id,
+        a.created_at, 
+        a.updated_at
+        FROM 
+        tbl_manage_access_right_per_user AS a
+        WHERE a.company_id = '".$request->company_id."'
+        ORDER BY a.access_id ASC");
+
+        $data = "";
+
+        $counter = 0;
+
+        if(count($manage_access)){
+            foreach($manage_access as $field){
+
+                //Checked
+                    if($field->add_data == 1){
+                        $check1 = "checked";
+                    }else{
+                        $check1 ="";
+                    }
+                    if($field->edit_data == 1){
+                        $check2 = "checked";
+                    }else{
+                        $check2 ="";
+                    }
+                    if($field->delete_data == 1){
+                        $check3 = "checked";
+                    }else{
+                        $check3 ="";
+                    }
+                    if($field->retrack_data == 1){
+                        $check4 = "checked";
+                    }else{
+                        $check4 ="";
+                    }
+                //Checked
+
+                $data .='
+                        <div class="row">
+                            <div class="col-md-2">
+                                '.$field->access_desc.'
+                            </div>
+                            <div class="col-md-2">
+                                <select class="access-select-edit mdb-select accessSelectEdit'.$field->access_id.'" data-id = "'.$field->access_id.'" name="accessSelectEdit'.$field->access_id.'" id="accessSelectEdit'.$field->access_id.'" style="width: 170px!important;">
+                    ';
+
+                    if($field->full_access_data == 1){
+                        if($field->access_id != 1){
+                            $data .= '<option value="ALL" selected>All Access</option>';
+                        }
+                        $data .= '
+                            <option value="NO">No Access</option>
+                            <option value="READ">Read Only</option>
+                        ';
+                        if($field->access_id != 1){
+                            $data .= '<option value="CONFIG">Custom Access</option>';
+                        }
+                    }
+                    else if($field->no_access_data == 1){
+                        if($field->access_id != 1){
+                            $data .= '<option value="ALL" >All Access</option>';
+                        }
+                        $data .= '
+                            <option value="NO" selected>No Access</option>
+                            <option value="READ">Read Only</option>
+                        ';
+                        if($field->access_id != 1){
+                            $data .= '<option value="CONFIG">Custom Access</option>';
+                        }
+                    }
+                    else if($field->custom_data == 1){
+                        if($field->access_id != 1){
+                            $data .= '<option value="ALL" >All Access</option>';
+                        }
+                        $data .= '
+                            <option value="NO">No Access</option>
+                            <option value="READ">Read Only</option>
+                        ';
+                        if($field->access_id != 1){
+                            $data .= '<option value="CONFIG" selected>Custom Access</option>';
+                        }
+                    }
+                    else if($field->read_data == 1){
+                        if($field->access_id != 1){
+                            $data .= '<option value="ALL" >All Access</option>';
+                        }
+                        $data .= '
+                            <option value="NO">No Access</option>
+                            <option value="READ" selected>Read Only</option>
+                        ';
+                        if($field->access_id != 1){
+                            $data .= '<option value="CONFIG">Custom Access</option>';
+                        }
+                    }
+
+
+                    
+                    if($field->custom_data == 1){
+                        $data .= ' 
+                            </select>
+                                </div>
+                    
+                                <div class="col-md-2 access-right-edit'.$field->access_id.'" >
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input addE'.$field->access_id.'" name="configE'.$field->access_id.'" value = "ADD" id="addE'.$field->access_id.'" '.$check1.'>
+                                        <label class="custom-control-label" for="addE'.$field->access_id.'">Add</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 access-right-edit'.$field->access_id.'">
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input editE'.$field->access_id.'" name="configE'.$field->access_id.'" value = "EDIT" id="editE'.$field->access_id.'" '.$check2.'>
+                                        <label class="custom-control-label" for="editE'.$field->access_id.'">Edit</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 access-right-edit'.$field->access_id.'">
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input removeE'.$field->access_id.'" name="configE'.$field->access_id.'" value = "REMOVE" id="removeE'.$field->access_id.'" '.$check3.'>
+                                        <label class="custom-control-label" for="removeE'.$field->access_id.'">Remove</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 access-right-edit'.$field->access_id.'">
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input removeE'.$field->access_id.'" name="configE'.$field->access_id.'" value = "RETRACK" id="retrackE'.$field->access_id.'" '.$check4.'>
+                                        <label class="custom-control-label" for="retrackE'.$field->access_id.'">Retrack</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        ';
+                    }
+                    else{
+                        $data .= ' 
+                            </select>
+                                </div>
+                    
+                                <div class="col-md-2 access-right-edit'.$field->access_id.'" style="display:none;">
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input addE'.$field->access_id.'" name="configE'.$field->access_id.'" value = "ADD" id="addE'.$field->access_id.'" '.$check1.'>
+                                        <label class="custom-control-label" for="addE'.$field->access_id.'">Add</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 access-right-edit'.$field->access_id.'" style="display:none;">
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input editE'.$field->access_id.'" name="configE'.$field->access_id.'" value = "EDIT" id="editE'.$field->access_id.'" '.$check2.'>
+                                        <label class="custom-control-label" for="editE'.$field->access_id.'">Edit</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 access-right-edit'.$field->access_id.'" style="display:none;">
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input removeE'.$field->access_id.'" name="configE'.$field->access_id.'" value = "REMOVE" id="removeE'.$field->access_id.'" '.$check3.'>
+                                        <label class="custom-control-label" for="removeE'.$field->access_id.'">Remove</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 access-right-edit'.$field->access_id.'" style="display:none;">
+                                    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input removeE'.$field->access_id.'" name="configE'.$field->access_id.'" value = "RETRACK" id="retrackE'.$field->access_id.'" '.$check4.'>
+                                        <label class="custom-control-label" for="retrackE'.$field->access_id.'">Retrack</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        ';
+                    }
+               
+
+                $counter++;
+            }
+            $data .= '
+                <script>
+                    $("[id^=accessSelectEdit]").on("change", function() { 
+                        var $accessRights = $(this).closest(".row").children("[class*=access-right-edit]");
+                        if($(this).val() == "CONFIG") {
+                            $accessRights.show();
+                        }
+                        else {
+                        $accessRights.hide();
+                        }
+                    });
+                </script>
+            ';
+        }
+
+        echo $data;
+    }
+
+    public function manage_access_update_val(Request $request){
+
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+
+        if($request->type == "UPDATE_ACCESS"){
+            if($request->companyID == ""){
+                $messages = "Name is required!";
+                $error[] = $messages;
+            }
+            else if($request->select2 == ""){
+                $messages = "Task List Access Righ is required!";
+                $error[] = $messages;
+            }
+            else if($request->select3 == ""){
+                $messages = "Project List Access Righ is required!";
+                $error[] = $messages;
+            }
+            else if($request->select4 == ""){
+                $messages = "Member Records Access Right is required!";
+                $error[] = $messages;
+            }
+            else if($request->select5 == ""){
+                $messages = "User Management Access Right is required!";
+                $error[] = $messages;
+            }
+            
+            else{
+                if($request->select2 == "CONFIG" && $request->tasklist == ""){
+                    $messages = "Task List Access Right is required!";
+                    $error[] = $messages;
+                }
+                else if($request->select3 == "CONFIG" && $request->projectlist == ""){
+                    $messages = "Project List Access Right is required!";
+                    $error[] = $messages;
+                }
+                else if($request->select4 == "CONFIG" && $request->memberrecords == ""){
+                    $messages = "Member Records Access Right is required!";
+                    $error[] = $messages;
+                }
+                else if($request->select5 == "CONFIG" && $request->usermanagement == ""){
+                    $messages = "User Management Access Right is required!";
+                    $error[] = $messages;
+                }
+                else{
+                    $messages = "Sucessfully Validated!";
+                    $success[] = $messages;
+                }
+            }
+        }else{
+            $messages = "Invalid request...";
+            $error[] = $messages;
+        }
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+
+        echo json_encode($output);
+    }
+
+    public function manage_access_update(Request $request){
+        $message = "";
+        $output = array();
+        $error = array();
+        $success = array();
+
+        if($request->type == "UPDATE_ACCESS"){
+
+            $manage_access = DB::connection('mysql')->select("SELECT * FROM users WHERE company_id = '".$request->companyID."'");
+
+            //Dashboard
+                // if($request->select1 == "ALL"){
+                //     DB::table('tbl_manage_access_right_per_user')
+                //         ->where('company_id', $request->companyID)
+                //         ->where('access_id', 1)
+                //         ->update([
+                //         'read_data' => 0,
+                //         'full_access_data' => 1,
+                //         'no_access_data' => 0,
+                //         'custom_data' => 0,
+                //         'add_data' => 0,
+                //         'edit_data' => 0,
+                //         'delete_data' => 0,
+                //         'retrack_data' => 0,
+                //         'deleted' => 0,
+                //         'updated_at' => now()
+                //     ]);
+                // }
+                // else if($request->select1 == "NO"){
+                //     DB::table('tbl_manage_access_right_per_user')
+                //         ->where('company_id', $request->companyID)
+                //         ->where('access_id', 1)
+                //         ->update([
+                //         'read_data' => 0,
+                //         'full_access_data' => 0,
+                //         'no_access_data' => 1,
+                //         'custom_data' => 0,
+                //         'add_data' => 0,
+                //         'edit_data' => 0,
+                //         'delete_data' => 0,
+                //         'retrack_data' => 0,
+                //         'deleted' => 0,
+                //         'updated_at' => now()
+                //     ]);
+                // }
+                // else if($request->select1 == "READ"){
+                //     DB::table('tbl_manage_access_right_per_user')
+                //         ->where('company_id', $request->companyID)
+                //         ->where('access_id', 1)
+                //         ->update([
+                //         'read_data' => 1,
+                //         'full_access_data' => 0,
+                //         'no_access_data' => 0,
+                //         'custom_data' => 0,
+                //         'add_data' => 0,
+                //         'edit_data' => 0,
+                //         'delete_data' => 0,
+                //         'retrack_data' => 0,
+                //         'deleted' => 0,
+                //         'updated_at' => now()
+                //     ]);
+                // }
+                // else if($request->select1 == "CONFIG"){
+                //     $add_data_dash = 0;
+                //     $edit_data_dash = 0;
+                //     $delete_data_dash = 0;
+                //     $retrack_data_dash = 0;
+        
+                    
+                //     if(in_array('ADD', $request->dashboard, true)){
+                //         $add_data_dash = 1;
+                //     }
+
+                //     if(in_array('EDIT', $request->dashboard, true)){
+                //         $edit_data_dash = 1;
+                //     }
+
+                //     if(in_array('REMOVE', $request->dashboard, true)){
+                //         $delete_data_dash = 1;
+                //     }
+
+                //     if(in_array('RETRACK', $request->dashboard, true)){
+                //         $retrack_data_dash = 1;
+                //     }
+                
+        
+                //     DB::table('tbl_manage_access_right_per_user')
+                //         ->where('company_id', $request->companyID)
+                //         ->where('access_id', 1)
+                //         ->update([
+                //         'read_data' => 0,
+                //         'full_access_data' => 0,
+                //         'no_access_data' => 0,
+                //         'custom_data' => 1,
+                //         'add_data' => $add_data_dash,
+                //         'edit_data' => $edit_data_dash,
+                //         'delete_data' => $delete_data_dash,
+                //         'retrack_data' => $retrack_data_dash,
+                //         'deleted' => 0,
+                //         'updated_at' => now()
+                //     ]);
+                // }
+            //Dashboard
+
+            //Task
+                if($request->select2 == "ALL"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 2)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 1,
+                        'no_access_data' => 0,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select2 == "NO"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 2)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 0,
+                        'no_access_data' => 1,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select2 == "READ"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 2)
+                        ->update([
+                        'read_data' => 1,
+                        'full_access_data' => 0,
+                        'no_access_data' => 0,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select2 == "CONFIG"){
+                    $add_data_task = 0;
+                    $edit_data_task = 0;
+                    $delete_data_task = 0;
+                    $retrack_data_task = 0;
+        
+                    
+                    if(in_array('ADD', $request->tasklist, true)){
+                        $add_data_task = 1;
+                    }
+
+                    if(in_array('EDIT', $request->tasklist, true)){
+                        $edit_data_task = 1;
+                    }
+
+                    if(in_array('REMOVE', $request->tasklist, true)){
+                        $delete_data_task = 1;
+                    }
+
+                    if(in_array('RETRACK', $request->tasklist, true)){
+                        $retrack_data_task = 1;
+                    }
+                
+        
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 2)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 0,
+                        'no_access_data' => 0,
+                        'custom_data' => 1,
+                        'add_data' => $add_data_task,
+                        'edit_data' => $edit_data_task,
+                        'delete_data' => $delete_data_task,
+                        'retrack_data' => $retrack_data_task,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+            //Task
+
+            //Project
+                if($request->select3 == "ALL"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 3)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 1,
+                        'no_access_data' => 0,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select3 == "NO"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 3)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 0,
+                        'no_access_data' => 1,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select3 == "READ"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 3)
+                        ->update([
+                        'read_data' => 1,
+                        'full_access_data' => 0,
+                        'no_access_data' => 0,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select3 == "CONFIG"){
+                    $add_data_proj = 0;
+                    $edit_data_proj = 0;
+                    $delete_data_proj = 0;
+                    $retrack_data_proj = 0;
+        
+                    
+                    if(in_array('ADD', $request->projectlist, true)){
+                        $add_data_proj = 1;
+                    }
+
+                    if(in_array('EDIT', $request->projectlist, true)){
+                        $edit_data_proj = 1;
+                    }
+
+                    if(in_array('REMOVE', $request->projectlist, true)){
+                        $delete_data_proj = 1;
+                    }
+
+                    if(in_array('RETRACK', $request->projectlist, true)){
+                        $retrack_data_proj = 1;
+                    }
+                
+        
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 3)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 0,
+                        'no_access_data' => 0,
+                        'custom_data' => 1,
+                        'add_data' => $add_data_proj,
+                        'edit_data' => $edit_data_proj,
+                        'delete_data' => $delete_data_proj,
+                        'retrack_data' => $retrack_data_proj,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+            //Project
+
+            //Member Records
+                if($request->select4 == "ALL"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 4)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 1,
+                        'no_access_data' => 0,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select4 == "NO"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 4)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 0,
+                        'no_access_data' => 1,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select4 == "READ"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 4)
+                        ->update([
+                        'read_data' => 1,
+                        'full_access_data' => 0,
+                        'no_access_data' => 0,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select4 == "CONFIG"){
+                    $add_data_mem = 0;
+                    $edit_data_mem = 0;
+                    $delete_data_mem = 0;
+                    $retrack_data_mem = 0;
+        
+                    
+                    if(in_array('ADD', $request->memberrecords, true)){
+                        $add_data_mem = 1;
+                    }
+
+                    if(in_array('EDIT', $request->memberrecords, true)){
+                        $edit_data_mem = 1;
+                    }
+
+                    if(in_array('REMOVE', $request->memberrecords, true)){
+                        $delete_data_mem = 1;
+                    }
+
+                    if(in_array('RETRACK', $request->memberrecords, true)){
+                        $retrack_data_mem = 1;
+                    }
+                
+        
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 4)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 0,
+                        'no_access_data' => 0,
+                        'custom_data' => 1,
+                        'add_data' => $add_data_mem,
+                        'edit_data' => $edit_data_mem,
+                        'delete_data' => $delete_data_mem,
+                        'retrack_data' => $retrack_data_mem,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+            //Member Records
+
+
+            //Usermanagement
+                if($request->select5 == "ALL"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 5)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 1,
+                        'no_access_data' => 0,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select5 == "NO"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 5)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 0,
+                        'no_access_data' => 1,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select5 == "READ"){
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 5)
+                        ->update([
+                        'read_data' => 1,
+                        'full_access_data' => 0,
+                        'no_access_data' => 0,
+                        'custom_data' => 0,
+                        'add_data' => 0,
+                        'edit_data' => 0,
+                        'delete_data' => 0,
+                        'retrack_data' => 0,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+                else if($request->select5 == "CONFIG"){
+                    $add_data_um = 0;
+                    $edit_data_um = 0;
+                    $delete_data_um = 0;
+                    $retrack_data_um = 0;
+        
+                    
+                    if(in_array('ADD', $request->usermanagement, true)){
+                        $add_data_um = 1;
+                    }
+
+                    if(in_array('EDIT', $request->usermanagement, true)){
+                        $edit_data_um = 1;
+                    }
+
+                    if(in_array('REMOVE', $request->usermanagement, true)){
+                        $delete_data_um = 1;
+                    }
+
+                    if(in_array('RETRACK', $request->usermanagement, true)){
+                        $retrack_data_um = 1;
+                    }
+                
+        
+                    DB::table('tbl_manage_access_right_per_user')
+                        ->where('company_id', $request->companyID)
+                        ->where('access_id', 5)
+                        ->update([
+                        'read_data' => 0,
+                        'full_access_data' => 0,
+                        'no_access_data' => 0,
+                        'custom_data' => 1,
+                        'add_data' => $add_data_um,
+                        'edit_data' => $edit_data_um,
+                        'delete_data' => $delete_data_um,
+                        'retrack_data' => $retrack_data_um,
+                        'deleted' => 0,
+                        'updated_at' => now()
+                    ]);
+                }
+            //Usermanagement
+
+            $request->session()->put('accessUserM','User Access Right successfully updated!');
+            $request->session()->put('webUserCode',$request->companyID);
+            $request->session()->put('webUserName',$manage_access[0]->name);
+            $request->session()->put('webUserEmail',$manage_access[0]->email);
+
+            $messages = "Successfully Validated!!";
+            $success[] = $messages;
+
+        }else{
+            $messages = "Invalid request...";
+            $error[] = $messages;
+        }
+
+        $output = array(
+            'error'=>$error,
+            'success'=>$success
+        );
+
+        echo json_encode($output);
+
+    }
 }

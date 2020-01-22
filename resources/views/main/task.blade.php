@@ -4,8 +4,11 @@
 <div class="container" style="width:100%;">
     <div class="float-left" ><h2><i class="fa fa-tasks"></i>&nbsp;Task List</h2></div>
     <!-- Button trigger modal-->
-    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalTask"><i class="fa fa-plus"></i>&nbsp;New Task</button>
     
+    @if($manage_user_task[0]->full_access_data == 1 || ($manage_user_task[0]->custom_data == 1 && $manage_user_task[0]->add_data == 1))
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalTask"><i class="fa fa-plus"></i>&nbsp;New Task</button>
+    @endif
+
     <div class="container" style="margin-top:3em;">
         @include('main.sessionTask')
 

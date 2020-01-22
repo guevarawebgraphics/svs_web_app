@@ -11,7 +11,11 @@
                 <th class="th-sm">Status</th>
                 <th class="th-sm">CreatedBy</th>
                 <th class="th-sm">CreatedDate</th>
-                <th class="th-sm">Action</th>
+                @if($manage_retrack_proj[0]->full_access_data == 1 || $manage_retrack_proj[0]->custom_data == 1)
+                    @if($manage_retrack_proj[0]->full_access_data == 1 || $manage_retrack_proj[0]->retrack_data == 1)
+                        <th class="th-sm">Action</th>
+                    @endif
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -33,9 +37,14 @@
                             </td>
                             <td>{{$field->updated_by}}</td>
                             <td>{{date('F d Y - h:i a',strtotime($field->created_at))}}</td>
-                            <td>
-                                <a class="svs-action delProj btn btn-success waves-effect" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-status="{{$weight}}" data-by="{{$field->updated_by}}" data-created="{{date('F d Y - h:i a',strtotime($field->created_at))}}">Retrack</a>
-                            </td>
+                            @if($manage_retrack_proj[0]->full_access_data == 1 || $manage_retrack_proj[0]->custom_data == 1)
+                                @if($manage_retrack_proj[0]->full_access_data == 1 || $manage_retrack_proj[0]->retrack_data == 1)
+                                    <td>
+                                        <a class="svs-action delProj btn btn-success waves-effect" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-status="{{$weight}}" data-by="{{$field->updated_by}}" data-created="{{date('F d Y - h:i a',strtotime($field->created_at))}}">Retrack</a>
+                                    </td>
+                                @endif
+                            @endif
+
                         </tr>
                     @endforeach
                 @endif
@@ -80,11 +89,7 @@
 </div>
 
 <script>
-    $("#projRow").DataTable({
-        "columnDefs": [
-            { "orderable": false, "targets": 6 }
-        ]
-    });
+    $("#projRow").DataTable();
     $('#projRow_wrapper').find('label').each(function () {
         $(this).parent().append($(this).children());
     });

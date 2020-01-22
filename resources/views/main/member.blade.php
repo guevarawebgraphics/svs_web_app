@@ -4,8 +4,11 @@
 
 <div class="container" style="width:100%;">
     <div class="float-left" ><h2><i class="fa fa-file-alt"></i> Member Records</h2></div>
-    <button type="button" class="btn btn-primary float-right newMember" id="newMember"><i class="fa fa-plus"></i>&nbsp;New Member</button>
-    
+
+    @if($manage_user_mem[0]->full_access_data == 1 || ($manage_user_mem[0]->custom_data == 1 && $manage_user_mem[0]->add_data == 1))
+      <button type="button" class="btn btn-primary float-right newMember" id="newMember"><i class="fa fa-plus"></i>&nbsp;New Member</button>
+    @endif
+
     <div class="container" style="margin-top:3em;">
 
       @include('main.sessionMember')

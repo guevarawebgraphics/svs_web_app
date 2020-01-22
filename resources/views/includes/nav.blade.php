@@ -11,54 +11,62 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               
-                {{-- @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0) --}}
                 <a class="nav-link svs-text" href="/dashboard">
                 Dashboard
-                {{-- @else
-                <a class="nav-link svs-text" href="/user/index">
-                Home
-                @endif --}}
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             
             <li class="nav-item dropdown">
-                {{-- @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0) --}}
+                
                     <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Project Configuration
                     </a>
                     <div class="dropdown-menu dropdown-default svs-text" aria-labelledby="navbarDropdownMenuLink-333">
-                      {{-- <a class="dropdown-item svs-text" href="/admin/location">Location</a> --}}
+                      
+                      @if(session()->get('manage_task_no_access_data') != 1)
                       <a class="dropdown-item svs-text" href="/task">Tasks</a>
+                      @endif
+                      @if(session()->get('manage_proj_no_access_data') != 1)
                       <a class="dropdown-item svs-text" href="/projectlist">Project List</a>
+                      @endif
+                      @if(session()->get('manage_mem_no_access_data') != 1)
                       <a class="dropdown-item svs-text" href="/member">Member Records</a>
-                      {{-- <a class="dropdown-item svs-text" href="/assignproject">Assign Project</a> --}}
+                      @endif
+                      
                     </div>
-                {{-- @else
-                  <a class="nav-link svs-text" href="#">
-                    Features
-                  </a>
-                @endif --}}
             </li>
             
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">Retrack <small><em>(Inactive)</em></small></a>
               <div class="dropdown-menu dropdown-default svs-text" aria-labelledby="navbarDropdownMenuLink-444">
+
+                @if(session()->get('manage_task_no_access_data') != 1)
                 <a class="dropdown-item svs-text" href="/retrack_task">Task </a>
+                @endif
+                @if(session()->get('manage_proj_no_access_data') != 1)
                 <a class="dropdown-item svs-text" href="/retrack_project">Project List </a>
+                @endif
+                @if(session()->get('manage_mem_no_access_data') != 1)
                 <a class="dropdown-item svs-text" href="/retrack_member">Member Records </a>
+                @endif
+                @if(session()->get('manage_um_no_access_data') != 1)
                 <a class="dropdown-item svs-text" href="/retrack_web_users">Web Console Users</a>
+                @endif
               </div>
             </li>
 
+            @if(session()->get('manage_um_no_access_data') != 1)
             <li class="nav-item">
               
                 {{-- @if(!empty(auth()->user()->is_admin) && auth()->user()->is_admin != 0) --}}
+
                 <a class="nav-link svs-text" href="/user_management">
                 User Management
                 </a>
             </li>
+            @endif
 
           </ul>
           <ul class="navbar-nav ml-auto nav-flex-icons">

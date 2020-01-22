@@ -5,8 +5,10 @@
     <div class="float-left" ><h2><i class="fa fa-users"></i> User Management</h2></div>
     <!-- Button trigger modal-->
     
-    <button type="button" class="btn btn-primary float-right" id="newUserBtn"><i class="fa fa-plus"></i>&nbsp;New Web Console User</button>
-    
+    @if($manage_user_um[0]->full_access_data == 1 || ($manage_user_um[0]->custom_data == 1 && $manage_user_um[0]->add_data == 1))
+        <button type="button" class="btn btn-primary float-right" id="newUserBtn"><i class="fa fa-plus"></i>&nbsp;New Web Console User</button>
+    @endif
+
     <div class="container" style="margin-top:3em;">
 
             @include('main.sessionUsermanagement')
@@ -100,9 +102,13 @@
                                 <div class="col-md-2">
                                 <select class="access-select mdb-select accessSelect{{$field->id}}" data-id = "{{$field->id}}" name="accessSelect{{$field->id}}" id="accessSelect{{$field->id}}" style="width: 170px!important;">
                                         <option value="" disabled selected>Select Access Right</option>
+                                        {{-- @if($field->id != 1) --}}
                                         <option value="ALL">All Access</option>
                                         <option value="NO">No Access</option>
+                                        <option value="READ">Read Only</option>
+                                        {{-- @if($field->id != 1) --}}
                                         <option value="CONFIG">Custom Access</option>
+                                        {{-- @endif --}}
                                     </select>
                                 </div>
 
@@ -288,7 +294,7 @@
 <!-- Modal: Manage Access Right -->
     <div class="modal fade" id="MAUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog svs-modal-md" role="document">
         <div class="modal-content">
         <!--Header-->
         <div class="modal-header">
@@ -305,6 +311,10 @@
                     You are trying to update access right of <em id="userMA"></em>.
                     <br>
                 </p>
+
+                <div class="container" id="MngAcssDiv">
+
+                </div>
             </div>
         
 
@@ -312,7 +322,7 @@
         <!--Footer-->
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-            <button class="btn btn-success waves-effect" id="MASubmit">Submit</button>
+            <button class="btn btn-success waves-effect" id="MASubmit">Update</button>
         </div>
         </div>
     </div>
@@ -339,19 +349,21 @@ $("#newUserSubmit").click(function () {
     var confirmPass = $('#userConfirmPass').val();
     var isAdmin = $('#isAdmin').val();
 
-    var select1 = $("#accessSelect1").val();
+    // var select1 = $("#accessSelect1").val();
     var select2 = $("#accessSelect2").val();
     var select3 = $("#accessSelect3").val();
     var select4 = $("#accessSelect4").val();
+    var select5 = $("#accessSelect5").val();
 
-    var config1 = [];
+    // var config1 = [];
     var config2 = [];
     var config3 = [];
     var config4 = [];
+    var config5 = [];
 
-    $.each($("input[name='config1']:checked"), function(){
-        config1.push($(this).val());
-    });
+    // $.each($("input[name='config1']:checked"), function(){
+    //     config1.push($(this).val());
+    // });
     $.each($("input[name='config2']:checked"), function(){
         config2.push($(this).val());
     });
@@ -361,12 +373,16 @@ $("#newUserSubmit").click(function () {
     $.each($("input[name='config4']:checked"), function(){
         config4.push($(this).val());
     });
+    $.each($("input[name='config5']:checked"), function(){
+        config5.push($(this).val());
+    });
 
-    var dashboard = config1.join(", ");
-    var tasklist = config2.join(", ");
-    var projectlist = config3.join(", ");
-    var memberrecords = config4.join(", ");
- 
+    // var dashboard = config1;
+    var tasklist = config2;
+    var projectlist = config3;
+    var memberrecords = config4;
+    var usermanagement = config5;
+
     $.ajax({
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         url: "{{ route('val_web_user') }}",
@@ -378,14 +394,14 @@ $("#newUserSubmit").click(function () {
             newPass:newPass,
             confirmPass:confirmPass,
             isAdmin:isAdmin,
-            select1:select1,
             select2:select2,
             select3:select3,
             select4:select4,
-            dashboard:dashboard,
+            select5:select5,
             tasklist:tasklist,
             projectlist:projectlist,
-            memberrecords:memberrecords
+            memberrecords:memberrecords,
+            usermanagement:usermanagement
         }, 
         dataType: "json",
         success:function(data)
@@ -407,14 +423,14 @@ $("#newUserSubmit").click(function () {
                         newPass:newPass,
                         confirmPass:confirmPass,
                         isAdmin:isAdmin,
-                        select1:select1,
                         select2:select2,
                         select3:select3,
                         select4:select4,
-                        dashboard:dashboard,
+                        select5:select5,
                         tasklist:tasklist,
                         projectlist:projectlist,
-                        memberrecords:memberrecords
+                        memberrecords:memberrecords,
+                        usermanagement:usermanagement
                     }, 
                     dataType: "json",
                     success:function(data)
@@ -721,25 +737,156 @@ $("[id^=accessSelect]").on('change', function() {
 </script>
 
 <script>
-$(".manageAccessEdit").click(function () {
-    $('#MAUserModal').modal('show');
-    var id = $(this).attr('data-id');
-    var company_id = $(this).attr('data-companyid');
-    var name = $(this).attr('data-name');
-    var email = $(this).attr('data-email');
-    var created_by = $(this).attr('data-created_by');
-    var created_at = $(this).attr('data-create_at');
-    var isAdmin = $(this).attr('data-is_admin');
+//Show Modal Manage Access Edit
+    $(".manageAccessEdit").click(function () {
+        
+        var id = $(this).attr('data-id');
+        var company_id = $(this).attr('data-companyid');
+        var name = $(this).attr('data-name');
+        var email = $(this).attr('data-email');
+        var created_by = $(this).attr('data-created_by');
+        var created_at = $(this).attr('data-create_at');
+        var isAdmin = $(this).attr('data-is_admin');
 
-    $("#HeaderMA").html(company_id);
-    $("#userMA").html(name);
+        $("#HeaderMA").html(company_id);
+        $("#userMA").html(name);
 
-    $("#MASubmit").attr("data-id",id);
-    $("#MASubmit").attr("data-companyid",company_id);
-    $("#MASubmit").attr("data-name",name);
-    $("#MASubmit").attr("data-email",email);
-    $("#MASubmit").attr("data-created_by",created_by);
-    $("#MASubmit").attr("data-create_at",created_at);
+        $("#MASubmit").attr("data-id",id);
+        $("#MASubmit").attr("data-companyid",company_id);
+        $("#MASubmit").attr("data-name",name);
+        $("#MASubmit").attr("data-email",email);
+        $("#MASubmit").attr("data-created_by",created_by);
+        $("#MASubmit").attr("data-create_at",created_at);
+
+
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{ route('manage_access_edit') }}",
+            method: "POST",
+            data:{
+                proceed:"TRUE",
+                type:"MANAGE_ACCESS_EDIT",
+                company_id:company_id
+            }, 
+            success:function(data)
+            {
+                $("#MngAcssDiv").html(data);
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+        $('#MAUserModal').modal('show');
+    });
+//Show Modal Manage Access Edit
+</script>
+
+
+<script>
+//Update Usermanagement
+$("#MASubmit").click(function () {
+    var companyID = $(this).attr('data-companyid');
+
+    // var select1 = $("#accessSelectEdit1").val();
+    var select2 = $("#accessSelectEdit2").val();
+    var select3 = $("#accessSelectEdit3").val();
+    var select4 = $("#accessSelectEdit4").val();
+    var select5 = $("#accessSelectEdit5").val();
+
+    // var config1 = [];
+    var config2 = [];
+    var config3 = [];
+    var config4 = [];
+    var config5 = [];
+
+    // $.each($("input[name='configE1']:checked"), function(){
+    //     config1.push($(this).val());
+    // });
+    $.each($("input[name='configE2']:checked"), function(){
+        config2.push($(this).val());
+    });
+    $.each($("input[name='configE3']:checked"), function(){
+        config3.push($(this).val());
+    });
+    $.each($("input[name='configE4']:checked"), function(){
+        config4.push($(this).val());
+    });
+    $.each($("input[name='configE5']:checked"), function(){
+        config5.push($(this).val());
+    });
+
+    // var dashboard = config1;
+    var tasklist = config2;
+    var projectlist = config3;
+    var memberrecords = config4;
+    var usermanagement = config5;
+
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ route('manage_access_update_val') }}",
+        method: "POST",
+        data:{
+            type:"UPDATE_ACCESS",
+            companyID:companyID,
+            select2:select2,
+            select3:select3,
+            select4:select4,
+            select5:select5,
+            tasklist:tasklist,
+            projectlist:projectlist,
+            memberrecords:memberrecords,
+            usermanagement:usermanagement
+        }, 
+        dataType: "json",
+        success:function(data)
+        {
+            if(data.success.length > 0){
+
+                var x = document.getElementById("MASubmit");
+                x.innerHTML = "Loading...";
+                document.getElementById("MASubmit").disabled = true;
+
+                $.ajax({
+                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('manage_access_update') }}",
+                    method: "POST",
+                    data:{
+                        type:"UPDATE_ACCESS",
+                        companyID:companyID,
+                        select2:select2,
+                        select3:select3,
+                        select4:select4,
+                        select5:select5,
+                        tasklist:tasklist,
+                        projectlist:projectlist,
+                        memberrecords:memberrecords,
+                        usermanagement:usermanagement
+                    }, 
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        if(data.success.length > 0){
+                            // toastr.success(data.success[0]);
+                            location.reload();
+                        }else{
+                            toastr.error(data.error[0]);
+                            // alert(data.error[0]);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                }); 
+            }else{
+                toastr.error(data.error[0]);
+                // alert(data.error[0]);
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    }); 
 });
+//Update Usermanagement
 </script>
 @endsection

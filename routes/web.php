@@ -74,6 +74,9 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/user_management/delete_web_user', 'MainController@web_user')->name('delete_web_user');
     Route::post('/user_management/val_edit_web_user', 'MainController@web_user_val')->name('val_edit_web_user');
     Route::post('/user_management/edit_web_user', 'MainController@web_user')->name('edit_web_user');
+    Route::post('/user_management/manage_access_edit', 'MainController@manage_access_edit')->name('manage_access_edit');
+    Route::post('/user_management/manage_access_update_val', 'MainController@manage_access_update_val')->name('manage_access_update_val');
+    Route::post('/user_management/manage_access_update', 'MainController@manage_access_update')->name('manage_access_update');
 
     Route::get('/account_settings', 'MainController@account_settings');
     Route::post('/account_settings/account_settings_val', 'MainController@account_settings_val')->name('account_settings_val');

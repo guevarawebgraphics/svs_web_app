@@ -13,8 +13,13 @@
         @endif
         <th class="th-sm">Created By
         </th>
-        <th class="th-sm">Action
-        </th>
+
+        @if($manage_user_um[0]->full_access_data == 1 || $manage_user_um[0]->custom_data == 1)
+                @if($manage_user_um[0]->full_access_data == 1 || $manage_user_um[0]->delete_data == 1 || $manage_user_um[0]->edit_data == 1)
+                    <th class="th-sm">Action
+                    </th>
+                @endif
+        @endif
         
         </tr>
     </thead>
@@ -37,11 +42,24 @@
                             <small>{{date("F d Y - h:i a",strtotime($field->created_at))}}</small>
                         </td>
                         
-                        <td>
-                            <button data-id="{{$field->id}}" data-companyid="{{$field->company_id}}" data-name="{{$field->name}}" data-email = "{{$field->email}}" data-created_by = "{{$field->created_by}}" data-create_at = "{{$field->created_at}}" data-is_admin = "{{$field->is_admin}}" class="svs-action delUser btn"><i class="fa fa-trash"></i></button>
-                            <button data-id="{{$field->id}}" data-companyid="{{$field->company_id}}" data-name="{{$field->name}}" data-email = "{{$field->email}}" data-created_by = "{{$field->created_by}}" data-create_at = "{{$field->created_at}}" data-is_admin = "{{$field->is_admin}}" class="svs-action editUser btn"><i class="fa fa-pencil-alt"></i></button>
-                            <button data-id="{{$field->id}}" data-companyid="{{$field->company_id}}" data-name="{{$field->name}}" data-email = "{{$field->email}}" data-created_by = "{{$field->created_by}}" data-create_at = "{{$field->created_at}}" data-is_admin = "{{$field->is_admin}}" class="svs-action manageAccessEdit btn"><i class="fa fa-key"></i></button>
-                        </td>
+                        {{-- Checks if Full Access Or Custom Access --}}
+                        @if($manage_user_um[0]->full_access_data == 1 || $manage_user_um[0]->custom_data == 1)
+                            {{-- Checks if Full Access or Which Custom Access is on --}}
+                            @if($manage_user_um[0]->full_access_data == 1 || $manage_user_um[0]->delete_data == 1 || $manage_user_um[0]->edit_data == 1)
+                                <td>
+                                    {{-- Checks if Delete --}}
+                                    @if($manage_user_um[0]->full_access_data == 1 || $manage_user_um[0]->delete_data == 1)
+                                        <button data-id="{{$field->id}}" data-companyid="{{$field->company_id}}" data-name="{{$field->name}}" data-email = "{{$field->email}}" data-created_by = "{{$field->created_by}}" data-create_at = "{{$field->created_at}}" data-is_admin = "{{$field->is_admin}}" class="svs-action delUser btn"><i class="fa fa-trash"></i></button>
+                                    @endif
+                                    @if($manage_user_um[0]->full_access_data == 1 || $manage_user_um[0]->edit_data == 1)
+                                        <button data-id="{{$field->id}}" data-companyid="{{$field->company_id}}" data-name="{{$field->name}}" data-email = "{{$field->email}}" data-created_by = "{{$field->created_by}}" data-create_at = "{{$field->created_at}}" data-is_admin = "{{$field->is_admin}}" class="svs-action editUser btn"><i class="fa fa-pencil-alt"></i></button>
+                                        <button data-id="{{$field->id}}" data-companyid="{{$field->company_id}}" data-name="{{$field->name}}" data-email = "{{$field->email}}" data-created_by = "{{$field->created_by}}" data-create_at = "{{$field->created_at}}" data-is_admin = "{{$field->is_admin}}" class="svs-action manageAccessEdit btn"><i class="fa fa-key"></i></button>
+                                    @endif
+                                </td>
+                            @endif
+                        @endif
+
+
                     </tr>
                 @endforeach
             @endif

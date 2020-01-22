@@ -39,13 +39,28 @@
                                         @endif
                                     </td>
                                     <td>{{date("F d Y - h:i a",strtotime($field->created_at))}}</td>
-                                    <td>
-                                        <div class="row text-center">
-                                        <button class="svs-action rowdt btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-href="{{$field->id}}" data-title="{{$field->proj_title}}" data-target-man-days="{{$field->target_man_days}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-list"></i></button>
-                                        <button class="svs-action delProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-target-man-days="{{$field->target_man_days}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-trash"></i></button>
-                                        <button class="svs-action editProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-target-man-days="{{$field->target_man_days}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-pencil-alt"></i></button>
-                                        </div>
-                                    </td>
+
+                                    @if($manage_user_proj[0]->full_access_data == 1 || $manage_user_proj[0]->custom_data == 1)
+                                        @if($manage_user_proj[0]->full_access_data == 1 || $manage_user_proj[0]->delete_data == 1 || $manage_user_proj[0]->edit_data == 1)
+                                            <td>
+                                                <div class="row text-center">
+                                                    <button class="svs-action rowdt btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-href="{{$field->id}}" data-title="{{$field->proj_title}}" data-target-man-days="{{$field->target_man_days}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-list"></i></button>
+                                                @if($manage_user_proj[0]->full_access_data == 1 || $manage_user_proj[0]->delete_data == 1)
+                                                    <button class="svs-action delProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-target-man-days="{{$field->target_man_days}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-trash"></i></button>
+                                                @endif
+                                                @if($manage_user_proj[0]->full_access_data == 1 || $manage_user_proj[0]->edit_data == 1)
+                                                    <button class="svs-action editProj btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-target-man-days="{{$field->target_man_days}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-pencil-alt"></i></button>
+                                                @endif
+                                                </div>
+                                            </td>
+                                        @endif
+                                    @else
+                                        <td>
+                                            <div class="row text-center">
+                                            <button class="svs-action rowdt btn" data-id="{{$field->id}}" data-projcode="{{$field->proj_code}}" data-href="{{$field->id}}" data-title="{{$field->proj_title}}" data-target-man-days="{{$field->target_man_days}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-date="{{date("F d Y - h:i a",strtotime($field->created_at))}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-percent="{{$field->total_weight_progress}}"><i class="fa fa-list"></i></button>
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @endif

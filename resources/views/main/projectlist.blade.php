@@ -5,9 +5,11 @@
     <div class="float-left" ><h2><i class="fa fa-file-alt"></i> Project List</h2></div>
     <!-- Button trigger modal-->
     
-    <button type="button" class="btn btn-primary float-right" id="newProject"><i class="fa fa-plus"></i>&nbsp;New Project</button>
-    
-    <a class="float-right upBulk" style="text-decoration:block!important; line-height: 3.5;"><em>Click here to upload project list</em></a>
+    @if($manage_user_proj[0]->full_access_data == 1 || ($manage_user_proj[0]->custom_data == 1 && $manage_user_proj[0]->add_data == 1))
+        <button type="button" class="btn btn-primary float-right" id="newProject"><i class="fa fa-plus"></i>&nbsp;New Project</button>
+        
+        <a class="float-right upBulk" style="text-decoration:block!important; line-height: 3.5;"><em>Click here to upload project list</em></a>
+    @endif
 
     <div class="container" style="margin-top:3em;">
 

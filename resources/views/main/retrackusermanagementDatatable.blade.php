@@ -13,8 +13,13 @@
         @endif
         <th class="th-sm">Created By
         </th>
-        <th class="th-sm">Action
-        </th>
+
+        @if($manage_retrack_um[0]->full_access_data == 1 || $manage_retrack_um[0]->custom_data == 1)
+            @if($manage_retrack_um[0]->full_access_data == 1 || $manage_retrack_um[0]->retrack_data == 1)
+                <th class="th-sm">Action
+                </th>
+            @endif
+        @endif
         
         </tr>
     </thead>
@@ -36,18 +41,23 @@
                             <br>
                             <small>{{date("F d Y - h:i a",strtotime($field->created_at))}}</small>
                         </td>
-                        <td>
-                            <a class="svs-action retrackUser btn btn-success waves-effect" 
-                                data-id = "{{$field->id}}"
-                                data-company_id = "{{$field->company_id}}"
-                                data-name = "{{$field->name}}"
-                                data-email = "{{$field->email}}"
-                                data-user_type = "{{$field->is_admin}}"
-                                    data-created_by = "{{$field->created_by}}"
-                                    data-created_at = "{{date("F d Y - h:i a",strtotime($field->created_at))}}">
-                                    Retrack
-                            </a>
-                        </td>
+
+                        @if($manage_retrack_um[0]->full_access_data == 1 || $manage_retrack_um[0]->custom_data == 1)
+                            @if($manage_retrack_um[0]->full_access_data == 1 || $manage_retrack_um[0]->retrack_data == 1)
+                                <td>
+                                    <a class="svs-action retrackUser btn btn-success waves-effect" 
+                                        data-id = "{{$field->id}}"
+                                        data-company_id = "{{$field->company_id}}"
+                                        data-name = "{{$field->name}}"
+                                        data-email = "{{$field->email}}"
+                                        data-user_type = "{{$field->is_admin}}"
+                                            data-created_by = "{{$field->created_by}}"
+                                            data-created_at = "{{date("F d Y - h:i a",strtotime($field->created_at))}}">
+                                            Retrack
+                                    </a>
+                                </td>
+                            @endif
+                        @endif
                     </tr>
                 @endforeach
             @endif
