@@ -18,6 +18,7 @@ use App\Models\ProjectPercentage;
 use App\Models\ProjTaskView;
 use App\Models\Sample;
 use App\Models\Member;
+use Illuminate\Validation\Rule;
 use Importer;
 use Validator;
 
@@ -2605,7 +2606,7 @@ class MainController extends Controller
                 $validatorSave4 = Validator::make(
                     $validate_data4,
                     [
-                        '*.projCode' => "required",
+                        '*.projCode' => "required|exists:tbl_projtask,projCode",
                         '*.taskCode' => "required|exists:tbl_projtask,taskCode",
                         '*.taskWeight' => "required",
                         '*.plan_days' => "required",
@@ -2613,6 +2614,9 @@ class MainController extends Controller
                     ],
                     [
                         '*.taskCode.exists' => 'The selected :attribute is invalid. Task Code does not exists!',
+                    ],
+                    [
+                        '*.projCode.exists' => 'The selected :attribute is invalid. Project Code does not exists!',
                     ]
                 );
 

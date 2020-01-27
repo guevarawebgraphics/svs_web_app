@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+URL::forceRootUrl(env('APP_URL'));
 
 Route::get('/','HomeController@index');
     

@@ -50,7 +50,16 @@ ul {
                     <div class="card-deck two-col">
                 @foreach($view_project_percentage as $field)
                     
-                    <div class="proj-status-item rounded-rectangle-svs card current-proj showModal" data-modalid="{{$counter}}" data-code="{{$field->proj_code}}" data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}" data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}" data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}" data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}" data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}" data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}" data-issue="{{$field->issue}}" data-report="{{$field->report}}">
+                    <div class="proj-status-item rounded-rectangle-svs card current-proj showModal" data-modalid="{{$counter}}" data-code="{{$field->proj_code}}"
+                         data-title="{{$field->proj_title}}" data-desc="{{$field->proj_desc}}"
+                          data-location="{{$field->location}}" data-percent="{{$field->total_weight_progress}}"
+                           data-esd="{{$field->est_start_date}}" data-eed="{{$field->est_end_date}}"
+                            data-asd="{{$field->act_start_date}}" data-aed="{{$field->act_end_date}}"
+                             data-lon="{{$field->longitude}}" data-lat="{{$field->latitude}}"
+                              data-byname="{{$field->updated_by}}" data-cdate="{{$field->created_at}}"
+                               data-issue="{{$field->issue}}" data-report="{{$field->report}}"
+                                data-target-man-days="{{$field->target_man_days}}" data-hours8="{{$field->hours_8}}"
+                                data-hours6="{{$field->hours_6}}" data-hours3="{{$field->hours_3}}">
                             
                             <h5 class="svs-text"><b>{{$field->proj_title}}</b></h5>
                             
@@ -158,6 +167,9 @@ ul {
                                     <tr>
                                         <td><b>Location : </b><label id="vLoc"></label></td>
                                     </tr>
+                                    <tr>
+                                        <td><b>Target Man Days : </b><label id="vTargetManDays"></label></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -182,6 +194,9 @@ ul {
                                     <tr>
                                         <td><b>Actual End Date : </b><label id="vAet"></label></td>
                                     </tr>
+                                    <tr>
+                                        <td><b>Total Man Days : </b><label id="vManDays"></label></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -191,26 +206,26 @@ ul {
                     </div>
                     <br>
                     <div class="row container">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <center><a class="svs-text-center">Reports</a></center>
                             <br>
                             <div class="card rounded-circle svs-circle btn-danger"><h5 class="svs-round-text"><b id="vReport"></b></h5></div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <center><a class="svs-text-center">Issues</a></center>
                             <br>
                             <div class="card rounded-circle svs-circle btn-warning"><h5 class="svs-round-text"><b id="vIssue"></b></h5></div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <center><a class="svs-text-center">Project Status</a></center>
                             <br>
                             <div class="card rounded-circle svs-circle btn-info"><h5 class="svs-round-text"><b id="vStatus"></b></h5></div>
                         </div>
-                        <div class="col-md-3">
+                        {{-- <div class="col-md-3">
                             <center><a class="svs-text-center">Remaining Days</a></center>
                             <br>
                             <div class="card rounded-circle svs-circle btn-success"><h5 class="svs-round-text"><b id="vRDays">3</b></h5></div>
-                        </div>
+                        </div> --}}
                     </div>
                     <br>
                 </div>
@@ -608,6 +623,26 @@ $(".showModal").click(function () {
     var now_aed = new Date(ae);
     var aed = now_aed.toLocaleDateString()+" - "+now_aed.toLocaleTimeString([], {timeStyle: 'short'});
 
+
+    var target_man_days = $(this).attr('data-target-man-days');
+    var hours8 = $(this).attr('data-hours8');
+    var hours6 = $(this).attr('data-hours6');
+    var hours3 = $(this).attr('data-hours3');
+    var total_man_days = parseFloat(hours8) + parseFloat(hours6) + parseFloat(hours3);
+    if(total_man_days == 0){
+        var final_man_days = 0;
+    }else{
+        var final_man_days = total_man_days.toFixed(2);
+    }
+    if(isNaN(parseFloat(final_man_days)))
+    {
+        var NaNVar = 0;
+    }
+    else
+    {
+        var NaNVar = final_man_days
+    }
+
     $('#vproj').html(title);
     $('#vCode').html(projCode);
     $('#vTitle').html(title);
@@ -623,24 +658,28 @@ $(".showModal").click(function () {
     $('#vAet').html(aed);
     $('#vFooter').html("Created by : "+byname+"<br><small><em>"+formatCDate+"</small></em>");
 
+    $("#vTargetManDays").html(target_man_days);
+    
+    $("#vManDays").html(NaNVar);
+
     //Get Remaining Days
-        var curDate = new Date();
-        var date1 = new Date(now_asd.toLocaleDateString());
-        var date2 = new Date(now_aed.toLocaleDateString());
-        var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
-        if(date1 > curDate){
-            if(diffDays < 0)
-            {
-                remDays = 0;
-            }
-            else
-            {
-                remDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
-            }
-        }else{
-            remDays = 0;
-        }
-        $('#vRDays').html(remDays);
+        // var curDate = new Date();
+        // var date1 = new Date(now_asd.toLocaleDateString());
+        // var date2 = new Date(now_aed.toLocaleDateString());
+        // var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
+        // if(date1 > curDate){
+        //     if(diffDays < 0)
+        //     {
+        //         remDays = 0;
+        //     }
+        //     else
+        //     {
+        //         remDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
+        //     }
+        // }else{
+        //     remDays = 0;
+        // }
+        // $('#vRDays').html(remDays);
 
     //Task
         $.ajax({

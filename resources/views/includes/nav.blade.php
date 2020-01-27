@@ -91,13 +91,13 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle svs-text" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user svs-text"></i>&nbsp;&nbsp;&nbsp;{{ auth()->user()->name }} <small>({{$userType}})</small>
+                <i class="fas fa-user svs-text"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333">
 
                 
-                {{-- <a class="dropdown-item svs-text" href="#">{{ auth()->user()->name }} <small><em><b>({{$userType}})</b></em></small></a> --}}
+                <a class="dropdown-item svs-text" href="#">{{ auth()->user()->name }} <small><em><b>({{$userType}})</b></em></small></a>
                 <a class="dropdown-item svs-text" href="/account_settings">Account Settings</a>
                 <form id="out" action="{{route('logout')}}" method="POST">
                     @csrf                                                                                              
