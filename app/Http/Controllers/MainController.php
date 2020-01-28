@@ -253,6 +253,13 @@ class MainController extends Controller
                     }else{
                         $taskWeight = 0.00."%";
                     }
+
+                    if($field->pick_date != ""){
+                        $pick_date = date("F d Y",strtotime($field->pick_date));
+                    }else{
+                        $pick_date = "";
+                    }
+
                     if($field->attachment == ""){
                         $data .= '
                         <tr>
@@ -261,6 +268,8 @@ class MainController extends Controller
                             <td><p>'.$field->report.'</p></td>
 
                             <td>'.$field->updated_by.'</td>
+
+                            <td>'.$pick_date.'</td>
 
                             <td>'.date("F d Y - h:i a",strtotime($field->created_at)).'</td>
 
@@ -275,7 +284,9 @@ class MainController extends Controller
                             <td><p>'.$field->report.'</p></td>
     
                             <td>'.$field->updated_by.'</td>
-    
+
+                            <td>'.$pick_date.'</td>
+
                             <td>'.date("F d Y - h:i a",strtotime($field->created_at)).'</td>
     
                             <td><a data-img="'.$field->attachment.'" data-projcode= "'.$field->projCode.'" onClick="activityLog(\''.$field->projCode.'\',\''.$field->attachment.'\')" class="btn btn-info svs-action" ><i class="fa fa-file"></i>&nbsp;File</a></td>

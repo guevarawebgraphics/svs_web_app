@@ -439,8 +439,9 @@ ul {
                                 <tr>
                                     <th><b>Weight</b></th>
                                     <th><b>Report</b></th>
-                                    <th><b>Submitted by</b></th>
-                                    <th><b>Created At</b></th>
+                                    <th><b>Submitted By</b></th>
+                                    <th><b>PickDate</b></th>
+                                    <th><b>CreatedAt</b></th>
                                     <th><b>Attachment</b></th>
                                 </tr>
                             </thead>
