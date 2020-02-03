@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2020 at 04:41 AM
+-- Generation Time: Feb 03, 2020 at 07:45 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -571,7 +571,8 @@ INSERT INTO `date_time_records` (`id`, `user_id`, `company_id`, `ACNo`, `name`, 
 (485, 1, '2018-101', '5', 'ABUEVA', 'keighdee@gmail.com', NULL, '2019-04-07 00:28:00', NULL, NULL, NULL, NULL, 'C/In', '12345678910', 'saved', NULL, '2020-01-16 03:05:02', '2020-01-16 03:05:02'),
 (486, 1, '2018-101', '101', 'Kay Diaz', 'keighdee@gmail.com', NULL, '2020-01-16 03:06:02', 'ADDRESS', 'longitude', 'latitude', NULL, 'C/In', '12345678910', NULL, NULL, '2020-01-16 03:06:02', '2020-01-16 03:06:02'),
 (487, 54, '2019-1008', '1008', 'Employee8, Employee8', 'cherryann_anis1@yahoo.com', NULL, '2020-01-22 02:57:52', 'Unit 7/B San Miguel Ave, Ortigas Center, Pasig, Metro Manila, Philippines', '121.0588215', '14.5796264', NULL, 'C/In', 'LGE Nexus 5', NULL, NULL, '2020-01-22 02:57:52', '2020-01-22 02:57:52'),
-(488, 54, '2019-1008', '1008', 'Employee8, Employee8', 'cherryann_anis1@yahoo.com', NULL, '2020-01-27 08:57:52', 'Unit 7/B San Miguel Ave, Ortigas Center, Pasig, Metro Manila, Philippines', '121.0588281', '14.5796206', 'bdhrh', 'C/Out', 'vivo vivo 1811', NULL, NULL, '2020-01-27 08:57:52', '2020-01-27 08:57:52');
+(488, 54, '2019-1008', '1008', 'Employee8, Employee8', 'cherryann_anis1@yahoo.com', NULL, '2020-01-27 08:57:52', 'Unit 7/B San Miguel Ave, Ortigas Center, Pasig, Metro Manila, Philippines', '121.0588281', '14.5796206', 'bdhrh', 'C/Out', 'vivo vivo 1811', NULL, NULL, '2020-01-27 08:57:52', '2020-01-27 08:57:52'),
+(489, 54, '2019-1008', '1008', 'Employee8, Employee8', 'cherryann_anis1@yahoo.com', NULL, '2020-01-30 05:26:52', 'Unit 7/B San Miguel Ave, Ortigas Center, Pasig, Metro Manila, Philippines', '121.0588164', '14.5796061', 'qwerty', 'C/Out', 'LGE Nexus 5', NULL, NULL, '2020-01-30 05:26:52', '2020-01-30 05:26:52');
 
 -- --------------------------------------------------------
 
@@ -623,39 +624,45 @@ CREATE TABLE `oauth_access_tokens` (
 
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
 ('07c88259f3bb06709fe8836d9dec1029b7e031fa732280250b292e02fcbed871ece3b84151dd1d11', 45, 2, NULL, '[]', 0, '2020-01-06 08:14:41', '2020-01-06 08:14:41', '2020-01-07 16:14:41'),
+('090da00c2d04b0f6480ac0876e6f03de5107f19dc277fffd81179d03e8e8b90d617e7a7ecb19c2b2', 54, 2, NULL, '[]', 0, '2020-01-31 00:33:49', '2020-01-31 00:33:49', '2020-02-01 08:33:49'),
 ('092505ffb6c4a1c91c72382d9318063c3780fef8be11a80da0d72c5b941074e1ebd5caa3faf38693', 1, 2, NULL, '[]', 1, '2020-01-06 06:59:50', '2020-01-06 06:59:50', '2020-01-07 14:59:50'),
 ('10249abdc2631d924135967a01920d9b6c972c3c199ab39174186a82c168a661c079354bc2bb8702', 52, 2, NULL, '[]', 0, '2020-01-06 08:41:34', '2020-01-06 08:41:34', '2020-01-07 16:41:34'),
 ('1234a05ad7666d40a929c0bc2d7564a5dc661a6be9d87fc923962b66171ae4307597e759f5fe2f6d', 1, 2, NULL, '[]', 1, '2020-01-06 02:08:43', '2020-01-06 02:08:43', '2020-01-07 10:08:43'),
 ('14ea62a76df826db94fcc868a58b40a8cd50bf75cc65a40ec54ebe3205aaa2a265099cd936cb9ff1', 45, 2, NULL, '[]', 0, '2020-01-06 08:15:02', '2020-01-06 08:15:02', '2020-01-07 16:15:02'),
 ('15c84cbcf5f583ffd3f0999612cc4b9c5e980e41fb37327fc43db25f5c0da6f430862f1c450fd42a', 1, 2, NULL, '[]', 1, '2020-01-07 02:29:14', '2020-01-07 02:29:14', '2020-01-08 10:29:14'),
 ('1640aad7b6e19e3bfd7e50959fb7b8f100968bb5e776805219580b3c1d4b48d47354d3c7bd7c4021', 54, 2, NULL, '[]', 1, '2020-01-21 08:25:33', '2020-01-21 08:25:33', '2020-01-22 16:25:33'),
-('1f89fedc12e045c8c70afa2064c4542e7a69cb4e1d19e6b5ba53cd9372a2bf6a3192cebb1590b14d', 54, 2, NULL, '[]', 0, '2020-01-27 06:03:32', '2020-01-27 06:03:32', '2020-01-28 14:03:32'),
+('1cd09c7499186a0a9746b4650bc5c018dcbf96371866d5e3841dc23df897801fedff676c592f61d7', 83, 2, NULL, '[]', 0, '2020-02-03 03:26:01', '2020-02-03 03:26:01', '2020-02-04 11:26:01'),
+('1f89fedc12e045c8c70afa2064c4542e7a69cb4e1d19e6b5ba53cd9372a2bf6a3192cebb1590b14d', 54, 2, NULL, '[]', 1, '2020-01-27 06:03:32', '2020-01-27 06:03:32', '2020-01-28 14:03:32'),
 ('22974f6cdc137ea0f55fa105575176519b79a79f707a3cfd652f22028cbb2de645708dbc73803857', 54, 2, NULL, '[]', 1, '2020-01-13 02:01:50', '2020-01-13 02:01:50', '2020-01-14 10:01:50'),
+('27f4db1a3c2160bf66fcb8162fcdaea632851bd73d592a1b1767a1f292474ac0889cb299b08a1dd7', 54, 2, NULL, '[]', 0, '2020-02-03 01:23:51', '2020-02-03 01:23:51', '2020-02-04 09:23:51'),
 ('2cbbe019841a44586a783e8f2e70a3e057bc39af319f4fe45c86fe4984c8e9f31dee773e8f2cf632', 45, 2, NULL, '[]', 0, '2020-01-06 06:52:54', '2020-01-06 06:52:54', '2020-01-07 14:52:54'),
+('2e174bb1bafbcaf589507e58579a1009b9ecd25d85575b6ae059bc8c8ce5b74f46d8088da9574e87', 54, 2, NULL, '[]', 1, '2020-01-30 05:24:22', '2020-01-30 05:24:22', '2020-01-31 13:24:21'),
 ('328bb22f961aff0f50e97c4f860bd99cfd6898fda54c25fe0a821f2b815c97caa935b3c0116c6798', 1, 2, NULL, '[]', 1, '2020-01-16 02:52:44', '2020-01-16 02:52:44', '2020-01-17 10:52:44'),
 ('33efdafbecbbb34ac0a44752bc725b7d0a599105ac72b013a1f0bac99481b125d804c43e75f66ea4', 54, 2, NULL, '[]', 1, '2020-01-13 02:06:39', '2020-01-13 02:06:39', '2020-01-14 10:06:39'),
-('34daf5cc96db9e44516664435ff78325f722aeba22192309dce79a9af5ac27dc70f3406d8e651178', 54, 2, NULL, '[]', 0, '2020-01-22 03:47:38', '2020-01-22 03:47:38', '2020-01-23 11:47:38'),
+('34daf5cc96db9e44516664435ff78325f722aeba22192309dce79a9af5ac27dc70f3406d8e651178', 54, 2, NULL, '[]', 1, '2020-01-22 03:47:38', '2020-01-22 03:47:38', '2020-01-23 11:47:38'),
 ('3503294c2cf54d5b93fac89bf29dc3c20f9f4055f38b5bb5bf1929ad441addd2d4ef6cbbf73c06b2', 1, 2, NULL, '[]', 1, '2020-01-06 02:06:08', '2020-01-06 02:06:08', '2020-01-07 10:06:08'),
 ('3744a0a40d715fa352614f43143f62cdaaf70c466af864b0c6371e75f857f45cd6ac92f7b1120c63', 54, 2, NULL, '[]', 1, '2020-01-20 01:09:06', '2020-01-20 01:09:06', '2020-01-21 09:09:06'),
-('386b1ca68243bcfb7ae8a2e2525d0dbfb13cb769a95f7d41a6d4e450aed24a2f16bca1d37e18fa2a', 54, 2, NULL, '[]', 0, '2020-01-22 06:31:26', '2020-01-22 06:31:26', '2020-01-23 14:31:26'),
+('386b1ca68243bcfb7ae8a2e2525d0dbfb13cb769a95f7d41a6d4e450aed24a2f16bca1d37e18fa2a', 54, 2, NULL, '[]', 1, '2020-01-22 06:31:26', '2020-01-22 06:31:26', '2020-01-23 14:31:26'),
 ('38eff98bbdc23df9bd116023f5a02a9dcd023ae582a28ed0a65cf4524257248ae154dd93684ee758', 1, 2, NULL, '[]', 1, '2019-10-29 09:10:11', '2019-10-29 09:10:11', '2019-10-30 17:10:11'),
 ('3a5324b9306ac6bb55ddd1cdb28b86b0985610d00d621c959d105b53f344eef47b4cb0317a4523bf', 46, 2, NULL, '[]', 0, '2020-01-06 08:39:33', '2020-01-06 08:39:33', '2020-01-07 16:39:33'),
 ('3a9149b5eb4f79a37bf45304c800e549fc65e6b956e1c103a7393b10f3b96934001b341215f2cefe', 54, 2, NULL, '[]', 1, '2020-01-15 08:35:59', '2020-01-15 08:35:59', '2020-01-16 16:35:59'),
 ('3ad4cd734585e3bc19184d0cf1a35bc2e96313b60f32eac6a54a65b44b279cc9a7b55705f7ab75b0', 1, 2, NULL, '[]', 1, '2020-01-10 08:56:29', '2020-01-10 08:56:29', '2020-01-11 16:56:29'),
-('3bb6ec8fce9ff8e324438ee606c9b262c29a7ea702ec2256dc387c5095d953e585b1b3b98a78d30c', 54, 2, NULL, '[]', 0, '2020-01-22 05:46:47', '2020-01-22 05:46:47', '2020-01-23 13:46:47'),
+('3bb6ec8fce9ff8e324438ee606c9b262c29a7ea702ec2256dc387c5095d953e585b1b3b98a78d30c', 54, 2, NULL, '[]', 1, '2020-01-22 05:46:47', '2020-01-22 05:46:47', '2020-01-23 13:46:47'),
 ('3d9068d02256099296f6093e6a07228f74c212a8b363206452b87f4213a7af0a239af5104fc30dca', 1, 2, NULL, '[]', 1, '2020-01-06 08:08:27', '2020-01-06 08:08:27', '2020-01-07 16:08:27'),
 ('3ee6794df90f4b3d00a927608fac24f942d1a00adbc3b13516ab192b543e14911604236174ea30a8', 1, 2, NULL, '[]', 1, '2019-11-25 02:17:33', '2019-11-25 02:17:33', '2019-11-26 10:17:32'),
+('4054d4641a18cd398a77b2425ecec2fc0fd95858f065bdc259ebdcbca50c979590a8f0bd822cc267', 83, 2, NULL, '[]', 0, '2020-02-03 03:33:51', '2020-02-03 03:33:51', '2020-02-04 11:33:51'),
 ('40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 1, 2, NULL, '[]', 1, '2019-10-01 04:43:57', '2019-10-01 04:43:57', '2019-10-02 12:43:57'),
 ('42e5f842a3493a0c316c52965ca81833b5cf9e506e509b9953d7cc3f3e11ea67377ebb311d1b7232', 54, 2, NULL, '[]', 1, '2020-01-21 06:28:46', '2020-01-21 06:28:46', '2020-01-22 14:28:46'),
 ('460a789c3260a3a8dc677f269e9b8bd9dcb01cbd20fc6a59274282ded655d14c8db42c54b557c0ec', 1, 2, NULL, '[]', 0, '2020-01-20 08:54:48', '2020-01-20 08:54:48', '2020-01-21 16:54:48'),
 ('4a595f91658d68c8ccf74a8510cddeb5355a5e435f55908b173970e58bb0aa235e7de57b47957e21', 1, 2, NULL, '[]', 1, '2020-01-06 01:58:51', '2020-01-06 01:58:51', '2020-01-07 09:58:51'),
 ('4afe3002a6a88a93da8d5285658f7479a14b874bb2833740156c9a3118b4c26504b4bc85e06f0c17', 45, 2, NULL, '[]', 0, '2020-01-06 06:46:31', '2020-01-06 06:46:31', '2020-01-07 14:46:31'),
 ('4b568036285cfaaef9a830d9b899db07e7eb21fe68c4b18f898a2becce15d9ed342a5ea35f423167', 54, 2, NULL, '[]', 1, '2020-01-21 06:28:27', '2020-01-21 06:28:27', '2020-01-22 14:28:27'),
-('4f827ea7b2f0920f23dca85c69df53091be436a50963576c7986df1ec3eede41592333750dd9bc38', 54, 2, NULL, '[]', 0, '2020-01-23 05:54:57', '2020-01-23 05:54:57', '2020-01-24 13:54:57'),
+('4f827ea7b2f0920f23dca85c69df53091be436a50963576c7986df1ec3eede41592333750dd9bc38', 54, 2, NULL, '[]', 1, '2020-01-23 05:54:57', '2020-01-23 05:54:57', '2020-01-24 13:54:57'),
 ('501752ea80673e495307125fab5adac262d91db1c4bafddea45c0b0de27fcd773521a6912df688f4', 54, 2, NULL, '[]', 1, '2020-01-17 00:01:41', '2020-01-17 00:01:41', '2020-01-18 08:01:41'),
-('513f3c7e21c485e8787da5a4450b2ff902beab8934eb10abab064214059b27e51a6ee4b5c262c3d7', 54, 2, NULL, '[]', 0, '2020-01-27 07:02:08', '2020-01-27 07:02:08', '2020-01-28 15:02:08'),
+('513f3c7e21c485e8787da5a4450b2ff902beab8934eb10abab064214059b27e51a6ee4b5c262c3d7', 54, 2, NULL, '[]', 1, '2020-01-27 07:02:08', '2020-01-27 07:02:08', '2020-01-28 15:02:08'),
 ('5418ff4388e2fec30f279657fa7602d9b2f881e2dd258211013c220f83c99db545b733973c524f99', 54, 2, NULL, '[]', 1, '2020-01-07 07:52:06', '2020-01-07 07:52:06', '2020-01-08 15:52:06'),
 ('580d0bd18c17f241fe1d2647f1c3c12d6bb604a0061b429cf96797fec5a480e7d3211dc1dfbe66fe', 1, 2, NULL, '[]', 1, '2019-10-01 05:01:50', '2019-10-01 05:01:50', '2019-10-02 13:01:50'),
+('606847590fc16c545903017c9cce260d6739ceae79281f09731b2b68c2e2b79828894a37ba78964c', 83, 2, NULL, '[]', 0, '2020-02-03 03:33:49', '2020-02-03 03:33:49', '2020-02-04 11:33:49'),
 ('60d80c8484a190b72d68000c3e47f0ac461d3f14a93128db8a101304871bd450aa44d48e1e25ceb9', 1, 2, NULL, '[]', 1, '2020-01-06 06:22:32', '2020-01-06 06:22:32', '2020-01-07 14:22:32'),
 ('61d0c361b589717d2aed1fd3688682a5af0dc87be9dd41e8c9146db3f222e469469892cf389145dc', 54, 2, NULL, '[]', 1, '2020-01-10 08:53:40', '2020-01-10 08:53:40', '2020-01-11 16:53:40'),
 ('681dd32c6ee72ed66f08f2e51eb2a99cc0ad1c19e7120c10e4474618e5552cf5af2466fbdeae2433', 54, 2, NULL, '[]', 1, '2020-01-16 01:55:30', '2020-01-16 01:55:30', '2020-01-17 09:55:30'),
@@ -670,12 +677,14 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('7ac6cf61ddf5443b95ef006881b495cba0514d37b19d1fcb450465cabf975b0303a26964b7560af8', 54, 2, NULL, '[]', 1, '2020-01-14 03:17:13', '2020-01-14 03:17:13', '2020-01-15 11:17:13'),
 ('7ceb4da5ba0dc637fb6a126d491127666dc375592cbc59b8997fa1c44b5bbffb871c3fb52104ac86', 1, 2, NULL, '[]', 1, '2020-01-16 03:01:14', '2020-01-16 03:01:14', '2020-01-17 11:01:14'),
 ('7fa66f972273894dfb81992968bc218bb6b9f777d4cca972e2c8868e2b256a4a1be9967716fa995b', 1, 2, NULL, '[]', 1, '2020-01-16 03:06:35', '2020-01-16 03:06:35', '2020-01-17 11:06:35'),
-('8975433b299018f77ba3ce17686c0d32db5c44b4b60b1ec387e2d4ec407513fd4abebc55e8565004', 54, 2, NULL, '[]', 0, '2020-01-27 05:58:21', '2020-01-27 05:58:21', '2020-01-28 13:58:21'),
+('8975433b299018f77ba3ce17686c0d32db5c44b4b60b1ec387e2d4ec407513fd4abebc55e8565004', 54, 2, NULL, '[]', 1, '2020-01-27 05:58:21', '2020-01-27 05:58:21', '2020-01-28 13:58:21'),
 ('8987c8ff216e13fab967ed4cd42f32739c466b00306e9a1c0d7445fc67d7ef767f68262445057f9b', 45, 2, NULL, '[]', 0, '2020-01-06 08:33:56', '2020-01-06 08:33:56', '2020-01-07 16:33:56'),
 ('8acdeae57079f2a949d6ebb0dff398f925684636888d88f467cdfd867e7231a98b0974e888d64198', 45, 2, NULL, '[]', 0, '2020-01-06 08:22:34', '2020-01-06 08:22:34', '2020-01-07 16:22:34'),
-('8dbfda5fade4ba7cfc46b6928f1c34317683dd26f335f33addd81e0f8c0b3d987f8457bdde422f2d', 54, 2, NULL, '[]', 0, '2020-01-27 05:56:41', '2020-01-27 05:56:41', '2020-01-28 13:56:40'),
+('8dbfda5fade4ba7cfc46b6928f1c34317683dd26f335f33addd81e0f8c0b3d987f8457bdde422f2d', 54, 2, NULL, '[]', 1, '2020-01-27 05:56:41', '2020-01-27 05:56:41', '2020-01-28 13:56:40'),
+('8ed62d88b9d0b46c8386716d7b3b5a86c99dbd1a59754737f918e96a8fcb228b5fe94cc60be38205', 83, 2, NULL, '[]', 0, '2020-02-03 03:35:51', '2020-02-03 03:35:51', '2020-02-04 11:35:51'),
 ('9285f46604409f3a93f88620ba00c63bf067cbe281225b4f4d7ebd6f923914be2b117e33687d3419', 1, 2, NULL, '[]', 1, '2020-01-06 07:13:22', '2020-01-06 07:13:22', '2020-01-07 15:13:22'),
 ('99948b0af1b44c86b279432d26b62161a73d6381f7fb371390863ce0bf308efbf57a5263d84ac7e5', 1, 2, NULL, '[]', 0, '2020-01-16 03:08:09', '2020-01-16 03:08:09', '2020-01-17 11:08:09'),
+('9f753360c7af8857fcd5d81ca912ba810911f73a9bdae1becaf7527451cd2cfa9d2f8ba5c05f90ce', 54, 2, NULL, '[]', 0, '2020-02-03 01:25:37', '2020-02-03 01:25:37', '2020-02-04 09:25:37'),
 ('a0d58fca342583ed930307343a285324b01c769606d87e73dd5b7be94322e99822ba2197c31517b9', 1, 2, NULL, '[]', 1, '2019-10-01 05:02:11', '2019-10-01 05:02:11', '2019-10-02 13:02:11'),
 ('a3f4e4f55a4a67e65637dd75e5c4556dca5c8f2497bfaac089b495c6c13f3690ebb29b332eaf05c9', 45, 2, NULL, '[]', 0, '2020-01-06 08:07:36', '2020-01-06 08:07:36', '2020-01-07 16:07:36'),
 ('b1262ad5c70641939497e3acefda24955f357a3d6730fb0d020aa9f205a5ae7ff63f43a0a5f1ac04', 1, 2, NULL, '[]', 1, '2020-01-07 00:00:45', '2020-01-07 00:00:45', '2020-01-08 08:00:45'),
@@ -693,6 +702,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('d39e4200b5a4272f24b3b4a0ecf30829cfd79572ab2b689fa30f6487ffeea12c09c5d0bd754e0285', 1, 2, NULL, '[]', 1, '2019-11-22 05:24:45', '2019-11-22 05:24:45', '2019-11-23 13:24:45'),
 ('dc410938643022a3341692dd2032cf8a5d54afbbb94566a94099db23a724a57ee777bb5c4b3bdaf6', 83, 2, NULL, '[]', 0, '2020-01-22 03:24:21', '2020-01-22 03:24:21', '2020-01-23 11:24:21'),
 ('dcb46fc5fb5947fcab3bcc0e59d87c5c8daeb9f57fb8b1afb9934b0255c92f4c9e6c0aafdc025e5e', 1, 2, NULL, '[]', 1, '2019-10-01 04:45:07', '2019-10-01 04:45:07', '2019-10-02 12:45:07'),
+('dcc840ed9911577935b1434a7ee1c7d18e60ec9fe0b43ca0f097426ea5118e30392d9d373bf778d9', 83, 2, NULL, '[]', 0, '2020-02-03 03:35:48', '2020-02-03 03:35:48', '2020-02-04 11:35:48'),
 ('df877e0989b97b8a849739743b8c4054c6c68b074ae216f4f57863b59f47015e6c7fe7c4a066798a', 54, 2, NULL, '[]', 1, '2020-01-21 06:08:52', '2020-01-21 06:08:52', '2020-01-22 14:08:51'),
 ('e29aae218894ea847173d02eb7fe2e0f1aaacea8c6db01e716de627150fa98df34ac40b4d8064e96', 45, 2, NULL, '[]', 0, '2020-01-06 08:32:34', '2020-01-06 08:32:34', '2020-01-07 16:32:34'),
 ('e4aaacd6958034404714f4f0f6bd523bc85a633e32a38b46dac5a784484721589d4f0306dd2fdd01', 1, 2, NULL, '[]', 1, '2020-01-13 02:06:16', '2020-01-13 02:06:16', '2020-01-14 10:06:16'),
@@ -701,7 +711,8 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('e9d4a39dae4e239a6dc4612fd6516d57f30f40c1120708777c26ac7711dde997f8362f15cd092258', 1, 2, NULL, '[]', 1, '2019-10-30 02:29:59', '2019-10-30 02:29:59', '2019-10-31 10:29:59'),
 ('ea1a6e78fb0ef15c34346621a164fd6dcec1b4f6e06f145e1e6b9e356b507d82faa7ca4e477ddc31', 1, 2, NULL, '[]', 1, '2020-01-07 05:42:59', '2020-01-07 05:42:59', '2020-01-08 13:42:59'),
 ('ec28618698f81d56f6c087cdca51647e3b042968c1c3c4e64bac0daabcdface695250fe664f914f7', 45, 2, NULL, '[]', 0, '2020-01-06 06:44:40', '2020-01-06 06:44:40', '2020-01-07 14:44:40'),
-('ecbd438f76ae463a30809843ec4335ba934ee346cf36cd8b31d103b98c41aeec41a4cad23bc4aab0', 54, 2, NULL, '[]', 0, '2020-01-21 09:10:38', '2020-01-21 09:10:38', '2020-01-22 17:10:38'),
+('ec5180ef6629df407756b15557baa48d0a04cc9f2c07eb1490004f8b97989e123d7eb9d37aab42c6', 83, 2, NULL, '[]', 0, '2020-01-30 05:55:28', '2020-01-30 05:55:28', '2020-01-31 13:55:28'),
+('ecbd438f76ae463a30809843ec4335ba934ee346cf36cd8b31d103b98c41aeec41a4cad23bc4aab0', 54, 2, NULL, '[]', 1, '2020-01-21 09:10:38', '2020-01-21 09:10:38', '2020-01-22 17:10:38'),
 ('f63005172b907588ddb8ae0301031857e58f8ba4e70b5ba0055030e8a639bd3aff868ac1b3771b25', 45, 2, NULL, '[]', 0, '2020-01-06 06:51:13', '2020-01-06 06:51:13', '2020-01-07 14:51:13'),
 ('f7ac299dbe2b03c915c8d9baf49fabf7c018039401b6934adb93afc9421dd9e8e8fef73c705fa5bb', 1, 2, NULL, '[]', 1, '2020-01-07 02:00:42', '2020-01-07 02:00:42', '2020-01-08 10:00:42'),
 ('f7f5f47e3b810d897c8ea2b4b834cf227c54597f88d73fbd11893b815072b9c4afd527c4df7606d3', 1, 2, NULL, '[]', 1, '2019-11-12 11:03:10', '2019-11-12 11:03:10', '2019-11-13 19:03:09'),
@@ -797,10 +808,12 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('26cda5c95e40dc8f586c775ee36ce7546a77d2ab487fea926f673e8620013d31811ceba85470a92b', '328bb22f961aff0f50e97c4f860bd99cfd6898fda54c25fe0a821f2b815c97caa935b3c0116c6798', 0, '2020-01-18 10:52:44'),
 ('26f99f103a2e5653e058a1de272acaf01f0aa23de8452fc61f5329026eeec1ba3839b2f45e51ef08', '8dbfda5fade4ba7cfc46b6928f1c34317683dd26f335f33addd81e0f8c0b3d987f8457bdde422f2d', 0, '2020-01-29 13:56:40'),
 ('27c67d05b55f7931b9a1c96b2e1abf70c8cb2a18add27f458cc175da21fe2f44b698736a4a5a0f87', '7ac6cf61ddf5443b95ef006881b495cba0514d37b19d1fcb450465cabf975b0303a26964b7560af8', 0, '2020-01-16 11:17:13'),
+('2d9afd0d8bddc0fe9ff99cbff70081f69e9f9be8d1094dd080a04d6450c71de48079999c9b925c9d', '27f4db1a3c2160bf66fcb8162fcdaea632851bd73d592a1b1767a1f292474ac0889cb299b08a1dd7', 0, '2020-02-05 09:23:51'),
 ('32025a9fdcfb476c2abbfbd23c2cf1de80c01d38f4b30d7cbe76a485baf7e40ab0dfa00017b874b5', '15c84cbcf5f583ffd3f0999612cc4b9c5e980e41fb37327fc43db25f5c0da6f430862f1c450fd42a', 0, '2020-01-09 10:29:14'),
 ('33df702727d6c45a583432c2ef19e40622460c96568fb53ab85f988c5d2e7ca679b197dcf828776c', '72a9e4e225bf54df5100152280f127d24c45d7221670f30e68e2e349eb330023c54f658d6d4bde05', 0, '2020-01-22 09:09:08'),
 ('34a62ca2bd31822c3cecaa9d3ba4ee7335ee198cceb8e46e77d689217daeeae8973acef1cdd0af58', '681dd32c6ee72ed66f08f2e51eb2a99cc0ad1c19e7120c10e4474618e5552cf5af2466fbdeae2433', 0, '2020-01-18 09:55:30'),
 ('39fc0a2737cf35af9c121ca519f18f6eaa59544a40f009a3b56691a87a766041547e4e8d21d6093a', 'e539383d375bfe4caac9b320837763eeebdb2847d46068f6a39b35903aa186fb23d1c01a7e0cfe74', 0, '2020-01-16 15:20:00'),
+('416d0e20fee22e2df75dcc7361b1b73678f60840766ab48e0f38a29728efa68c7bccaf0adddd94df', '4054d4641a18cd398a77b2425ecec2fc0fd95858f065bdc259ebdcbca50c979590a8f0bd822cc267', 0, '2020-02-05 11:33:51'),
 ('416e8434f0a94916956da8356d802405380a754a75cbcdebef5502ad9726d7120383f9611f725e54', 'b1262ad5c70641939497e3acefda24955f357a3d6730fb0d020aa9f205a5ae7ff63f43a0a5f1ac04', 0, '2020-01-09 08:00:45'),
 ('43d9e410283ff7db250334e9b4fc6c8dda93a2525dfea40954dbc204eee55111731f9997a20b82c0', '386b1ca68243bcfb7ae8a2e2525d0dbfb13cb769a95f7d41a6d4e450aed24a2f16bca1d37e18fa2a', 0, '2020-01-24 14:31:26'),
 ('448a4a87a42ddc7d57c3b5fb1977aeede180a92c40b44a17f1ac1e62d0b730542ed1b126f7853e07', 'fcabcabf40d60af2ac2e47dcdd19c753ce13a38d57beec1dafec5ecaea909618d6d1fa21f138ff5c', 0, '2020-01-08 15:04:11'),
@@ -825,14 +838,17 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('7bae36c1aa73a53759bfe93d5e26bf3bf8a3f31ea996c26e3eba3f151ca80214dd07c845c4ac22f7', '3ee6794df90f4b3d00a927608fac24f942d1a00adbc3b13516ab192b543e14911604236174ea30a8', 0, '2019-11-27 10:17:33'),
 ('806de6db9dcf3526eb08971ed8323fc81ed900719f7173437586f2a076bc7ac878659f1795d9b663', '99948b0af1b44c86b279432d26b62161a73d6381f7fb371390863ce0bf308efbf57a5263d84ac7e5', 0, '2020-01-18 11:08:09'),
 ('810f7013911e78b5d1faa645176cb1d61ff339edb2e244761b084845aa64886ad7fba992c2ee4398', '22974f6cdc137ea0f55fa105575176519b79a79f707a3cfd652f22028cbb2de645708dbc73803857', 0, '2020-01-15 10:01:50'),
+('81ca36a634df638d7b2b6f16142d9b5b64d35065e341395be919614fd453e976018aa2a59fcdd414', '8ed62d88b9d0b46c8386716d7b3b5a86c99dbd1a59754737f918e96a8fcb228b5fe94cc60be38205', 0, '2020-02-05 11:35:51'),
 ('8395a700be6ce955fe364ae5cf5342051a346b2fec2ff15c6e535252b3936b352b695d9e717eb08e', 'a3f4e4f55a4a67e65637dd75e5c4556dca5c8f2497bfaac089b495c6c13f3690ebb29b332eaf05c9', 0, '2020-01-08 16:07:36'),
 ('842b7bf861c04830dec402af5ba632bdd7e6b617b5699c464c265fb012faf751246bdf6df0f2b214', '4b568036285cfaaef9a830d9b899db07e7eb21fe68c4b18f898a2becce15d9ed342a5ea35f423167', 0, '2020-01-23 14:28:28'),
 ('8bc49f7be2744ccc323315fff5636c3c43ae468dab96eb65519175256d6038533f45aa960ac73e80', 'bfd2e34834ee9b0f955bd2301d9b1f733fac5efb860debfd03e4b20ccb4ddbc880a85a322800f980', 0, '2020-01-08 14:51:01'),
+('8f7f6f7af99c535fc5c3705b47e48c799dfa9d78cd44daad3aac4972fbf95ca3da01d0db998275d4', '090da00c2d04b0f6480ac0876e6f03de5107f19dc277fffd81179d03e8e8b90d617e7a7ecb19c2b2', 0, '2020-02-02 08:33:49'),
 ('90c44904bca76f4b06934720da258207fee8047be6080bb93da123c461bc183344c8df884f1dcfef', '7088ed4b237ad664130080851abbec0c9d7365a51e8a5fb45a0de0a7e4c8fbe865993e29b16407b8', 0, '2020-01-12 09:56:06'),
 ('9134a644af6e69580e94d14116fef53308799174f18d52121c7fc221b92c0e6f7e82c210a45c9e2d', 'b34494e6aa4133cd09d491b2d039fa9062ab66a0fe30db7e98c457cb81408fbd6a662289800d83ca', 0, '2020-01-08 15:52:06'),
 ('9235fee9af58dbf56688faad4aa56526a66ea727371fd43ba5d32041bae981d5195058c1eb71b81f', 'bb52925a53d038e646193ce085732caf746398b162d6b080ae9b0d222bfc487e534e55869d6a6ff1', 0, '2019-11-07 18:42:53'),
 ('96240b36d3aad0be111e6939f55cde7f4fbf547455a331d707a968af1864d644c102528f4e065c05', '8acdeae57079f2a949d6ebb0dff398f925684636888d88f467cdfd867e7231a98b0974e888d64198', 0, '2020-01-08 16:22:34'),
 ('96fba27e9dc8ea444e84e0bbf3e9607acb34103bccc5b4c52e4bfcde9b825e8fa66db825acb22309', 'ec28618698f81d56f6c087cdca51647e3b042968c1c3c4e64bac0daabcdface695250fe664f914f7', 0, '2020-01-08 14:44:40'),
+('9bbad4ef50d6f46cddf930dcf2fef3cf9160568cdb289f7182afa8a25c82fd14951208f9a3094e7a', '1cd09c7499186a0a9746b4650bc5c018dcbf96371866d5e3841dc23df897801fedff676c592f61d7', 0, '2020-02-05 11:26:01'),
 ('9cdd297cc131b34d0732390ee435479b1c038141e01b1799f07508372475dc6358ba85baa358d0ed', '513f3c7e21c485e8787da5a4450b2ff902beab8934eb10abab064214059b27e51a6ee4b5c262c3d7', 0, '2020-01-29 15:02:08'),
 ('a15d63831b4a93f75457bdf7ca02e0f35896f46cf740e73a3172db2ab4d0c63ba6d6d2ca8ae46c3c', '6d6c409a6b40cb28dfdc044ed3e3abbd045c7fb2f3bb33acb396b6288f61f58694b5fb2784e5b24a', 0, '2020-01-23 14:28:31'),
 ('a1fd69d70e706bbada5fc96ed7f0f56875863b4a1b83033d0fa4c33de6137f4718add99eb2006b7c', '3a9149b5eb4f79a37bf45304c800e549fc65e6b956e1c103a7393b10f3b96934001b341215f2cefe', 0, '2020-01-17 16:35:59'),
@@ -847,7 +863,11 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('ca73c5f7e88b01e7afc02e5f69c2eb1380e10cbe559351eda18768ced4b4dbe63e410c3e1ea473b2', '7ceb4da5ba0dc637fb6a126d491127666dc375592cbc59b8997fa1c44b5bbffb871c3fb52104ac86', 0, '2020-01-18 11:01:14'),
 ('cb8b11fcf60eb7ac353d964accfd15cdbf1a9fb196286d7b28314183756f7ad8f09a1a6b2b0b086d', '092505ffb6c4a1c91c72382d9318063c3780fef8be11a80da0d72c5b941074e1ebd5caa3faf38693', 0, '2020-01-08 14:59:50'),
 ('cc67c1a486d50e40df6dd03f71a159ae9211d236b12a68478ab0bff82e8b5087c56b94a778480ff7', '8987c8ff216e13fab967ed4cd42f32739c466b00306e9a1c0d7445fc67d7ef767f68262445057f9b', 0, '2020-01-08 16:33:56'),
+('cef0c910c3fb35ffb3b2ad29f4cc39bcda2dec215cd3b8537d76d423639f25b64c39cefc55d037e2', '606847590fc16c545903017c9cce260d6739ceae79281f09731b2b68c2e2b79828894a37ba78964c', 0, '2020-02-05 11:33:49'),
+('cf464a7f3397d49d03fa59f9cfb77b66b12e6f843dfc3528727d97f0a7df3f949aa3f0d3088d1ffd', 'ec5180ef6629df407756b15557baa48d0a04cc9f2c07eb1490004f8b97989e123d7eb9d37aab42c6', 0, '2020-02-01 13:55:28'),
+('d137ac5608558639cce926dec8c68fbbab9df05f6542d8caf5daf174eb7064037677408e5149783e', '9f753360c7af8857fcd5d81ca912ba810911f73a9bdae1becaf7527451cd2cfa9d2f8ba5c05f90ce', 0, '2020-02-05 09:25:37'),
 ('d34a32daddbffa8bdce3c89ffe169b3e69d3686f0320e440dbfa3d2d5cf737f6d44139165d9a265c', '9285f46604409f3a93f88620ba00c63bf067cbe281225b4f4d7ebd6f923914be2b117e33687d3419', 0, '2020-01-08 15:13:22'),
+('d474452397e529a0f79b909618e2ee2b1b13271f31c889ed9cc0717574bc27c712d3dab6d0c4dbb4', 'dcc840ed9911577935b1434a7ee1c7d18e60ec9fe0b43ca0f097426ea5118e30392d9d373bf778d9', 0, '2020-02-05 11:35:48'),
 ('d4f3a4920d9fb4e20fda0bfadd16b2e7e517e6bd6d7761fdba71b4e1a206881170e87ceb80d0c0de', '1234a05ad7666d40a929c0bc2d7564a5dc661a6be9d87fc923962b66171ae4307597e759f5fe2f6d', 0, '2020-01-08 10:08:43'),
 ('d8c36d4f847419c1653f46c351e2ae5d2615ab4fbede486ac9cec1e8ecc9ed69385a8393225ae665', 'f7f5f47e3b810d897c8ea2b4b834cf227c54597f88d73fbd11893b815072b9c4afd527c4df7606d3', 0, '2019-11-14 19:03:09'),
 ('d9644871fd67c02f76edf2c21170ea4dce7a427a92b0f645a3b5ec047b88e0c90014d59d6ef34ec1', '4afe3002a6a88a93da8d5285658f7479a14b874bb2833740156c9a3118b4c26504b4bc85e06f0c17', 0, '2020-01-08 14:46:31'),
@@ -859,6 +879,7 @@ INSERT INTO `oauth_refresh_tokens` (`id`, `access_token_id`, `revoked`, `expires
 ('e97078ebcca066ff671f9cffce5a48ffc246879eea783b5b46ea60767e5870803606c566c0815c43', '3ad4cd734585e3bc19184d0cf1a35bc2e96313b60f32eac6a54a65b44b279cc9a7b55705f7ab75b0', 0, '2020-01-12 16:56:29'),
 ('e9dd674679f9c6fe3ca0f82f76f5aa212d97de14e89f589343c72a5391bba5b035bd6a0bfbf0e1aa', '40d4a118355f273e0419132283bcc4a6510017f20432e1c9b2ded6081686ff978d0510382ac6fcb7', 0, '2019-10-03 12:43:57'),
 ('eb6d234555bcbeeb56940770120c70149c1fd1aa7d59086269245087b922f1b0656ed11012048921', 'ecbd438f76ae463a30809843ec4335ba934ee346cf36cd8b31d103b98c41aeec41a4cad23bc4aab0', 0, '2020-01-23 17:10:38'),
+('eefd526b36daf4efae0cc8fb03746e0fc278ceb18bcd591aa0b883fb7e7c0647c4796b80d951f483', '2e174bb1bafbcaf589507e58579a1009b9ecd25d85575b6ae059bc8c8ce5b74f46d8088da9574e87', 0, '2020-02-01 13:24:21'),
 ('efd16dc4a8626175f9dab76de7562b89c566eef6f4756df19fb417f61adcbcfb1d91ff7f0b573be2', 'cbabdc1ecc4acef56efbc9f55f604d2ab8862759a0cd5da5cac1a0642681823468ac34eacb345709', 0, '2019-11-08 13:29:29'),
 ('f2c9f6ab7d2142a3d65b8e0f1587e0f97a385ce96927a0baf08925c6f98456439a25c3f06d70b0e5', 'e4aaacd6958034404714f4f0f6bd523bc85a633e32a38b46dac5a784484721589d4f0306dd2fdd01', 0, '2020-01-15 10:06:16'),
 ('f2f2917a19c3f3d9f1e9d073f4ca0dda6ee399240de943dca0277f61a49f8ed4768f242247d06a2f', '07c88259f3bb06709fe8836d9dec1029b7e031fa732280250b292e02fcbed871ece3b84151dd1d11', 0, '2020-01-08 16:14:41'),
@@ -902,9 +923,13 @@ CREATE TABLE `tbl_activity_log` (
 --
 
 INSERT INTO `tbl_activity_log` (`id`, `actCode`, `projCode`, `activity_desc`, `type`, `attachment`, `deleted`, `created_by_id`, `created_by_name`, `created_at`, `updated_at`) VALUES
-(1, 'GYND9ORDJ3JC', '7VIAIGYVGOG7', 'My Description for this report!!!', 'ISSUE', '/upload/img/20200110_165400-buko.jpg', 0, '2019-1008', 'Employee8, Employee8', '2020-01-10 08:54:00', '2020-01-10 08:54:00'),
-(2, '7YR66H5PIY3Q', '7VIAIGYVGOG7', 'My Description for this report!!!', 'REPORT', '/upload/img/20200110_165559-Migos-Narcos-screenshot-billboard-1548.jpg', 0, '2019-1008', 'Employee8, Employee8', '2020-01-10 08:55:59', '2020-01-10 08:55:59'),
-(3, '3ZAOSLZNJHCL', 'ZQQKVOTRJJNZ', 'My Description for this report!!!', 'REPORT', '/upload/img/20200128_103420-la-kika-el-arete-y-popéye-1.jpg', 0, '2018-101', 'ABUEVA', '2020-01-28 02:34:20', '2020-01-28 02:34:20');
+(1, 'GYND9ORDJ3JC', '7VIAIGYVGOG7', 'My Description for this report!!!', 'ISSUE', '1', 0, '2019-1008', 'Employee8, Employee8', '2020-01-10 08:54:00', '2020-01-10 08:54:00'),
+(2, '7YR66H5PIY3Q', '7VIAIGYVGOG7', 'My Description for this report!!!', 'REPORT', '1', 0, '2019-1008', 'Employee8, Employee8', '2020-01-10 08:55:59', '2020-01-10 08:55:59'),
+(3, '3ZAOSLZNJHCL', 'ZQQKVOTRJJNZ', 'My Description for this report!!!', 'REPORT', '1', 0, '2018-101', 'ABUEVA', '2020-01-28 02:34:20', '2020-01-28 02:34:20'),
+(4, 'RIB48UTNEJAU', '7VIAIGYVGOG7', 'My Description for this report!!!', 'REPORT', '1', 0, '2018-101', 'ABUEVA', '2020-02-03 06:39:21', '2020-02-03 06:39:21'),
+(5, 'MRL46Z6MLH6L', '7VIAIGYVGOG7', 'My Description for this report!!!', 'REPORT', '0', 0, '2018-101', 'ABUEVA', '2020-02-03 06:40:08', '2020-02-03 06:40:08'),
+(6, '42R2TRLAVAQC', '7VIAIGYVGOG7', 'My Description for this report!!!', 'REPORT', '0', 0, '2018-101', 'ABUEVA', '2020-02-03 06:43:41', '2020-02-03 06:43:41'),
+(7, 'SG7GO7KV8WV0', '7VIAIGYVGOG7', 'My Description for this report!!!', 'REPORT', '1', 0, '2018-101', 'ABUEVA', '2020-02-03 06:44:09', '2020-02-03 06:44:09');
 
 -- --------------------------------------------------------
 
@@ -932,7 +957,11 @@ CREATE TABLE `tbl_activity_log_img` (
 INSERT INTO `tbl_activity_log_img` (`id`, `actCode`, `projCode`, `attachment`, `type`, `deleted`, `created_by_id`, `created_by_name`, `created_at`, `updated_at`) VALUES
 (1, 'GYND9ORDJ3JC', '7VIAIGYVGOG7', '/upload/img/20200110_165400-buko.jpg', 'IMAGE', 0, '2019-1008', 'Employee8, Employee8', '2020-01-10 08:54:00', '2020-01-10 08:54:00'),
 (2, '7YR66H5PIY3Q', '7VIAIGYVGOG7', '/upload/img/20200110_165559-Migos-Narcos-screenshot-billboard-1548.jpg', 'IMAGE', 0, '2019-1008', 'Employee8, Employee8', '2020-01-10 08:55:59', '2020-01-10 08:55:59'),
-(3, '3ZAOSLZNJHCL', 'ZQQKVOTRJJNZ', '/upload/img/20200128_103420-la-kika-el-arete-y-popéye-1.jpg', 'IMAGE', 0, '2018-101', 'ABUEVA', '2020-01-28 02:34:20', '2020-01-28 02:34:20');
+(3, '3ZAOSLZNJHCL', 'ZQQKVOTRJJNZ', '/upload/img/20200128_103420-la-kika-el-arete-y-popéye-1.jpg', 'IMAGE', 0, '2018-101', 'ABUEVA', '2020-01-28 02:34:20', '2020-01-28 02:34:20'),
+(4, 'RIB48UTNEJAU', '7VIAIGYVGOG7', '/upload/img/20200203_143921-migos-narcos-video-001.jpg', 'IMAGE', 0, '2018-101', 'ABUEVA', '2020-02-03 06:39:21', '2020-02-03 06:39:21'),
+(5, 'RIB48UTNEJAU', '7VIAIGYVGOG7', '/upload/img/20200203_143921-pablo-gustavo-gaviria.jpg', 'IMAGE', 0, '2018-101', 'ABUEVA', '2020-02-03 06:39:21', '2020-02-03 06:39:21'),
+(6, 'SG7GO7KV8WV0', '7VIAIGYVGOG7', '/upload/img/20200203_144409-50811265_2584944578243064_5897639857240408064_o.png', 'IMAGE', 0, '2018-101', 'ABUEVA', '2020-02-03 06:44:09', '2020-02-03 06:44:09'),
+(7, 'SG7GO7KV8WV0', '7VIAIGYVGOG7', '/upload/img/20200203_144409-images.jpg', 'IMAGE', 0, '2018-101', 'ABUEVA', '2020-02-03 06:44:09', '2020-02-03 06:44:09');
 
 -- --------------------------------------------------------
 
@@ -1278,6 +1307,7 @@ INSERT INTO `tbl_projtask` (`id`, `projCode`, `taskCode`, `taskWeight`, `plan_da
 
 CREATE TABLE `tbl_proj_progress` (
   `id` bigint(11) NOT NULL,
+  `ProjProgressCode` varchar(191) DEFAULT NULL,
   `projCode` varchar(191) NOT NULL,
   `taskCode` varchar(191) NOT NULL,
   `weight_progress` decimal(13,2) NOT NULL,
@@ -1296,14 +1326,55 @@ CREATE TABLE `tbl_proj_progress` (
 -- Dumping data for table `tbl_proj_progress`
 --
 
-INSERT INTO `tbl_proj_progress` (`id`, `projCode`, `taskCode`, `weight_progress`, `attachment`, `report`, `reported_by_id`, `pick_date`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.90', '/upload/img/20200107_155230-images (1).jpg', 'Sample Description of Report', 54, NULL, 0, '54', 'Employee8, Employee8', '2020-01-07 07:52:30', '2020-01-07 07:52:30'),
-(2, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.90', '/upload/img/20200110_165643-maxresdefault.jpg', 'Sample Description of Report', 54, NULL, 0, '54', 'Employee8, Employee8', '2020-01-10 08:56:43', '2020-01-10 08:56:43'),
-(3, 'ZQQKVOTRJJNZ', 'FZPRFIWOKBFQ', '5.00', NULL, 'ABC', 83, NULL, 0, '83', 'ABUEVA', '2020-01-28 02:25:45', '2020-01-28 02:25:45'),
-(4, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '/upload/img/20200128_112333-5txbyf96npzz.png', 'Description', 83, NULL, 0, '83', 'ABUEVA', '2020-01-28 03:23:33', '2020-01-28 03:23:33'),
-(5, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '/upload/img/20200128_113426-5txbyf96npzz.png', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-01-28 03:34:26', '2020-01-28 03:34:26'),
-(6, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '/upload/img/20200128_113901-5txbyf96npzz.png', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-01-28 03:39:01', '2020-01-28 03:39:01'),
-(7, '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '/upload/img/20200128_114027-5txbyf96npzz.png', 'Description', 83, '2020-01-28 11:40:27', 0, '83', 'ABUEVA', '2020-01-28 03:40:27', '2020-01-28 03:40:27');
+INSERT INTO `tbl_proj_progress` (`id`, `ProjProgressCode`, `projCode`, `taskCode`, `weight_progress`, `attachment`, `report`, `reported_by_id`, `pick_date`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '18', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.90', '0', 'Sample Description of Report', 54, NULL, 0, '54', 'Employee8, Employee8', '2020-01-07 07:52:30', '2020-01-07 07:52:30'),
+(2, '17', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.90', '0', 'Sample Description of Report', 54, NULL, 0, '54', 'Employee8, Employee8', '2020-01-10 08:56:43', '2020-01-10 08:56:43'),
+(3, '16', 'ZQQKVOTRJJNZ', 'FZPRFIWOKBFQ', '5.00', '0', 'ABC', 83, NULL, 0, '83', 'ABUEVA', '2020-01-28 02:25:45', '2020-01-28 02:25:45'),
+(4, '15', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '0', 'Description', 83, NULL, 0, '83', 'ABUEVA', '2020-01-28 03:23:33', '2020-01-28 03:23:33'),
+(5, '14', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-01-28 03:34:26', '2020-01-28 03:34:26'),
+(6, '13', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-01-28 03:39:01', '2020-01-28 03:39:01'),
+(7, '12', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '0', 'Description', 83, '2020-01-28 11:40:27', 0, '83', 'ABUEVA', '2020-01-28 03:40:27', '2020-01-28 03:40:27'),
+(8, '11', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:36:29', '2020-02-03 03:36:29'),
+(9, '0', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:37:10', '2020-02-03 03:37:10'),
+(10, '9', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '1.00', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:38:38', '2020-02-03 03:38:38'),
+(11, '8', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:45:34', '2020-02-03 03:45:34'),
+(12, '7', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:45:46', '2020-02-03 03:45:46'),
+(13, '6', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:45:52', '2020-02-03 03:45:52'),
+(14, '5', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:46:19', '2020-02-03 03:46:19'),
+(15, '4', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:46:33', '2020-02-03 03:46:33'),
+(16, '3', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:47:22', '2020-02-03 03:47:22'),
+(17, '2', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:51:57', '2020-02-03 03:51:57'),
+(18, '1', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 03:52:08', '2020-02-03 03:52:08'),
+(19, 'GDTOM7WB', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 05:22:05', '2020-02-03 05:22:05'),
+(20, 'P4B74BYN', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '0', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 05:28:51', '2020-02-03 05:28:51'),
+(21, 'UFPPCQY9', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '0.30', '1', 'Description', 83, '2020-01-28 00:00:00', 0, '83', 'ABUEVA', '2020-02-03 05:34:10', '2020-02-03 05:34:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_proj_progress_img`
+--
+
+CREATE TABLE `tbl_proj_progress_img` (
+  `id` bigint(11) NOT NULL,
+  `ProjProgressCode` varchar(191) DEFAULT NULL,
+  `projCode` varchar(191) NOT NULL,
+  `taskCode` varchar(191) NOT NULL,
+  `attachment` varchar(191) DEFAULT NULL,
+  `deleted` int(2) DEFAULT NULL,
+  `by_id` varchar(191) DEFAULT NULL,
+  `updated_by` varchar(191) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_proj_progress_img`
+--
+
+INSERT INTO `tbl_proj_progress_img` (`id`, `ProjProgressCode`, `projCode`, `taskCode`, `attachment`, `deleted`, `by_id`, `updated_by`, `created_at`, `updated_at`) VALUES
+(11, 'UFPPCQY9', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '/upload/img/20200203_133410-beer.png', 0, '83', 'ABUEVA', '2020-02-03 05:34:10', '2020-02-03 05:34:10'),
+(12, 'UFPPCQY9', '7VIAIGYVGOG7', 'QALVC3UFEUDC', '/upload/img/20200203_133411-tumblr_passbfyf8u1wl5tc4o1_1280.png', 0, '83', 'ABUEVA', '2020-02-03 05:34:11', '2020-02-03 05:34:11');
 
 -- --------------------------------------------------------
 
@@ -1472,6 +1543,7 @@ INSERT INTO `users` (`id`, `company_id`, `apiKey`, `ACNo`, `name`, `email`, `ema
 --
 CREATE TABLE `view_activity_log` (
 `id` bigint(8)
+,`actCode` varchar(191)
 ,`projCode` varchar(191)
 ,`activity_desc` varchar(191)
 ,`type` varchar(191)
@@ -1587,6 +1659,7 @@ CREATE TABLE `view_projtask` (
 --
 CREATE TABLE `view_proj_progress` (
 `id` bigint(11)
+,`ProjProgressCode` varchar(191)
 ,`projCode` varchar(191)
 ,`taskCode` varchar(191)
 ,`weight_progress` decimal(13,2)
@@ -1634,7 +1707,7 @@ CREATE TABLE `view_users` (
 --
 DROP TABLE IF EXISTS `view_activity_log`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_activity_log`  AS  select `a`.`id` AS `id`,`a`.`projCode` AS `projCode`,`a`.`activity_desc` AS `activity_desc`,`a`.`type` AS `type`,`a`.`attachment` AS `attachment`,`a`.`created_by_id` AS `created_by_id`,`a`.`created_by_name` AS `created_by_name`,`a`.`created_at` AS `created_at`,(select `u`.`ACNo` from `users` `u` where `u`.`company_id` = `a`.`created_by_id`) AS `ACNo`,(select `u`.`name` from `users` `u` where `u`.`company_id` = `a`.`created_by_id`) AS `name`,(select `u`.`email` from `users` `u` where `u`.`company_id` = `a`.`created_by_id`) AS `email` from `tbl_activity_log` `a` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_activity_log`  AS  select `a`.`id` AS `id`,`a`.`actCode` AS `actCode`,`a`.`projCode` AS `projCode`,`a`.`activity_desc` AS `activity_desc`,`a`.`type` AS `type`,`a`.`attachment` AS `attachment`,`a`.`created_by_id` AS `created_by_id`,`a`.`created_by_name` AS `created_by_name`,`a`.`created_at` AS `created_at`,(select `u`.`ACNo` from `users` `u` where `u`.`company_id` = `a`.`created_by_id`) AS `ACNo`,(select `u`.`name` from `users` `u` where `u`.`company_id` = `a`.`created_by_id`) AS `name`,(select `u`.`email` from `users` `u` where `u`.`company_id` = `a`.`created_by_id`) AS `email` from `tbl_activity_log` `a` ;
 
 -- --------------------------------------------------------
 
@@ -1679,7 +1752,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_proj_progress`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_proj_progress`  AS  select `a`.`id` AS `id`,`a`.`projCode` AS `projCode`,`a`.`taskCode` AS `taskCode`,`a`.`weight_progress` AS `weight_progress`,`a`.`attachment` AS `attachment`,`a`.`report` AS `report`,`a`.`reported_by_id` AS `reported_by_id`,`a`.`pick_date` AS `pick_date`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at`,`b`.`deleted` AS `taskDeleted`,`a`.`deleted` AS `deleted` from (`tbl_proj_progress` `a` left join `tbl_task` `b` on(`a`.`taskCode` = `b`.`taskCode`)) order by `a`.`created_at` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_proj_progress`  AS  select `a`.`id` AS `id`,`a`.`ProjProgressCode` AS `ProjProgressCode`,`a`.`projCode` AS `projCode`,`a`.`taskCode` AS `taskCode`,`a`.`weight_progress` AS `weight_progress`,`a`.`attachment` AS `attachment`,`a`.`report` AS `report`,`a`.`reported_by_id` AS `reported_by_id`,`a`.`pick_date` AS `pick_date`,`a`.`by_id` AS `by_id`,`a`.`updated_by` AS `updated_by`,`a`.`created_at` AS `created_at`,`a`.`updated_at` AS `updated_at`,`b`.`deleted` AS `taskDeleted`,`a`.`deleted` AS `deleted` from (`tbl_proj_progress` `a` left join `tbl_task` `b` on(`a`.`taskCode` = `b`.`taskCode`)) order by `a`.`created_at` desc ;
 
 -- --------------------------------------------------------
 
@@ -1807,6 +1880,12 @@ ALTER TABLE `tbl_proj_progress`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_proj_progress_img`
+--
+ALTER TABLE `tbl_proj_progress_img`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_task`
 --
 ALTER TABLE `tbl_task`
@@ -1832,7 +1911,7 @@ ALTER TABLE `activity_records`
 -- AUTO_INCREMENT for table `date_time_records`
 --
 ALTER TABLE `date_time_records`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=489;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=490;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1856,13 +1935,13 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `tbl_activity_log`
 --
 ALTER TABLE `tbl_activity_log`
-  MODIFY `id` bigint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_activity_log_img`
 --
 ALTER TABLE `tbl_activity_log_img`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_emp_proj`
@@ -1904,7 +1983,13 @@ ALTER TABLE `tbl_projtask`
 -- AUTO_INCREMENT for table `tbl_proj_progress`
 --
 ALTER TABLE `tbl_proj_progress`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `tbl_proj_progress_img`
+--
+ALTER TABLE `tbl_proj_progress_img`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_task`

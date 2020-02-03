@@ -13,7 +13,9 @@
 URL::forceRootUrl(env('APP_URL'));
 
 Route::get('/','HomeController@index');
-    
+
+
+// This Middleware is used for Admin and SuperAdmin
 Route::group(['middleware'=> ['admin']], function(){
 
     Route::get('/dashboard', 'MainController@index');
@@ -21,6 +23,8 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/dashboard/pm_view', 'MainController@project_view')->name('pm_view');
     Route::post('/dashboard/emp_view', 'MainController@project_view')->name('emp_view');
     Route::post('/dashboard/open_task_view', 'MainController@open_task_view')->name('open_task_view');
+    Route::post('/dashboard/open_progress_percentage', 'MainController@open_progress_percentage')->name('open_progress_percentage');
+    Route::post('/dashboard/open_act_code', 'MainController@open_act_code')->name('open_act_code');
     
     Route::get('/location', 'MainController@location');
 
@@ -83,12 +87,12 @@ Route::group(['middleware'=> ['admin']], function(){
     Route::post('/account_settings/account_settings_val', 'MainController@account_settings_val')->name('account_settings_val');
     Route::post('/account_settings/account_settings_update', 'MainController@account_settings_update')->name('account_settings_update');
 
-    // ------------------------------------------------------------------------//
-    // This section all reusable codes will be commented for future purposes   //
-    // ------------------------------------------------------------------------//
-    // Unused routes
-    // Route::post('/projectlist/project_info', 'MainController@project_info')->name('project_info');
 });
+
+
+// This Middleware is used for Normal Users (MobileAppUsers)
+// For future purposes you may include all app users middleware here.
+// As of now the web console is for admin and superadmin only.
 
 Route::group(['middleware'=> ['auth']], function(){
     
@@ -100,7 +104,7 @@ Route::group(['middleware'=> ['auth']], function(){
     Route::post('/dashboard/stake_view', 'MainController@project_view')->name('stake_view');
     Route::post('/dashboard/customer_view', 'MainController@project_view')->name('customer_view');
     Route::post('/dashboard/open_task_view', 'MainController@open_task_view')->name('open_task_view');
-    
+
     Route::get('/location', 'MainController@location');
 
     Route::get('/task', 'MainController@task');

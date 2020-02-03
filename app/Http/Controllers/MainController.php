@@ -143,7 +143,7 @@ class MainController extends Controller
                 if($act_selected != ""){
                     foreach($act_selected as $field){
 
-                        if($field->attachment != ""){
+                        if($field->attachment == 1){
                             $data .= '
                             <tr>
                                 <td><small>'.date("F d Y <br> h:i a",strtotime($field->created_at)).'</small></td>
@@ -151,7 +151,7 @@ class MainController extends Controller
                                 <td>'.$field->type.'</td>
                                 <td>'.$field->name.'</td>
                                 <td>
-                                    <a data-img="'.$field->attachment.'" data-projcode= "'.$field->projCode.'" onClick="activityLog(\''.$field->projCode.'\',\''.$field->attachment.'\')" class="btn btn-info svs-action"><i class="fa fa-file"></i>&nbsp;&nbsp;file</a>
+                                    <a data-img="'.$field->attachment.'" data-actcode = "'.$field->actCode.'" data-projcode= "'.$field->projCode.'" onClick="ProjLog(\''.$field->actCode.'\')" class="btn btn-info svs-action"><i class="fa fa-file"></i>&nbsp;&nbsp;file</a>
                                 </td>
                             </tr>
                             ';
@@ -260,7 +260,7 @@ class MainController extends Controller
                         $pick_date = "";
                     }
 
-                    if($field->attachment == ""){
+                    if($field->attachment == 0){
                         $data .= '
                         <tr>
                             <td>'.$taskWeight.'</td>
@@ -289,7 +289,13 @@ class MainController extends Controller
 
                             <td>'.date("F d Y - h:i a",strtotime($field->created_at)).'</td>
     
-                            <td><a data-img="'.$field->attachment.'" data-projcode= "'.$field->projCode.'" onClick="activityLog(\''.$field->projCode.'\',\''.$field->attachment.'\')" class="btn btn-info svs-action" ><i class="fa fa-file"></i>&nbsp;File</a></td>
+                            <td><a 
+                            onClick="activityLog(\''.$field->ProjProgressCode.'\')"
+                            data-img="'.$field->attachment.'"
+                             data-projprogresscode= "'.$field->ProjProgressCode.'"
+                              data-projcode= "'.$field->projCode.'"
+                               data-projcode= "'.$field->taskCode.'"
+                                class="btn btn-info svs-action openProjProgress" ><i class="fa fa-file"></i>&nbsp;File</a></td>
                         </tr>
                         ';
                     }
@@ -298,6 +304,60 @@ class MainController extends Controller
             }
 
         }
+
+        echo $data;
+    }
+
+    public function open_progress_percentage(Request $request){
+        $data = "";
+        $counter = 0;
+
+
+        if($request->proceed == "TRUE")
+        {
+            $progress = DB::connection('mysql')->select("SELECT * FROM tbl_proj_progress_img WHERE ProjProgressCode = '".$request->ProjProgressCode."' AND deleted = 0");
+            if(count($progress)){
+                foreach($progress as $field){
+                    $url = env('APP_API_BACKEND')."/".$field->attachment;
+                    $data .= '
+                            <a id="activityImgHref" href="'.$url.'" download>
+                                <img id="activityImg" src="'.$url.'" style="width:100%;height:100%;">
+                            </a>
+                            <br><br>
+                    ';
+
+                    $counter++;
+                }
+            }
+        }
+        
+
+        echo $data;
+    }
+
+    public function open_act_code(Request $request){
+        $data = "";
+        $counter = 0;
+
+
+        if($request->proceed == "TRUE")
+        {
+            $actLog = DB::connection('mysql')->select("SELECT * FROM tbl_activity_log_img WHERE actCode = '".$request->actCode."' AND deleted = 0");
+            if(count($actLog)){
+                foreach($actLog as $field){
+                    $url = env('APP_API_BACKEND')."/".$field->attachment;
+                    $data .= '
+                            <a id="activityImgHref" href="'.$url.'" download>
+                                <img id="activityImg" src="'.$url.'" style="width:100%;height:100%;">
+                            </a>
+                            <br><br>
+                    ';
+
+                    $counter++;
+                }
+            }
+        }
+        
 
         echo $data;
     }

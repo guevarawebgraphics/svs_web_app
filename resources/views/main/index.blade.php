@@ -480,7 +480,7 @@ ul {
             <em>Click the image to download.</em>
             <br>
         </p> --}}
-        <div class="container">
+        <div class="container" id="projprogressDiv">
             <a id="activityImgHref" download>
                 <img id="activityImg" style="width:100%;height:100%;">
             </a>
@@ -509,11 +509,60 @@ $.fn.dataTable.ext.errMode = 'none';
 </script>
 
 <script>
-    function activityLog(projCode,attachment){
-        var img = attachment;
-        $("#activityImg").attr("src","{{ env('APP_API_BACKEND') }}"+img);
-        $("#activityImgHref").attr("href","{{ env('APP_API_BACKEND') }}"+img);
-        $("#imgMod").modal("show");
+
+    function ProjLog(actCode){
+        if(actCode == ""){
+            alert("Some parameters are missing please refresh the page.");
+        }
+        else
+        {
+            $.ajax({
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{ route('open_act_code') }}",
+                method: "POST",
+                data:{
+                    proceed:"TRUE",
+                    actCode:actCode
+                }, 
+                success:function(data)
+                {
+                    $("#projprogressDiv").html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+
+            $("#imgMod").modal("show");
+        }
+    }
+
+    function activityLog(ProjProgressCode){
+
+        if(ProjProgressCode == ""){
+            alert("Some parameters are missing please refresh the page.");
+        }else{
+            $.ajax({
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{ route('open_progress_percentage') }}",
+                method: "POST",
+                data:{
+                    proceed:"TRUE",
+                    ProjProgressCode:ProjProgressCode,
+                    projCode:projCode,
+                    taskCode:taskCode
+                }, 
+                success:function(data)
+                {
+                    $("#projprogressDiv").html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+
+            $("#imgMod").modal("show");
+        }
         
     }
 </script>
