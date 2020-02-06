@@ -538,6 +538,8 @@ $.fn.dataTable.ext.errMode = 'none';
     }
 
     function activityLog(ProjProgressCode){
+        //projCode:projCode,
+        // taskCode:taskCode
 
         if(ProjProgressCode == ""){
             alert("Some parameters are missing please refresh the page.");
@@ -549,8 +551,6 @@ $.fn.dataTable.ext.errMode = 'none';
                 data:{
                     proceed:"TRUE",
                     ProjProgressCode:ProjProgressCode,
-                    projCode:projCode,
-                    taskCode:taskCode
                 }, 
                 success:function(data)
                 {
