@@ -691,20 +691,21 @@ class MainController extends Controller
             ->orderBy('created_at','desc')
             ->get();
 
-            // $emp_info = DB::connection('mysql2')->select("select a.emp_no AS emp_no, a.company_id AS company_id,
-            // concat(a.lname,', ',a.fname,' ',a.mname) AS fullname,
-            // a.lname AS lname,a.fname AS fname, b.company_ind AS company_ind, 
-            // d.company_name AS company_name, b.department AS department, 
-            // b.position AS position, b.team AS team, 
-            // b.employment_status AS employment_status, 
-            // a.active AS active 
-       
-            // from ((hris_csi_b.personal_information a left join hris_csi_b.employee_information b on((a.company_id = b.company_id)))
-            // left join hris_csi_b.company d on((b.company_ind = d.id))) where (a.active = 'yes')
-            // ORDER BY b.department ASC
-            // ");
+            $pm_info = DB::connection('mysql')->select("SELECT a.company_id,
+             a.fullname,
+              a.position,
+               a.department,
+                b.account_type
+                 FROM view_employee_info AS a LEFT JOIN users b ON a.company_id = b.company_id
+                  WHERE b.account_type = 'WEB'");
 
-            $emp_info = DB::connection('mysql')->select("SELECT * FROM view_employee_info");
+            $emp_info = DB::connection('mysql')->select("SELECT a.company_id,
+            a.fullname,
+             a.position,
+              a.department,
+               b.account_type
+                FROM view_employee_info AS a LEFT JOIN users b ON a.company_id = b.company_id
+                 WHERE b.account_type = 'APP'");
 
             $stakeholder_info = DB::connection('mysql')->select("SELECT * FROM tbl_member WHERE member_type = 'STAKEHOLDER' AND deleted = 0");
 
@@ -733,7 +734,7 @@ class MainController extends Controller
             ->get();
 
             if($manage_user_proj[0]->no_access_data == 0){
-                return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info','emp_selected','pm_selected','stakeholder_info','customer_info','manage_user_proj'));
+                return view('main.projectlist', compact('user_record','task_record','project_record','projtask_record','emp_info','pm_info','emp_selected','pm_selected','stakeholder_info','customer_info','manage_user_proj'));
             }else{
                 abort(404);
             }
@@ -1387,7 +1388,16 @@ class MainController extends Controller
         if($request->type == "PM")
         {
             $arrays = implode("', '", $request->pmChck);
-            $pm_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
+            //With out Filtering of PM
+            //SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')
+            $pm_selected = DB::connection('mysql')->select("SELECT
+            a.company_id,
+             a.fullname,
+              a.position,
+               a.department,
+                b.account_type
+                 FROM view_employee_info AS a LEFT JOIN users b ON a.company_id = b.company_id
+                  WHERE b.account_type = 'WEB' AND a.company_id NOT IN('".$arrays."')");
            
             if(count($pm_selected)){
                 foreach($pm_selected as $field){
@@ -1405,7 +1415,14 @@ class MainController extends Controller
         else if($request->type == "EMP")
         {
             $arrays = implode("', '", $request->empChck);
-            $emp_selected = DB::connection('mysql')->select("SELECT * FROM view_employee_info WHERE company_id NOT IN('".$arrays."')");
+            $emp_selected = DB::connection('mysql')->select("SELECT
+            a.company_id,
+             a.fullname,
+              a.position,
+               a.department,
+                b.account_type
+                 FROM view_employee_info AS a LEFT JOIN users b ON a.company_id = b.company_id
+                  WHERE b.account_type = 'APP' AND a.company_id NOT IN('".$arrays."')");
            
             if(count($emp_selected)){
                 foreach($emp_selected as $field){
@@ -2985,7 +3002,10 @@ class MainController extends Controller
         if(!empty(auth()->user()->id)){
             if(auth()->user()->is_admin == 2){
                 $user_records_web = ViewUsers::where('deleted', 1)
-                ->where('account_type','WEB')
+                ->where(function($q) {
+                    $q->where('account_type', 'WEB')
+                      ->orWhere('account_type', 'SYS-DEF');
+                })
                 // ->where('is_admin','1')
                 ->where('company_id', '<>', auth()->user()->company_id)
                 ->orderBy('created_at','desc')
@@ -3294,7 +3314,10 @@ class MainController extends Controller
 
             if(auth()->user()->is_admin == 2){
                 $user_records_web = ViewUsers::where('deleted', 0)
-                ->where('account_type','WEB')
+                ->where(function($q) {
+                    $q->where('account_type', 'WEB')
+                      ->orWhere('account_type', 'SYS-DEF');
+                })
                 ->where('company_id', '<>', auth()->user()->company_id)
                 ->orderBy('created_at','desc')
                 ->get();
@@ -3503,7 +3526,7 @@ class MainController extends Controller
             $user_record->password = Hash::make($request->newPass);
             $user_record->deleted = 0;
             $user_record->is_admin = $request->isAdmin;
-            $user_record->account_type = "WEB";
+            $user_record->account_type = "SYS-DEF";
             $user_record->created_by = auth()->user()->company_id;
             $user_record->created_at = now();
             $user_record->updated_at = now();

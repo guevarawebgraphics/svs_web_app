@@ -601,8 +601,8 @@
                             <label for="pmSOL" class="svs-small"><small>Project Manager</small></label>
                             <select id="pmSOL" name="pmSol" class="mdb-select multi-sol-svs" multiple="multiple">
                                 <optgroup label="Project Manager" title="Opiton Group 1">
-                                @if(count($emp_info))
-                                        @foreach($emp_info as $field)
+                                @if(count($pm_info))
+                                        @foreach($pm_info as $field)
                                         <option title="Subgroup 1" value="{{$field->company_id}}">{{$field->fullname}} ({{$field->position}} - {{$field->department}})</option>
                                     @endforeach
                                 @endif

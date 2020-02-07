@@ -30,7 +30,7 @@ class LoginController extends Controller
      */
 
     protected function authenticated(Request $request, User $user){
-        if($user->deleted == 0 && $user->account_type == "WEB"){
+        if($user->deleted == 0 && ($user->account_type == "WEB" || $user->account_type == "SYS-DEF")){
 
             $manage_task = DB::connection('mysql')->select("SELECT * FROM tbl_manage_access_right_per_user WHERE access_id = 2 AND company_id = '".auth()->user()->company_id."'");
             $manage_proj = DB::connection('mysql')->select("SELECT * FROM tbl_manage_access_right_per_user WHERE access_id = 3 AND company_id = '".auth()->user()->company_id."'");

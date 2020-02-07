@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $user_record = DB::connection('mysql')->select("SELECT * FROM users WHERE id = '".auth()->user()->id."'");
 
-        if($user_record[0]->deleted == 0 && $user_record[0]->account_type == "WEB"){
+        if($user_record[0]->deleted == 0 && ($user_record[0]->account_type == "WEB" || $user_record[0]->account_type == "SYS-DEF")){
             
             if(auth()->user()->is_admin == 1){
                 return redirect('/dashboard');
