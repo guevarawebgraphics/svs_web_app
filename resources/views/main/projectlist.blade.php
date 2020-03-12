@@ -840,6 +840,43 @@
 <!-- Modal: modalLoc -->
 
 
+<!-- Modal: imgMod -->
+<div class="modal fade" id="imgMod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Activity Image</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        {{-- <p class="note note-success">
+            <strong>Download Image:</strong> 
+            <em>Click the image to download.</em>
+            <br>
+        </p> --}}
+        <div class="container" id="projprogressDiv">
+            <a id="activityImgHref" download>
+                <img id="activityImg" style="width:100%;height:100%;">
+            </a>
+        </div>
+    
+
+      </div>
+      <!--Footer-->
+      {{-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+        <button class="btn btn-success waves-effect" id="upSubmit">Upload</button>
+      </div> --}}
+    </div>
+  </div>
+</div>
+
+
 <script>
     $('#demoSOL').searchableOptionList();
     $('#empSOL').searchableOptionList();
@@ -850,6 +887,34 @@
     $('#pmSOLEdit').searchableOptionList();
     // $("#pmDivEdit").hide();
     // $("#empDivEdit").hide();
+</script>
+
+<script>
+function activityLog(ProjProgressCode){
+        if(ProjProgressCode == ""){
+            alert("Some parameters are missing please refresh the page.");
+        }else{
+            $.ajax({
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{ route('open_progress_percentage') }}",
+                method: "POST",
+                data:{
+                    proceed:"TRUE",
+                    ProjProgressCode:ProjProgressCode,
+                }, 
+                success:function(data)
+                {
+                    $("#projprogressDiv").html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
+
+            $("#imgMod").modal("show");
+        }
+        
+    }
 </script>
 
 <script>

@@ -294,7 +294,9 @@
                                             <th><b>Weight</b></th>
                                             <th><b>Report</b></th>
                                             <th><b>Submitted by</b></th>
+                                            <th><b>Pick Date</b></th>
                                             <th><b>Created At</b></th>
+                                            <th><b>Attachment</b></th>
                                         </tr>
                                     </thead>
                                     <tbody id="taskOpenView">
